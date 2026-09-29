@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <!-- Halaman Utama & Panduan -->
+  <!-- Halaman Utama & Portal Layanan -->
   <url>
     <loc>https://ais-pre-hz4zhbvx2wldn3lp6qemjc-741765011952.asia-southeast1.run.app/</loc>
     <lastmod>2026-09-29</lastmod>
@@ -11,7 +11,13 @@
     <loc>https://ais-pre-hz4zhbvx2wldn3lp6qemjc-741765011952.asia-southeast1.run.app/jasa/</loc>
     <lastmod>2026-09-29</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.9</priority>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://ais-pre-hz4zhbvx2wldn3lp6qemjc-741765011952.asia-southeast1.run.app/artikel/</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.95</priority>
   </url>
   <url>
     <loc>https://ais-pre-hz4zhbvx2wldn3lp6qemjc-741765011952.asia-southeast1.run.app/kontak.html</loc>
@@ -38,54 +44,92 @@
     <priority>0.8</priority>
   </url>
 
-  <!-- Layanan Utama & Prioritas -->
+  <!-- Artikel & Panduan Edukatif -->
+  <url>
+    <loc>https://ais-pre-hz4zhbvx2wldn3lp6qemjc-741765011952.asia-southeast1.run.app/artikel/panduan-izin-usaha-nib-oss-temanggung.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://ais-pre-hz4zhbvx2wldn3lp6qemjc-741765011952.asia-southeast1.run.app/artikel/biaya-balik-nama-dan-pajak-stnk-samsat-temanggung.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://ais-pre-hz4zhbvx2wldn3lp6qemjc-741765011952.asia-southeast1.run.app/artikel/strategi-iklan-meta-ads-umkm-temanggung.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://ais-pre-hz4zhbvx2wldn3lp6qemjc-741765011952.asia-southeast1.run.app/artikel/tips-membeli-tanah-kebun-sertifikat-shm-temanggung.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://ais-pre-hz4zhbvx2wldn3lp6qemjc-741765011952.asia-southeast1.run.app/artikel/cara-bikin-website-bisnis-temanggung-masuk-google.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://ais-pre-hz4zhbvx2wldn3lp6qemjc-741765011952.asia-southeast1.run.app/artikel/panduan-sertifikasi-halal-gratis-sehati-temanggung.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Direktori 14 Layanan Jasa Spesifik -->
   <url>
     <loc>https://ais-pre-hz4zhbvx2wldn3lp6qemjc-741765011952.asia-southeast1.run.app/jasa/iklan-online.html</loc>
     <lastmod>2026-09-29</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://ais-pre-hz4zhbvx2wldn3lp6qemjc-741765011952.asia-southeast1.run.app/jasa/konsultasi-bisnis.html</loc>
     <lastmod>2026-09-29</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://ais-pre-hz4zhbvx2wldn3lp6qemjc-741765011952.asia-southeast1.run.app/jasa/perizinan.html</loc>
     <lastmod>2026-09-29</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://ais-pre-hz4zhbvx2wldn3lp6qemjc-741765011952.asia-southeast1.run.app/jasa/notaris-ppat.html</loc>
     <lastmod>2026-09-29</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://ais-pre-hz4zhbvx2wldn3lp6qemjc-741765011952.asia-southeast1.run.app/jasa/properti.html</loc>
     <lastmod>2026-09-29</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://ais-pre-hz4zhbvx2wldn3lp6qemjc-741765011952.asia-southeast1.run.app/jasa/stnk-sim.html</loc>
     <lastmod>2026-09-29</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://ais-pre-hz4zhbvx2wldn3lp6qemjc-741765011952.asia-southeast1.run.app/jasa/meta-ads.html</loc>
     <lastmod>2026-09-29</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://ais-pre-hz4zhbvx2wldn3lp6qemjc-741765011952.asia-southeast1.run.app/jasa/website.html</loc>
     <lastmod>2026-09-29</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://ais-pre-hz4zhbvx2wldn3lp6qemjc-741765011952.asia-southeast1.run.app/jasa/desain-branding.html</loc>
@@ -103,7 +147,7 @@
     <loc>https://ais-pre-hz4zhbvx2wldn3lp6qemjc-741765011952.asia-southeast1.run.app/jasa/akuntansi-pajak.html</loc>
     <lastmod>2026-09-29</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://ais-pre-hz4zhbvx2wldn3lp6qemjc-741765011952.asia-southeast1.run.app/jasa/hr-rekrutmen.html</loc>
@@ -121,18 +165,18 @@
     <loc>https://ais-pre-hz4zhbvx2wldn3lp6qemjc-741765011952.asia-southeast1.run.app/jasa/lainnya.html</loc>
     <lastmod>2026-09-29</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
 
   <!-- Legal & Kebijakan -->
   <url>
-    <loc>https://ais-pre-hz4zhbvx2wldn3lp6qemjc-741765011952.asia-southeast1.run.app/privasi.html</loc>
+    <loc>https://ais-pre-hz4zhbvx2wldn3lp6qemjc-741765011952.asia-southeast1.run.app/syarat-ketentuan.html</loc>
     <lastmod>2026-09-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://ais-pre-hz4zhbvx2wldn3lp6qemjc-741765011952.asia-southeast1.run.app/syarat-ketentuan.html</loc>
+    <loc>https://ais-pre-hz4zhbvx2wldn3lp6qemjc-741765011952.asia-southeast1.run.app/privasi.html</loc>
     <lastmod>2026-09-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
