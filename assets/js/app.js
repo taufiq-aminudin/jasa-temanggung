@@ -526,4 +526,89 @@ document.addEventListener('DOMContentLoaded', () => {
       }, 500);
     });
   }
+
+  // 10. Dynamic Real-Time Article Search & Category Filter
+  const initArticleSearch = () => {
+    const searchInput = document.getElementById('article-search-input');
+    const categorySelect = document.getElementById('article-category-select');
+    const articleCards = [...document.querySelectorAll('.article-hub-grid .article-card')];
+    const countLabel = document.getElementById('article-count-label');
+    const clearBtn = document.getElementById('clear-article-search-btn');
+    const noResultsCard = document.getElementById('no-articles-found');
+    const resetBtn = document.getElementById('reset-article-filter-btn');
+
+    if (!searchInput && articleCards.length === 0) return;
+
+    const performArticleFilter = () => {
+      const query = (searchInput ? searchInput.value : '').toLowerCase().trim();
+      const selectedCategory = categorySelect ? categorySelect.value : 'all';
+      const searchTerms = query ? query.split(/\s+/).filter(Boolean) : [];
+      let visibleCount = 0;
+
+      articleCards.forEach(card => {
+        const badgeText = (card.querySelector('.article-badge')?.textContent || '').toLowerCase();
+        const titleText = (card.querySelector('h3')?.textContent || '').toLowerCase();
+        const descText = (card.querySelector('p')?.textContent || '').toLowerCase();
+        const combinedText = `${card.dataset.search || ''} ${badgeText} ${titleText} ${descText}`;
+        const cardCategory = card.dataset.category || '';
+
+        const matchesCategory = selectedCategory === 'all' || cardCategory === selectedCategory;
+        const matchesQuery = searchTerms.length === 0 || searchTerms.every(term => combinedText.includes(term));
+
+        const isVisible = matchesCategory && matchesQuery;
+        card.classList.toggle('hidden', !isVisible);
+        if (isVisible) visibleCount++;
+      });
+
+      // Update count label
+      if (countLabel) {
+        if (searchTerms.length > 0 || selectedCategory !== 'all') {
+          countLabel.textContent = `Menampilkan ${visibleCount} dari ${articleCards.length} artikel yang cocok.`;
+        } else {
+          countLabel.textContent = `Menampilkan semua ${articleCards.length} artikel dan panduan.`;
+        }
+      }
+
+      // Show/hide clear button
+      if (clearBtn) {
+        clearBtn.classList.toggle('hidden', !query && selectedCategory === 'all');
+      }
+
+      // Show/hide empty state
+      if (noResultsCard) {
+        noResultsCard.classList.toggle('hidden', visibleCount > 0);
+      }
+    };
+
+    if (searchInput) {
+      searchInput.addEventListener('input', performArticleFilter);
+      searchInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          searchInput.value = '';
+          performArticleFilter();
+        }
+      });
+    }
+
+    if (categorySelect) {
+      categorySelect.addEventListener('change', performArticleFilter);
+    }
+
+    const resetArticleFilters = () => {
+      if (searchInput) searchInput.value = '';
+      if (categorySelect) categorySelect.value = 'all';
+      performArticleFilter();
+      if (searchInput) searchInput.focus();
+    };
+
+    if (clearBtn) clearBtn.addEventListener('click', resetArticleFilters);
+    if (resetBtn) resetBtn.addEventListener('click', resetArticleFilters);
+
+    // Initial run
+    if (searchInput && searchInput.value) {
+      performArticleFilter();
+    }
+  };
+
+  initArticleSearch();
 });

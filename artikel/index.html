@@ -104,10 +104,40 @@
 
     <section class="section" style="padding-top:20px">
       <div class="container">
+        <!-- Dynamic Article Search & Category Filter Toolbar -->
+        <div class="finder article-finder" style="margin-top:0;margin-bottom:12px">
+          <div style="display:flex;align-items:center;padding-left:14px;color:var(--muted);font-size:16px">🔍</div>
+          <input type="text" id="article-search-input" data-article-search placeholder="Cari artikel atau panduan (contoh: NIB, OSS, halal, samsat, STNK, meta ads, tanah, SEO, website)..." aria-label="Cari artikel dan panduan Temanggung" autocomplete="off">
+          <select id="article-category-select" aria-label="Filter kategori artikel">
+            <option value="all">Semua Kategori (6)</option>
+            <option value="legalitas">Legalitas &amp; Usaha</option>
+            <option value="otomotif">Otomotif &amp; Samsat</option>
+            <option value="digital">Pemasaran Digital</option>
+            <option value="properti">Properti &amp; Agraria</option>
+            <option value="website">Website &amp; SEO</option>
+            <option value="sertifikasi">Sertifikasi &amp; Pangan</option>
+          </select>
+        </div>
+        <div class="results-note" style="margin-top:-4px;margin-bottom:24px;color:var(--muted);font-size:13px;display:flex;justify-content:space-between;align-items:center">
+          <span id="article-count-label">Menampilkan semua 6 artikel dan panduan.</span>
+          <button type="button" id="clear-article-search-btn" class="hidden" style="background:none;border:none;color:var(--primary);cursor:pointer;font-size:12px;font-weight:700">✕ Reset Pencarian</button>
+        </div>
+
+        <!-- No Articles Found State -->
+        <div id="no-articles-found" class="callout hidden" style="text-align:center;padding:36px 20px;margin:20px 0;background:#f8fafc;border:1px dashed #cbd5e1">
+          <div style="font-size:36px;margin-bottom:8px">📖</div>
+          <h3 style="margin-bottom:6px;font-size:18px">Artikel tidak ditemukan</h3>
+          <p style="margin:0 auto 16px;color:var(--muted);font-size:14px;max-width:540px">Tidak ada artikel yang cocok dengan kata kunci tersebut. Coba kata kunci lain atau ceritakan langsung pertanyaan Anda kepada tim kami.</p>
+          <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+            <button type="button" class="btn btn-secondary" id="reset-article-filter-btn" style="font-size:13px;padding:8px 16px">Lihat Semua Artikel</button>
+            <a class="btn btn-primary" href="../kontak.html" style="font-size:13px;padding:8px 16px">Konsultasi Kebutuhan Khusus →</a>
+          </div>
+        </div>
+
         <!-- Grid Artikel Terbaru -->
         <div class="article-hub-grid">
           <!-- Artikel 1: Izin Usaha NIB OSS -->
-          <article class="article-card">
+          <article class="article-card" data-category="legalitas" data-search="panduan lengkap cara mengurus nib oss rba izin usaha umkm temanggung dpmptsp berkas kbli modal pinjaman kur legalitas usaha">
             <div>
               <span class="article-badge" style="background:#e0f2fe;color:#0369a1">Legalitas &amp; Usaha</span>
               <h3><a href="panduan-izin-usaha-nib-oss-temanggung.html">Panduan Lengkap Cara Mengurus NIB OSS-RBA dan Izin Usaha UMKM di Temanggung (2026)</a></h3>
@@ -120,7 +150,7 @@
           </article>
 
           <!-- Artikel 2: Balik Nama & Pajak STNK Samsat -->
-          <article class="article-card">
+          <article class="article-card" data-category="otomotif" data-search="biaya syarat balik nama motor mobil pajak 5 tahunan samsat temanggung bbnkb cek fisik plat nomor stnk bpkb">
             <div>
               <span class="article-badge" style="background:#fef3c7;color:#92400e">Otomotif &amp; Samsat</span>
               <h3><a href="biaya-balik-nama-dan-pajak-stnk-samsat-temanggung.html">Biaya &amp; Syarat Balik Nama Motor/Mobil serta Pajak 5 Tahunan di Samsat Temanggung</a></h3>
@@ -133,7 +163,7 @@
           </article>
 
           <!-- Artikel 3: Iklan Meta Ads Lokal -->
-          <article class="article-card">
+          <article class="article-card" data-category="digital" data-search="strategi pasang iklan meta ads facebook ig instagram temanggung parakan kledung radius omzet leads targeting pemasaran digital">
             <div>
               <span class="article-badge" style="background:#d1fae5;color:#065f46">Pemasaran Digital</span>
               <h3><a href="strategi-iklan-meta-ads-umkm-temanggung.html">Strategi Pasang Iklan Meta Ads (FB &amp; IG) Tertarget Wilayah Temanggung untuk Melipatgandakan Omzet</a></h3>
@@ -146,7 +176,7 @@
           </article>
 
           <!-- Artikel 4: Tips Beli Tanah Kebun & Properti -->
-          <article class="article-card">
+          <article class="article-card" data-category="properti" data-search="tips aman membeli tanah kebun properti temanggung notaris ppat cek sertifikat bpn letter c girik shm ajb bphtb agraria">
             <div>
               <span class="article-badge" style="background:#ede9fe;color:#5b21b6">Properti &amp; Agraria</span>
               <h3><a href="tips-membeli-tanah-kebun-sertifikat-shm-temanggung.html">Tips Aman Membeli Tanah Kebun dan Properti di Temanggung Lewat Notaris &amp; PPAT</a></h3>
@@ -159,7 +189,7 @@
           </article>
 
           <!-- Artikel 5: Bikin Website Masuk Google -->
-          <article class="article-card">
+          <article class="article-card" data-category="website" data-search="cara membuat website profil usaha bisnis temanggung halaman pertama google seo lokal google maps ranking domain hosting web">
             <div>
               <span class="article-badge" style="background:#fce7f3;color:#9d174d">Website &amp; SEO</span>
               <h3><a href="cara-bikin-website-bisnis-temanggung-masuk-google.html">Cara Membuat Website Profil Usaha di Temanggung agar Muncul di Halaman Pertama Google (SEO Lokal)</a></h3>
@@ -172,7 +202,7 @@
           </article>
 
           <!-- Artikel 6: Sertifikasi Halal Gratis -->
-          <article class="article-card">
+          <article class="article-card" data-category="sertifikasi" data-search="panduan mengurus sertifikasi halal gratis sehati produk makanan temanggung self declare bpjph umkm makanan minuman pph sertifikasi pangan">
             <div>
               <span class="article-badge" style="background:#ecfdf5;color:#047857">Sertifikasi &amp; Pangan</span>
               <h3><a href="panduan-sertifikasi-halal-gratis-sehati-temanggung.html">Panduan Mengurus Sertifikasi Halal Gratis (SEHATI) untuk Produk Makanan di Temanggung</a></h3>
