@@ -1,3 +1,12 @@
+// 0. Safeguard for Google AdSense TagError (availableWidth=0) in iframe & responsive views
+window.addEventListener('error', (e) => {
+  if (e && e.message && (e.message.includes('adsbygoogle') || e.message.includes('availableWidth=0'))) {
+    if (e.preventDefault) e.preventDefault();
+    if (e.stopImmediatePropagation) e.stopImmediatePropagation();
+    return true;
+  }
+}, true);
+
 document.addEventListener('DOMContentLoaded', () => {
   // 1. Dynamic Year
   const y = document.getElementById('year');
@@ -633,4 +642,17 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   initArticleSearch();
+
+  // 12. Safe Google AdSense Slot Initialization
+  const safeInitAds = () => {
+    document.querySelectorAll('ins.adsbygoogle').forEach(ins => {
+      if (!ins.hasAttribute('data-adsbygoogle-status') && ins.offsetWidth > 0) {
+        try {
+          (window.adsbygoogle = window.adsbygoogle || []).push({});
+        } catch (e) {}
+      }
+    });
+  };
+  window.addEventListener('load', safeInitAds);
+  window.addEventListener('resize', safeInitAds);
 });

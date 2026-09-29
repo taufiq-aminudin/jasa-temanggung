@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" fill="none">
+  <defs>
+    <linearGradient id="fljTop" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#fbbf24"/>
+      <stop offset="60%" stop-color="#f97316"/>
+      <stop offset="100%" stop-color="#ea580c"/>
+    </linearGradient>
+    <linearGradient id="fljBody" x1="15%" y1="5%" x2="85%" y2="95%">
+      <stop offset="0%" stop-color="#1e3a8a"/>
+      <stop offset="35%" stop-color="#0f2b5c"/>
+      <stop offset="80%" stop-color="#0a1936"/>
+      <stop offset="100%" stop-color="#061226"/>
+    </linearGradient>
+    <linearGradient id="fljBevel" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2563eb" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#0f2b5c" stop-opacity="0.1"/>
+    </linearGradient>
+    <linearGradient id="flPin" x1="10%" y1="0%" x2="85%" y2="100%">
+      <stop offset="0%" stop-color="#fbad38"/>
+      <stop offset="30%" stop-color="#fb923c"/>
+      <stop offset="70%" stop-color="#f97316"/>
+      <stop offset="90%" stop-color="#ea580c"/>
+      <stop offset="100%" stop-color="#dc2626"/>
+    </linearGradient>
+    <linearGradient id="flSky" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" stop-color="#7dd3fc"/>
+      <stop offset="50%" stop-color="#bae6fd"/>
+      <stop offset="100%" stop-color="#e0f2fe"/>
+    </linearGradient>
+    <linearGradient id="flMtnDark" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e3a8a"/>
+      <stop offset="100%" stop-color="#2563eb"/>
+    </linearGradient>
+    <linearGradient id="flMtnLight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#93c5fd"/>
+      <stop offset="100%" stop-color="#dbeafe"/>
+    </linearGradient>
+    <linearGradient id="flHill1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#16a34a"/>
+      <stop offset="100%" stop-color="#15803d"/>
+    </linearGradient>
+    <linearGradient id="flHill2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4ade80"/>
+      <stop offset="50%" stop-color="#22c55e"/>
+      <stop offset="100%" stop-color="#16a34a"/>
+    </linearGradient>
+    <linearGradient id="flWaveGreen" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#15803d"/>
+      <stop offset="40%" stop-color="#16a34a"/>
+      <stop offset="75%" stop-color="#22c55e"/>
+      <stop offset="100%" stop-color="#4ade80"/>
+    </linearGradient>
+    <linearGradient id="flWaveBlue" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0369a1"/>
+      <stop offset="50%" stop-color="#0284c7"/>
+      <stop offset="100%" stop-color="#38bdf8"/>
+    </linearGradient>
+    <clipPath id="flPinClip">
+      <circle cx="395" cy="188" r="76"/>
+    </clipPath>
+  </defs>
+
+  <rect width="600" height="600" fill="#ffffff" rx="36"/>
+
+  <g transform="translate(16, -10)">
+    <path d="M214 96 L338 72 L326 104 L228 124 Z" fill="url(#fljTop)"/>
+    <path d="M228 124 L318 104 C321 150 322 200 322 246 C322 315 306 358 250 370 C194 382 148 348 142 290 C140 266 146 246 158 228 C168 214 182 218 186 236 C190 254 184 270 188 284 C194 306 214 316 238 310 C264 304 272 278 272 240 L272 162 L228 168 Z" fill="url(#fljBody)"/>
+    <path d="M186 236 C190 254 184 270 188 284 C194 306 214 316 238 310 C254 306 264 294 268 274 C252 284 234 286 220 272 C208 258 202 238 186 236 Z" fill="url(#fljBevel)"/>
+    <path d="M395 92 C449 92 491 134 491 188 C491 238 453 288 409 332 C403 338 395 346 389 352 C387 346 381 336 375 328 C347 292 319 248 319 188 C319 134 341 92 395 92 Z" fill="url(#flPin)"/>
+    <g clip-path="url(#flPinClip)">
+      <rect x="305" y="98" width="180" height="180" fill="url(#flSky)"/>
+      <path d="M415 136 C421 130 431 130 437 134 C443 130 453 132 457 138 C463 140 467 146 465 152 L409 152 C405 146 409 138 415 136 Z" fill="#ffffff" opacity="0.95"/>
+      <path d="M395 132 L335 208 L410 208 Z" fill="url(#flMtnDark)"/>
+      <path d="M395 132 L410 208 L460 202 Z" fill="url(#flMtnLight)"/>
+      <path d="M395 132 L399 158 L405 170 L401 186 L410 208 L395 132 Z" fill="#ffffff" opacity="0.85"/>
+      <path d="M325 204 L337 196 L343 204 L353 194 L361 204 L373 192 L383 204 L397 192 L409 204 L421 194 L433 204 L445 194 L457 204 L475 204 L475 224 L325 224 Z" fill="#14532d"/>
+      <path d="M315 216 C355 208 405 220 475 210 L475 238 C415 244 365 228 315 238 Z" fill="url(#flHill1)"/>
+      <path d="M315 230 C365 222 425 236 475 224 L475 268 L315 268 Z" fill="url(#flHill2)"/>
+      <path d="M345 236 C385 230 425 238 460 230" stroke="#15803d" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+      <path d="M335 248 C380 240 430 250 470 242" stroke="#166534" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+    </g>
+    <path d="M218 386 C282 352 358 348 424 378 C454 392 482 400 508 396 C484 408 450 406 420 394 C352 368 280 370 218 404 Z" fill="url(#flWaveGreen)"/>
+    <path d="M234 402 C290 378 356 374 414 396 C444 408 474 414 500 410 C474 420 442 418 410 408 C354 388 290 390 234 418 Z" fill="url(#flWaveBlue)"/>
+  </g>
+
+  <g text-anchor="middle">
+    <text x="300" y="448" font-family="system-ui, -apple-system, Roboto, sans-serif" font-size="64" font-weight="900" fill="#0c1e3d" letter-spacing="-1">Jasa</text>
+    <text x="300" y="512" font-family="system-ui, -apple-system, Roboto, sans-serif" font-size="68" font-weight="900" fill="#f97316" letter-spacing="-1.5">Temanggung</text>
+    <text x="300" y="556" font-family="system-ui, -apple-system, Roboto, sans-serif" font-size="18" font-weight="800" fill="#0f2956" letter-spacing="0.2">Satu Tempat untuk Berbagai Kebutuhan</text>
+  </g>
+</svg>

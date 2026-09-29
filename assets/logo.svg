@@ -1,66 +1,142 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 84" fill="none">
   <defs>
-    <!-- Background Gradient for Icon -->
-    <linearGradient id="logoBg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#091428"/>
-      <stop offset="45%" stop-color="#0f3eb5"/>
-      <stop offset="100%" stop-color="#1d66f0"/>
+    <!-- Top Cap of J -->
+    <linearGradient id="hljTop" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#fbbf24"/>
+      <stop offset="60%" stop-color="#f97316"/>
+      <stop offset="100%" stop-color="#ea580c"/>
     </linearGradient>
 
-    <!-- Teal-Cyan J Gradient -->
-    <linearGradient id="logoTeal" x1="0%" y1="100%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#059669"/>
-      <stop offset="50%" stop-color="#10b981"/>
-      <stop offset="100%" stop-color="#38bdf8"/>
+    <!-- J Main Stem & Curve -->
+    <linearGradient id="hljBody" x1="15%" y1="5%" x2="85%" y2="95%">
+      <stop offset="0%" stop-color="#1e3a8a"/>
+      <stop offset="35%" stop-color="#0f2b5c"/>
+      <stop offset="80%" stop-color="#0a1936"/>
+      <stop offset="100%" stop-color="#061226"/>
     </linearGradient>
 
-    <!-- White T Gradient -->
-    <linearGradient id="logoWhite" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#ffffff"/>
+    <linearGradient id="hljBevel" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2563eb" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#0f2b5c" stop-opacity="0.1"/>
+    </linearGradient>
+
+    <!-- Location Pin Ring Gradient -->
+    <linearGradient id="hlPin" x1="10%" y1="0%" x2="85%" y2="100%">
+      <stop offset="0%" stop-color="#fbad38"/>
+      <stop offset="30%" stop-color="#fb923c"/>
+      <stop offset="70%" stop-color="#f97316"/>
+      <stop offset="90%" stop-color="#ea580c"/>
+      <stop offset="100%" stop-color="#dc2626"/>
+    </linearGradient>
+
+    <!-- Sky Gradient inside Pin -->
+    <linearGradient id="hlSky" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" stop-color="#7dd3fc"/>
+      <stop offset="50%" stop-color="#bae6fd"/>
       <stop offset="100%" stop-color="#e0f2fe"/>
     </linearGradient>
 
-    <!-- Gold Star Gradient -->
-    <linearGradient id="logoGold" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#fde047"/>
-      <stop offset="100%" stop-color="#f59e0b"/>
+    <!-- Mountain Slope Gradients -->
+    <linearGradient id="hlMtnDark" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e3a8a"/>
+      <stop offset="100%" stop-color="#2563eb"/>
+    </linearGradient>
+    <linearGradient id="hlMtnLight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#93c5fd"/>
+      <stop offset="100%" stop-color="#dbeafe"/>
     </linearGradient>
 
-    <filter id="logoShadow" x="-10%" y="-10%" width="120%" height="120%" filterUnits="userSpaceOnUse">
-      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#04122c" flood-opacity="0.35"/>
-    </filter>
+    <!-- Terraced Farm Hill Gradients -->
+    <linearGradient id="hlHill1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#16a34a"/>
+      <stop offset="100%" stop-color="#15803d"/>
+    </linearGradient>
+    <linearGradient id="hlHill2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4ade80"/>
+      <stop offset="50%" stop-color="#22c55e"/>
+      <stop offset="100%" stop-color="#16a34a"/>
+    </linearGradient>
+
+    <!-- Dynamic Base Wave Gradients -->
+    <linearGradient id="hlWaveGreen" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#15803d"/>
+      <stop offset="40%" stop-color="#16a34a"/>
+      <stop offset="75%" stop-color="#22c55e"/>
+      <stop offset="100%" stop-color="#4ade80"/>
+    </linearGradient>
+
+    <linearGradient id="hlWaveBlue" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0369a1"/>
+      <stop offset="50%" stop-color="#0284c7"/>
+      <stop offset="100%" stop-color="#38bdf8"/>
+    </linearGradient>
+
+    <clipPath id="hlPinClip">
+      <circle cx="53" cy="27" r="12"/>
+    </clipPath>
   </defs>
 
-  <!-- Brand Mark Icon Box (70x70) -->
-  <g transform="translate(5, 5)">
-    <rect width="70" height="70" rx="18" fill="url(#logoBg)"/>
-    <rect x="1" y="1" width="68" height="68" rx="17" stroke="rgba(255, 255, 255, 0.2)" stroke-width="1.5"/>
+  <!-- Scaled Emblem (Left Side) -->
+  <g transform="translate(6, 4) scale(0.18)">
+    <!-- Top Accent Bar of J -->
+    <path d="M148 76 L272 52 L260 84 L162 104 Z" fill="url(#hljTop)"/>
 
-    <!-- Mountain Silhouette -->
-    <path d="M10 52 L26 30 L36 44 L50 24 L62 52 Z" fill="rgba(255, 255, 255, 0.1)"/>
+    <!-- J Main Body & Hook -->
+    <path d="M162 104 
+             L252 84 
+             C255 130 256 180 256 226
+             C256 295 240 338 184 350
+             C128 362 82 328 76 270
+             C74 246 80 226 92 208
+             C102 194 116 198 120 216
+             C124 234 118 250 122 264
+             C128 286 148 296 172 290
+             C198 284 206 258 206 220
+             L206 142
+             L162 148 Z" 
+          fill="url(#hljBody)"/>
 
-    <!-- J Path -->
-    <path d="M18 28 C18 26 19.5 24 21.5 24 H28 V40 C28 45 24 49 19 49 C15.5 49 13 47 11.5 44.5 L17.5 41 C18 41.8 18.5 42.5 19.5 42.5 C20.8 42.5 21.5 41.5 21.5 40 V31 H21.5 C19.5 31 18 29.5 18 28 Z" 
-          fill="url(#logoTeal)" filter="url(#logoShadow)"/>
+    <!-- J Inner Curve 3D Highlight -->
+    <path d="M120 216 
+             C124 234 118 250 122 264
+             C128 286 148 296 172 290
+             C188 286 198 274 202 254
+             C186 264 168 266 154 252
+             C142 238 136 218 120 216 Z" 
+          fill="url(#hljBevel)"/>
 
-    <!-- T Path -->
-    <path d="M26 23 C26 21 27.5 19 29.5 19 H56 C58 19 59.5 21 59.5 23 C59.5 25 58 27 56 27 H46 V50 C46 52 44.5 54 42.5 54 C40.5 54 39 52 39 50 V27 H29.5 C27.5 27 26 25 26 23 Z" 
-          fill="url(#logoWhite)" filter="url(#logoShadow)"/>
+    <!-- Location Pin with Landscape -->
+    <path d="M330 84 
+             C384 84 426 126 426 180 
+             C426 230 388 280 344 324 
+             C338 330 330 338 324 344
+             C322 338 316 328 310 320
+             C282 284 254 240 254 180 
+             C254 126 276 84 330 84 Z" 
+          fill="url(#hlPin)"/>
 
-    <!-- Checkmark Badge -->
-    <circle cx="53" cy="43" r="9" fill="#0b1a36" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
-    <circle cx="53" cy="43" r="7.5" fill="#10b981"/>
-    <path d="M50 43 L52.2 45.2 L56.5 40.5" stroke="#ffffff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- Inner Circle Window -->
+    <g clip-path="url(#favPinClip)">
+      <circle cx="330" cy="180" r="76" fill="url(#hlSky)"/>
+      <path d="M350 128 C356 122 366 122 372 126 C378 122 388 124 392 130 C398 132 402 138 400 144 L344 144 C340 138 344 130 350 128 Z" fill="#ffffff" opacity="0.95"/>
+      <path d="M330 124 L270 200 L345 200 Z" fill="url(#hlMtnDark)"/>
+      <path d="M330 124 L345 200 L395 194 Z" fill="url(#hlMtnLight)"/>
+      <path d="M330 124 L334 150 L340 162 L336 178 L345 200 L330 124 Z" fill="#ffffff" opacity="0.85"/>
+      <path d="M260 196 L272 188 L278 196 L288 186 L296 196 L308 184 L318 196 L332 184 L344 196 L356 186 L368 196 L380 186 L392 196 L410 196 L410 216 L260 216 Z" fill="#14532d"/>
+      <path d="M250 208 C290 200 340 212 410 202 L410 230 C350 236 300 220 250 230 Z" fill="url(#hlHill1)"/>
+      <path d="M250 222 C300 214 360 228 410 216 L410 260 L250 260 Z" fill="url(#hlHill2)"/>
+    </g>
 
-    <!-- Star Sparkle -->
-    <path d="M57 12 C57 15 60 15 60 15 C60 15 57 15 57 18 C57 15 54 15 54 15 C54 15 57 15 57 12 Z" fill="url(#logoGold)"/>
+    <!-- Base Foundation Waves -->
+    <path d="M152 366 C216 332 292 328 358 358 C388 372 416 380 442 376 C418 388 384 386 354 374 C286 348 214 350 152 384 Z" fill="url(#hlWaveGreen)"/>
+    <path d="M168 382 C224 358 290 354 348 376 C378 388 408 394 434 390 C408 400 376 398 344 388 C288 368 224 370 168 398 Z" fill="url(#hlWaveBlue)"/>
   </g>
 
-  <!-- Typography -->
-  <text x="90" y="38" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="24" font-weight="500" fill="#0b1220" letter-spacing="-0.5">
-    Jasa <tspan font-weight="900" fill="#1457d9">Temanggung</tspan>
+  <!-- Typography Right Side -->
+  <text x="86" y="38" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="26" font-weight="900" fill="#0b1a36" letter-spacing="-0.5">
+    Jasa <tspan fill="#f97316">Temanggung</tspan>
   </text>
-  <text x="91" y="56" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700" fill="#64748b" letter-spacing="0.5">
-    ONE-STOP SERVICE &amp; DIREKTORI LOKAL
+  <text x="87" y="58" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11.5" font-weight="800" fill="#0f2956" letter-spacing="0.2">
+    Satu Tempat untuk Berbagai Kebutuhan
   </text>
 </svg>
