@@ -143,9 +143,9 @@
             <span class="mini-label">SIMULASI CEPAT & PRAKTIS</span>
             <strong>Pilih layanan, dapatkan pemetaan langsung.</strong>
             <p>Hemat waktu Anda tanpa harus bertanya dari satu kantor ke kantor lain.</p>
-            <div class="fake-search">
-              <span>“Saya mau urus NIB & Iklan Ads...”</span>
-              <a href="jasa/index.html" style="color:var(--primary);font-weight:800">Cari →</a>
+            <div class="fake-search" style="padding:4px 6px;display:flex;align-items:center;background:#fff;border-radius:14px;border:1px solid #cbd5e1;box-shadow:0 2px 6px rgba(0,0,0,0.04)">
+              <input type="text" id="hero-quick-search" placeholder="Cari jasa (cth: NIB, ads, STNK, website)..." style="border:0;outline:0;flex:1;padding:8px 10px;font-size:13px;background:transparent" aria-label="Cari jasa cepat di Temanggung">
+              <button type="button" id="hero-search-btn" class="btn btn-primary" style="padding:7px 14px;font-size:12px;border-radius:10px;white-space:nowrap">Cari ↓</button>
             </div>
           </div>
         </div>
@@ -207,10 +207,10 @@
       </div>
     </section>
 
-    <!-- Layanan Populer Section -->
-    <section class="section" style="padding-top:20px">
+    <!-- Layanan Populer Section with Real-Time Search -->
+    <section class="section" style="padding-top:20px" id="layanan-section">
       <div class="container">
-        <div class="section-head">
+        <div class="section-head" style="margin-bottom:18px">
           <div>
             <span class="eyebrow">Layanan Unggulan</span>
             <h2>Pilih Sesuai Kebutuhan Anda</h2>
@@ -218,7 +218,37 @@
           <p>Masing-masing halaman menjabarkan alur, dokumen persyaratan, dan estimasi waktu yang transparan.</p>
         </div>
 
-        <div class="grid-3">
+        <!-- Real-Time Search & Category Filter Toolbar -->
+        <div class="finder home-finder" style="margin-top:0;margin-bottom:12px">
+          <div style="display:flex;align-items:center;padding-left:14px;color:var(--muted);font-size:16px">🔍</div>
+          <input type="text" id="home-service-search" data-service-search placeholder="Ketik kata kunci layanan (contoh: iklan, konsultasi, NIB, notaris, properti, STNK, website, desain, pajak)..." aria-label="Cari layanan real-time di Temanggung" autocomplete="off">
+          <select id="home-category-select" aria-label="Filter kategori layanan">
+            <option value="all">Semua Kategori (9)</option>
+            <option value="marketing">Pemasaran & Iklan</option>
+            <option value="bisnis">Bisnis & Legalitas</option>
+            <option value="dokumen">Perizinan & Notaris</option>
+            <option value="properti">Properti & Pertanahan</option>
+            <option value="kendaraan">Samsat & Kendaraan</option>
+            <option value="digital">Website & SEO</option>
+          </select>
+        </div>
+        <div class="results-note" data-results-note style="margin-top:-4px;margin-bottom:20px;color:var(--muted);font-size:13px;display:flex;justify-content:space-between;align-items:center">
+          <span id="service-count-label">Menampilkan 9 dari 9 layanan unggulan.</span>
+          <button type="button" id="clear-search-btn" class="hidden" style="background:none;border:none;color:var(--primary);cursor:pointer;font-size:12px;font-weight:700">✕ Reset Pencarian</button>
+        </div>
+
+        <!-- No Results Fallback Card -->
+        <div id="no-services-found" class="callout hidden" style="text-align:center;padding:36px 20px;margin:20px 0;background:#f8fafc;border:1px dashed #cbd5e1">
+          <div style="font-size:36px;margin-bottom:8px">🔎</div>
+          <h3 style="margin-bottom:6px;font-size:18px">Layanan tidak ditemukan</h3>
+          <p style="margin:0 auto 16px;color:var(--muted);font-size:14px;max-width:540px">Tidak ada layanan yang cocok dengan kata kunci tersebut. Kami siap membantu kebutuhan kustom Anda di seluruh Kabupaten Temanggung.</p>
+          <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+            <button type="button" class="btn btn-secondary" id="reset-filter-btn" style="font-size:13px;padding:8px 16px">Lihat Semua Layanan</button>
+            <a class="btn btn-primary" href="kontak.html" style="font-size:13px;padding:8px 16px">Ceritakan Kebutuhan Khusus →</a>
+          </div>
+        </div>
+
+        <div class="grid-3" id="service-grid">
           <!-- 1. Jasa Iklan Online & Ads (BARU) -->
           <article class="service-card" data-category="marketing" data-search="jasa iklan online ads google ads meta ads facebook instagram tiktok marketing temanggung">
             <div class="service-icon" style="background:#e0f2fe;color:#0284c7">⚡</div>

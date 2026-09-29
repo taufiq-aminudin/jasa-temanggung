@@ -18,27 +18,150 @@ document.addEventListener('DOMContentLoaded', () => {
     b.onclick = () => b.closest('.faq-item').classList.toggle('open');
   });
 
-  // 4. Service Directory Search & Category Filter
-  const s = document.querySelector('[data-service-search]'),
-        sel = document.querySelector('.finder select'),
-        c = [...document.querySelectorAll('.service-card[data-search]')],
-        note = document.querySelector('[data-results-note]');
-  if (s) {
-    const f = () => {
-      const q = s.value.toLowerCase().trim(),
-            cat = sel ? sel.value : 'all';
-      let z = 0;
-      c.forEach(x => {
-        const ok = (!q || x.dataset.search.includes(q)) && (cat === 'all' || x.dataset.category === cat);
-        x.classList.toggle('hidden', !ok);
-        if (ok) z++;
+  // 4. Real-Time Service Search & Category Filter
+  const initServiceSearch = () => {
+    const searchInputs = document.querySelectorAll('[data-service-search]');
+    const categorySelects = document.querySelectorAll('.finder select, #home-category-select');
+    const serviceCards = [...document.querySelectorAll('.service-card[data-search]')];
+    const resultsNotes = document.querySelectorAll('[data-results-note], #service-count-label');
+    const clearBtn = document.getElementById('clear-search-btn');
+    const noResultsCard = document.getElementById('no-services-found');
+    const resetFilterBtn = document.getElementById('reset-filter-btn');
+    const heroInput = document.getElementById('hero-quick-search');
+    const heroBtn = document.getElementById('hero-search-btn');
+
+    if (searchInputs.length === 0 && serviceCards.length === 0) return;
+
+    let currentQuery = '';
+    let currentCategory = 'all';
+
+    const performFilter = (query, category) => {
+      currentQuery = (query || '').toLowerCase().trim();
+      currentCategory = category || 'all';
+
+      // Sync inputs if not active
+      searchInputs.forEach(input => {
+        if (input.value !== query && document.activeElement !== input) {
+          input.value = query;
+        }
       });
-      if (note) note.textContent = `Menampilkan ${z} dari ${c.length} layanan yang tersedia.`;
+      categorySelects.forEach(select => {
+        if (select.value !== currentCategory) {
+          select.value = currentCategory;
+        }
+      });
+
+      const searchTerms = currentQuery ? currentQuery.split(/\s+/).filter(Boolean) : [];
+      let visibleCount = 0;
+
+      serviceCards.forEach(card => {
+        const cardSearchText = (card.dataset.search + ' ' + card.innerText).toLowerCase();
+        const matchesCategory = currentCategory === 'all' || card.dataset.category === currentCategory;
+        const matchesQuery = searchTerms.length === 0 || searchTerms.every(term => cardSearchText.includes(term));
+
+        const isVisible = matchesCategory && matchesQuery;
+        card.classList.toggle('hidden', !isVisible);
+        if (isVisible) visibleCount++;
+      });
+
+      // Update result counter notes
+      resultsNotes.forEach(note => {
+        if (searchTerms.length > 0 || currentCategory !== 'all') {
+          note.textContent = `Menampilkan ${visibleCount} dari ${serviceCards.length} layanan yang cocok.`;
+        } else {
+          note.textContent = `Menampilkan semua ${serviceCards.length} layanan unggulan.`;
+        }
+      });
+
+      // Show or hide clear button
+      if (clearBtn) {
+        clearBtn.classList.toggle('hidden', !currentQuery && currentCategory === 'all');
+      }
+
+      // Show or hide no results card
+      if (noResultsCard) {
+        noResultsCard.classList.toggle('hidden', visibleCount > 0);
+      }
     };
-    s.addEventListener('input', f);
-    if (sel) sel.addEventListener('change', f);
-    f();
-  }
+
+    // Attach listeners to all search inputs
+    searchInputs.forEach(input => {
+      input.addEventListener('input', (e) => {
+        const select = input.closest('.finder')?.querySelector('select') || document.getElementById('home-category-select');
+        const cat = select ? select.value : currentCategory;
+        performFilter(e.target.value, cat);
+      });
+
+      // Clear on Escape key
+      input.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          input.value = '';
+          performFilter('', currentCategory);
+        }
+      });
+    });
+
+    // Attach listeners to category selectors
+    categorySelects.forEach(select => {
+      select.addEventListener('change', (e) => {
+        const activeInput = document.querySelector('[data-service-search]:focus') || searchInputs[0];
+        const q = activeInput ? activeInput.value : currentQuery;
+        performFilter(q, e.target.value);
+      });
+    });
+
+    // Reset button events
+    const resetAll = () => {
+      searchInputs.forEach(input => { input.value = ''; });
+      categorySelects.forEach(select => { select.value = 'all'; });
+      if (heroInput) heroInput.value = '';
+      performFilter('', 'all');
+      const firstInput = searchInputs[0];
+      if (firstInput) firstInput.focus();
+    };
+
+    if (clearBtn) clearBtn.addEventListener('click', resetAll);
+    if (resetFilterBtn) resetFilterBtn.addEventListener('click', resetAll);
+
+    // Hero quick search interaction
+    if (heroInput) {
+      heroInput.addEventListener('input', (e) => {
+        performFilter(e.target.value, currentCategory);
+      });
+
+      const scrollToServices = () => {
+        const targetSection = document.getElementById('layanan-section') || document.querySelector('.grid-3');
+        if (targetSection) {
+          targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          const mainInput = document.getElementById('home-service-search') || searchInputs[0];
+          if (mainInput) setTimeout(() => mainInput.focus(), 400);
+        }
+      };
+
+      heroInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          scrollToServices();
+        }
+      });
+
+      if (heroBtn) {
+        heroBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          scrollToServices();
+        });
+      }
+    }
+
+    // Initial check (handles prefilled query if any)
+    const initialInput = searchInputs[0];
+    const initialSelect = categorySelects[0];
+    if (initialInput && initialInput.value) {
+      performFilter(initialInput.value, initialSelect ? initialSelect.value : 'all');
+    }
+  };
+
+  initServiceSearch();
 
   // 5. Interactive Consultation Cost Estimator Widget
   const estService = document.getElementById('calc-service'),

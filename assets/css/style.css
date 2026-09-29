@@ -345,3 +345,9 @@ a{color:inherit;text-decoration:none}
   .mobile-cta{display:flex;position:fixed;left:14px;right:14px;bottom:14px;z-index:98;background:var(--primary);color:#fff;padding:14px 18px;border-radius:15px;justify-content:space-between;font-weight:800;box-shadow:0 16px 30px rgba(20,87,217,.3)}
   .wa-float-btn{display:none}
 }
+
+@media(max-width:640px){
+  .finder{flex-direction:column;gap:8px;padding:10px}
+  .finder select{height:42px;width:100%}
+  .home-finder input{padding:10px 8px}
+}
