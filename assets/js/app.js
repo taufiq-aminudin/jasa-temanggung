@@ -300,7 +300,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 7. Slick Testimonial Carousel & Filter Controller
+  // 7. Slick Testimonial Carousel & Review Submission Controller
   const track = document.getElementById('testiTrack');
   const prevBtn = document.getElementById('testiPrevBtn');
   const nextBtn = document.getElementById('testiNextBtn');
@@ -308,14 +308,96 @@ document.addEventListener('DOMContentLoaded', () => {
   const counterBadge = document.getElementById('testiCounterBadge');
   const counterText = document.getElementById('testiCounterText');
   const testiTabs = document.querySelectorAll('.testi-filter-btn');
-  const allCards = document.querySelectorAll('#testiTrack .testimonial-card');
 
-  if (track && allCards.length) {
+  if (track) {
+    const STORAGE_KEY = 'jasa_temanggung_user_reviews';
+
+    // Helper to generate initials & avatar color
+    const getAvatarInitials = (name) => {
+      const parts = (name || '').trim().split(/\s+/).filter(Boolean);
+      if (parts.length >= 2) {
+        return (parts[0][0] + parts[1][0]).toUpperCase();
+      }
+      return ((parts[0] || 'U').substring(0, 2)).toUpperCase();
+    };
+
+    const avatarColors = [
+      { bg: '#dbeafe', text: '#1e40af' },
+      { bg: '#d1fae5', text: '#065f46' },
+      { bg: '#fef3c7', text: '#92400e' },
+      { bg: '#f5f3ff', text: '#6b21a8' },
+      { bg: '#e0e7ff', text: '#3730a3' },
+      { bg: '#ccfbf1', text: '#0f766e' },
+      { bg: '#e0f2fe', text: '#0369a1' },
+      { bg: '#fce7f3', text: '#9d174d' }
+    ];
+
+    const getAvatarColor = (name) => {
+      let hash = 0;
+      for (let i = 0; i < (name || '').length; i++) {
+        hash = (hash * 31 + name.charCodeAt(i)) % avatarColors.length;
+      }
+      return avatarColors[Math.abs(hash)];
+    };
+
+    const escapeHtml = (str) => {
+      const div = document.createElement('div');
+      div.textContent = str || '';
+      return div.innerHTML;
+    };
+
+    // Create a card DOM element from review data
+    const createReviewCardElement = (rev, isNew = false) => {
+      const card = document.createElement('div');
+      card.className = 'testimonial-card user-submitted-card';
+      card.setAttribute('data-testi-category', rev.category || 'jasa');
+
+      const color = getAvatarColor(rev.name);
+      const initials = getAvatarInitials(rev.name);
+      const rating = Math.min(5, Math.max(1, parseInt(rev.rating, 10) || 5));
+      const starsStr = '★'.repeat(rating) + '☆'.repeat(5 - rating);
+
+      card.innerHTML = `
+        <div>
+          <div class="testi-header">
+            <div class="testi-stars">${starsStr}</div>
+            <span class="testi-service-tag" style="color:#1d4ed8;background:#eff6ff">${escapeHtml(rev.serviceTag || 'Layanan Temanggung')}</span>
+          </div>
+          <p>“${escapeHtml(rev.text)}”</p>
+        </div>
+        <div class="testi-author">
+          <div class="testi-avatar" style="background:${color.bg};color:${color.text}">${initials}</div>
+          <div>
+            <strong style="font-size:13px;display:block">${escapeHtml(rev.name)}</strong>
+            <span style="font-size:12px;color:var(--muted)">${escapeHtml(rev.role || 'Klien Temanggung')}</span>
+            <span class="testi-badge ${isNew ? 'new-badge' : ''}">✓ ${isNew ? 'Ulasan Baru Terverifikasi' : 'Klien Terverifikasi'}</span>
+          </div>
+        </div>
+      `;
+      return card;
+    };
+
+    // Load persisted user reviews from localStorage
+    try {
+      const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+      if (Array.isArray(saved) && saved.length > 0) {
+        // Prepend saved reviews in reverse order so latest is on top
+        [...saved].reverse().forEach(rev => {
+          const el = createReviewCardElement(rev, false);
+          track.prepend(el);
+        });
+      }
+    } catch (e) {
+      console.warn('Could not load saved reviews', e);
+    }
+
     let autoplayTimer = null;
     let isInteracting = false;
 
+    const getAllCards = () => track.querySelectorAll('.testimonial-card');
+
     const getVisibleCards = () => {
-      return [...allCards].filter(c => c.style.display !== 'none');
+      return [...getAllCards()].filter(c => c.style.display !== 'none');
     };
 
     const getCardWidth = () => {
@@ -348,7 +430,7 @@ document.addEventListener('DOMContentLoaded', () => {
         counterBadge.textContent = `${currentPage} / ${totalPages}`;
       }
       if (counterText) {
-        counterText.textContent = `${visible.length} Ulasan Terverifikasi`;
+        counterText.textContent = `${visible.length} Ulasan Pelaku Bisnis & Warga`;
       }
 
       // Update dots
@@ -418,7 +500,7 @@ document.addEventListener('DOMContentLoaded', () => {
           btn.classList.add('active');
           const cat = btn.getAttribute('data-testi-filter');
 
-          allCards.forEach(card => {
+          getAllCards().forEach(card => {
             if (cat === 'all' || card.getAttribute('data-testi-category') === cat) {
               card.style.display = 'flex';
             } else {
@@ -465,6 +547,180 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initial trigger
     setTimeout(updateControls, 100);
     startAutoplay();
+
+    // 7b. 'Berikan Ulasan Anda' Form Handler
+    const reviewForm = document.getElementById('publicReviewForm');
+    const reviewSuccessAlert = document.getElementById('reviewSuccessAlert');
+    const reviewCloseAlertBtn = document.getElementById('reviewCloseAlertBtn');
+    const starBtns = document.querySelectorAll('#starRatingWidget .star-btn');
+    const ratingInput = document.getElementById('reviewRatingInput');
+    const ratingLabel = document.getElementById('starRatingLabel');
+    const reviewTextarea = document.getElementById('reviewTextarea');
+    const charCounter = document.getElementById('reviewCharCounter');
+    const shareWaBtn = document.getElementById('reviewShareWaBtn');
+
+    if (reviewForm) {
+      let currentRating = 5;
+
+      const ratingDescriptions = {
+        5: '★★★★★ (5.0 / 5.0 - Sangat Memuaskan)',
+        4: '★★★★☆ (4.0 / 5.0 - Puas & Rekomendasi)',
+        3: '★★★☆☆ (3.0 / 5.0 - Cukup Baik)',
+        2: '★★☆☆☆ (2.0 / 5.0 - Kurang Memuaskan)',
+        1: '★☆☆☆☆ (1.0 / 5.0 - Perlu Banyak Peningkatan)'
+      };
+
+      const setRating = (r) => {
+        currentRating = r;
+        if (ratingInput) ratingInput.value = r;
+        if (ratingLabel) ratingLabel.textContent = ratingDescriptions[r] || `${r}.0 / 5.0`;
+
+        starBtns.forEach(btn => {
+          const val = parseInt(btn.getAttribute('data-rating'), 10);
+          btn.classList.toggle('active', val <= currentRating);
+        });
+      };
+
+      starBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const val = parseInt(btn.getAttribute('data-rating'), 10);
+          setRating(val);
+        });
+
+        btn.addEventListener('mouseenter', () => {
+          const val = parseInt(btn.getAttribute('data-rating'), 10);
+          starBtns.forEach(b => {
+            const bv = parseInt(b.getAttribute('data-rating'), 10);
+            b.classList.toggle('active', bv <= val);
+          });
+        });
+      });
+
+      const starWidget = document.getElementById('starRatingWidget');
+      if (starWidget) {
+        starWidget.addEventListener('mouseleave', () => {
+          setRating(currentRating);
+        });
+      }
+
+      // Character counter
+      if (reviewTextarea && charCounter) {
+        reviewTextarea.addEventListener('input', () => {
+          charCounter.textContent = `${reviewTextarea.value.length} / 400`;
+        });
+      }
+
+      // WhatsApp Share Button
+      if (shareWaBtn) {
+        shareWaBtn.addEventListener('click', () => {
+          const name = (document.getElementById('reviewAuthorName')?.value || '').trim();
+          const role = (document.getElementById('reviewAuthorRole')?.value || '').trim();
+          const serviceSelect = document.getElementById('reviewServiceCategory');
+          const serviceName = serviceSelect?.options[serviceSelect.selectedIndex]?.text || '';
+          const text = (reviewTextarea?.value || '').trim();
+
+          const message = `Halo Jasa Temanggung, saya ingin mengirimkan ulasan layanan:\n\n*Nama:* ${name || '-'}\n*Usaha / Lokasi:* ${role || '-'}\n*Layanan:* ${serviceName || '-'}\n*Rating:* ${currentRating} Bintang (★★★★★)\n*Ulasan:* ${text || 'Sangat puas dengan layanan terpercaya di Temanggung'}`;
+
+          const url = `https://wa.me/6281382000412?text=${encodeURIComponent(message)}`;
+          window.open(url, '_blank', 'noopener,noreferrer');
+        });
+      }
+
+      // Close alert button
+      if (reviewCloseAlertBtn && reviewSuccessAlert) {
+        reviewCloseAlertBtn.addEventListener('click', () => {
+          reviewSuccessAlert.style.display = 'none';
+        });
+      }
+
+      // Submit Form
+      reviewForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const nameInput = document.getElementById('reviewAuthorName');
+        const roleInput = document.getElementById('reviewAuthorRole');
+        const serviceSelect = document.getElementById('reviewServiceCategory');
+        const consentCheckbox = document.getElementById('reviewConsent');
+
+        const name = (nameInput?.value || '').trim();
+        const role = (roleInput?.value || '').trim();
+        const serviceCategory = serviceSelect?.value || '';
+        const selectedOption = serviceSelect?.options[serviceSelect.selectedIndex];
+        const categoryFilter = selectedOption?.getAttribute('data-cat') || 'jasa';
+        const serviceTag = selectedOption?.getAttribute('data-tag') || 'Layanan Temanggung';
+        const text = (reviewTextarea?.value || '').trim();
+
+        if (!name || name.length < 2) {
+          nameInput?.focus();
+          return;
+        }
+        if (!role || role.length < 2) {
+          roleInput?.focus();
+          return;
+        }
+        if (!serviceCategory) {
+          serviceSelect?.focus();
+          return;
+        }
+        if (!text || text.length < 15) {
+          reviewTextarea?.focus();
+          return;
+        }
+        if (consentCheckbox && !consentCheckbox.checked) {
+          consentCheckbox.focus();
+          return;
+        }
+
+        const newReview = {
+          id: 'rev_' + Date.now(),
+          name,
+          role,
+          category: categoryFilter,
+          serviceTag,
+          rating: currentRating,
+          text,
+          createdAt: new Date().toISOString()
+        };
+
+        // 1. Prepend to DOM
+        const newCard = createReviewCardElement(newReview, true);
+        track.prepend(newCard);
+
+        // 2. Persist in localStorage
+        try {
+          const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+          saved.unshift(newReview);
+          if (saved.length > 25) saved.pop();
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(saved));
+        } catch (err) {
+          console.warn('Failed to save review to storage', err);
+        }
+
+        // 3. Reset category filter tab to 'all' so new card is visible
+        if (testiTabs.length) {
+          testiTabs.forEach(b => b.classList.remove('active'));
+          const allBtn = document.querySelector('.testi-filter-btn[data-testi-filter="all"]');
+          if (allBtn) allBtn.classList.add('active');
+          getAllCards().forEach(c => { c.style.display = 'flex'; });
+        }
+
+        // 4. Update controls and scroll to first item
+        updateControls();
+        track.scrollTo({ left: 0, behavior: 'smooth' });
+        restartAutoplay();
+
+        // 5. Show success message
+        if (reviewSuccessAlert) {
+          reviewSuccessAlert.style.display = 'flex';
+          reviewSuccessAlert.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        // 6. Reset form
+        reviewForm.reset();
+        setRating(5);
+        if (charCounter) charCounter.textContent = '0 / 400';
+      });
+    }
   }
 
   // 8. Progressive Image Lazy Loading Optimizer for slow connections

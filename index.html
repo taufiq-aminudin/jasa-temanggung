@@ -662,6 +662,110 @@
 
         <div class="testi-swipe-hint">↔ Geser kartu ke samping untuk melihat ulasan lainnya</div>
 
+        <!-- Section Formulir 'Berikan Ulasan Anda' -->
+        <section class="review-form-box" id="form-ulasan" aria-labelledby="reviewHeading">
+          <div class="review-form-header">
+            <div>
+              <span class="eyebrow" style="background:#eff6ff;color:var(--primary);margin-bottom:6px">Partisipasi &amp; Pengalaman Nyata</span>
+              <h3 id="reviewHeading" style="font-size:clamp(20px,2.5vw,26px);margin:6px 0;color:var(--ink)">Berikan Ulasan Anda</h3>
+              <p style="margin:0;font-size:14px;color:var(--muted);max-width:680px">Pernah menggunakan layanan atau berkonsultasi dengan mitra Jasa Temanggung? Tuliskan ulasan mandiri Anda untuk membantu pelaku usaha dan warga Temanggung lainnya.</p>
+            </div>
+            <div class="review-header-badge">
+              <span class="review-verified-pill">★ Form Ulasan Terbuka</span>
+            </div>
+          </div>
+
+          <!-- Alert Sukses Setelah Pengiriman -->
+          <div id="reviewSuccessAlert" class="review-success-alert" style="display:none" role="alert">
+            <div class="review-success-icon">✓</div>
+            <div style="flex:1">
+              <strong style="display:block;font-size:15px;color:#065f46;margin-bottom:2px">Ulasan Berhasil Terkirim &amp; Ditampilkan!</strong>
+              <p style="margin:0;font-size:13px;color:#047857">Terima kasih atas kontribusi Anda. Ulasan Anda telah berhasil disimpan dan langsung ditambahkan ke slider testimoni terverifikasi di atas.</p>
+            </div>
+            <button type="button" id="reviewCloseAlertBtn" class="review-close-alert" aria-label="Tutup notifikasi">✕</button>
+          </div>
+
+          <form id="publicReviewForm" class="review-form" novalidate>
+            <div class="review-form-grid">
+              <!-- Nama Lengkap -->
+              <div class="form-group">
+                <label for="reviewAuthorName">Nama Lengkap Anda <span class="req-star">*</span></label>
+                <input type="text" id="reviewAuthorName" name="author_name" required placeholder="Contoh: Hendra Pratama" maxlength="60">
+                <span class="form-hint">Nama akan tampil pada kartu ulasan.</span>
+              </div>
+
+              <!-- Usaha / Profesi & Wilayah -->
+              <div class="form-group">
+                <label for="reviewAuthorRole">Nama Usaha / Lokasi di Temanggung <span class="req-star">*</span></label>
+                <input type="text" id="reviewAuthorRole" name="author_role" required placeholder="Contoh: Kedai Kopi Sindoro, Kledung" maxlength="75">
+                <span class="form-hint">Contoh: Toko Berkah, Parakan atau Warga Kranggan.</span>
+              </div>
+
+              <!-- Layanan yang Digunakan -->
+              <div class="form-group">
+                <label for="reviewServiceCategory">Kategori Layanan yang Digunakan <span class="req-star">*</span></label>
+                <select id="reviewServiceCategory" name="service_category" required>
+                  <option value="" disabled selected>Pilih Layanan...</option>
+                  <option value="legalitas" data-cat="jasa" data-tag="PBG &amp; Izin Usaha">Perizinan Usaha OSS-RBA &amp; PBG</option>
+                  <option value="samsat" data-cat="teknik" data-tag="STNK &amp; Samsat">Pajak STNK &amp; Balik Nama Samsat</option>
+                  <option value="meta_ads" data-cat="kuliner" data-tag="Meta Ads &amp; Iklan">Iklan Online Meta Ads / Google Ads</option>
+                  <option value="properti" data-cat="wisata" data-tag="Properti &amp; PPAT">Cek Sertifikat &amp; Jual Beli Tanah PPAT</option>
+                  <option value="website" data-cat="wisata" data-tag="Website &amp; SEO">Pembuatan Website Profil Usaha &amp; SEO</option>
+                  <option value="halal" data-cat="kuliner" data-tag="Sertifikasi Halal">Sertifikasi Halal Gratis (SEHATI BPJPH)</option>
+                  <option value="pajak" data-cat="jasa" data-tag="Akuntansi &amp; Pajak">Pembukuan Akuntansi &amp; Pajak SPT</option>
+                  <option value="lainnya" data-cat="jasa" data-tag="Konsultasi Bisnis">Konsultasi Bisnis &amp; Layanan Lainnya</option>
+                </select>
+                <span class="form-hint">Pilih sektor yang Anda gunakan.</span>
+              </div>
+
+              <!-- Rating Bintang Interaktif -->
+              <div class="form-group">
+                <label>Nilai Kepuasan (Rating Bintang) <span class="req-star">*</span></label>
+                <div class="star-rating-widget" id="starRatingWidget">
+                  <div class="star-buttons" role="radiogroup" aria-label="Pilih rating bintang dari 1 sampai 5">
+                    <button type="button" class="star-btn active" data-rating="1" aria-label="1 Bintang">★</button>
+                    <button type="button" class="star-btn active" data-rating="2" aria-label="2 Bintang">★</button>
+                    <button type="button" class="star-btn active" data-rating="3" aria-label="3 Bintang">★</button>
+                    <button type="button" class="star-btn active" data-rating="4" aria-label="4 Bintang">★</button>
+                    <button type="button" class="star-btn active" data-rating="5" aria-label="5 Bintang">★</button>
+                  </div>
+                  <span class="star-rating-label" id="starRatingLabel">★★★★★ (5.0 / 5.0 - Sangat Memuaskan)</span>
+                  <input type="hidden" id="reviewRatingInput" name="rating" value="5">
+                </div>
+              </div>
+            </div>
+
+            <!-- Teks Ulasan -->
+            <div class="form-group" style="margin-top:16px">
+              <label for="reviewTextarea">Pengalaman &amp; Ulasan Lengkap Anda <span class="req-star">*</span></label>
+              <textarea id="reviewTextarea" name="review_text" rows="3" required minlength="15" maxlength="400" placeholder="Ceritakan bagaimana respon tim, kecepatan pengerjaan, dan kepuasan hasil layanan yang Anda peroleh di Temanggung..."></textarea>
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-top:4px">
+                <span class="form-hint">Minimal 15 karakter agar ulasan informatif dan bermanfaat.</span>
+                <span id="reviewCharCounter" style="font-size:11px;color:var(--muted)">0 / 400</span>
+              </div>
+            </div>
+
+            <!-- Checkbox Pernyataan Realitas -->
+            <div class="review-consent-wrap">
+              <label class="review-checkbox-label">
+                <input type="checkbox" id="reviewConsent" required checked>
+                <span>Saya menyatakan bahwa ulasan ini adalah pengalaman nyata dan bersedia ditampilkan secara publik di Jasa Temanggung.</span>
+              </label>
+            </div>
+
+            <!-- Tombol Aksi -->
+            <div class="review-form-actions">
+              <button type="submit" class="btn btn-primary" id="reviewSubmitBtn" style="padding:12px 26px;font-size:14px">
+                <span>Kirim Ulasan Sekarang</span> →
+              </button>
+              <button type="button" class="btn btn-secondary" id="reviewShareWaBtn" style="padding:12px 20px;font-size:13px;display:inline-flex;align-items:center;gap:6px">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-5.46-4.45-9.92-9.91-9.92z"/></svg>
+                <span>Kirim Salinan via WhatsApp</span>
+              </button>
+            </div>
+          </form>
+        </section>
+
         <!-- Social Proof Trust Callout -->
         <div style="margin-top:34px;background:#fff;border:1px solid var(--line);border-radius:20px;padding:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:18px;box-shadow:var(--shadow-sm)">
           <div>
