@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
     estBtn.addEventListener('click', (e) => {
       e.preventDefault();
       const cfg = window.SITE_CONFIG || {};
-      const num = cfg.whatsappNumber || '6281220002026';
+      const num = cfg.whatsappNumber || '6281382000412';
       const sVal = estService.value || 'Layanan Jasa';
       const aVal = estArea ? estArea.value : 'Temanggung';
       const uVal = estUrgency ? estUrgency.value : 'Standar';
@@ -109,7 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
     form.addEventListener('submit', e => {
       e.preventDefault();
       const cfg = window.SITE_CONFIG || {};
-      const num = cfg.whatsappNumber || '6281220002026';
+      const num = cfg.whatsappNumber || '6281382000412';
 
       const d = new FormData(form);
       const name = d.get('name') || '';
@@ -143,6 +143,26 @@ document.addEventListener('DOMContentLoaded', () => {
       } catch (err) {
         console.log('Window popup blocked in iframe, link provided inline.', err);
       }
+    });
+  }
+
+  // 7. Testimonial Category Filter
+  const testiTabs = document.querySelectorAll('.testi-filter-btn');
+  const testiCards = document.querySelectorAll('.testimonial-card[data-testi-category]');
+  if (testiTabs.length && testiCards.length) {
+    testiTabs.forEach(btn => {
+      btn.addEventListener('click', () => {
+        testiTabs.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const cat = btn.getAttribute('data-testi-filter');
+        testiCards.forEach(card => {
+          if (cat === 'all' || card.getAttribute('data-testi-category') === cat) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
     });
   }
 });
