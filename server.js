@@ -9,6 +9,15 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const HOST = '0.0.0.0';
 
+// Explicit clean routes for directory hubs
+app.get(['/jasa', '/jasa/', '/jasa/index.html'], (req, res) => {
+  res.sendFile(path.join(__dirname, 'jasa', 'index.html'));
+});
+
+app.get(['/artikel', '/artikel/', '/artikel/index.html'], (req, res) => {
+  res.sendFile(path.join(__dirname, 'artikel', 'index.html'));
+});
+
 // Serve static assets and HTML files with clean URL support
 app.use(express.static(__dirname, {
   extensions: ['html'],

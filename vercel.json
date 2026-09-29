@@ -1,0 +1,10 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "rewrites": [
+    { "source": "/jasa", "destination": "/jasa/index.html" },
+    { "source": "/jasa/", "destination": "/jasa/index.html" },
+    { "source": "/artikel", "destination": "/artikel/index.html" },
+    { "source": "/artikel/", "destination": "/artikel/index.html" }
+  ]
+}

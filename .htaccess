@@ -1,0 +1,19 @@
+# .htaccess for Apache / LiteSpeed / cPanel static hosting
+DirectoryIndex index.html
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Redirect /jasa or /jasa/ to /jasa/index.html
+  RewriteRule ^jasa/?$ jasa/index.html [L]
+  RewriteRule ^artikel/?$ artikel/index.html [L]
+
+  # Allow clean URLs without .html
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME}\.html -f
+  RewriteRule ^(.*)$ $1.html [L]
+</IfModule>
+
+# Custom Error Pages
+ErrorDocument 404 /404.html
