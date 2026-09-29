@@ -1,0 +1,14 @@
+{
+  "name": "jasa-temanggung",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Jasa Temanggung - Website static multi-page untuk konsep one-stop service / lead generation lokal Temanggung",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js",
+    "build": "echo 'Build complete'"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
