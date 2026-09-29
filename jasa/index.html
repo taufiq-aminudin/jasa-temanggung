@@ -280,6 +280,146 @@
       </div>
     </section>
 
+    <!-- Tabel Perbandingan Layanan & Estimasi Biaya/Durasi -->
+    <section class="section" style="padding-top:10px;padding-bottom:20px" id="perbandingan-layanan">
+      <div class="container">
+        <div class="comparison-card">
+          <div class="comparison-header">
+            <div>
+              <span class="eyebrow" style="background:#eff6ff;color:var(--primary);margin-bottom:6px">Panduan Cepat Pemilihan Layanan</span>
+              <h2 style="font-size:clamp(22px,2.8vw,30px);margin:6px 0;color:var(--ink)">Tabel Perbandingan Layanan di Temanggung</h2>
+              <p style="margin:0;font-size:14px;color:var(--muted);max-width:680px">Bandingkan perkiraan biaya, estimasi durasi pengerjaan, dan berkas utama untuk menentukan solusi terbaik bagi bisnis dan kebutuhan Anda.</p>
+            </div>
+            <!-- Category Filter Buttons for Table -->
+            <div class="comparison-filter-wrap" role="group" aria-label="Filter kategori tabel perbandingan">
+              <button type="button" class="comparison-filter-btn active" data-table-filter="all">Semua Sektor (8)</button>
+              <button type="button" class="comparison-filter-btn" data-table-filter="dokumen">Legalitas &amp; Dokumen</button>
+              <button type="button" class="comparison-filter-btn" data-table-filter="kendaraan">Samsat &amp; Pajak</button>
+              <button type="button" class="comparison-filter-btn" data-table-filter="digital">Digital &amp; Iklan</button>
+            </div>
+          </div>
+
+          <div class="table-responsive-wrapper">
+            <table class="comparison-table" id="servicesComparisonTable">
+              <thead>
+                <tr>
+                  <th style="min-width:200px">Layanan &amp; Sektor</th>
+                  <th style="min-width:140px">Estimasi Biaya</th>
+                  <th style="min-width:130px">Durasi Kerja</th>
+                  <th style="min-width:220px">Output / Berkas Utama</th>
+                  <th style="min-width:120px">Aksi</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- 1. Perizinan OSS NIB -->
+                <tr data-table-cat="dokumen">
+                  <td class="service-name-cell">
+                    <strong>NIB &amp; PT Perorangan OSS-RBA</strong>
+                    <span>Legalitas &amp; Dokumen Usaha</span>
+                  </td>
+                  <td><span class="price-pill">Rp 150rb – 500rb</span></td>
+                  <td><span class="time-pill">⏱ 1 – 3 Hari</span></td>
+                  <td>NIB Elektronik, KBLI Resmi, Sertifikat Standar, NPWP Badan/Usaha</td>
+                  <td><a href="perizinan.html" class="table-cta-btn">Pilih Layanan →</a></td>
+                </tr>
+
+                <!-- 2. Pajak STNK Tahunan / 5 Tahunan -->
+                <tr data-table-cat="kendaraan">
+                  <td class="service-name-cell">
+                    <strong>Pajak STNK &amp; Plat 5 Tahunan</strong>
+                    <span>Samsat &amp; Kendaraan Temanggung</span>
+                  </td>
+                  <td><span class="price-pill">Jasa mulai Rp 50rb*</span></td>
+                  <td><span class="time-pill">⏱ 1 – 2 Hari</span></td>
+                  <td>Cek Fisik Bantuan Samsat, Pengesahan STNK, Plat Nomor Kaleng Baru</td>
+                  <td><a href="samsat-stnk.html" class="table-cta-btn">Pilih Layanan →</a></td>
+                </tr>
+
+                <!-- 3. Balik Nama BPKB & Mutasi Plat -->
+                <tr data-table-cat="kendaraan">
+                  <td class="service-name-cell">
+                    <strong>Balik Nama BPKB &amp; Mutasi Kendaraan</strong>
+                    <span>Samsat &amp; BPKB Motor/Mobil</span>
+                  </td>
+                  <td><span class="price-pill">Jasa mulai Rp 150rb*</span></td>
+                  <td><span class="time-pill">⏱ 3 – 7 Hari</span></td>
+                  <td>Buku BPKB Atas Nama Sendiri, STNK Baru, Berkas Fiskal/Cabut Berkas</td>
+                  <td><a href="samsat-stnk.html" class="table-cta-btn">Pilih Layanan →</a></td>
+                </tr>
+
+                <!-- 4. Iklan Online Meta & Google Ads -->
+                <tr data-table-cat="digital">
+                  <td class="service-name-cell">
+                    <strong>Iklan Meta Ads &amp; Google Ads</strong>
+                    <span>Pemasaran Digital &amp; Leads</span>
+                  </td>
+                  <td><span class="price-pill">Mulai Rp 450rb / campaign</span></td>
+                  <td><span class="time-pill">⏱ 2 – 4 Hari</span></td>
+                  <td>Riset Audiens Wilayah Temanggung, Copywriting, Banner, Laporan Leads WA</td>
+                  <td><a href="iklan-online.html" class="table-cta-btn">Pilih Layanan →</a></td>
+                </tr>
+
+                <!-- 5. Pembuatan Website & SEO Lokal -->
+                <tr data-table-cat="digital">
+                  <td class="service-name-cell">
+                    <strong>Website Profil Usaha &amp; SEO Lokal</strong>
+                    <span>Web &amp; Dominasi Google Temanggung</span>
+                  </td>
+                  <td><span class="price-pill">Rp 750rb – 1.5jt</span></td>
+                  <td><span class="time-pill">⏱ 3 – 7 Hari</span></td>
+                  <td>Domain .com/.id, Desain Mobile-Friendly, Integrasi WA, Google Bisnis</td>
+                  <td><a href="website-seo.html" class="table-cta-btn">Pilih Layanan →</a></td>
+                </tr>
+
+                <!-- 6. Pendampingan Notaris PPAT & Cek Tanah -->
+                <tr data-table-cat="dokumen">
+                  <td class="service-name-cell">
+                    <strong>Pendampingan Notaris PPAT &amp; Cek Tanah</strong>
+                    <span>Properti &amp; Administrasi Hukum</span>
+                  </td>
+                  <td><span class="price-pill">Konsultasi mulai Rp 250rb*</span></td>
+                  <td><span class="time-pill">⏱ 2 – 5 Hari</span></td>
+                  <td>Pengecekan Sertifikat di BPN Temanggung, Draft Akta AJB, Hitung Pajak BPHTB</td>
+                  <td><a href="notaris-ppat.html" class="table-cta-btn">Pilih Layanan →</a></td>
+                </tr>
+
+                <!-- 7. Sertifikasi Halal Gratis (SEHATI BPJPH) -->
+                <tr data-table-cat="dokumen">
+                  <td class="service-name-cell">
+                    <strong>Sertifikasi Halal Gratis (SEHATI BPJPH)</strong>
+                    <span>Regulasi Pangan &amp; Legalitas UMKM</span>
+                  </td>
+                  <td><span class="price-pill" style="color:#059669;background:#d1fae5;border-color:#6ee7b7">GRATIS (Program SEHATI)</span></td>
+                  <td><span class="time-pill">⏱ 7 – 14 Hari</span></td>
+                  <td>Pendampingan Dokumen SJPH, Akun SiHalal, Terbit Sertifikat Halal Resmi</td>
+                  <td><a href="perizinan.html" class="table-cta-btn">Pilih Layanan →</a></td>
+                </tr>
+
+                <!-- 8. Pembukuan Akuntansi & SPT Pajak -->
+                <tr data-table-cat="dokumen">
+                  <td class="service-name-cell">
+                    <strong>Pembukuan Akuntansi &amp; Laporan Pajak</strong>
+                    <span>Keuangan &amp; Administrasi Bisnis</span>
+                  </td>
+                  <td><span class="price-pill">Mulai Rp 300rb / bulan</span></td>
+                  <td><span class="time-pill">⏱ 2 – 3 Hari</span></td>
+                  <td>Rekonsiliasi Arus Kas, Laporan Neraca &amp; Laba Rugi, Pelaporan SPT Tahunan</td>
+                  <td><a href="akuntansi-pajak.html" class="table-cta-btn">Pilih Layanan →</a></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div style="margin-top:14px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;font-size:12px;color:var(--muted)">
+            <span>* Biaya jasa di luar biaya PNBP resmi instansi pemerintah (pajak kendaraan, PNBP BPN, dll).</span>
+            <span style="display:inline-flex;align-items:center;gap:4px;color:var(--ink);font-weight:700">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="#10b981"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+              Konsultasi awal &amp; estimasi rincian biaya 100% transparan
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Google AdSense Bottom Banner Slot -->
     <div class="container">
       <div class="adsense-slot-card">

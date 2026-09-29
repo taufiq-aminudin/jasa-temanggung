@@ -899,7 +899,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
   initArticleSearch();
 
-  // 12. Safe Google AdSense Slot Initialization
+  // 12. Service Comparison Table Filter
+  const tableFilterBtns = document.querySelectorAll('.comparison-filter-btn');
+  const tableRows = document.querySelectorAll('#servicesComparisonTable tbody tr');
+  if (tableFilterBtns.length && tableRows.length) {
+    tableFilterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        tableFilterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.getAttribute('data-table-filter');
+        tableRows.forEach(row => {
+          if (filter === 'all' || row.getAttribute('data-table-cat') === filter) {
+            row.style.display = '';
+          } else {
+            row.style.display = 'none';
+          }
+        });
+      });
+    });
+  }
+
+  // 13. Safe Google AdSense Slot Initialization
   const safeInitAds = () => {
     document.querySelectorAll('ins.adsbygoogle').forEach(ins => {
       if (!ins.hasAttribute('data-adsbygoogle-status') && ins.offsetWidth > 0) {
