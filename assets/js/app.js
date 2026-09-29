@@ -312,4 +312,26 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(updateControls, 100);
     startAutoplay();
   }
+
+  // 8. Progressive Image Lazy Loading Optimizer for slow connections
+  const lazyImages = document.querySelectorAll('img');
+  lazyImages.forEach(img => {
+    if (!img.getAttribute('loading')) img.setAttribute('loading', 'lazy');
+    if (!img.getAttribute('decoding')) img.setAttribute('decoding', 'async');
+  });
+
+  if (!('loading' in HTMLImageElement.prototype) && 'IntersectionObserver' in window) {
+    const imgObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const img = entry.target;
+          if (img.dataset.src) {
+            img.src = img.dataset.src;
+          }
+          observer.unobserve(img);
+        }
+      });
+    }, { rootMargin: '120px' });
+    lazyImages.forEach(img => imgObserver.observe(img));
+  }
 });
