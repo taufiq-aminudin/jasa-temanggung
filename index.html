@@ -378,7 +378,9 @@
           <button type="button" class="testi-filter-btn" data-testi-filter="jasa">Kesehatan & Retail</button>
         </div>
 
-        <div class="testimonial-grid">
+        <!-- Slick Testimonial Carousel / Slider -->
+        <div class="testi-carousel-wrapper">
+          <div class="testi-carousel-track" id="testiTrack">
           <!-- 1. Toko Material & Kontraktor Kranggan -->
           <div class="testimonial-card" data-testi-category="teknik">
             <div>
@@ -606,7 +608,27 @@
               </div>
             </div>
           </div>
+          </div>
         </div>
+
+        <!-- Carousel Navigation & Indicators Bar -->
+        <div class="testi-nav-bar">
+          <div class="testi-counter-wrap">
+            <span class="testi-counter-badge" id="testiCounterBadge">1 / 4</span>
+            <span id="testiCounterText">12 Ulasan Pelaku Bisnis Lokal</span>
+          </div>
+
+          <!-- Dots Pagination Indicator -->
+          <div class="testi-dots" id="testiDots" role="tablist" aria-label="Indikator Slide Testimoni"></div>
+
+          <!-- Arrow Controls -->
+          <div class="testi-arrow-btns">
+            <button type="button" class="testi-arrow-btn" id="testiPrevBtn" aria-label="Ulasan Sebelumnya" title="Ulasan Sebelumnya">←</button>
+            <button type="button" class="testi-arrow-btn" id="testiNextBtn" aria-label="Ulasan Selanjutnya" title="Ulasan Selanjutnya">→</button>
+          </div>
+        </div>
+
+        <div class="testi-swipe-hint">↔ Geser kartu ke samping untuk melihat ulasan lainnya</div>
 
         <!-- Social Proof Trust Callout -->
         <div style="margin-top:34px;background:#fff;border:1px solid var(--line);border-radius:20px;padding:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:18px;box-shadow:var(--shadow-sm)">

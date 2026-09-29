@@ -146,23 +146,170 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 7. Testimonial Category Filter
+  // 7. Slick Testimonial Carousel & Filter Controller
+  const track = document.getElementById('testiTrack');
+  const prevBtn = document.getElementById('testiPrevBtn');
+  const nextBtn = document.getElementById('testiNextBtn');
+  const dotsContainer = document.getElementById('testiDots');
+  const counterBadge = document.getElementById('testiCounterBadge');
+  const counterText = document.getElementById('testiCounterText');
   const testiTabs = document.querySelectorAll('.testi-filter-btn');
-  const testiCards = document.querySelectorAll('.testimonial-card[data-testi-category]');
-  if (testiTabs.length && testiCards.length) {
-    testiTabs.forEach(btn => {
-      btn.addEventListener('click', () => {
-        testiTabs.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        const cat = btn.getAttribute('data-testi-filter');
-        testiCards.forEach(card => {
-          if (cat === 'all' || card.getAttribute('data-testi-category') === cat) {
-            card.style.display = 'flex';
-          } else {
-            card.style.display = 'none';
+  const allCards = document.querySelectorAll('#testiTrack .testimonial-card');
+
+  if (track && allCards.length) {
+    let autoplayTimer = null;
+    let isInteracting = false;
+
+    const getVisibleCards = () => {
+      return [...allCards].filter(c => c.style.display !== 'none');
+    };
+
+    const getCardWidth = () => {
+      const visible = getVisibleCards();
+      if (visible.length > 0) {
+        return visible[0].offsetWidth + 20; // 20px gap
+      }
+      return 350;
+    };
+
+    const getItemsPerView = () => {
+      const w = window.innerWidth;
+      if (w < 640) return 1;
+      if (w < 980) return 2;
+      return 3;
+    };
+
+    const updateControls = () => {
+      const visible = getVisibleCards();
+      const perView = getItemsPerView();
+      const totalPages = Math.max(1, Math.ceil(visible.length / perView));
+      
+      const scrollLeft = track.scrollLeft;
+      const maxScroll = Math.max(0, track.scrollWidth - track.clientWidth);
+      const cardW = getCardWidth();
+      
+      const currentPage = Math.min(totalPages, Math.max(1, Math.round(scrollLeft / (cardW * perView)) + 1));
+
+      if (counterBadge) {
+        counterBadge.textContent = `${currentPage} / ${totalPages}`;
+      }
+      if (counterText) {
+        counterText.textContent = `${visible.length} Ulasan Terverifikasi`;
+      }
+
+      // Update dots
+      if (dotsContainer) {
+        dotsContainer.innerHTML = '';
+        if (totalPages > 1) {
+          for (let i = 1; i <= totalPages; i++) {
+            const dot = document.createElement('button');
+            dot.type = 'button';
+            dot.className = `testi-dot ${i === currentPage ? 'active' : ''}`;
+            dot.setAttribute('aria-label', `Ke slide ulasan ${i}`);
+            dot.onclick = () => {
+              const targetScroll = (i - 1) * (cardW * perView);
+              track.scrollTo({ left: targetScroll, behavior: 'smooth' });
+            };
+            dotsContainer.appendChild(dot);
           }
+        }
+      }
+
+      // Arrows
+      if (prevBtn) {
+        prevBtn.disabled = scrollLeft <= 5;
+      }
+      if (nextBtn) {
+        nextBtn.disabled = maxScroll > 0 && scrollLeft >= maxScroll - 5;
+      }
+    };
+
+    // Slide navigation
+    const slide = (direction) => {
+      const cardW = getCardWidth();
+      const perView = getItemsPerView();
+      const scrollAmount = cardW * perView;
+      const maxScroll = track.scrollWidth - track.clientWidth;
+
+      if (direction === 'next') {
+        if (maxScroll > 0 && track.scrollLeft >= maxScroll - 15) {
+          track.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+          track.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        }
+      } else {
+        if (track.scrollLeft <= 15) {
+          track.scrollTo({ left: maxScroll, behavior: 'smooth' });
+        } else {
+          track.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+        }
+      }
+    };
+
+    if (nextBtn) nextBtn.addEventListener('click', () => { slide('next'); restartAutoplay(); });
+    if (prevBtn) prevBtn.addEventListener('click', () => { slide('prev'); restartAutoplay(); });
+
+    // Track scroll event
+    let scrollTimeout;
+    track.addEventListener('scroll', () => {
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(updateControls, 80);
+    }, { passive: true });
+
+    // Category Tabs Filtering
+    if (testiTabs.length) {
+      testiTabs.forEach(btn => {
+        btn.addEventListener('click', () => {
+          testiTabs.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          const cat = btn.getAttribute('data-testi-filter');
+
+          allCards.forEach(card => {
+            if (cat === 'all' || card.getAttribute('data-testi-category') === cat) {
+              card.style.display = 'flex';
+            } else {
+              card.style.display = 'none';
+            }
+          });
+
+          track.scrollTo({ left: 0, behavior: 'auto' });
+          setTimeout(updateControls, 60);
+          restartAutoplay();
         });
       });
-    });
+    }
+
+    // Autoplay functionality
+    const startAutoplay = () => {
+      stopAutoplay();
+      autoplayTimer = setInterval(() => {
+        if (!isInteracting && document.visibilityState === 'visible') {
+          slide('next');
+        }
+      }, 5000);
+    };
+
+    const stopAutoplay = () => {
+      if (autoplayTimer) clearInterval(autoplayTimer);
+    };
+
+    const restartAutoplay = () => {
+      stopAutoplay();
+      startAutoplay();
+    };
+
+    track.addEventListener('mouseenter', () => { isInteracting = true; });
+    track.addEventListener('mouseleave', () => { isInteracting = false; });
+    track.addEventListener('touchstart', () => { isInteracting = true; }, { passive: true });
+    track.addEventListener('touchend', () => {
+      isInteracting = false;
+      restartAutoplay();
+    }, { passive: true });
+
+    window.addEventListener('resize', updateControls);
+
+    // Initial trigger
+    setTimeout(updateControls, 100);
+    startAutoplay();
   }
 });
