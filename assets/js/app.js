@@ -7,10 +7,32 @@ document.addEventListener('DOMContentLoaded', () => {
   const t = document.querySelector('.menu-toggle'),
         n = document.querySelector('.nav-links');
   if (t && n) {
-    t.onclick = () => {
+    t.onclick = (e) => {
+      e.stopPropagation();
       const o = n.classList.toggle('open');
       t.setAttribute('aria-expanded', o ? 'true' : 'false');
     };
+    // Close on click outside
+    document.addEventListener('click', (e) => {
+      if (n.classList.contains('open') && !n.contains(e.target) && e.target !== t) {
+        n.classList.remove('open');
+        t.setAttribute('aria-expanded', 'false');
+      }
+    });
+    // Close on Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && n.classList.contains('open')) {
+        n.classList.remove('open');
+        t.setAttribute('aria-expanded', 'false');
+      }
+    });
+    // Close on nav link click
+    n.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        n.classList.remove('open');
+        t.setAttribute('aria-expanded', 'false');
+      });
+    });
   }
 
   // 3. FAQ Accordion Toggle

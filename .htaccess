@@ -5,9 +5,9 @@ DirectoryIndex index.html
   RewriteEngine On
   RewriteBase /
 
-  # Redirect /jasa or /jasa/ to /jasa/index.html
-  RewriteRule ^jasa/?$ jasa/index.html [L]
-  RewriteRule ^artikel/?$ artikel/index.html [L]
+  # Redirect /jasa to /jasa/ and /artikel to /artikel/
+  RewriteRule ^jasa$ /jasa/ [R=301,L]
+  RewriteRule ^artikel$ /artikel/ [R=301,L]
 
   # Allow clean URLs without .html
   RewriteCond %{REQUEST_FILENAME} !-d
