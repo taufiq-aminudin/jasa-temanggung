@@ -457,4 +457,73 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { rootMargin: '120px' });
     lazyImages.forEach(img => imgObserver.observe(img));
   }
+
+  // 9. Newsletter Subscription Handler
+  const newsForm = document.getElementById('newsletter-form');
+  if (newsForm) {
+    const emailInput = document.getElementById('newsletter-email');
+    const nameInput = document.getElementById('newsletter-name');
+    const interestSelect = document.getElementById('newsletter-interest');
+    const msgBox = document.getElementById('newsletter-message');
+    const submitBtn = document.getElementById('newsletter-submit-btn');
+
+    newsForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = emailInput ? emailInput.value.trim() : '';
+      const name = nameInput ? nameInput.value.trim() : '';
+      const interest = interestSelect ? interestSelect.value : 'Semua Panduan & Promo';
+
+      // Validation
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!email || !emailRegex.test(email)) {
+        if (msgBox) {
+          msgBox.className = '';
+          msgBox.style.background = '#fef2f2';
+          msgBox.style.color = '#991b1b';
+          msgBox.style.border = '1px solid #fecaca';
+          msgBox.textContent = 'Silakan masukkan alamat email yang valid.';
+        }
+        if (emailInput) emailInput.focus();
+        return;
+      }
+
+      // Submit loading state
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Mendaftarkan...';
+      }
+
+      // Simulate network save & local persistence
+      setTimeout(() => {
+        try {
+          const subscribers = JSON.parse(localStorage.getItem('jasa_newsletter_subs') || '[]');
+          subscribers.push({
+            name: name || 'Sahabat Temanggung',
+            email,
+            interest,
+            subscribedAt: new Date().toISOString()
+          });
+          localStorage.setItem('jasa_newsletter_subs', JSON.stringify(subscribers));
+        } catch (_) {}
+
+        if (msgBox) {
+          msgBox.className = '';
+          msgBox.style.background = '#ecfdf5';
+          msgBox.style.color = '#065f46';
+          msgBox.style.border = '1px solid #a7f3d0';
+          msgBox.innerHTML = `✓ <strong>Pendaftaran Berhasil!</strong> Terima kasih ${name ? name : ''}, email <em>${email}</em> telah terdaftar untuk menerima update panduan & promo terbaru.`;
+        }
+
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Terdaftar ✓';
+          setTimeout(() => {
+            submitBtn.textContent = 'Langganan Sekarang (Gratis) →';
+          }, 4000);
+        }
+
+        newsForm.reset();
+      }, 500);
+    });
+  }
 });
