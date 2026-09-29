@@ -56,12 +56,99 @@ a{color:inherit;text-decoration:none}
 .section-head p{max-width:620px}
 .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
 .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-.service-card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:24px;display:flex;gap:18px;box-shadow:var(--shadow-sm);transition:transform .2s,box-shadow .2s;position:relative}
-.service-card:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:#cedcff}
-.service-icon{flex:none;width:46px;height:46px;border-radius:14px;display:grid;place-items:center;background:var(--soft);color:var(--primary);font-weight:900;font-size:18px}
+/* Entrance Fade-In Animation for Cards */
+@keyframes serviceCardEntrance{
+  0%{opacity:0;transform:translateY(22px)}
+  100%{opacity:1;transform:translateY(0)}
+}
+
+.service-card{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:24px;
+  display:flex;
+  gap:18px;
+  box-shadow:var(--shadow-sm);
+  position:relative;
+  overflow:hidden;
+  animation:serviceCardEntrance 0.65s cubic-bezier(0.16,1,0.3,1) both;
+  transition:transform 0.32s cubic-bezier(0.16,1,0.3,1),box-shadow 0.32s cubic-bezier(0.16,1,0.3,1),border-color 0.28s ease,background-color 0.28s ease;
+  will-change:transform,box-shadow;
+}
+
+/* Staggered delay for cascading entrance effect on page load */
+.service-card:nth-child(1){animation-delay:0.04s}
+.service-card:nth-child(2){animation-delay:0.08s}
+.service-card:nth-child(3){animation-delay:0.12s}
+.service-card:nth-child(4){animation-delay:0.16s}
+.service-card:nth-child(5){animation-delay:0.20s}
+.service-card:nth-child(6){animation-delay:0.24s}
+.service-card:nth-child(7){animation-delay:0.28s}
+.service-card:nth-child(8){animation-delay:0.32s}
+.service-card:nth-child(9){animation-delay:0.36s}
+.service-card:nth-child(10){animation-delay:0.40s}
+.service-card:nth-child(11){animation-delay:0.44s}
+.service-card:nth-child(12){animation-delay:0.48s}
+.service-card:nth-child(n+13){animation-delay:0.52s}
+
+/* Top accent line indicator on hover */
+.service-card::before{
+  content:'';
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  height:3px;
+  background:linear-gradient(90deg,#1457d9,#38bdf8);
+  opacity:0;
+  transform:scaleX(0.4);
+  transform-origin:left center;
+  transition:opacity 0.3s ease,transform 0.35s cubic-bezier(0.16,1,0.3,1);
+}
+
+.service-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 18px 36px -8px rgba(15,23,42,0.08),0 8px 18px -4px rgba(20,87,217,0.08);
+  border-color:#93c5fd;
+}
+
+.service-card:hover::before{
+  opacity:1;
+  transform:scaleX(1);
+}
+
+.service-icon{
+  flex:none;
+  width:46px;
+  height:46px;
+  border-radius:14px;
+  display:grid;
+  place-items:center;
+  background:var(--soft);
+  color:var(--primary);
+  font-weight:900;
+  font-size:18px;
+  transition:transform 0.3s cubic-bezier(0.16,1,0.3,1),background-color 0.25s ease,color 0.25s ease,box-shadow 0.3s ease;
+}
+
+.service-card:hover .service-icon{
+  transform:scale(1.08) rotate(-3deg);
+  background:var(--primary);
+  color:#fff;
+  box-shadow:0 8px 18px rgba(20,87,217,0.25);
+}
+
 .service-card p{font-size:14px;line-height:1.55}
-.text-link{display:inline-flex;align-items:center;gap:4px;font-size:13px;font-weight:800;color:var(--primary);margin-top:6px}
+
+.text-link{display:inline-flex;align-items:center;gap:4px;font-size:13px;font-weight:800;color:var(--primary);margin-top:6px;transition:transform 0.25s ease,color 0.25s ease}
+.service-card:hover .text-link{transform:translateX(4px);color:#0d44b5}
 .text-link:hover{text-decoration:underline}
+
+@media(prefers-reduced-motion:reduce){
+  .service-card{animation:none!important;transition:none!important}
+  .service-card:hover{transform:none!important}
+}
 
 /* Search / Finder */
 .finder{display:flex;gap:12px;background:#fff;border:1px solid var(--line);border-radius:18px;padding:8px;margin:24px 0 8px;box-shadow:var(--shadow-sm)}
