@@ -66,9 +66,9 @@
       <button class="menu-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Buka Menu Navigasi">☰</button>
       <nav id="primary-nav" class="nav-links">
         <a href="../jasa/index.html">Semua Jasa</a>
-        <a href="../jasa/iklan-online.html">Jasa Ads</a>
-        <a href="../jasa/konsultasi-bisnis.html">Konsultasi Bisnis</a>
+        <a href="../jasa/perizinan.html">Jasa Perizinan</a>
         <a class="active" href="index.html">Artikel</a>
+        <a href="../blog/index.html">Blog</a>
         <a href="../bagaimana-caranya.html">Cara Kerja</a>
         <a href="../tentang.html">Tentang</a>
         <a href="../faq.html">FAQ</a>
@@ -110,17 +110,16 @@
           <div style="display:flex;align-items:center;padding-left:14px;color:var(--muted);font-size:16px">🔍</div>
           <input type="text" id="article-search-input" data-article-search placeholder="Cari artikel atau panduan (contoh: NIB, OSS, halal, samsat, STNK, meta ads, tanah, SEO, website)..." aria-label="Cari artikel dan panduan Temanggung" autocomplete="off">
           <select id="article-category-select" aria-label="Filter kategori artikel">
-            <option value="all">Semua Kategori (6)</option>
+            <option value="all">Semua Kategori (11)</option>
             <option value="legalitas">Legalitas &amp; Usaha</option>
+            <option value="sertifikasi">Pangan &amp; Sertifikasi (P-IRT, Halal)</option>
+            <option value="properti">Properti &amp; Bangunan (PBG, SHM)</option>
             <option value="otomotif">Otomotif &amp; Samsat</option>
-            <option value="digital">Pemasaran Digital</option>
-            <option value="properti">Properti &amp; Agraria</option>
-            <option value="website">Website &amp; SEO</option>
-            <option value="sertifikasi">Sertifikasi &amp; Pangan</option>
+            <option value="digital">Pemasaran Digital &amp; SEO</option>
           </select>
         </div>
         <div class="results-note" style="margin-top:-4px;margin-bottom:24px;color:var(--muted);font-size:13px;display:flex;justify-content:space-between;align-items:center">
-          <span id="article-count-label">Menampilkan semua 6 artikel dan panduan.</span>
+          <span id="article-count-label">Menampilkan semua 11 artikel dan panduan.</span>
           <button type="button" id="clear-article-search-btn" class="hidden" style="background:none;border:none;color:var(--primary);cursor:pointer;font-size:12px;font-weight:700">✕ Reset Pencarian</button>
         </div>
 
@@ -137,6 +136,71 @@
 
         <!-- Grid Artikel Terbaru -->
         <div class="article-hub-grid">
+          <!-- Artikel: Izin Edar P-IRT Dinkes Temanggung -->
+          <article class="article-card" data-category="sertifikasi" data-search="cara syarat mengurus izin edar pirt dinkes temanggung makanan umkm olahan kopi pkp sppirt pangan">
+            <div>
+              <span class="article-badge" style="background:#ecfdf5;color:#047857">Pangan &amp; Sertifikasi</span>
+              <h3><a href="cara-mengurus-izin-edar-pirt-dinkes-temanggung.html">Cara &amp; Syarat Mengurus Izin Edar P-IRT di Dinas Kesehatan Temanggung (2026)</a></h3>
+              <p>Panduan pengajuan SPP-IRT OSS, pelatihan PKP, standar label kemasan BPOM, dan uji kelayakan sarana produksi olahan kopi &amp; makanan ringan khas Temanggung.</p>
+            </div>
+            <div class="article-card-footer">
+              <span>📅 30 September 2026</span>
+              <a href="cara-mengurus-izin-edar-pirt-dinkes-temanggung.html" class="text-link">Baca Selengkapnya →</a>
+            </div>
+          </article>
+
+          <!-- Artikel: Syarat Bikin PT Perorangan Temanggung -->
+          <article class="article-card" data-category="legalitas" data-search="syarat bikin mendirikan pt perorangan di temanggung ahu kemenkumham npwp badan kpp pratama modal pemisahan aset pribadi">
+            <div>
+              <span class="article-badge" style="background:#e0f2fe;color:#0369a1">Legalitas &amp; Usaha</span>
+              <h3><a href="syarat-bikin-pt-perorangan-di-temanggung.html">Syarat &amp; Prosedur Pendirian PT Perorangan di Temanggung: Badan Hukum Tanpa Notaris</a></h3>
+              <p>Solusi badan hukum perseroan resmi untuk 1 orang pengusaha UMKM Temanggung, pendaftaran AHU online, pemisahan harta pribadi, dan rekening giro bank.</p>
+            </div>
+            <div class="article-card-footer">
+              <span>📅 30 September 2026</span>
+              <a href="syarat-bikin-pt-perorangan-di-temanggung.html" class="text-link">Baca Selengkapnya →</a>
+            </div>
+          </article>
+
+          <!-- Artikel: Panduan PBG & SLF Temanggung -->
+          <article class="article-card" data-category="properti" data-search="panduan mengurus pbg dan slf pengganti imb temanggung dpupr simbg gambar arsitektur struktur retribusi izin bangunan">
+            <div>
+              <span class="article-badge" style="background:#ede9fe;color:#5b21b6">Properti &amp; Bangunan</span>
+              <h3><a href="panduan-mengurus-pbg-dan-slf-temanggung.html">Panduan Mengurus PBG &amp; SLF Pengganti IMB di Temanggung Lewat SIMBG (2026)</a></h3>
+              <p>Prosedur pengurusan izin bangunan di DPUPR Temanggung, syarat gambar kerja arsitektur &amp; struktur tahan gempa, perhitungan retribusi resmi daerah, dan tata cara sidang teknis.</p>
+            </div>
+            <div class="article-card-footer">
+              <span>📅 30 September 2026</span>
+              <a href="panduan-mengurus-pbg-dan-slf-temanggung.html" class="text-link">Baca Selengkapnya →</a>
+            </div>
+          </article>
+
+          <!-- Artikel: Izin Usaha Kafe & Kedai Kopi Temanggung -->
+          <article class="article-card" data-category="legalitas" data-search="panduan izin usaha kafe kedai kopi restoran temanggung kbli 56303 laik higiene sanitasi dinkes pb1 bpkpad">
+            <div>
+              <span class="article-badge" style="background:#fef3c7;color:#92400e">Legalitas &amp; Usaha</span>
+              <h3><a href="izin-usaha-kafe-kedai-kopi-restoran-temanggung.html">Panduan Lengkap Izin Usaha Kafe &amp; Kedai Kopi di Temanggung (KBLI 56303, Sanitasi, &amp; PB1)</a></h3>
+              <p>Ledakan coffee shop di Temanggung, Parakan, dan Kledung. Persyaratan NIB OSS KBLI 56303, sertifikat laik higiene sanitasi Dinkes, pajak restoran PB1, dan izin reklame.</p>
+            </div>
+            <div class="article-card-footer">
+              <span>📅 30 September 2026</span>
+              <a href="izin-usaha-kafe-kedai-kopi-restoran-temanggung.html" class="text-link">Baca Selengkapnya →</a>
+            </div>
+          </article>
+
+          <!-- Artikel: Layanan Mall Pelayanan Publik (MPP) Temanggung -->
+          <article class="article-card" data-category="legalitas" data-search="daftar layanan cara mengurus izin terpadu mpp mall pelayanan publik temanggung dpmptsp samsat bpn disdukcapil jam buka alamat">
+            <div>
+              <span class="article-badge" style="background:#e0f2fe;color:#0369a1">Legalitas &amp; Usaha</span>
+              <h3><a href="panduan-mpp-mall-pelayanan-publik-temanggung.html">Daftar Layanan &amp; Cara Mengurus Izin Terpadu di Mall Pelayanan Publik (MPP) Temanggung</a></h3>
+              <p>Panduan satu pintu di eks Gedung Pemuda Jl. Suyoto. Loket DPMPTSP, loket Samsat cepat, ATR/BPN, Kemenag, dan tips berkas agar urusan tuntas dalam 1 hari.</p>
+            </div>
+            <div class="article-card-footer">
+              <span>📅 30 September 2026</span>
+              <a href="panduan-mpp-mall-pelayanan-publik-temanggung.html" class="text-link">Baca Selengkapnya →</a>
+            </div>
+          </article>
+
           <!-- Artikel 1: Izin Usaha NIB OSS -->
           <article class="article-card" data-category="legalitas" data-search="panduan lengkap cara mengurus nib oss rba izin usaha umkm temanggung dpmptsp berkas kbli modal pinjaman kur legalitas usaha">
             <div>

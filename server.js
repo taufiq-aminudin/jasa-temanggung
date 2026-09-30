@@ -32,6 +32,17 @@ app.get('/artikel.html', (req, res) => {
   res.redirect(301, '/artikel/');
 });
 
+app.get(['/blog', '/blog/', '/blog/index.html'], (req, res) => {
+  if (req.path === '/blog') {
+    return res.redirect(301, '/blog/');
+  }
+  res.sendFile(path.join(__dirname, 'blog', 'index.html'));
+});
+
+app.get('/blog.html', (req, res) => {
+  res.redirect(301, '/blog/');
+});
+
 // Legacy / typo service aliases
 app.get(['/jasa/samsat-stnk', '/jasa/samsat-stnk.html', '/samsat-stnk', '/samsat-stnk.html'], (req, res) => {
   res.redirect(301, '/jasa/stnk-sim.html');
@@ -58,7 +69,12 @@ const articleSlugs = [
   'strategi-iklan-meta-ads-umkm-temanggung',
   'tips-membeli-tanah-kebun-sertifikat-shm-temanggung',
   'cara-bikin-website-bisnis-temanggung-masuk-google',
-  'panduan-sertifikasi-halal-gratis-sehati-temanggung'
+  'panduan-sertifikasi-halal-gratis-sehati-temanggung',
+  'cara-mengurus-izin-edar-pirt-dinkes-temanggung',
+  'syarat-bikin-pt-perorangan-di-temanggung',
+  'panduan-mengurus-pbg-dan-slf-temanggung',
+  'izin-usaha-kafe-kedai-kopi-restoran-temanggung',
+  'panduan-mpp-mall-pelayanan-publik-temanggung'
 ];
 articleSlugs.forEach(slug => {
   app.get([`/${slug}`, `/${slug}.html`], (req, res) => {

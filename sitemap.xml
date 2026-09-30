@@ -15,7 +15,13 @@
   </url>
   <url>
     <loc>https://jasatemanggung.my.id/artikel/</loc>
-    <lastmod>2026-09-29</lastmod>
+    <lastmod>2026-09-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://jasatemanggung.my.id/blog/</loc>
+    <lastmod>2026-09-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.95</priority>
   </url>
@@ -77,7 +83,37 @@
   </url>
   <url>
     <loc>https://jasatemanggung.my.id/artikel/panduan-sertifikasi-halal-gratis-sehati-temanggung.html</loc>
-    <lastmod>2026-09-29</lastmod>
+    <lastmod>2026-09-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://jasatemanggung.my.id/artikel/cara-mengurus-izin-edar-pirt-dinkes-temanggung.html</loc>
+    <lastmod>2026-09-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://jasatemanggung.my.id/artikel/syarat-bikin-pt-perorangan-di-temanggung.html</loc>
+    <lastmod>2026-09-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://jasatemanggung.my.id/artikel/panduan-mengurus-pbg-dan-slf-temanggung.html</loc>
+    <lastmod>2026-09-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://jasatemanggung.my.id/artikel/izin-usaha-kafe-kedai-kopi-restoran-temanggung.html</loc>
+    <lastmod>2026-09-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://jasatemanggung.my.id/artikel/panduan-mpp-mall-pelayanan-publik-temanggung.html</loc>
+    <lastmod>2026-09-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
