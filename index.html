@@ -965,6 +965,71 @@
     </span>
   </a>
 
+  <!-- Newsletter & Lead Generation Modal: Free Temanggung Business Legality Checklist PDF -->
+  <div id="newsletter-modal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="modal-checklist-title" aria-describedby="modal-checklist-desc">
+    <div class="modal-card">
+      <button type="button" class="modal-close-btn" id="modal-close-btn" aria-label="Tutup jendela pop-up">✕</button>
+
+      <!-- Form View -->
+      <div id="modal-form-view">
+        <span class="modal-badge">GRATIS • PANDUAN RESMI 2026</span>
+        <h3 id="modal-checklist-title" style="font-size:22px;line-height:1.25;margin:0 0 8px;color:#0b1220">Checklist Legalitas Usaha Temanggung</h3>
+        <p id="modal-checklist-desc" style="font-size:13.5px;color:#64748b;line-height:1.55;margin:0 0 14px">
+          Ketahui seluruh persyaratan perizinan usaha OSS-RBA, sertifikasi halal &amp; P-IRT pangan, hingga izin bangunan PBG di Temanggung agar usaha aman dan siap scale-up tanpa calo.
+        </p>
+
+        <div class="modal-checklist-preview">
+          <div><span class="check">✓</span> <span>5 Tahap Registrasi NIB OSS-RBA &amp; Kode KBLI 2026</span></div>
+          <div><span class="check">✓</span> <span>Syarat SPP-IRT Dinkes Temanggung &amp; Sertifikat Halal</span></div>
+          <div><span class="check">✓</span> <span>Kelengkapan Berkas PBG &amp; SLF Pengganti IMB DPUPR</span></div>
+          <div><span class="check">✓</span> <span>Alamat &amp; Kontak Loket Mall Pelayanan Publik (MPP)</span></div>
+        </div>
+
+        <form id="checklist-signup-form" novalidate>
+          <div class="modal-input-group">
+            <label for="modal-name">Nama Pemilik / Usaha (Opsional)</label>
+            <input type="text" id="modal-name" name="name" placeholder="Contoh: Pak Budi / Kopi Kledung" autocomplete="name">
+          </div>
+          <div class="modal-input-group">
+            <label for="modal-email">Alamat Email Aktif <span style="color:#ef4444">*</span></label>
+            <input type="email" id="modal-email" name="email" placeholder="nama@email.com" required autocomplete="email">
+            <div id="modal-email-error" style="color:#dc2626;font-size:12px;margin-top:4px;display:none">Mohon masukkan alamat email yang valid.</div>
+          </div>
+          <div class="modal-input-group">
+            <label for="modal-whatsapp">Nomor WhatsApp (Opsional, kirim via WA)</label>
+            <input type="tel" id="modal-whatsapp" name="whatsapp" placeholder="Contoh: 081234567890" autocomplete="tel">
+          </div>
+          <button type="submit" id="modal-submit-btn" class="modal-submit-btn">
+            Download Checklist Gratis (PDF) →
+          </button>
+          <div class="modal-privacy-note">
+            🔒 Bebas spam. File PDF otomatis diunduh langsung ke perangkat Anda.
+          </div>
+        </form>
+      </div>
+
+      <!-- Success View (Hidden initially) -->
+      <div id="modal-success-view" class="modal-success-box hidden">
+        <div class="modal-success-icon">✓</div>
+        <h3 style="font-size:22px;color:#0b1220;margin-bottom:8px">Checklist Siap Diunduh!</h3>
+        <p style="font-size:14px;color:#64748b;line-height:1.55;margin-bottom:18px">
+          Terima kasih! File <strong style="color:#0b1220">Checklist-Legalitas-Usaha-Temanggung-2026.pdf</strong> telah diunduh ke perangkat Anda.
+        </p>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <button type="button" id="modal-redownload-btn" class="btn btn-primary" style="width:100%;font-size:14px;padding:12px;border:0;justify-content:center">
+            ⬇ Unduh Ulang File PDF
+          </button>
+          <a id="modal-wa-consult-btn" href="https://wa.me/6281382000412?text=Halo%20Jasa%20Temanggung%2C%20saya%20sudah%20download%20Checklist%20Legalitas%20dan%20ingin%20konsultasi" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="width:100%;font-size:13px;padding:11px;justify-content:center;border-color:#86efac;color:#15803d;background:#f0fdf4">
+            Chat Konsultan via WhatsApp →
+          </a>
+          <button type="button" id="modal-done-btn" style="background:none;border:none;color:#64748b;font-size:13px;font-weight:700;cursor:pointer;padding:8px;margin-top:4px">
+            Tutup Jendela
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script src="assets/js/site-config.js"></script>
   <script src="assets/js/app.js"></script>
 </body>

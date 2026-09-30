@@ -1272,4 +1272,278 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   initGetStartedFab();
+
+  // 15. Newsletter & Exit-Intent Lead Modal: Temanggung Business Legality Checklist
+  const initNewsletterChecklistModal = () => {
+    const modal = document.getElementById('newsletter-modal');
+    if (!modal) return;
+
+    const closeBtn = document.getElementById('modal-close-btn');
+    const form = document.getElementById('checklist-signup-form');
+    const formView = document.getElementById('modal-form-view');
+    const successView = document.getElementById('modal-success-view');
+    const emailInput = document.getElementById('modal-email');
+    const nameInput = document.getElementById('modal-name');
+    const waInput = document.getElementById('modal-whatsapp');
+    const emailError = document.getElementById('modal-email-error');
+    const redownloadBtn = document.getElementById('modal-redownload-btn');
+    const doneBtn = document.getElementById('modal-done-btn');
+    const waConsultBtn = document.getElementById('modal-wa-consult-btn');
+
+    const DISMISSED_KEY = 'temanggung_checklist_modal_dismissed';
+    const DOWNLOADED_KEY = 'temanggung_checklist_downloaded';
+
+    let modalTriggered = false;
+    const pageLoadTime = Date.now();
+    let lastRegisteredName = '';
+
+    const isSuppressed = () => {
+      try {
+        return (
+          sessionStorage.getItem(DISMISSED_KEY) === 'true' ||
+          localStorage.getItem(DOWNLOADED_KEY) === 'true'
+        );
+      } catch (_) {
+        return false;
+      }
+    };
+
+    const openModal = (reason) => {
+      if (modalTriggered || isSuppressed() || modal.classList.contains('open')) return;
+      modalTriggered = true;
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+
+      setTimeout(() => {
+        if (nameInput) nameInput.focus();
+        else if (emailInput) emailInput.focus();
+      }, 120);
+    };
+
+    const closeModal = () => {
+      modal.classList.remove('open');
+      document.body.style.overflow = '';
+      try {
+        sessionStorage.setItem(DISMISSED_KEY, 'true');
+      } catch (_) {}
+    };
+
+    // Close listeners
+    if (closeBtn) closeBtn.addEventListener('click', closeModal);
+    if (doneBtn) doneBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('open')) {
+        closeModal();
+      }
+    });
+
+    // Inactivity Trigger (30 seconds without interaction)
+    let inactivityTimer;
+    const resetInactivityTimer = () => {
+      clearTimeout(inactivityTimer);
+      if (!modalTriggered && !isSuppressed()) {
+        inactivityTimer = setTimeout(() => {
+          openModal('inactivity');
+        }, 30000); // 30 seconds
+      }
+    };
+
+    ['mousemove', 'mousedown', 'keydown', 'touchstart', 'scroll'].forEach((evt) => {
+      window.addEventListener(evt, resetInactivityTimer, { passive: true });
+    });
+    resetInactivityTimer();
+
+    // Exit Intent Trigger (Mouse leaves viewport at the top)
+    const handleExitIntent = (e) => {
+      // Allow at least 5s dwell before exit intent triggers
+      if (Date.now() - pageLoadTime < 5000) return;
+      if (e.clientY <= 10) {
+        openModal('exit_intent');
+      }
+    };
+    document.addEventListener('mouseleave', handleExitIntent);
+
+    // PDF Download Engine
+    const downloadPdf = (userName) => {
+      const safeName = (userName || 'Pelaku Usaha Temanggung').replace(/[^a-zA-Z0-9\s.,]/g, '');
+      const today = new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
+
+      const textContent = 
+`%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Contents 4 0 R /Resources << /Font << /F1 5 0 R /F2 6 0 R >> >> >>
+endobj
+4 0 obj
+<< /Length %LENGTH% >>
+stream
+BT
+/F1 18 Tf
+40 790 Td
+(CHECKLIST LEGALITAS USAHA TEMANGGUNG 2026) Tj
+0 -24 Td
+/F2 10 Tf
+(Panduan Lengkap Standar Dokumen Perizinan & Regulasi Daerah Kab. Temanggung) Tj
+0 -16 Td
+(Penerima: ${safeName}  |  Tanggal: ${today}  |  JasaTemanggung.my.id) Tj
+0 -36 Td
+/F1 12 Tf
+(1. PERIZINAN DASAR BERUSAHA (OSS-RBA)) Tj
+0 -18 Td
+/F2 10 Tf
+([  ] Identitas KTP & NPWP Pemilik Usaha / Pengurus Aktif) Tj
+0 -15 Td
+([  ] Registrasi Akun OSS-RBA melalui oss.go.id) Tj
+0 -15 Td
+([  ] Penentuan Kode KBLI 5 Digit Sesuai Kegiatan Usaha Riil di Temanggung) Tj
+0 -15 Td
+([  ] Penerbitan NIB (Nomor Induk Berusaha) & Pernyataan Mandiri K3L) Tj
+0 -30 Td
+/F1 12 Tf
+(2. SERTIFIKASI PANGAN & OLAHAN (P-IRT & SERTIFIKAT HALAL)) Tj
+0 -18 Td
+/F2 10 Tf
+([  ] Sertifikat Penyuluhan Keamanan Pangan (PKP) dari Dinas Kesehatan Temanggung) Tj
+0 -15 Td
+([  ] Uji Higiene Sarana Produksi Makanan / Kopi / Olahan Lokal) Tj
+0 -15 Td
+([  ] Pengajuan Sertifikat Standar SPP-IRT OSS) Tj
+0 -15 Td
+([  ] Pendaftaran Sertifikasi Halal Gratis (SEHATI) melalui Pendamping PPH Temanggung) Tj
+0 -15 Td
+([  ] Standar Label Kemasan (Komposisi, Netto, Kode Produksi, Expired Date)) Tj
+0 -30 Td
+/F1 12 Tf
+(3. LEGALITAS BANGUNAN & TEMPAT USAHA (PBG & SLF)) Tj
+0 -18 Td
+/F2 10 Tf
+([  ] Bukti Hak Atas Tanah (Sertifikat SHM / Perjanjian Sewa Notariil)) Tj
+0 -15 Td
+([  ] Gambar Kerja Arsitektur, Mekanikal Elektrikal, & Struktur Tahan Gempa) Tj
+0 -15 Td
+([  ] Registrasi Akun SIMBG dan Pengajuan Persetujuan Bangunan Gedung (PBG)) Tj
+0 -15 Td
+([  ] Uji Kelaikan Fungsi Bangunan hingga Terbit Sertifikat Laik Fungsi (SLF)) Tj
+0 -30 Td
+/F1 12 Tf
+(4. BADAN HUKUM & REKENING BISNIS) Tj
+0 -18 Td
+/F2 10 Tf
+([  ] Pilihan Badan Usaha: PT Perorangan (1 Pendiri UMKM) atau PT Biasa / CV) Tj
+0 -15 Td
+([  ] Pendaftaran AHU Online Kemenkumham & SK Kemenkumham Resmi) Tj
+0 -15 Td
+([  ] NPWP Badan Usaha di KPP Pratama Temanggung) Tj
+0 -15 Td
+([  ] Pemisahan Rekening Pribadi & Pembukaan Rekening Giro Bank) Tj
+0 -30 Td
+/F1 12 Tf
+(5. PUSAT LAYANAN TERPADU TEMANGGUNG) Tj
+0 -18 Td
+/F2 10 Tf
+(- Mall Pelayanan Publik (MPP): Eks Gedung Pemuda, Jl. Suyoto No. 1, Temanggung) Tj
+0 -15 Td
+(- DPMPTSP Kab. Temanggung: Pelayanan Perizinan Terpadu & Pendampingan NIB) Tj
+0 -15 Td
+(- Dinkes Temanggung: Bidang Sumber Daya Kesehatan & Kefarmasian / P-IRT) Tj
+0 -35 Td
+/F1 11 Tf
+(KONSULTASI & PENDAMPINGAN RESMI: JASA TEMANGGUNG) Tj
+0 -16 Td
+/F2 10 Tf
+(Website: https://jasatemanggung.my.id  |  WhatsApp: 0813-8200-0412) Tj
+0 -14 Td
+/F2 9 Tf
+(Layanan: Pendampingan NIB OSS, Notaris & PPAT, Pajak, Iklan Ads, & Website Bisnis) Tj
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+6 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+xref
+0 7
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000242 00000 n 
+0000002800 00000 n 
+0000002875 00000 n 
+trailer
+<< /Size 7 /Root 1 0 R >>
+startxref
+2950
+%%EOF`;
+
+      const streamStart = textContent.indexOf('stream\n') + 7;
+      const streamEnd = textContent.indexOf('\nendstream');
+      const streamData = textContent.substring(streamStart, streamEnd);
+      const streamLength = streamData.length;
+
+      const finalPdf = textContent.replace('%LENGTH%', streamLength);
+      const blob = new Blob([finalPdf], { type: 'application/pdf' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'Checklist-Legalitas-Usaha-Temanggung-2026.pdf';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+    };
+
+    if (form) {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const email = (emailInput ? emailInput.value : '').trim();
+        const name = (nameInput ? nameInput.value : '').trim();
+        const wa = (waInput ? waInput.value : '').trim();
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+          if (emailError) emailError.style.display = 'block';
+          if (emailInput) emailInput.focus();
+          return;
+        }
+        if (emailError) emailError.style.display = 'none';
+
+        lastRegisteredName = name;
+        try {
+          localStorage.setItem(DOWNLOADED_KEY, 'true');
+        } catch (_) {}
+
+        if (waConsultBtn) {
+          const cfg = window.SITE_CONFIG || {};
+          const num = cfg.whatsappNumber || '6281382000412';
+          const msg = `Halo Jasa Temanggung, saya ${name || 'pelaku usaha'} (${email}). Saya sudah mengunduh Checklist Legalitas Usaha Temanggung dan ingin konsultasi lebih lanjut.`;
+          waConsultBtn.href = `https://wa.me/${num}?text=${encodeURIComponent(msg)}`;
+        }
+
+        downloadPdf(name);
+
+        if (formView) formView.classList.add('hidden');
+        if (successView) successView.classList.remove('hidden');
+      });
+    }
+
+    if (redownloadBtn) {
+      redownloadBtn.addEventListener('click', () => {
+        downloadPdf(lastRegisteredName);
+      });
+    }
+  };
+
+  initNewsletterChecklistModal();
 });
