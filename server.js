@@ -17,11 +17,27 @@ app.get(['/jasa', '/jasa/', '/jasa/index.html'], (req, res) => {
   res.sendFile(path.join(__dirname, 'jasa', 'index.html'));
 });
 
+app.get('/jasa.html', (req, res) => {
+  res.redirect(301, '/jasa/');
+});
+
 app.get(['/artikel', '/artikel/', '/artikel/index.html'], (req, res) => {
   if (req.path === '/artikel') {
     return res.redirect(301, '/artikel/');
   }
   res.sendFile(path.join(__dirname, 'artikel', 'index.html'));
+});
+
+app.get('/artikel.html', (req, res) => {
+  res.redirect(301, '/artikel/');
+});
+
+// Legacy / typo service aliases
+app.get(['/jasa/samsat-stnk', '/jasa/samsat-stnk.html', '/samsat-stnk', '/samsat-stnk.html'], (req, res) => {
+  res.redirect(301, '/jasa/stnk-sim.html');
+});
+app.get(['/jasa/website-seo', '/jasa/website-seo.html', '/website-seo', '/website-seo.html'], (req, res) => {
+  res.redirect(301, '/jasa/website.html');
 });
 
 // Fallback redirects for root-level service and article aliases

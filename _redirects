@@ -1,4 +1,60 @@
+# Cloudflare Pages & Netlify Redirects
+# Primary Directory Normalization
 /jasa /jasa/ 301
+/jasa.html /jasa/ 301
 /artikel /artikel/ 301
-/jasa/ /jasa/index.html 200
-/artikel/ /artikel/index.html 200
+/artikel.html /artikel/ 301
+
+# Legacy and Typo Service Aliases
+/jasa/samsat-stnk /jasa/stnk-sim.html 301
+/jasa/samsat-stnk.html /jasa/stnk-sim.html 301
+/samsat-stnk /jasa/stnk-sim.html 301
+/samsat-stnk.html /jasa/stnk-sim.html 301
+/jasa/website-seo /jasa/website.html 301
+/jasa/website-seo.html /jasa/website.html 301
+/website-seo /jasa/website.html 301
+/website-seo.html /jasa/website.html 301
+
+# Root-level Service Slugs to Subdirectory
+/iklan-online /jasa/iklan-online.html 301
+/iklan-online.html /jasa/iklan-online.html 301
+/konsultasi-bisnis /jasa/konsultasi-bisnis.html 301
+/konsultasi-bisnis.html /jasa/konsultasi-bisnis.html 301
+/perizinan /jasa/perizinan.html 301
+/perizinan.html /jasa/perizinan.html 301
+/notaris-ppat /jasa/notaris-ppat.html 301
+/notaris-ppat.html /jasa/notaris-ppat.html 301
+/properti /jasa/properti.html 301
+/properti.html /jasa/properti.html 301
+/stnk-sim /jasa/stnk-sim.html 301
+/stnk-sim.html /jasa/stnk-sim.html 301
+/meta-ads /jasa/meta-ads.html 301
+/meta-ads.html /jasa/meta-ads.html 301
+/website /jasa/website.html 301
+/website.html /jasa/website.html 301
+/desain-branding /jasa/desain-branding.html 301
+/desain-branding.html /jasa/desain-branding.html 301
+/foto-video /jasa/foto-video.html 301
+/foto-video.html /jasa/foto-video.html 301
+/akuntansi-pajak /jasa/akuntansi-pajak.html 301
+/akuntansi-pajak.html /jasa/akuntansi-pajak.html 301
+/hr-rekrutmen /jasa/hr-rekrutmen.html 301
+/hr-rekrutmen.html /jasa/hr-rekrutmen.html 301
+/it-komputer /jasa/it-komputer.html 301
+/it-komputer.html /jasa/it-komputer.html 301
+/lainnya /jasa/lainnya.html 301
+/lainnya.html /jasa/lainnya.html 301
+
+# Root-level Article Slugs to Subdirectory
+/panduan-izin-usaha-nib-oss-temanggung /artikel/panduan-izin-usaha-nib-oss-temanggung.html 301
+/panduan-izin-usaha-nib-oss-temanggung.html /artikel/panduan-izin-usaha-nib-oss-temanggung.html 301
+/biaya-balik-nama-dan-pajak-stnk-samsat-temanggung /artikel/biaya-balik-nama-dan-pajak-stnk-samsat-temanggung.html 301
+/biaya-balik-nama-dan-pajak-stnk-samsat-temanggung.html /artikel/biaya-balik-nama-dan-pajak-stnk-samsat-temanggung.html 301
+/strategi-iklan-meta-ads-umkm-temanggung /artikel/strategi-iklan-meta-ads-umkm-temanggung.html 301
+/strategi-iklan-meta-ads-umkm-temanggung.html /artikel/strategi-iklan-meta-ads-umkm-temanggung.html 301
+/tips-membeli-tanah-kebun-sertifikat-shm-temanggung /artikel/tips-membeli-tanah-kebun-sertifikat-shm-temanggung.html 301
+/tips-membeli-tanah-kebun-sertifikat-shm-temanggung.html /artikel/tips-membeli-tanah-kebun-sertifikat-shm-temanggung.html 301
+/cara-bikin-website-bisnis-temanggung-masuk-google /artikel/cara-bikin-website-bisnis-temanggung-masuk-google.html 301
+/cara-bikin-website-bisnis-temanggung-masuk-google.html /artikel/cara-bikin-website-bisnis-temanggung-masuk-google.html 301
+/panduan-sertifikasi-halal-gratis-sehati-temanggung /artikel/panduan-sertifikasi-halal-gratis-sehati-temanggung.html 301
+/panduan-sertifikasi-halal-gratis-sehati-temanggung.html /artikel/panduan-sertifikasi-halal-gratis-sehati-temanggung.html 301

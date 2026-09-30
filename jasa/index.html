@@ -9,13 +9,13 @@
   <meta name="robots" content="index,follow">
   <meta name="theme-color" content="#0b1220">
   <meta name="google-adsense-account" content="ca-pub-2437971183769682">
-  <link rel="canonical" href="https://ais-pre-hz4zhbvx2wldn3lp6qemjc-741765011952.asia-southeast1.run.app/jasa/">
+  <link rel="canonical" href="https://jasatemanggung.my.id/jasa/">
 
   <!-- OpenGraph & Twitter -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Semua Jasa & Layanan di Temanggung | Katalog Terlengkap">
   <meta property="og:description" content="Temukan dan cari layanan di Temanggung untuk kebutuhan pribadi, properti, kendaraan, legalitas usaha, dan pemasaran digital.">
-  <meta property="og:url" content="https://ais-pre-hz4zhbvx2wldn3lp6qemjc-741765011952.asia-southeast1.run.app/jasa/">
+  <meta property="og:url" content="https://jasatemanggung.my.id/jasa/">
   <meta property="og:image" content="../assets/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Semua Jasa & Layanan Temanggung">
@@ -35,7 +35,7 @@
     "@type": "CollectionPage",
     "name": "Semua Jasa & Layanan Temanggung",
     "description": "Direktori komprehensif layanan pendampingan dokumen, legalitas usaha, iklan digital, properti, kendaraan, dan digital marketing di Temanggung.",
-    "url": "https://ais-pre-hz4zhbvx2wldn3lp6qemjc-741765011952.asia-southeast1.run.app/jasa/"
+    "url": "https://jasatemanggung.my.id/jasa/"
   }
   </script>
   <script type="application/ld+json">
@@ -47,13 +47,13 @@
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": "https://ais-pre-hz4zhbvx2wldn3lp6qemjc-741765011952.asia-southeast1.run.app/"
+        "item": "https://jasatemanggung.my.id/"
       },
       {
         "@type": "ListItem",
         "position": 2,
         "name": "Semua Jasa",
-        "item": "https://ais-pre-hz4zhbvx2wldn3lp6qemjc-741765011952.asia-southeast1.run.app/jasa/"
+        "item": "https://jasatemanggung.my.id/jasa/"
       }
     ]
   }
@@ -68,7 +68,7 @@
       </a>
       <button class="menu-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Buka Menu Navigasi">☰</button>
       <nav id="primary-nav" class="nav-links">
-        <a href="index.html" class="active">Semua Jasa</a>
+        <a href="./" class="active">Semua Jasa</a>
         <a href="iklan-online.html">Jasa Ads</a>
         <a href="konsultasi-bisnis.html">Konsultasi Bisnis</a>
         <a href="../artikel/index.html">Artikel</a>
@@ -115,13 +115,27 @@
               <option value="digital">Website & IT</option>
             </select>
           </div>
-          <div class="results-note" data-results-note style="margin-top:10px;color:var(--muted)">Menampilkan semua layanan.</div>
+          <div class="results-note" style="margin-top:10px;color:var(--muted);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+            <span data-results-note id="service-count-label">Menampilkan semua layanan.</span>
+            <button type="button" id="clear-search-btn" class="hidden" style="background:none;border:none;color:var(--primary);cursor:pointer;font-size:12px;font-weight:700">✕ Reset Pencarian</button>
+          </div>
         </div>
       </div>
     </section>
 
     <section class="section" style="padding-top:35px">
       <div class="container">
+        <!-- Empty Search State -->
+        <div id="no-services-found" class="callout hidden" style="text-align:center;padding:36px 20px;margin:20px 0;background:#f8fafc;border:1px dashed #cbd5e1">
+          <div style="font-size:36px;margin-bottom:8px">🔍</div>
+          <h3 style="margin-bottom:6px;font-size:18px">Layanan tidak ditemukan</h3>
+          <p style="margin:0 auto 16px;color:var(--muted);font-size:14px;max-width:540px">Tidak ada layanan yang cocok dengan kata kunci atau filter tersebut. Anda bisa reset pencarian atau konsultasikan langsung kebutuhan Anda kepada kami.</p>
+          <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+            <button type="button" class="btn btn-secondary" id="reset-filter-btn" style="font-size:13px;padding:8px 16px">Lihat Semua Layanan</button>
+            <a class="btn btn-primary" href="../kontak.html" style="font-size:13px;padding:8px 16px">Konsultasi Kebutuhan Khusus →</a>
+          </div>
+        </div>
+
         <div class="grid-3">
           <!-- 1. Jasa Iklan Online & Ads -->
           <article class="service-card" data-category="marketing" data-search="jasa iklan online ads google ads meta ads facebook instagram tiktok leads traffic penjualan temanggung">
@@ -332,7 +346,7 @@
                   <td><span class="price-pill">Jasa mulai Rp 50rb*</span></td>
                   <td><span class="time-pill">⏱ 1 – 2 Hari</span></td>
                   <td>Cek Fisik Bantuan Samsat, Pengesahan STNK, Plat Nomor Kaleng Baru</td>
-                  <td><a href="samsat-stnk.html" class="table-cta-btn">Pilih Layanan →</a></td>
+                  <td><a href="stnk-sim.html" class="table-cta-btn">Pilih Layanan →</a></td>
                 </tr>
 
                 <!-- 3. Balik Nama BPKB & Mutasi Plat -->
@@ -344,7 +358,7 @@
                   <td><span class="price-pill">Jasa mulai Rp 150rb*</span></td>
                   <td><span class="time-pill">⏱ 3 – 7 Hari</span></td>
                   <td>Buku BPKB Atas Nama Sendiri, STNK Baru, Berkas Fiskal/Cabut Berkas</td>
-                  <td><a href="samsat-stnk.html" class="table-cta-btn">Pilih Layanan →</a></td>
+                  <td><a href="stnk-sim.html" class="table-cta-btn">Pilih Layanan →</a></td>
                 </tr>
 
                 <!-- 4. Iklan Online Meta & Google Ads -->
@@ -368,7 +382,7 @@
                   <td><span class="price-pill">Rp 750rb – 1.5jt</span></td>
                   <td><span class="time-pill">⏱ 3 – 7 Hari</span></td>
                   <td>Domain .com/.id, Desain Mobile-Friendly, Integrasi WA, Google Bisnis</td>
-                  <td><a href="website-seo.html" class="table-cta-btn">Pilih Layanan →</a></td>
+                  <td><a href="website.html" class="table-cta-btn">Pilih Layanan →</a></td>
                 </tr>
 
                 <!-- 6. Pendampingan Notaris PPAT & Cek Tanah -->
@@ -466,7 +480,7 @@
       </div>
       <div>
         <h3>Layanan</h3>
-        <a href="index.html">Semua Jasa</a>
+        <a href="./">Semua Jasa</a>
         <a href="iklan-online.html">Jasa Iklan Online</a>
         <a href="konsultasi-bisnis.html">Konsultasi Bisnis</a>
         <a href="perizinan.html">Perizinan</a>

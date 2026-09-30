@@ -2,4 +2,3 @@ User-agent: *
 Allow: /
 
 Sitemap: https://jasatemanggung.my.id/sitemap.xml
-Sitemap: https://ais-pre-hz4zhbvx2wldn3lp6qemjc-741765011952.asia-southeast1.run.app/sitemap.xml

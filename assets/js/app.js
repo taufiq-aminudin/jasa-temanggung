@@ -184,11 +184,26 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    // Initial check (handles prefilled query if any)
-    const initialInput = searchInputs[0];
-    const initialSelect = categorySelects[0];
-    if (initialInput && initialInput.value) {
-      performFilter(initialInput.value, initialSelect ? initialSelect.value : 'all');
+    // Initial check (handles URL parameters and prefilled query)
+    try {
+      const urlParams = new URLSearchParams(window.location.search);
+      const urlQ = urlParams.get('q') || urlParams.get('search') || '';
+      const urlCat = urlParams.get('kategori') || urlParams.get('cat') || urlParams.get('category') || 'all';
+      if (urlQ || urlCat !== 'all') {
+        performFilter(urlQ, urlCat);
+      } else {
+        const initialInput = searchInputs[0];
+        const initialSelect = categorySelects[0];
+        if (initialInput && initialInput.value) {
+          performFilter(initialInput.value, initialSelect ? initialSelect.value : 'all');
+        }
+      }
+    } catch (_) {
+      const initialInput = searchInputs[0];
+      const initialSelect = categorySelects[0];
+      if (initialInput && initialInput.value) {
+        performFilter(initialInput.value, initialSelect ? initialSelect.value : 'all');
+      }
     }
   };
 

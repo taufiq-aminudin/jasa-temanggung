@@ -1,6 +1,11 @@
 {
   "cleanUrls": true,
-  "trailingSlash": false,
+  "redirects": [
+    { "source": "/jasa.html", "destination": "/jasa/", "permanent": true },
+    { "source": "/artikel.html", "destination": "/artikel/", "permanent": true },
+    { "source": "/jasa/samsat-stnk", "destination": "/jasa/stnk-sim.html", "permanent": true },
+    { "source": "/jasa/website-seo", "destination": "/jasa/website.html", "permanent": true }
+  ],
   "rewrites": [
     { "source": "/jasa", "destination": "/jasa/index.html" },
     { "source": "/jasa/", "destination": "/jasa/index.html" },

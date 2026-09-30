@@ -5,9 +5,17 @@ DirectoryIndex index.html
   RewriteEngine On
   RewriteBase /
 
+  # Redirect legacy / redundant .html hub files to slash directories
+  RewriteRule ^jasa\.html$ /jasa/ [R=301,L]
+  RewriteRule ^artikel\.html$ /artikel/ [R=301,L]
+
   # Redirect /jasa to /jasa/ and /artikel to /artikel/
   RewriteRule ^jasa$ /jasa/ [R=301,L]
   RewriteRule ^artikel$ /artikel/ [R=301,L]
+
+  # Service typos / aliases
+  RewriteRule ^(jasa/)?samsat-stnk(\.html)?$ /jasa/stnk-sim.html [R=301,L]
+  RewriteRule ^(jasa/)?website-seo(\.html)?$ /jasa/website.html [R=301,L]
 
   # Allow clean URLs without .html
   RewriteCond %{REQUEST_FILENAME} !-d
