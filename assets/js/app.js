@@ -921,6 +921,115 @@ document.addEventListener('DOMContentLoaded', () => {
     const tableFilterBtns = document.querySelectorAll('.comparison-filter-btn');
     const sortHeaders = comparisonTable.querySelectorAll('.sortable-th');
 
+    // Helper function to extract numerical values from rows
+    const getRowValue = (row, sortType) => {
+      if (sortType === 'cost') {
+        const rawCost = row.getAttribute('data-cost');
+        if (rawCost !== null && rawCost !== '') {
+          return parseFloat(rawCost);
+        }
+        const text = (row.cells[1]?.innerText || '').toLowerCase();
+        if (text.includes('gratis')) return 0;
+        const match = text.match(/(\d+(?:[.,]\d+)?)\s*(rb|ribu|jt|juta)?/);
+        if (!match) return 999999999;
+        let num = parseFloat(match[1].replace(',', '.'));
+        const unit = match[2] || '';
+        if (unit.startsWith('jt')) num *= 1000000;
+        else if (unit.startsWith('rb')) num *= 1000;
+        return num;
+      } else if (sortType === 'duration') {
+        const rawDuration = row.getAttribute('data-duration');
+        if (rawDuration !== null && rawDuration !== '') {
+          return parseFloat(rawDuration);
+        }
+        const text = row.cells[2]?.innerText || '';
+        const match = text.match(/(\d+)/);
+        return match ? parseInt(match[1], 10) : 999;
+      }
+      return 0;
+    };
+
+    // Helper to calculate & update the summary insight bar dynamically
+    const updateTableSummary = () => {
+      const summaryBar = document.getElementById('comparisonTableSummary');
+      if (!summaryBar || !tableBody) return;
+
+      const visibleRows = Array.from(tableBody.querySelectorAll('tr')).filter(r => r.style.display !== 'none');
+      const countEl = document.getElementById('summaryVisibleCount');
+      const costRangeEl = document.getElementById('summaryCostRange');
+      const durationRangeEl = document.getElementById('summaryDurationRange');
+      const filterTagEl = document.getElementById('summaryActiveFilterText');
+
+      const count = visibleRows.length;
+      if (countEl) countEl.textContent = `${count} Layanan`;
+
+      if (count === 0) {
+        if (costRangeEl) costRangeEl.textContent = '-';
+        if (durationRangeEl) durationRangeEl.textContent = '-';
+        if (filterTagEl) filterTagEl.textContent = 'Tidak ada layanan pada kategori ini';
+        return;
+      }
+
+      const formatCost = (num) => {
+        if (num === 0) return 'GRATIS';
+        if (num >= 1000000) {
+          const jt = num / 1000000;
+          return `Rp ${jt % 1 === 0 ? jt : jt.toFixed(1)} Jt`;
+        }
+        if (num >= 1000) {
+          return `Rp ${Math.round(num / 1000)}rb`;
+        }
+        return `Rp ${num}`;
+      };
+
+      // Cost Range Calculation
+      const costs = visibleRows.map(r => {
+        const raw = r.getAttribute('data-cost');
+        if (raw !== null && raw !== '') return parseFloat(raw);
+        return getRowValue(r, 'cost');
+      }).filter(n => !isNaN(n));
+
+      if (costs.length && costRangeEl) {
+        const minCost = Math.min(...costs);
+        const maxCost = Math.max(...costs);
+        if (minCost === maxCost) {
+          costRangeEl.textContent = formatCost(minCost);
+        } else {
+          costRangeEl.textContent = `${formatCost(minCost)} – ${formatCost(maxCost)}`;
+        }
+      }
+
+      // Duration Range Calculation
+      const durations = visibleRows.map(r => {
+        const raw = r.getAttribute('data-duration');
+        if (raw !== null && raw !== '') return parseInt(raw, 10);
+        return getRowValue(r, 'duration');
+      }).filter(n => !isNaN(n));
+
+      if (durations.length && durationRangeEl) {
+        const minDur = Math.min(...durations);
+        const maxDur = Math.max(...durations);
+        if (minDur === maxDur) {
+          durationRangeEl.textContent = `${minDur} Hari`;
+        } else {
+          durationRangeEl.textContent = `${minDur} – ${maxDur} Hari`;
+        }
+      }
+
+      // Active Filter Tag Text
+      const activeBtn = document.querySelector('.comparison-filter-btn.active');
+      const activeFilter = activeBtn ? activeBtn.getAttribute('data-table-filter') : 'all';
+      if (filterTagEl) {
+        const filterNames = {
+          all: 'Semua Sektor Layanan',
+          dokumen: 'Sektor Legalitas & Dokumen Usaha',
+          kendaraan: 'Sektor Samsat & Pajak Kendaraan',
+          digital: 'Sektor Digital, Iklan & Website'
+        };
+        filterTagEl.textContent = filterNames[activeFilter] || (activeBtn ? activeBtn.innerText.trim() : 'Layanan Terpilih');
+      }
+    };
+
     // 12a. Category Filter
     if (tableFilterBtns.length && tableBody) {
       tableFilterBtns.forEach(btn => {
@@ -936,41 +1045,13 @@ document.addEventListener('DOMContentLoaded', () => {
               row.style.display = 'none';
             }
           });
+          updateTableSummary();
         });
       });
     }
 
     // 12b. Sortable Headers (Estimasi Biaya & Durasi Kerja)
     if (sortHeaders.length && tableBody) {
-      const getRowValue = (row, sortType) => {
-        if (sortType === 'cost') {
-          const rawCost = row.getAttribute('data-cost');
-          if (rawCost !== null && rawCost !== '') {
-            return parseFloat(rawCost);
-          }
-          // Fallback parser if data attribute is absent
-          const text = (row.cells[1]?.innerText || '').toLowerCase();
-          if (text.includes('gratis')) return 0;
-          const match = text.match(/(\d+(?:[.,]\d+)?)\s*(rb|ribu|jt|juta)?/);
-          if (!match) return 999999999;
-          let num = parseFloat(match[1].replace(',', '.'));
-          const unit = match[2] || '';
-          if (unit.startsWith('jt')) num *= 1000000;
-          else if (unit.startsWith('rb')) num *= 1000;
-          return num;
-        } else if (sortType === 'duration') {
-          const rawDuration = row.getAttribute('data-duration');
-          if (rawDuration !== null && rawDuration !== '') {
-            return parseFloat(rawDuration);
-          }
-          // Fallback parser for days if data attribute is absent
-          const text = row.cells[2]?.innerText || '';
-          const match = text.match(/(\d+)/);
-          return match ? parseInt(match[1], 10) : 999;
-        }
-        return 0;
-      };
-
       const executeSort = (th) => {
         const sortType = th.getAttribute('data-sort');
         if (!sortType) return;
@@ -1003,6 +1084,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Re-append sorted rows into the tbody
         rows.forEach(row => tableBody.appendChild(row));
+        updateTableSummary();
       };
 
       sortHeaders.forEach(th => {
@@ -1015,6 +1097,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
       });
     }
+
+    // Initial run for summary calculation
+    updateTableSummary();
 
     // 12c. Download CSV Export Feature (Filtered & Sorted Data)
     const csvButtons = [
