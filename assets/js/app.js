@@ -1224,4 +1224,52 @@ document.addEventListener('DOMContentLoaded', () => {
   };
   window.addEventListener('load', safeInitAds);
   window.addEventListener('resize', safeInitAds);
+
+  // 14. 'Get Started' Floating Action Button (FAB) Scroll-Triggered Visibility
+  const initGetStartedFab = () => {
+    const fab = document.getElementById('get-started-fab');
+    const hero = document.getElementById('hero-section') || document.querySelector('.hero');
+    if (!fab || !hero) return;
+
+    let isVisible = false;
+    const setFabVisibility = (show) => {
+      if (show === isVisible) return;
+      isVisible = show;
+      if (show) {
+        fab.classList.add('visible');
+      } else {
+        fab.classList.remove('visible');
+      }
+    };
+
+    const updateVisibility = () => {
+      const heroRect = hero.getBoundingClientRect();
+      // Appears only when the user scrolls past the hero section
+      const isPastHero = heroRect.bottom <= 50;
+      setFabVisibility(isPastHero);
+    };
+
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting && entry.boundingClientRect.top < 0) {
+            setFabVisibility(true);
+          } else if (entry.isIntersecting) {
+            setFabVisibility(false);
+          }
+        });
+      }, {
+        threshold: 0,
+        rootMargin: '-50px 0px 0px 0px'
+      });
+      observer.observe(hero);
+    }
+
+    // Scroll listener fallback for immediate responsiveness
+    window.addEventListener('scroll', updateVisibility, { passive: true });
+    // Initial evaluation on load
+    updateVisibility();
+  };
+
+  initGetStartedFab();
 });
