@@ -306,10 +306,10 @@
             </div>
             <!-- Category Filter Buttons for Table -->
             <div class="comparison-filter-wrap" role="group" aria-label="Filter kategori tabel perbandingan">
-              <button type="button" class="comparison-filter-btn active" data-table-filter="all">Semua Sektor (8)</button>
-              <button type="button" class="comparison-filter-btn" data-table-filter="dokumen">Legalitas &amp; Dokumen</button>
-              <button type="button" class="comparison-filter-btn" data-table-filter="kendaraan">Samsat &amp; Pajak</button>
-              <button type="button" class="comparison-filter-btn" data-table-filter="digital">Digital &amp; Iklan</button>
+              <button type="button" class="comparison-filter-btn active" data-table-filter="all"><span>✨</span> Semua Sektor (8)</button>
+              <button type="button" class="comparison-filter-btn" data-table-filter="dokumen"><span>📄</span> Legalitas &amp; Dokumen</button>
+              <button type="button" class="comparison-filter-btn" data-table-filter="kendaraan"><span>🚗</span> Samsat &amp; Pajak</button>
+              <button type="button" class="comparison-filter-btn" data-table-filter="digital"><span>⚡</span> Digital &amp; Iklan</button>
             </div>
           </div>
 
@@ -317,7 +317,7 @@
             <table class="comparison-table" id="servicesComparisonTable">
               <thead>
                 <tr>
-                  <th style="min-width:200px">Layanan &amp; Sektor</th>
+                  <th style="min-width:240px">Layanan &amp; Sektor</th>
                   <th style="min-width:140px">Estimasi Biaya</th>
                   <th style="min-width:130px">Durasi Kerja</th>
                   <th style="min-width:220px">Output / Berkas Utama</th>
@@ -328,8 +328,15 @@
                 <!-- 1. Perizinan OSS NIB -->
                 <tr data-table-cat="dokumen">
                   <td class="service-name-cell">
-                    <strong>NIB &amp; PT Perorangan OSS-RBA</strong>
-                    <span>Legalitas &amp; Dokumen Usaha</span>
+                    <div class="table-service-item">
+                      <div class="table-service-icon icon-dokumen" aria-hidden="true" title="Kategori Legalitas & Dokumen">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="m9 15 2 2 4-4"/></svg>
+                      </div>
+                      <div>
+                        <strong>NIB &amp; PT Perorangan OSS-RBA</strong>
+                        <span class="table-category-badge"><span class="cat-dot dot-dokumen"></span>Legalitas &amp; Dokumen Usaha</span>
+                      </div>
+                    </div>
                   </td>
                   <td><span class="price-pill">Rp 150rb – 500rb</span></td>
                   <td><span class="time-pill">⏱ 1 – 3 Hari</span></td>
@@ -340,8 +347,15 @@
                 <!-- 2. Pajak STNK Tahunan / 5 Tahunan -->
                 <tr data-table-cat="kendaraan">
                   <td class="service-name-cell">
-                    <strong>Pajak STNK &amp; Plat 5 Tahunan</strong>
-                    <span>Samsat &amp; Kendaraan Temanggung</span>
+                    <div class="table-service-item">
+                      <div class="table-service-icon icon-kendaraan" aria-hidden="true" title="Kategori Samsat & Kendaraan">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.5 2.8C1.4 11.2 1 12 1 13v3c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>
+                      </div>
+                      <div>
+                        <strong>Pajak STNK &amp; Plat 5 Tahunan</strong>
+                        <span class="table-category-badge"><span class="cat-dot dot-kendaraan"></span>Samsat &amp; Kendaraan Temanggung</span>
+                      </div>
+                    </div>
                   </td>
                   <td><span class="price-pill">Jasa mulai Rp 50rb*</span></td>
                   <td><span class="time-pill">⏱ 1 – 2 Hari</span></td>
@@ -352,8 +366,15 @@
                 <!-- 3. Balik Nama BPKB & Mutasi Plat -->
                 <tr data-table-cat="kendaraan">
                   <td class="service-name-cell">
-                    <strong>Balik Nama BPKB &amp; Mutasi Kendaraan</strong>
-                    <span>Samsat &amp; BPKB Motor/Mobil</span>
+                    <div class="table-service-item">
+                      <div class="table-service-icon icon-kendaraan" aria-hidden="true" title="Kategori Samsat & Kendaraan">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"/><path d="M16 16h5v5"/></svg>
+                      </div>
+                      <div>
+                        <strong>Balik Nama BPKB &amp; Mutasi Kendaraan</strong>
+                        <span class="table-category-badge"><span class="cat-dot dot-kendaraan"></span>Samsat &amp; BPKB Motor/Mobil</span>
+                      </div>
+                    </div>
                   </td>
                   <td><span class="price-pill">Jasa mulai Rp 150rb*</span></td>
                   <td><span class="time-pill">⏱ 3 – 7 Hari</span></td>
@@ -364,8 +385,15 @@
                 <!-- 4. Iklan Online Meta & Google Ads -->
                 <tr data-table-cat="digital">
                   <td class="service-name-cell">
-                    <strong>Iklan Meta Ads &amp; Google Ads</strong>
-                    <span>Pemasaran Digital &amp; Leads</span>
+                    <div class="table-service-item">
+                      <div class="table-service-icon icon-ads" aria-hidden="true" title="Kategori Digital & Iklan">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 18-5v12L3 13v-2z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg>
+                      </div>
+                      <div>
+                        <strong>Iklan Meta Ads &amp; Google Ads</strong>
+                        <span class="table-category-badge"><span class="cat-dot dot-digital"></span>Pemasaran Digital &amp; Leads</span>
+                      </div>
+                    </div>
                   </td>
                   <td><span class="price-pill">Mulai Rp 450rb / campaign</span></td>
                   <td><span class="time-pill">⏱ 2 – 4 Hari</span></td>
@@ -376,8 +404,15 @@
                 <!-- 5. Pembuatan Website & SEO Lokal -->
                 <tr data-table-cat="digital">
                   <td class="service-name-cell">
-                    <strong>Website Profil Usaha &amp; SEO Lokal</strong>
-                    <span>Web &amp; Dominasi Google Temanggung</span>
+                    <div class="table-service-item">
+                      <div class="table-service-icon icon-web" aria-hidden="true" title="Kategori Digital & Website">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                      </div>
+                      <div>
+                        <strong>Website Profil Usaha &amp; SEO Lokal</strong>
+                        <span class="table-category-badge"><span class="cat-dot dot-digital"></span>Web &amp; Dominasi Google</span>
+                      </div>
+                    </div>
                   </td>
                   <td><span class="price-pill">Rp 750rb – 1.5jt</span></td>
                   <td><span class="time-pill">⏱ 3 – 7 Hari</span></td>
@@ -388,8 +423,15 @@
                 <!-- 6. Pendampingan Notaris PPAT & Cek Tanah -->
                 <tr data-table-cat="dokumen">
                   <td class="service-name-cell">
-                    <strong>Pendampingan Notaris PPAT &amp; Cek Tanah</strong>
-                    <span>Properti &amp; Administrasi Hukum</span>
+                    <div class="table-service-item">
+                      <div class="table-service-icon icon-notaris" aria-hidden="true" title="Kategori Legalitas & Properti">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="21" x2="21" y2="21"/><line x1="3" y1="10" x2="21" y2="10"/><polyline points="5 6 12 3 19 6"/><line x1="4" y1="10" x2="4" y2="21"/><line x1="20" y1="10" x2="20" y2="21"/><line x1="8" y1="14" x2="8" y2="17"/><line x1="12" y1="14" x2="12" y2="17"/><line x1="16" y1="14" x2="16" y2="17"/></svg>
+                      </div>
+                      <div>
+                        <strong>Pendampingan Notaris PPAT &amp; Cek Tanah</strong>
+                        <span class="table-category-badge"><span class="cat-dot dot-dokumen"></span>Properti &amp; Administrasi Hukum</span>
+                      </div>
+                    </div>
                   </td>
                   <td><span class="price-pill">Konsultasi mulai Rp 250rb*</span></td>
                   <td><span class="time-pill">⏱ 2 – 5 Hari</span></td>
@@ -400,8 +442,15 @@
                 <!-- 7. Sertifikasi Halal Gratis (SEHATI BPJPH) -->
                 <tr data-table-cat="dokumen">
                   <td class="service-name-cell">
-                    <strong>Sertifikasi Halal Gratis (SEHATI BPJPH)</strong>
-                    <span>Regulasi Pangan &amp; Legalitas UMKM</span>
+                    <div class="table-service-item">
+                      <div class="table-service-icon icon-halal" aria-hidden="true" title="Kategori Sertifikasi Halal">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+                      </div>
+                      <div>
+                        <strong>Sertifikasi Halal Gratis (SEHATI BPJPH)</strong>
+                        <span class="table-category-badge"><span class="cat-dot dot-dokumen"></span>Regulasi Pangan &amp; Halal</span>
+                      </div>
+                    </div>
                   </td>
                   <td><span class="price-pill" style="color:#059669;background:#d1fae5;border-color:#6ee7b7">GRATIS (Program SEHATI)</span></td>
                   <td><span class="time-pill">⏱ 7 – 14 Hari</span></td>
@@ -412,8 +461,15 @@
                 <!-- 8. Pembukuan Akuntansi & SPT Pajak -->
                 <tr data-table-cat="dokumen">
                   <td class="service-name-cell">
-                    <strong>Pembukuan Akuntansi &amp; Laporan Pajak</strong>
-                    <span>Keuangan &amp; Administrasi Bisnis</span>
+                    <div class="table-service-item">
+                      <div class="table-service-icon icon-keuangan" aria-hidden="true" title="Kategori Keuangan & Pajak">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                      </div>
+                      <div>
+                        <strong>Pembukuan Akuntansi &amp; Laporan Pajak</strong>
+                        <span class="table-category-badge"><span class="cat-dot dot-dokumen"></span>Keuangan &amp; Administrasi Bisnis</span>
+                      </div>
+                    </div>
                   </td>
                   <td><span class="price-pill">Mulai Rp 300rb / bulan</span></td>
                   <td><span class="time-pill">⏱ 2 – 3 Hari</span></td>

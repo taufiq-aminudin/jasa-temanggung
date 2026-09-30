@@ -166,7 +166,25 @@ a{color:inherit;text-decoration:none}
 .comparison-table tr:last-child td{border-bottom:none}
 .price-pill{font-weight:800;color:#047857;background:#ecfdf5;padding:4px 10px;border-radius:8px;display:inline-block;font-size:12.5px;white-space:nowrap;border:1px solid #a7f3d0}
 .time-pill{font-weight:700;color:#1d4ed8;background:#eff6ff;padding:4px 10px;border-radius:8px;display:inline-flex;align-items:center;gap:4px;font-size:12px;white-space:nowrap;border:1px solid #bfdbfe}
-.service-name-cell strong{display:block;font-size:14px;color:var(--ink);margin-bottom:2px}
+.table-service-item{display:flex;align-items:center;gap:12px}
+.table-service-icon{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform .2s ease;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.comparison-table tr:hover .table-service-icon{transform:scale(1.08)}
+.table-service-icon svg{width:18px;height:18px}
+.table-service-icon.icon-dokumen{background:#eff6ff;color:#2563eb;border:1px solid #bfdbfe}
+.table-service-icon.icon-kendaraan{background:#fffbeb;color:#d97706;border:1px solid #fde68a}
+.table-service-icon.icon-digital{background:#f0fdf4;color:#16a34a;border:1px solid #bbf7d0}
+.table-service-icon.icon-ads{background:#fdf2f8;color:#db2777;border:1px solid #fbcfe8}
+.table-service-icon.icon-web{background:#e0f2fe;color:#0284c7;border:1px solid #bae6fd}
+.table-service-icon.icon-notaris{background:#f5f3ff;color:#7c3aed;border:1px solid #ddd6fe}
+.table-service-icon.icon-halal{background:#ecfdf5;color:#059669;border:1px solid #a7f3d0}
+.table-service-icon.icon-keuangan{background:#faf5ff;color:#9333ea;border:1px solid #e9d5ff}
+.table-category-badge{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:600;color:var(--muted);margin-top:2px}
+.table-category-badge .cat-dot{width:6px;height:6px;border-radius:50%;display:inline-block}
+.cat-dot.dot-dokumen{background:#3b82f6}
+.cat-dot.dot-kendaraan{background:#f59e0b}
+.cat-dot.dot-digital{background:#10b981}
+.comparison-filter-btn span{font-size:13px;line-height:1}
+.service-name-cell strong{display:block;font-size:13.5px;color:var(--ink);margin-bottom:1px;line-height:1.35}
 .service-name-cell span{font-size:11.5px;color:var(--muted)}
 .table-cta-btn{font-size:12px;font-weight:800;padding:6px 14px;border-radius:8px;color:var(--primary);background:#eff6ff;border:1px solid #bfdbfe;display:inline-flex;align-items:center;gap:4px;white-space:nowrap;transition:all .2s;text-decoration:none}
 .table-cta-btn:hover{background:var(--primary);color:#fff;border-color:var(--primary)}
