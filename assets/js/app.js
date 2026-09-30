@@ -1015,6 +1015,116 @@ document.addEventListener('DOMContentLoaded', () => {
         });
       });
     }
+
+    // 12c. Download CSV Export Feature (Filtered & Sorted Data)
+    const csvButtons = [
+      document.getElementById('download-table-csv-btn'),
+      document.getElementById('download-table-csv-bottom-btn')
+    ].filter(Boolean);
+
+    if (csvButtons.length && tableBody) {
+      const escapeCsvCell = (val) => {
+        if (val === null || val === undefined) return '""';
+        const str = String(val).trim().replace(/\s+/g, ' ');
+        if (str.includes(',') || str.includes('"') || str.includes('\n')) {
+          return `"${str.replace(/"/g, '""')}"`;
+        }
+        return `"${str}"`;
+      };
+
+      const exportTableToCsv = () => {
+        // Collect currently visible rows in their exact current DOM sorted order
+        const allRows = Array.from(tableBody.querySelectorAll('tr'));
+        const visibleRows = allRows.filter(row => row.style.display !== 'none');
+        if (visibleRows.length === 0) return;
+
+        // Structured CSV Headers
+        const headers = [
+          'No',
+          'Nama Layanan',
+          'Sektor / Kategori',
+          'Estimasi Biaya',
+          'Nilai Biaya Min (IDR)',
+          'Durasi Kerja',
+          'Durasi Min (Hari)',
+          'Output / Berkas Utama',
+          'Link Konsultasi'
+        ];
+
+        const csvLines = [headers.map(escapeCsvCell).join(',')];
+
+        visibleRows.forEach((row, index) => {
+          const strongEl = row.querySelector('.service-name-cell strong');
+          const badgeEl = row.querySelector('.table-category-badge') || row.querySelector('.service-name-cell span');
+          const serviceName = strongEl ? strongEl.innerText.trim() : (row.cells[0]?.innerText || '').trim();
+          const categoryName = badgeEl ? badgeEl.innerText.trim() : '';
+
+          const pricePill = row.querySelector('.price-pill') || row.cells[1];
+          const priceText = pricePill ? pricePill.innerText.trim() : '';
+          const costVal = row.getAttribute('data-cost') || '';
+
+          const timePill = row.querySelector('.time-pill') || row.cells[2];
+          const durationText = timePill ? timePill.innerText.replace('⏱', '').trim() : '';
+          const durationVal = row.getAttribute('data-duration') || '';
+
+          const outputText = (row.cells[3]?.innerText || '').trim();
+          const linkEl = row.querySelector('a.table-cta-btn');
+          const linkUrl = linkEl ? linkEl.href : '';
+
+          const rowData = [
+            index + 1,
+            serviceName,
+            categoryName,
+            priceText,
+            costVal,
+            durationText,
+            durationVal,
+            outputText,
+            linkUrl
+          ];
+
+          csvLines.push(rowData.map(escapeCsvCell).join(','));
+        });
+
+        // Add UTF-8 BOM (\uFEFF) for optimal Excel and Google Sheets compatibility
+        const csvString = '\uFEFF' + csvLines.join('\r\n');
+
+        // Dynamic filename with sector filter and current date
+        const activeFilterBtn = document.querySelector('.comparison-filter-btn.active');
+        const filterSlug = activeFilterBtn ? (activeFilterBtn.getAttribute('data-table-filter') || 'semua') : 'semua';
+        const dateStr = new Date().toISOString().slice(0, 10);
+        const fileName = `estimasi-jasa-temanggung-${filterSlug}-${dateStr}.csv`;
+
+        // Download through Blob URL
+        const blob = new Blob([csvString], { type: 'text/csv;charset=utf-8;' });
+        const url = URL.createObjectURL(blob);
+        const tempLink = document.createElement('a');
+        tempLink.href = url;
+        tempLink.setAttribute('download', fileName);
+        document.body.appendChild(tempLink);
+        tempLink.click();
+        document.body.removeChild(tempLink);
+        setTimeout(() => URL.revokeObjectURL(url), 300);
+
+        // Visual feedback on CSV buttons
+        csvButtons.forEach(btn => {
+          const originalContent = btn.innerHTML;
+          btn.classList.add('downloading');
+          btn.innerHTML = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>✓ CSV Diunduh!</span>`;
+          setTimeout(() => {
+            btn.classList.remove('downloading');
+            btn.innerHTML = originalContent;
+          }, 2000);
+        });
+      };
+
+      csvButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          exportTableToCsv();
+        });
+      });
+    }
   }
 
   // 13. Safe Google AdSense Slot Initialization

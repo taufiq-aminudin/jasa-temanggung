@@ -304,12 +304,18 @@
               <h2 style="font-size:clamp(22px,2.8vw,30px);margin:6px 0;color:var(--ink)">Tabel Perbandingan Layanan di Temanggung</h2>
               <p style="margin:0;font-size:14px;color:var(--muted);max-width:680px">Bandingkan perkiraan biaya, estimasi durasi pengerjaan, dan berkas utama. <em>Klik judul kolom biaya atau durasi untuk mengurutkan data.</em></p>
             </div>
-            <!-- Category Filter Buttons for Table -->
-            <div class="comparison-filter-wrap" role="group" aria-label="Filter kategori tabel perbandingan">
-              <button type="button" class="comparison-filter-btn active" data-table-filter="all"><span>✨</span> Semua Sektor (8)</button>
-              <button type="button" class="comparison-filter-btn" data-table-filter="dokumen"><span>📄</span> Legalitas &amp; Dokumen</button>
-              <button type="button" class="comparison-filter-btn" data-table-filter="kendaraan"><span>🚗</span> Samsat &amp; Pajak</button>
-              <button type="button" class="comparison-filter-btn" data-table-filter="digital"><span>⚡</span> Digital &amp; Iklan</button>
+            <!-- Category Filter Buttons & CSV Export Action -->
+            <div class="comparison-actions-wrap">
+              <div class="comparison-filter-wrap" role="group" aria-label="Filter kategori tabel perbandingan">
+                <button type="button" class="comparison-filter-btn active" data-table-filter="all"><span>✨</span> Semua Sektor (8)</button>
+                <button type="button" class="comparison-filter-btn" data-table-filter="dokumen"><span>📄</span> Legalitas &amp; Dokumen</button>
+                <button type="button" class="comparison-filter-btn" data-table-filter="kendaraan"><span>🚗</span> Samsat &amp; Pajak</button>
+                <button type="button" class="comparison-filter-btn" data-table-filter="digital"><span>⚡</span> Digital &amp; Iklan</button>
+              </div>
+              <button type="button" id="download-table-csv-btn" class="btn-csv-download" aria-label="Download data tabel terfilter saat ini ke format CSV" title="Ekspor data tabel aktif ke file spreadsheet CSV (kompatibel Excel &amp; Google Sheets)">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                <span>Download CSV</span>
+              </button>
             </div>
           </div>
 
@@ -490,7 +496,13 @@
             </table>
           </div>
           <div style="margin-top:14px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;font-size:12px;color:var(--muted)">
-            <span>* Biaya jasa di luar biaya PNBP resmi instansi pemerintah (pajak kendaraan, PNBP BPN, dll).</span>
+            <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+              <span>* Biaya jasa di luar biaya PNBP resmi instansi pemerintah (pajak kendaraan, PNBP BPN, dll).</span>
+              <button type="button" class="btn-csv-download-inline" id="download-table-csv-bottom-btn">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Unduh Data (CSV)
+              </button>
+            </div>
             <span style="display:inline-flex;align-items:center;gap:4px;color:var(--ink);font-weight:700">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="#10b981"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
               Konsultasi awal &amp; estimasi rincian biaya 100% transparan
