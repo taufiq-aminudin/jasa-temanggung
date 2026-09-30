@@ -53,7 +53,7 @@ app.get(['/jasa/website-seo', '/jasa/website-seo.html', '/website-seo', '/websit
 
 // Fallback redirects for root-level service and article aliases
 const serviceSlugs = [
-  'iklan-online', 'konsultasi-bisnis', 'perizinan', 'notaris-ppat', 'properti',
+  'iklan-online', 'analis-data', 'konsultasi-bisnis', 'perizinan', 'notaris-ppat', 'properti',
   'stnk-sim', 'meta-ads', 'website', 'desain-branding', 'foto-video',
   'akuntansi-pajak', 'hr-rekrutmen', 'it-komputer', 'lainnya'
 ];
@@ -64,6 +64,10 @@ serviceSlugs.forEach(slug => {
 });
 
 const articleSlugs = [
+  'cara-mengurus-npwp-badan-dan-lapor-spt-pajak-temanggung',
+  'panduan-izin-lingkungan-sppl-amdal-dlh-temanggung',
+  'panduan-izin-tanda-daftar-gudang-tdg-temanggung',
+  'panduan-analisis-data-bisnis-umkm-temanggung',
   'panduan-izin-usaha-nib-oss-temanggung',
   'biaya-balik-nama-dan-pajak-stnk-samsat-temanggung',
   'strategi-iklan-meta-ads-umkm-temanggung',

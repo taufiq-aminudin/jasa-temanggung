@@ -170,13 +170,14 @@
             <div class="field">
               <label for="calc-service">Pilih Layanan</label>
               <select id="calc-service" class="calc-select">
-                <option value="Jasa Iklan Online & Ads">Jasa Iklan Online (Google & Meta Ads)</option>
-                <option value="Jasa Konsultasi Bisnis">Jasa Konsultasi Bisnis & Scale-Up UMKM</option>
-                <option value="Jasa Perizinan OSS">Jasa Perizinan OSS & NIB</option>
-                <option value="Jasa Notaris & PPAT">Jasa Notaris & PPAT Pertanahan</option>
-                <option value="Jasa Property">Jasa Jual Beli Properti & Tanah</option>
-                <option value="Jasa STNK SIM">Jasa STNK & Administrasi Kendaraan</option>
-                <option value="Pembuatan Website">Pembuatan Website & SEO</option>
+                <option value="Jasa Iklan Online & Ads">Jasa Iklan Online (Google &amp; Meta Ads)</option>
+                <option value="Jasa Analis Data Bisnis">Jasa Analis Data Bisnis &amp; Dashboard</option>
+                <option value="Jasa Konsultasi Bisnis">Jasa Konsultasi Bisnis &amp; Scale-Up UMKM</option>
+                <option value="Jasa Perizinan OSS">Jasa Perizinan OSS &amp; NIB</option>
+                <option value="Jasa Notaris & PPAT">Jasa Notaris &amp; PPAT Pertanahan</option>
+                <option value="Jasa Property">Jasa Jual Beli Properti &amp; Tanah</option>
+                <option value="Jasa STNK SIM">Jasa STNK &amp; Administrasi Kendaraan</option>
+                <option value="Pembuatan Website">Pembuatan Website &amp; SEO</option>
               </select>
             </div>
             <div class="field">
@@ -224,17 +225,17 @@
           <div style="display:flex;align-items:center;padding-left:14px;color:var(--muted);font-size:16px">🔍</div>
           <input type="text" id="home-service-search" data-service-search placeholder="Ketik kata kunci layanan (contoh: iklan, konsultasi, NIB, notaris, properti, STNK, website, desain, pajak)..." aria-label="Cari layanan real-time di Temanggung" autocomplete="off">
           <select id="home-category-select" aria-label="Filter kategori layanan">
-            <option value="all">Semua Kategori (9)</option>
-            <option value="marketing">Pemasaran & Iklan</option>
-            <option value="bisnis">Bisnis & Legalitas</option>
-            <option value="dokumen">Perizinan & Notaris</option>
-            <option value="properti">Properti & Pertanahan</option>
-            <option value="kendaraan">Samsat & Kendaraan</option>
-            <option value="digital">Website & SEO</option>
+            <option value="all">Semua Kategori (10)</option>
+            <option value="marketing">Pemasaran &amp; Iklan</option>
+            <option value="bisnis">Bisnis &amp; Analisis Data</option>
+            <option value="dokumen">Perizinan &amp; Notaris</option>
+            <option value="properti">Properti &amp; Pertanahan</option>
+            <option value="kendaraan">Samsat &amp; Kendaraan</option>
+            <option value="digital">Website &amp; SEO</option>
           </select>
         </div>
         <div class="results-note" data-results-note style="margin-top:-4px;margin-bottom:20px;color:var(--muted);font-size:13px;display:flex;justify-content:space-between;align-items:center">
-          <span id="service-count-label">Menampilkan 9 dari 9 layanan unggulan.</span>
+          <span id="service-count-label">Menampilkan 10 dari 10 layanan unggulan.</span>
           <button type="button" id="clear-search-btn" class="hidden" style="background:none;border:none;color:var(--primary);cursor:pointer;font-size:12px;font-weight:700">✕ Reset Pencarian</button>
         </div>
 
@@ -254,20 +255,31 @@
           <article class="service-card" data-category="marketing" data-search="jasa iklan online ads google ads meta ads facebook instagram tiktok marketing temanggung">
             <div class="service-icon" style="background:#e0f2fe;color:#0284c7">⚡</div>
             <div>
-              <span class="eyebrow small" style="background:#e0f2fe;color:#0369a1">Trending & Leads</span>
-              <h3>Jasa Iklan Online & Ads</h3>
+              <span class="eyebrow small" style="background:#e0f2fe;color:#0369a1">Trending &amp; Leads</span>
+              <h3>Jasa Iklan Online &amp; Ads</h3>
               <p>Kelola kampanye iklan Google Search, Meta Ads, dan TikTok Ads untuk menjaring pembeli lokal yang langsung chat ke WhatsApp.</p>
               <a class="text-link" href="jasa/iklan-online.html">Lihat detail layanan →</a>
             </div>
           </article>
 
-          <!-- 2. Jasa Konsultasi Bisnis (BARU) -->
+          <!-- 2. Jasa Analis Data Bisnis (BARU) -->
+          <article class="service-card" data-category="bisnis" data-search="jasa analis data bisnis analitik dashboard looker studio power bi excel omset audit stok gudang profit hpp temanggung">
+            <div class="service-icon" style="background:#e0f2fe;color:#0284c7">📊</div>
+            <div>
+              <span class="eyebrow small" style="background:#e0f2fe;color:#0369a1">Data Intelligence</span>
+              <h3>Jasa Analis Data Bisnis</h3>
+              <p>Dashboard penjualan interaktif Looker Studio &amp; Excel, audit margin HPP, dan optimalisasi perputaran stok gudang komoditas.</p>
+              <a class="text-link" href="jasa/analis-data.html">Lihat detail layanan →</a>
+            </div>
+          </article>
+
+          <!-- 3. Jasa Konsultasi Bisnis -->
           <article class="service-card" data-category="bisnis" data-search="jasa konsultasi bisnis konsultan usaha pendampingan umkm strategi manajemen temanggung">
             <div class="service-icon" style="background:#fef3c7;color:#d97706">💡</div>
             <div>
-              <span class="eyebrow small" style="background:#fef3c7;color:#b45309">Scale-Up & Strategi</span>
-              <h3>Konsultasi Bisnis & Legalitas</h3>
-              <p>Pendampingan diagnosis operasional, perhitungan HPP & margin laba, restrukturisasi usaha, serta roadmap legalitas UMKM.</p>
+              <span class="eyebrow small" style="background:#fef3c7;color:#b45309">Scale-Up &amp; Strategi</span>
+              <h3>Konsultasi Bisnis &amp; Legalitas</h3>
+              <p>Pendampingan diagnosis operasional, perhitungan HPP &amp; margin laba, restrukturisasi usaha, serta roadmap legalitas UMKM.</p>
               <a class="text-link" href="jasa/konsultasi-bisnis.html">Lihat detail layanan →</a>
             </div>
           </article>

@@ -228,6 +228,9 @@ document.addEventListener('DOMContentLoaded', () => {
       if (sVal.includes('Iklan') || sVal.includes('Ads')) {
         range = 'Mulai Rp 350.000 (Setup Akun & Copywriting) + Saldo Iklan';
         days = '1–2 Hari Setup';
+      } else if (sVal.includes('Analis') || sVal.includes('Data')) {
+        range = 'Mulai Rp 350.000 – Rp 750.000 (Dashboard & Cleaning Data)';
+        days = '2–4 Hari Kerja';
       } else if (sVal.includes('Konsultasi')) {
         range = 'Mulai Rp 250.000 / sesi 90 menit (Tatap Muka / Online)';
         days = 'Sesuai Jadwal';
