@@ -914,24 +914,107 @@ document.addEventListener('DOMContentLoaded', () => {
 
   initArticleSearch();
 
-  // 12. Service Comparison Table Filter
-  const tableFilterBtns = document.querySelectorAll('.comparison-filter-btn');
-  const tableRows = document.querySelectorAll('#servicesComparisonTable tbody tr');
-  if (tableFilterBtns.length && tableRows.length) {
-    tableFilterBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        tableFilterBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        const filter = btn.getAttribute('data-table-filter');
-        tableRows.forEach(row => {
-          if (filter === 'all' || row.getAttribute('data-table-cat') === filter) {
-            row.style.display = '';
-          } else {
-            row.style.display = 'none';
+  // 12. Service Comparison Table: Filter & Header Sorting (Cost & Duration)
+  const comparisonTable = document.getElementById('servicesComparisonTable');
+  if (comparisonTable) {
+    const tableBody = comparisonTable.querySelector('tbody');
+    const tableFilterBtns = document.querySelectorAll('.comparison-filter-btn');
+    const sortHeaders = comparisonTable.querySelectorAll('.sortable-th');
+
+    // 12a. Category Filter
+    if (tableFilterBtns.length && tableBody) {
+      tableFilterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          tableFilterBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          const filter = btn.getAttribute('data-table-filter');
+          const rows = tableBody.querySelectorAll('tr');
+          rows.forEach(row => {
+            if (filter === 'all' || row.getAttribute('data-table-cat') === filter) {
+              row.style.display = '';
+            } else {
+              row.style.display = 'none';
+            }
+          });
+        });
+      });
+    }
+
+    // 12b. Sortable Headers (Estimasi Biaya & Durasi Kerja)
+    if (sortHeaders.length && tableBody) {
+      const getRowValue = (row, sortType) => {
+        if (sortType === 'cost') {
+          const rawCost = row.getAttribute('data-cost');
+          if (rawCost !== null && rawCost !== '') {
+            return parseFloat(rawCost);
+          }
+          // Fallback parser if data attribute is absent
+          const text = (row.cells[1]?.innerText || '').toLowerCase();
+          if (text.includes('gratis')) return 0;
+          const match = text.match(/(\d+(?:[.,]\d+)?)\s*(rb|ribu|jt|juta)?/);
+          if (!match) return 999999999;
+          let num = parseFloat(match[1].replace(',', '.'));
+          const unit = match[2] || '';
+          if (unit.startsWith('jt')) num *= 1000000;
+          else if (unit.startsWith('rb')) num *= 1000;
+          return num;
+        } else if (sortType === 'duration') {
+          const rawDuration = row.getAttribute('data-duration');
+          if (rawDuration !== null && rawDuration !== '') {
+            return parseFloat(rawDuration);
+          }
+          // Fallback parser for days if data attribute is absent
+          const text = row.cells[2]?.innerText || '';
+          const match = text.match(/(\d+)/);
+          return match ? parseInt(match[1], 10) : 999;
+        }
+        return 0;
+      };
+
+      const executeSort = (th) => {
+        const sortType = th.getAttribute('data-sort');
+        if (!sortType) return;
+
+        const currentSort = th.getAttribute('aria-sort');
+        const newDirection = currentSort === 'ascending' ? 'descending' : 'ascending';
+
+        // Reset sort indicators across all sortable headers
+        sortHeaders.forEach(header => {
+          header.removeAttribute('aria-sort');
+          const icon = header.querySelector('.sort-icon');
+          if (icon) icon.textContent = '↕';
+        });
+
+        // Set active sort direction on clicked header
+        th.setAttribute('aria-sort', newDirection);
+        const activeIcon = th.querySelector('.sort-icon');
+        if (activeIcon) {
+          activeIcon.textContent = newDirection === 'ascending' ? '▲' : '▼';
+        }
+
+        // Sort existing rows while preserving DOM state and styles
+        const rows = Array.from(tableBody.querySelectorAll('tr'));
+        rows.sort((a, b) => {
+          const valA = getRowValue(a, sortType);
+          const valB = getRowValue(b, sortType);
+          if (valA === valB) return 0;
+          return newDirection === 'ascending' ? valA - valB : valB - valA;
+        });
+
+        // Re-append sorted rows into the tbody
+        rows.forEach(row => tableBody.appendChild(row));
+      };
+
+      sortHeaders.forEach(th => {
+        th.addEventListener('click', () => executeSort(th));
+        th.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            executeSort(th);
           }
         });
       });
-    });
+    }
   }
 
   // 13. Safe Google AdSense Slot Initialization

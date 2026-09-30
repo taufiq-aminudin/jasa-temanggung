@@ -302,7 +302,7 @@
             <div>
               <span class="eyebrow" style="background:#eff6ff;color:var(--primary);margin-bottom:6px">Panduan Cepat Pemilihan Layanan</span>
               <h2 style="font-size:clamp(22px,2.8vw,30px);margin:6px 0;color:var(--ink)">Tabel Perbandingan Layanan di Temanggung</h2>
-              <p style="margin:0;font-size:14px;color:var(--muted);max-width:680px">Bandingkan perkiraan biaya, estimasi durasi pengerjaan, dan berkas utama untuk menentukan solusi terbaik bagi bisnis dan kebutuhan Anda.</p>
+              <p style="margin:0;font-size:14px;color:var(--muted);max-width:680px">Bandingkan perkiraan biaya, estimasi durasi pengerjaan, dan berkas utama. <em>Klik judul kolom biaya atau durasi untuk mengurutkan data.</em></p>
             </div>
             <!-- Category Filter Buttons for Table -->
             <div class="comparison-filter-wrap" role="group" aria-label="Filter kategori tabel perbandingan">
@@ -318,15 +318,25 @@
               <thead>
                 <tr>
                   <th style="min-width:240px">Layanan &amp; Sektor</th>
-                  <th style="min-width:140px">Estimasi Biaya</th>
-                  <th style="min-width:130px">Durasi Kerja</th>
+                  <th style="min-width:150px" class="sortable-th" data-sort="cost" role="button" tabindex="0" aria-label="Urutkan berdasarkan Estimasi Biaya" title="Klik untuk mengurutkan biaya termurah / termahal">
+                    <div class="th-content">
+                      <span>Estimasi Biaya</span>
+                      <span class="sort-icon" aria-hidden="true">↕</span>
+                    </div>
+                  </th>
+                  <th style="min-width:140px" class="sortable-th" data-sort="duration" role="button" tabindex="0" aria-label="Urutkan berdasarkan Durasi Kerja" title="Klik untuk mengurutkan durasi pengerjaan tercepat / terlama">
+                    <div class="th-content">
+                      <span>Durasi Kerja</span>
+                      <span class="sort-icon" aria-hidden="true">↕</span>
+                    </div>
+                  </th>
                   <th style="min-width:220px">Output / Berkas Utama</th>
                   <th style="min-width:120px">Aksi</th>
                 </tr>
               </thead>
               <tbody>
                 <!-- 1. Perizinan OSS NIB -->
-                <tr data-table-cat="dokumen">
+                <tr data-table-cat="dokumen" data-cost="150000" data-duration="1">
                   <td class="service-name-cell">
                     <div class="table-service-item">
                       <div class="table-service-icon icon-dokumen" aria-hidden="true" title="Kategori Legalitas & Dokumen">
@@ -345,7 +355,7 @@
                 </tr>
 
                 <!-- 2. Pajak STNK Tahunan / 5 Tahunan -->
-                <tr data-table-cat="kendaraan">
+                <tr data-table-cat="kendaraan" data-cost="50000" data-duration="1">
                   <td class="service-name-cell">
                     <div class="table-service-item">
                       <div class="table-service-icon icon-kendaraan" aria-hidden="true" title="Kategori Samsat & Kendaraan">
@@ -364,7 +374,7 @@
                 </tr>
 
                 <!-- 3. Balik Nama BPKB & Mutasi Plat -->
-                <tr data-table-cat="kendaraan">
+                <tr data-table-cat="kendaraan" data-cost="150000" data-duration="3">
                   <td class="service-name-cell">
                     <div class="table-service-item">
                       <div class="table-service-icon icon-kendaraan" aria-hidden="true" title="Kategori Samsat & Kendaraan">
@@ -383,7 +393,7 @@
                 </tr>
 
                 <!-- 4. Iklan Online Meta & Google Ads -->
-                <tr data-table-cat="digital">
+                <tr data-table-cat="digital" data-cost="450000" data-duration="2">
                   <td class="service-name-cell">
                     <div class="table-service-item">
                       <div class="table-service-icon icon-ads" aria-hidden="true" title="Kategori Digital & Iklan">
@@ -402,7 +412,7 @@
                 </tr>
 
                 <!-- 5. Pembuatan Website & SEO Lokal -->
-                <tr data-table-cat="digital">
+                <tr data-table-cat="digital" data-cost="750000" data-duration="3">
                   <td class="service-name-cell">
                     <div class="table-service-item">
                       <div class="table-service-icon icon-web" aria-hidden="true" title="Kategori Digital & Website">
@@ -421,7 +431,7 @@
                 </tr>
 
                 <!-- 6. Pendampingan Notaris PPAT & Cek Tanah -->
-                <tr data-table-cat="dokumen">
+                <tr data-table-cat="dokumen" data-cost="250000" data-duration="2">
                   <td class="service-name-cell">
                     <div class="table-service-item">
                       <div class="table-service-icon icon-notaris" aria-hidden="true" title="Kategori Legalitas & Properti">
@@ -440,7 +450,7 @@
                 </tr>
 
                 <!-- 7. Sertifikasi Halal Gratis (SEHATI BPJPH) -->
-                <tr data-table-cat="dokumen">
+                <tr data-table-cat="dokumen" data-cost="0" data-duration="7">
                   <td class="service-name-cell">
                     <div class="table-service-item">
                       <div class="table-service-icon icon-halal" aria-hidden="true" title="Kategori Sertifikasi Halal">
@@ -459,7 +469,7 @@
                 </tr>
 
                 <!-- 8. Pembukuan Akuntansi & SPT Pajak -->
-                <tr data-table-cat="dokumen">
+                <tr data-table-cat="dokumen" data-cost="300000" data-duration="2">
                   <td class="service-name-cell">
                     <div class="table-service-item">
                       <div class="table-service-icon icon-keuangan" aria-hidden="true" title="Kategori Keuangan & Pajak">

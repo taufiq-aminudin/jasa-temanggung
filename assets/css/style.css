@@ -161,6 +161,14 @@ a{color:inherit;text-decoration:none}
 .table-responsive-wrapper{overflow-x:auto;border-radius:16px;border:1px solid var(--line);-webkit-overflow-scrolling:touch;box-shadow:inset 0 1px 2px rgba(0,0,0,.02)}
 .comparison-table{width:100%;border-collapse:collapse;font-size:13.5px;text-align:left;min-width:760px}
 .comparison-table th{background:#f8fafc;color:#1e293b;font-weight:800;padding:14px 18px;border-bottom:2px solid var(--line);white-space:nowrap}
+.sortable-th{cursor:pointer;user-select:none;transition:background-color .15s ease,color .15s ease,border-color .15s ease}
+.sortable-th:hover{background:#edf4ff;color:var(--primary)}
+.sortable-th:focus-visible{outline:2px solid var(--primary);outline-offset:-2px}
+.sortable-th .th-content{display:inline-flex;align-items:center;gap:6px}
+.sortable-th .sort-icon{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:6px;font-size:11px;color:#94a3b8;background:rgba(0,0,0,.04);transition:all .2s ease}
+.sortable-th:hover .sort-icon{color:var(--primary);background:#dbeafe}
+.sortable-th[aria-sort="ascending"],.sortable-th[aria-sort="descending"]{background:#edf4ff;color:var(--primary);border-bottom-color:var(--primary)}
+.sortable-th[aria-sort="ascending"] .sort-icon,.sortable-th[aria-sort="descending"] .sort-icon{color:#fff;background:var(--primary);box-shadow:0 2px 6px rgba(20,87,217,.3);font-weight:900}
 .comparison-table td{padding:14px 18px;border-bottom:1px solid #f1f5f9;color:#334155;vertical-align:middle;transition:background-color .2s ease,color .2s ease,box-shadow .2s ease}
 .comparison-table tbody tr{transition:background-color .2s ease}
 .comparison-table tbody tr:hover td{background:#f1f6fe;color:#0f172a}
