@@ -678,7 +678,7 @@
               </div>
 
               <div style="margin-top:20px;text-align:right">
-                <button type="submit" class="btn btn-primary" style="padding:12px 24px;font-size:15px">
+                <button type="submit" id="tk-submit-btn" class="btn btn-primary" style="padding:12px 24px;font-size:15px">
                   Konsultasi Kebutuhan Tenaga Kerja via WhatsApp →
                 </button>
               </div>
@@ -1066,6 +1066,24 @@
               firstInvalidEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }
             return;
+          }
+
+          const submitBtn = document.getElementById('tk-submit-btn') || form.querySelector('button[type="submit"]');
+          if (submitBtn) {
+            if (submitBtn.disabled) return;
+            const originalBtnHtml = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = 'Mengirim...';
+            submitBtn.style.opacity = '0.75';
+            submitBtn.style.cursor = 'not-allowed';
+
+            // Re-enable button after WhatsApp redirect
+            setTimeout(() => {
+              submitBtn.disabled = false;
+              submitBtn.innerHTML = originalBtnHtml;
+              submitBtn.style.opacity = '';
+              submitBtn.style.cursor = '';
+            }, 3000);
           }
 
           const nama = fields.nama.el.value.trim();
