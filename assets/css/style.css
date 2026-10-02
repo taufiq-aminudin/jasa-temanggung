@@ -629,7 +629,8 @@ ins.adsbygoogle[data-ad-status="unfilled"]{
   transition:opacity .5s cubic-bezier(0.16,1,0.3,1),transform .5s cubic-bezier(0.16,1,0.3,1),box-shadow .28s ease,border-color .28s ease;
   will-change:opacity,transform;
 }
-.jenis-tk-card.animate-in{
+.jenis-tk-card.animate-in,
+.animate-in{
   opacity:1;
   transform:translateY(0);
   transition-delay:calc(var(--tk-delay, 0) * 75ms);
