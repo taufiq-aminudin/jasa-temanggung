@@ -917,7 +917,23 @@
 
       initJenisTkStagger();
 
-      // 2. Handle form submit to WhatsApp
+      // 2. Smooth scroll handler for anchor links
+      document.querySelectorAll('a[href="#form-kebutuhan"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          const target = document.getElementById('form-kebutuhan');
+          if (target) {
+            e.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            if (history.pushState) {
+              history.pushState(null, '', '#form-kebutuhan');
+            } else {
+              window.location.hash = '#form-kebutuhan';
+            }
+          }
+        });
+      });
+
+      // 3. Handle form submit to WhatsApp
       const form = document.getElementById('tenagaKerjaForm');
       if (form) {
         form.addEventListener('submit', function(e) {

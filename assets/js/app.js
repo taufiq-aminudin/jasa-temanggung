@@ -1311,7 +1311,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // 13. Safe Google AdSense Slot Initialization
+  // 13. Safe Google AdSense Slot Initialization & Empty Collapse Handler
   const safeInitAds = () => {
     document.querySelectorAll('ins.adsbygoogle').forEach(ins => {
       if (!ins.hasAttribute('data-adsbygoogle-status') && ins.offsetWidth > 0) {
@@ -1319,10 +1319,29 @@ document.addEventListener('DOMContentLoaded', () => {
           (window.adsbygoogle = window.adsbygoogle || []).push({});
         } catch (e) {}
       }
+      if (ins.getAttribute('data-ad-status') === 'unfilled') {
+        const card = ins.closest('.adsense-slot-card');
+        if (card) card.classList.add('is-unfilled');
+      }
     });
   };
   window.addEventListener('load', safeInitAds);
   window.addEventListener('resize', safeInitAds);
+  if ('MutationObserver' in window) {
+    try {
+      const adObserver = new MutationObserver((mutations) => {
+        mutations.forEach(m => {
+          if (m.target && m.target.getAttribute && m.target.getAttribute('data-ad-status') === 'unfilled') {
+            const card = m.target.closest('.adsense-slot-card');
+            if (card) card.classList.add('is-unfilled');
+          }
+        });
+      });
+      document.querySelectorAll('ins.adsbygoogle').forEach(ins => {
+        adObserver.observe(ins, { attributes: true, attributeFilter: ['data-ad-status'] });
+      });
+    } catch (_) {}
+  }
 
   // 14. 'Get Started' Floating Action Button (FAB) Scroll-Triggered Visibility
   const initGetStartedFab = () => {
