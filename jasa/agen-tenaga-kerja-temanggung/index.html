@@ -618,7 +618,7 @@
             <h2>Butuh Tenaga Kerja?</h2>
             <p>Isi formulir di bawah ini untuk menyampaikan kriteria tenaga kerja yang Anda cari. Data akan otomatis disiapkan untuk dikonsultasikan via WhatsApp resmi kami.</p>
 
-            <form id="tenagaKerjaForm" style="margin-top:18px">
+            <form id="tenagaKerjaForm" style="margin-top:18px" novalidate>
               <div class="form-grid" style="grid-template-columns:1fr 1fr;gap:14px">
                 <div class="field">
                   <label for="tk-nama">Nama Lengkap Anda *</label>
@@ -933,19 +933,149 @@
         });
       });
 
-      // 3. Handle form submit to WhatsApp
+      // 3. Real-Time Inline Form Validation & WhatsApp Submission for tenagaKerjaForm
       const form = document.getElementById('tenagaKerjaForm');
       if (form) {
+        const fields = {
+          nama: {
+            el: document.getElementById('tk-nama'),
+            validate: (val) => {
+              if (!val.trim()) return 'Nama lengkap wajib diisi.';
+              if (val.trim().length < 2) return 'Nama minimal 2 karakter.';
+              return '';
+            }
+          },
+          perusahaan: {
+            el: document.getElementById('tk-perusahaan'),
+            validate: (val) => {
+              if (!val.trim()) return 'Nama perusahaan / rumah tangga wajib diisi.';
+              return '';
+            }
+          },
+          whatsapp: {
+            el: document.getElementById('tk-whatsapp'),
+            validate: (val) => {
+              const cleaned = val.replace(/[\s\-\(\)\.]/g, '');
+              if (!cleaned) return 'Nomor WhatsApp aktif wajib diisi.';
+              const waRegex = /^(\+62|62|0)8[1-9][0-9]{7,11}$/;
+              if (!waRegex.test(cleaned)) {
+                return 'Format nomor WhatsApp tidak valid (contoh: 081234567890 / 6281234567890).';
+              }
+              return '';
+            }
+          },
+          posisi: {
+            el: document.getElementById('tk-posisi'),
+            validate: (val) => {
+              if (!val || val === '') return 'Silakan pilih posisi tenaga kerja yang dibutuhkan.';
+              return '';
+            }
+          },
+          jumlah: {
+            el: document.getElementById('tk-jumlah'),
+            validate: (val) => {
+              const num = parseInt(val, 10);
+              if (isNaN(num) || num < 1) return 'Jumlah personel minimal 1 orang.';
+              return '';
+            }
+          },
+          lokasi: {
+            el: document.getElementById('tk-lokasi'),
+            validate: (val) => {
+              if (!val.trim()) return 'Lokasi kerja di Temanggung wajib diisi.';
+              return '';
+            }
+          }
+        };
+
+        const showFieldError = (fieldEl, errorMsg) => {
+          fieldEl.classList.add('is-invalid');
+          fieldEl.classList.remove('is-valid');
+          fieldEl.setAttribute('aria-invalid', 'true');
+
+          const parent = fieldEl.closest('.field') || fieldEl.parentElement;
+          let errorDisplay = parent.querySelector('.field-error-msg');
+          if (!errorDisplay) {
+            errorDisplay = document.createElement('div');
+            errorDisplay.className = 'field-error-msg';
+            errorDisplay.setAttribute('role', 'alert');
+            parent.appendChild(errorDisplay);
+          }
+          errorDisplay.innerHTML = `<span aria-hidden="true">⚠️</span> ${errorMsg}`;
+          errorDisplay.style.display = 'flex';
+        };
+
+        const clearFieldError = (fieldEl) => {
+          fieldEl.classList.remove('is-invalid');
+          fieldEl.classList.add('is-valid');
+          fieldEl.removeAttribute('aria-invalid');
+
+          const parent = fieldEl.closest('.field') || fieldEl.parentElement;
+          const errorDisplay = parent.querySelector('.field-error-msg');
+          if (errorDisplay) {
+            errorDisplay.remove();
+          }
+        };
+
+        const validateSingleField = (key) => {
+          const item = fields[key];
+          if (!item || !item.el) return true;
+          const error = item.validate(item.el.value);
+          if (error) {
+            showFieldError(item.el, error);
+            return false;
+          } else {
+            clearFieldError(item.el);
+            return true;
+          }
+        };
+
+        // Attach real-time listeners (input, blur, change)
+        Object.keys(fields).forEach(key => {
+          const item = fields[key];
+          if (!item.el) return;
+
+          const eventType = item.el.tagName === 'SELECT' ? 'change' : 'input';
+          item.el.addEventListener(eventType, () => {
+            validateSingleField(key);
+          });
+          item.el.addEventListener('blur', () => {
+            validateSingleField(key);
+          });
+        });
+
         form.addEventListener('submit', function(e) {
           e.preventDefault();
-          const nama = document.getElementById('tk-nama').value.trim();
-          const perusahaan = document.getElementById('tk-perusahaan').value.trim();
-          const whatsapp = document.getElementById('tk-whatsapp').value.trim();
-          const posisi = document.getElementById('tk-posisi').value;
-          const jumlah = document.getElementById('tk-jumlah').value.trim();
-          const lokasi = document.getElementById('tk-lokasi').value.trim();
-          const kualifikasi = document.getElementById('tk-kualifikasi').value.trim();
-          const keterangan = document.getElementById('tk-keterangan').value.trim();
+
+          let isFormValid = true;
+          let firstInvalidEl = null;
+
+          Object.keys(fields).forEach(key => {
+            const isValid = validateSingleField(key);
+            if (!isValid) {
+              isFormValid = false;
+              if (!firstInvalidEl) {
+                firstInvalidEl = fields[key].el;
+              }
+            }
+          });
+
+          if (!isFormValid) {
+            if (firstInvalidEl) {
+              firstInvalidEl.focus();
+              firstInvalidEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+            return;
+          }
+
+          const nama = fields.nama.el.value.trim();
+          const perusahaan = fields.perusahaan.el.value.trim();
+          const whatsapp = fields.whatsapp.el.value.trim();
+          const posisi = fields.posisi.el.value;
+          const jumlah = fields.jumlah.el.value.trim();
+          const lokasi = fields.lokasi.el.value.trim();
+          const kualifikasi = (document.getElementById('tk-kualifikasi')?.value || '').trim();
+          const keterangan = (document.getElementById('tk-keterangan')?.value || '').trim();
 
           const message = `Halo Jasa Temanggung, saya ingin konsultasi kebutuhan tenaga kerja:
 - Nama: ${nama}

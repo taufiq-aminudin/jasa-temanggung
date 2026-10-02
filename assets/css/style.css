@@ -650,6 +650,25 @@ ins.adsbygoogle[data-ad-status="unfilled"]{
 .field input,.field textarea,.field select{width:100%;border:1px solid #d9e0e9;border-radius:12px;padding:12px 14px;font:inherit;outline:0;background:#fff;transition:border-color .2s}
 .field textarea{min-height:130px;resize:vertical}
 .field input:focus,.field textarea:focus,.field select:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(20,87,217,.1)}
+.field input.is-invalid,.field textarea.is-invalid,.field select.is-invalid{
+  border-color:#ef4444!important;
+  background-color:#fffbfa!important;
+  box-shadow:0 0 0 3px rgba(239,68,68,.15)!important;
+}
+.field input.is-valid,.field textarea.is-valid,.field select.is-valid{
+  border-color:#10b981!important;
+  box-shadow:0 0 0 3px rgba(16,185,129,.1)!important;
+}
+.field-error-msg{
+  display:flex;
+  align-items:center;
+  gap:4px;
+  color:#dc2626;
+  font-size:11.5px;
+  font-weight:600;
+  margin-top:2px;
+  line-height:1.35;
+}
 .article{max-width:840px;margin:auto}
 .article h2{font-size:26px;margin-top:32px}
 
