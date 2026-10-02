@@ -847,7 +847,8 @@ ins.adsbygoogle[data-ad-status="unfilled"]{
     transition-duration:0.01ms!important;
     scroll-behavior:auto!important;
   }
-  .reveal-on-scroll{
+  .reveal-on-scroll,
+  .jenis-tk-card{
     opacity:1!important;
     transform:none!important;
   }
