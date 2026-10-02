@@ -20,6 +20,40 @@ document.addEventListener('DOMContentLoaded', () => {
   const y = document.getElementById('year');
   if (y) y.textContent = new Date().getFullYear();
 
+  // 1b. Sticky Header Scroll Elevation
+  const header = document.querySelector('.site-header');
+  if (header) {
+    let ticking = false;
+    const updateHeader = () => {
+      if (window.scrollY > 15) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+      ticking = false;
+    };
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        window.requestAnimationFrame(updateHeader);
+        ticking = true;
+      }
+    }, { passive: true });
+    updateHeader();
+  }
+
+  // 1c. Active Navigation State Detection
+  try {
+    const currentLoc = window.location.pathname.replace(/\/$/, '') || '/';
+    document.querySelectorAll('.nav-links a:not(.nav-cta)').forEach(link => {
+      const href = link.getAttribute('href');
+      if (!href) return;
+      const cleanHref = href.split('#')[0].split('?')[0].replace(/\/$/, '');
+      if (cleanHref === currentLoc || (cleanHref && cleanHref !== '.' && cleanHref !== '..' && currentLoc.endsWith(cleanHref))) {
+        link.classList.add('active');
+      }
+    });
+  } catch (_) {}
+
   // 2. Mobile Menu Toggle
   const t = document.querySelector('.menu-toggle'),
         n = document.querySelector('.nav-links');
@@ -28,12 +62,14 @@ document.addEventListener('DOMContentLoaded', () => {
       e.stopPropagation();
       const o = n.classList.toggle('open');
       t.setAttribute('aria-expanded', o ? 'true' : 'false');
+      t.textContent = o ? '✕' : '☰';
     };
     // Close on click outside
     document.addEventListener('click', (e) => {
       if (n.classList.contains('open') && !n.contains(e.target) && e.target !== t) {
         n.classList.remove('open');
         t.setAttribute('aria-expanded', 'false');
+        t.textContent = '☰';
       }
     });
     // Close on Escape
@@ -41,6 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (e.key === 'Escape' && n.classList.contains('open')) {
         n.classList.remove('open');
         t.setAttribute('aria-expanded', 'false');
+        t.textContent = '☰';
       }
     });
     // Close on nav link click
@@ -48,7 +85,47 @@ document.addEventListener('DOMContentLoaded', () => {
       link.addEventListener('click', () => {
         n.classList.remove('open');
         t.setAttribute('aria-expanded', 'false');
+        t.textContent = '☰';
       });
+    });
+  }
+
+  // 2b. Scroll Reveal System with Staggering
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {
+    const revealTargets = document.querySelectorAll(
+      '.panel, .mini-card, .process-step, .faq-item, .comparison-card, .testi-stat-card, .testimonial-card, .adsense-slot-card, .section-head, .reveal-on-scroll'
+    );
+
+    const scrollObserver = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, {
+      rootMargin: '0px 0px -40px 0px',
+      threshold: 0.08
+    });
+
+    revealTargets.forEach(el => {
+      el.classList.add('reveal-on-scroll');
+      const parent = el.parentElement;
+      if (parent && (
+        parent.classList.contains('grid-3') ||
+        parent.classList.contains('grid-4') ||
+        parent.classList.contains('mini-grid') ||
+        parent.classList.contains('process') ||
+        parent.classList.contains('testi-stats-row') ||
+        parent.classList.contains('kicker-box')
+      )) {
+        const siblings = [...parent.children];
+        const index = siblings.indexOf(el);
+        if (index >= 0) {
+          el.style.setProperty('--stagger-index', index);
+        }
+      }
+      scrollObserver.observe(el);
     });
   }
 
