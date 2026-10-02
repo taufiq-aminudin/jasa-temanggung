@@ -10,6 +10,17 @@ const PORT = process.env.PORT || 3000;
 const HOST = '0.0.0.0';
 
 // Explicit clean routes for directory hubs
+app.get(['/jasa/agen-tenaga-kerja-temanggung', '/jasa/agen-tenaga-kerja-temanggung/', '/jasa/agen-tenaga-kerja-temanggung/index.html'], (req, res) => {
+  if (req.path === '/jasa/agen-tenaga-kerja-temanggung') {
+    return res.redirect(301, '/jasa/agen-tenaga-kerja-temanggung/');
+  }
+  res.sendFile(path.join(__dirname, 'jasa', 'agen-tenaga-kerja-temanggung', 'index.html'));
+});
+
+app.get(['/agen-tenaga-kerja-temanggung', '/agen-tenaga-kerja-temanggung.html', '/jasa/agen-tenaga-kerja-temanggung.html'], (req, res) => {
+  res.redirect(301, '/jasa/agen-tenaga-kerja-temanggung/');
+});
+
 app.get(['/jasa', '/jasa/', '/jasa/index.html'], (req, res) => {
   if (req.path === '/jasa') {
     return res.redirect(301, '/jasa/');
