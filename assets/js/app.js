@@ -8,6 +8,14 @@ window.addEventListener('error', (e) => {
 }, true);
 
 document.addEventListener('DOMContentLoaded', () => {
+  // 0. Dynamic Total Services Sync from Master Config
+  const totalServices = (window.SITE_CONFIG && Array.isArray(window.SITE_CONFIG.services))
+    ? window.SITE_CONFIG.services.length
+    : 15;
+  document.querySelectorAll('[data-total-services]').forEach(el => {
+    el.textContent = totalServices;
+  });
+
   // 1. Dynamic Year
   const y = document.getElementById('year');
   if (y) y.textContent = new Date().getFullYear();
@@ -86,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
       let visibleCount = 0;
 
       serviceCards.forEach(card => {
-        const cardSearchText = (card.dataset.search + ' ' + card.innerText).toLowerCase();
+        const cardSearchText = ((card.dataset.search || '') + ' ' + (card.innerText || '')).toLowerCase();
         const matchesCategory = currentCategory === 'all' || card.dataset.category === currentCategory;
         const matchesQuery = searchTerms.length === 0 || searchTerms.every(term => cardSearchText.includes(term));
 
@@ -96,22 +104,32 @@ document.addEventListener('DOMContentLoaded', () => {
       });
 
       // Update result counter notes
+      const isFiltering = searchTerms.length > 0 || currentCategory !== 'all';
       resultsNotes.forEach(note => {
-        if (searchTerms.length > 0 || currentCategory !== 'all') {
+        if (isFiltering) {
           note.textContent = `Menampilkan ${visibleCount} dari ${serviceCards.length} layanan yang cocok.`;
         } else {
-          note.textContent = `Menampilkan semua ${serviceCards.length} layanan unggulan.`;
+          if (serviceCards.length < totalServices) {
+            note.textContent = `Menampilkan ${visibleCount} layanan unggulan dari total ${totalServices} layanan tersedia.`;
+          } else {
+            note.textContent = `Menampilkan semua ${visibleCount} layanan.`;
+          }
         }
       });
 
       // Show or hide clear button
       if (clearBtn) {
-        clearBtn.classList.toggle('hidden', !currentQuery && currentCategory === 'all');
+        clearBtn.classList.toggle('hidden', !isFiltering);
       }
 
-      // Show or hide no results card
+      // Show or hide no results card safely:
+      // Empty state ONLY appears when:
+      // 1. serviceCards is completely empty (no services available), OR
+      // 2. filtering/searching returned 0 results
+      // NEVER show empty state on clean page load when services exist!
       if (noResultsCard) {
-        noResultsCard.classList.toggle('hidden', visibleCount > 0);
+        const shouldShowEmpty = (serviceCards.length === 0) || (visibleCount === 0 && isFiltering);
+        noResultsCard.classList.toggle('hidden', !shouldShowEmpty);
       }
     };
 
@@ -184,27 +202,24 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    // Initial check (handles URL parameters and prefilled query)
+    // Initial check (handles URL parameters, prefilled query, and initial clean state)
+    let initQ = '';
+    let initCat = 'all';
     try {
       const urlParams = new URLSearchParams(window.location.search);
-      const urlQ = urlParams.get('q') || urlParams.get('search') || '';
-      const urlCat = urlParams.get('kategori') || urlParams.get('cat') || urlParams.get('category') || 'all';
-      if (urlQ || urlCat !== 'all') {
-        performFilter(urlQ, urlCat);
-      } else {
-        const initialInput = searchInputs[0];
-        const initialSelect = categorySelects[0];
-        if (initialInput && initialInput.value) {
-          performFilter(initialInput.value, initialSelect ? initialSelect.value : 'all');
-        }
-      }
-    } catch (_) {
-      const initialInput = searchInputs[0];
-      const initialSelect = categorySelects[0];
-      if (initialInput && initialInput.value) {
-        performFilter(initialInput.value, initialSelect ? initialSelect.value : 'all');
-      }
+      initQ = urlParams.get('q') || urlParams.get('search') || '';
+      initCat = urlParams.get('kategori') || urlParams.get('cat') || urlParams.get('category') || 'all';
+    } catch (_) {}
+
+    if (!initQ && searchInputs[0] && searchInputs[0].value) {
+      initQ = searchInputs[0].value;
     }
+    if (initCat === 'all' && categorySelects[0] && categorySelects[0].value) {
+      initCat = categorySelects[0].value;
+    }
+
+    // Always run initial filter to ensure counter, clear button, and empty state are synchronized
+    performFilter(initQ, initCat);
   };
 
   initServiceSearch();
@@ -388,7 +403,10 @@ document.addEventListener('DOMContentLoaded', () => {
           <div>
             <strong style="font-size:13px;display:block">${escapeHtml(rev.name)}</strong>
             <span style="font-size:12px;color:var(--muted)">${escapeHtml(rev.role || 'Klien Temanggung')}</span>
-            <span class="testi-badge ${isNew ? 'new-badge' : ''}">✓ ${isNew ? 'Ulasan Baru Terverifikasi' : 'Klien Terverifikasi'}</span>
+            ${rev.verified === true
+              ? '<span class="testi-badge">✓ Klien Terverifikasi</span>'
+              : '<span class="testi-badge" style="background:#fef3c7;color:#92400e;border:1px solid #fde68a">⏳ Menunggu Moderasi</span>'
+            }
           </div>
         </div>
       `;
@@ -697,6 +715,7 @@ document.addEventListener('DOMContentLoaded', () => {
           serviceTag,
           rating: currentRating,
           text,
+          verified: false,
           createdAt: new Date().toISOString()
         };
 

@@ -1,0 +1,16 @@
+{
+  "name": "Jasa Temanggung",
+  "short_name": "Jasa Temanggung",
+  "description": "Pusat layanan jasa profesional di Temanggung: perizinan usaha OSS, notaris, properti, Samsat STNK, iklan online, dan website.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0b1220",
+  "icons": [
+    {
+      "src": "/assets/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

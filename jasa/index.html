@@ -106,7 +106,7 @@
           <div class="finder">
             <input type="text" data-service-search placeholder="Cari layanan (contoh: iklan, konsultasi, NIB, STNK, PT, tanah, ads, website)...">
             <select aria-label="Filter kategori">
-              <option value="all">Semua Kategori (15)</option>
+              <option value="all">Semua Kategori (<span data-total-services>15</span>)</option>
               <option value="marketing">Pemasaran, Iklan &amp; Kreatif</option>
               <option value="bisnis">Bisnis &amp; Analisis Data</option>
               <option value="dokumen">Dokumen &amp; Legalitas Usaha</option>
@@ -116,7 +116,7 @@
             </select>
           </div>
           <div class="results-note" style="margin-top:10px;color:var(--muted);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
-            <span data-results-note id="service-count-label">Menampilkan semua 15 layanan.</span>
+            <span data-results-note id="service-count-label">Menampilkan semua <span data-total-services>15</span> layanan.</span>
             <button type="button" id="clear-search-btn" class="hidden" style="background:none;border:none;color:var(--primary);cursor:pointer;font-size:12px;font-weight:700">✕ Reset Pencarian</button>
           </div>
         </div>
