@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // 2b. Scroll Reveal System with Staggering
   if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {
     const revealTargets = document.querySelectorAll(
-      '.panel, .mini-card, .process-step, .faq-item, .comparison-card, .testi-stat-card, .testimonial-card, .adsense-slot-card, .section-head, .reveal-on-scroll'
+      '.panel, .mini-card, .process-step, .faq-item, .comparison-card, .testi-stat-card, .testimonial-card, .section-head, .reveal-on-scroll'
     );
 
     const scrollObserver = new IntersectionObserver((entries, obs) => {
