@@ -1312,16 +1312,39 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // 13. Safe Google AdSense Slot Initialization & Empty Collapse Handler
+  const markAdCardEmpty = (card) => {
+    if (!card) return;
+    card.classList.add('is-empty', 'is-unfilled');
+    const parent = card.parentElement;
+    if (parent && (parent.classList.contains('container') || parent.classList.contains('adsense-wrapper'))) {
+      if (parent.children.length === 1 || (parent.children.length === 2 && parent.querySelector('.adsense-slot-card'))) {
+        parent.classList.add('ad-container-empty');
+      }
+    }
+  };
+
   const safeInitAds = () => {
     document.querySelectorAll('ins.adsbygoogle').forEach(ins => {
+      const card = ins.closest('.adsense-slot-card');
+
       if (!ins.hasAttribute('data-adsbygoogle-status') && ins.offsetWidth > 0) {
         try {
           (window.adsbygoogle = window.adsbygoogle || []).push({});
         } catch (e) {}
       }
-      if (ins.getAttribute('data-ad-status') === 'unfilled') {
-        const card = ins.closest('.adsense-slot-card');
-        if (card) card.classList.add('is-unfilled');
+
+      const status = ins.getAttribute('data-ad-status');
+      if (status === 'unfilled') {
+        markAdCardEmpty(card);
+      } else if (ins.getAttribute('data-adsbygoogle-status') === 'done') {
+        const iframe = ins.querySelector('iframe');
+        if (!iframe || iframe.offsetHeight === 0 || ins.offsetHeight === 0) {
+          setTimeout(() => {
+            if (ins.getAttribute('data-ad-status') === 'unfilled' || ins.offsetHeight === 0) {
+              markAdCardEmpty(card);
+            }
+          }, 400);
+        }
       }
     });
   };
@@ -1331,14 +1354,16 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
       const adObserver = new MutationObserver((mutations) => {
         mutations.forEach(m => {
-          if (m.target && m.target.getAttribute && m.target.getAttribute('data-ad-status') === 'unfilled') {
-            const card = m.target.closest('.adsense-slot-card');
-            if (card) card.classList.add('is-unfilled');
+          if (m.target && m.target.getAttribute) {
+            const status = m.target.getAttribute('data-ad-status');
+            if (status === 'unfilled') {
+              markAdCardEmpty(m.target.closest('.adsense-slot-card'));
+            }
           }
         });
       });
       document.querySelectorAll('ins.adsbygoogle').forEach(ins => {
-        adObserver.observe(ins, { attributes: true, attributeFilter: ['data-ad-status'] });
+        adObserver.observe(ins, { attributes: true, attributeFilter: ['data-ad-status', 'data-adsbygoogle-status'] });
       });
     } catch (_) {}
   }

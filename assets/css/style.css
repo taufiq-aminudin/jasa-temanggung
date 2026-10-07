@@ -572,11 +572,34 @@ a{color:inherit;text-decoration:none}
 }
 
 /* Collapse empty/unfilled AdSense units to prevent layout voids */
-.adsense-slot-card:has(ins.adsbygoogle[data-ad-status="unfilled"]),
-.adsense-slot-card.ad-unfilled,
+.adsense-slot-card.is-empty,
 .adsense-slot-card.is-unfilled,
+.adsense-slot-card.ad-empty,
+.adsense-slot-card.ad-unfilled,
+.adsense-slot-card:has(ins.adsbygoogle[data-ad-status="unfilled"]),
 ins.adsbygoogle[data-ad-status="unfilled"]{
   display:none!important;
+  margin:0!important;
+  padding:0!important;
+  height:0!important;
+  min-height:0!important;
+  border:none!important;
+  box-shadow:none!important;
+  visibility:hidden!important;
+}
+
+/* Also collapse parent wrapper container if it only holds an empty/unfilled ad slot */
+.container:has(> .adsense-slot-card.is-empty),
+.container:has(> .adsense-slot-card.is-unfilled),
+.container:has(> .adsense-slot-card.ad-empty),
+.container:has(> .adsense-slot-card.ad-unfilled),
+.container:has(> .adsense-slot-card:has(ins.adsbygoogle[data-ad-status="unfilled"])),
+.container.ad-container-empty{
+  display:none!important;
+  margin-top:0!important;
+  margin-bottom:0!important;
+  padding-top:0!important;
+  padding-bottom:0!important;
 }
 
 /* Mobile Ad Styling (360px - 768px): zero overflow, compact height, non-intrusive */
