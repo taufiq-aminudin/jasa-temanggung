@@ -17,6 +17,8 @@ import {
   Sparkles
 } from 'lucide-react';
 import { Logo } from './Logo';
+import { ThemeToggle } from './ThemeToggle';
+import { useTheme } from '../context/ThemeContext';
 
 interface HeaderProps {
   currentPath: string;
@@ -33,6 +35,7 @@ export const Header: React.FC<HeaderProps> = ({
   openAuditModal,
   openBrandKit
 }) => {
+  const { isDark } = useTheme();
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [servicesDropdown, setServicesDropdown] = useState(false);
@@ -60,7 +63,11 @@ export const Header: React.FC<HeaderProps> = ({
   return (
     <>
       <header className={`sticky top-0 z-50 transition-all duration-300 ${
-        scrolled ? 'glass-header shadow-2xl shadow-black/40 py-3' : 'bg-[#0b1120]/80 backdrop-blur-md py-4 border-b border-slate-800/80'
+        scrolled 
+          ? 'glass-header shadow-2xl py-3' 
+          : isDark 
+            ? 'bg-[#0b1120]/80 backdrop-blur-md py-4 border-b border-slate-800/80' 
+            : 'bg-white/90 backdrop-blur-md py-4 border-b border-slate-200 shadow-sm'
       }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
@@ -154,7 +161,10 @@ export const Header: React.FC<HeaderProps> = ({
             </nav>
 
             {/* Right Action Buttons */}
-            <div className="hidden lg:flex items-center gap-3">
+            <div className="hidden lg:flex items-center gap-2.5">
+              {/* Theme & Backdrop-Filter Controller */}
+              <ThemeToggle />
+
               {/* Quick Search Shortcut */}
               <button 
                 onClick={openSearch}
@@ -182,6 +192,8 @@ export const Header: React.FC<HeaderProps> = ({
 
             {/* Mobile Controls */}
             <div className="flex items-center gap-2 lg:hidden">
+              <ThemeToggle compact showBackdropControls={false} />
+
               <button
                 onClick={openSearch}
                 className="p-2 rounded-lg bg-slate-900 border border-slate-800 text-slate-400 hover:text-white"
@@ -298,6 +310,17 @@ export const Header: React.FC<HeaderProps> = ({
                 <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-blue-500/20 text-blue-300">SVG &amp; Favicon</span>
               </button>
             )}
+
+            {/* Mobile Theme & Glass Panel Controller */}
+            <div className="p-3.5 rounded-2xl bg-slate-900/90 border border-slate-800 space-y-2 mt-2">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-mono uppercase tracking-wider text-slate-400">Pilihan Tema Tampilan:</span>
+                <ThemeToggle showBackdropControls={true} />
+              </div>
+              <p className="text-[11px] text-slate-400 leading-relaxed">
+                Mode Kontras Tinggi mengadaptasi seluruh komponen <code className="text-cyan-400 font-mono">.glass-panel</code> dengan saturasi &amp; blur tinggi untuk keterbacaan optimal.
+              </p>
+            </div>
           </div>
 
           <div className="pt-4 border-t border-slate-800 space-y-3">

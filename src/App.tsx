@@ -5,6 +5,7 @@ import { FloatingWhatsApp } from './components/FloatingWhatsApp';
 import { SearchModal } from './components/SearchModal';
 import { AuditModal } from './components/AuditModal';
 import { BrandKitModal } from './components/BrandKitModal';
+import { useTheme } from './context/ThemeContext';
 
 // Pages
 import { HomePage } from './pages/HomePage';
@@ -20,6 +21,7 @@ import { ContactPage } from './pages/ContactPage';
 import { LegalPage } from './pages/LegalPage';
 
 export const App: React.FC = () => {
+  const { isDark } = useTheme();
   const [currentPath, setCurrentPath] = useState<string>(() => {
     return window.location.pathname || '/';
   });
@@ -185,7 +187,9 @@ export const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#0b1120] text-slate-100 flex flex-col font-sans selection:bg-blue-600 selection:text-white">
+    <div className={`min-h-screen flex flex-col font-sans selection:bg-blue-600 selection:text-white transition-colors duration-200 ${
+      isDark ? 'bg-[#0b1120] text-slate-100' : 'bg-[#f8fafc] text-slate-900'
+    }`}>
       {/* Header Navigation */}
       <Header 
         currentPath={currentPath}

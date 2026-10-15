@@ -151,13 +151,13 @@ export const Logo: React.FC<LogoProps> = ({
       <div className="flex flex-col justify-center">
         <div className="flex items-center gap-2">
           {/* Main Brand Wordmark */}
-          <span className={`${titleSizeClass} font-black text-white tracking-tight flex items-center`}>
-            FU<span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">Tech</span>
+          <span className={`${titleSizeClass} font-black text-slate-900 dark:text-white tracking-tight flex items-center`}>
+            FU<span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500 dark:from-blue-400 dark:to-cyan-300">Tech</span>
           </span>
 
           {/* Regional Indonesia Badge */}
-          <div className="flex items-center gap-1 px-1.5 py-0.5 rounded bg-blue-500/15 border border-blue-500/30 text-blue-400 font-mono font-bold tracking-wider text-[9px] uppercase shadow-[0_0_8px_rgba(59,130,246,0.2)]">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+          <div className="flex items-center gap-1 px-1.5 py-0.5 rounded bg-blue-500/15 border border-blue-500/30 text-blue-600 dark:text-blue-400 font-mono font-bold tracking-wider text-[9px] uppercase shadow-[0_0_8px_rgba(59,130,246,0.15)]">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
             <span>ID</span>
           </div>
         </div>
@@ -165,7 +165,7 @@ export const Logo: React.FC<LogoProps> = ({
         {/* Subtitle / Department description */}
         {showSubtitle && variant !== 'compact' && (
           <div className="flex items-center gap-1.5 mt-0.5">
-            <span className={`${subSizeClass} text-slate-400 font-mono tracking-wider uppercase font-medium`}>
+            <span className={`${subSizeClass} text-slate-600 dark:text-slate-400 font-mono tracking-wider uppercase font-medium`}>
               Performance &amp; Growth
             </span>
           </div>

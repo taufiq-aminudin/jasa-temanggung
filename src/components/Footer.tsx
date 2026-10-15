@@ -13,6 +13,8 @@ import {
 } from 'lucide-react';
 
 import { Logo } from './Logo';
+import { ThemeToggle } from './ThemeToggle';
+import { useTheme } from '../context/ThemeContext';
 
 interface FooterProps {
   navigate: (path: string) => void;
@@ -21,8 +23,11 @@ interface FooterProps {
 }
 
 export const Footer: React.FC<FooterProps> = ({ navigate, openAuditModal, openBrandKit }) => {
+  const { isDark } = useTheme();
   return (
-    <footer className="bg-[#070b14] border-t border-slate-800/80 text-slate-400 text-sm">
+    <footer className={`border-t text-sm transition-colors duration-200 ${
+      isDark ? 'bg-[#070b14] border-slate-800/80 text-slate-400' : 'bg-slate-100 border-slate-300 text-slate-600'
+    }`}>
       {/* Top Pre-Footer Callout */}
       <div className="border-b border-slate-800/60 bg-gradient-to-b from-transparent to-blue-950/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -233,10 +238,17 @@ export const Footer: React.FC<FooterProps> = ({ navigate, openAuditModal, openBr
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-12 pt-8 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+        <div className="mt-12 pt-8 border-t border-slate-800/80 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-500">
           <div>
             © {new Date().getFullYear()} FUTech Digital Indonesia. Hak Cipta Dilindungi Undang-Undang.
           </div>
+
+          {/* Quick Theme Switcher */}
+          <div className="flex items-center gap-2">
+            <span className="text-[11px] font-mono text-slate-400">Tema Tampilan:</span>
+            <ThemeToggle showBackdropControls={true} compact={false} />
+          </div>
+
           <div className="flex items-center gap-6">
             <button onClick={() => navigate('/kebijakan-privasi')} className="hover:text-slate-300 transition-colors">
               Kebijakan Privasi
