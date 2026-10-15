@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { SITE_CONFIG } from '../data/siteData';
+import { triggerConfetti, triggerSubtleConfetti } from '../utils/confetti';
 import { 
   Calculator, 
   TrendingUp, 
@@ -10,7 +11,9 @@ import {
   CheckCircle2, 
   AlertCircle,
   HelpCircle,
-  MessageSquare
+  MessageSquare,
+  Flame,
+  Award
 } from 'lucide-react';
 
 interface RoasCalculatorProps {
@@ -24,33 +27,39 @@ export const RoasCalculator: React.FC<RoasCalculatorProps> = ({ onBookConsultati
   const [cvr, setCvr] = useState<number>(2.5); // 2.5%
   const [margin, setMargin] = useState<number>(55); // 55%
   const [cpc] = useState<number>(1250); // Benchmark CPC IDR 1.250
+  const [activePreset, setActivePreset] = useState<'ecommerce' | 'b2b' | 'local' | 'highTicket' | null>('ecommerce');
 
   // Presets
   const applyPreset = (preset: 'ecommerce' | 'b2b' | 'local' | 'highTicket') => {
+    setActivePreset(preset);
     switch (preset) {
       case 'ecommerce':
         setBudget(15000000);
         setAov(280000);
         setCvr(2.8);
         setMargin(60);
+        triggerSubtleConfetti();
         break;
       case 'b2b':
         setBudget(12000000);
         setAov(8500000);
         setCvr(1.2);
         setMargin(70);
+        triggerSubtleConfetti();
         break;
       case 'local':
         setBudget(6000000);
         setAov(650000);
         setCvr(3.2);
         setMargin(65);
+        triggerSubtleConfetti();
         break;
       case 'highTicket':
         setBudget(25000000);
         setAov(15000000);
         setCvr(0.8);
         setMargin(50);
+        triggerConfetti(0.5);
         break;
     }
   };
@@ -113,30 +122,46 @@ export const RoasCalculator: React.FC<RoasCalculatorProps> = ({ onBookConsultati
         </div>
 
         {/* Quick Presets */}
-        <div className="flex flex-wrap gap-1.5 self-stretch md:self-auto bg-slate-900/90 p-1.5 rounded-xl border border-slate-800">
+        <div className="flex flex-wrap gap-1.5 self-stretch md:self-auto glass-panel p-1.5 rounded-xl border border-slate-700/80">
           <button
             onClick={() => applyPreset('ecommerce')}
-            className="px-2.5 py-1 text-xs rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition-colors"
+            className={`px-3 py-1.5 text-xs rounded-lg font-semibold transition-all ${
+              activePreset === 'ecommerce'
+                ? 'bg-gradient-to-r from-blue-600 to-cyan-500 text-white shadow-md shadow-blue-500/20 scale-105'
+                : 'text-slate-400 hover:text-white hover:bg-slate-800/60'
+            }`}
           >
-            E-Commerce
+            🛒 E-Commerce
           </button>
           <button
             onClick={() => applyPreset('b2b')}
-            className="px-2.5 py-1 text-xs rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition-colors"
+            className={`px-3 py-1.5 text-xs rounded-lg font-semibold transition-all ${
+              activePreset === 'b2b'
+                ? 'bg-gradient-to-r from-indigo-600 to-purple-500 text-white shadow-md shadow-indigo-500/20 scale-105'
+                : 'text-slate-400 hover:text-white hover:bg-slate-800/60'
+            }`}
           >
-            B2B / Jasa
+            🏢 B2B / Jasa
           </button>
           <button
             onClick={() => applyPreset('local')}
-            className="px-2.5 py-1 text-xs rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition-colors"
+            className={`px-3 py-1.5 text-xs rounded-lg font-semibold transition-all ${
+              activePreset === 'local'
+                ? 'bg-gradient-to-r from-emerald-600 to-teal-500 text-white shadow-md shadow-emerald-500/20 scale-105'
+                : 'text-slate-400 hover:text-white hover:bg-slate-800/60'
+            }`}
           >
-            Klinik / Lokal
+            📍 Klinik / Lokal
           </button>
           <button
             onClick={() => applyPreset('highTicket')}
-            className="px-2.5 py-1 text-xs rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition-colors"
+            className={`px-3 py-1.5 text-xs rounded-lg font-semibold transition-all ${
+              activePreset === 'highTicket'
+                ? 'bg-gradient-to-r from-amber-600 via-rose-500 to-purple-600 text-white shadow-md shadow-amber-500/20 scale-105'
+                : 'text-slate-400 hover:text-white hover:bg-slate-800/60'
+            }`}
           >
-            High-Ticket
+            💎 High-Ticket
           </button>
         </div>
       </div>
@@ -264,33 +289,58 @@ export const RoasCalculator: React.FC<RoasCalculatorProps> = ({ onBookConsultati
         </div>
 
         {/* Right: Real-Time Results Card */}
-        <div className="lg:col-span-5 flex flex-col justify-between bg-gradient-to-br from-slate-900/90 via-slate-900/70 to-blue-950/40 p-6 sm:p-7 rounded-2xl border border-blue-500/30 shadow-xl space-y-6">
-          
-          <div className="space-y-4">
+        <div className="lg:col-span-5 flex flex-col justify-between glass-panel glass-glow-blue shimmer-card p-6 sm:p-7 rounded-2xl border border-blue-500/40 shadow-2xl space-y-6 relative overflow-hidden">
+          {/* Subtle Ambient Glow inside card */}
+          <div className="absolute -right-16 -top-16 w-48 h-48 bg-gradient-to-bl from-blue-500/20 to-purple-500/10 rounded-full blur-2xl pointer-events-none" />
+
+          <div className="space-y-4 relative z-10">
             <div className="flex items-center justify-between">
-              <span className="text-xs font-mono uppercase tracking-wider text-slate-400">
+              <span className="text-xs font-mono uppercase tracking-wider text-slate-400 font-semibold">
                 Prediksi Hasil Real-Time
               </span>
-              <span className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-mono font-bold ${
+              <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-bold transition-all ${
                 results.roas >= 4.0 
-                  ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' 
+                  ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 shadow-[0_0_15px_rgba(16,185,129,0.3)] animate-pulse' 
                   : results.roas >= results.breakEvenRoas 
-                    ? 'bg-blue-500/20 text-blue-400 border border-blue-500/30'
-                    : 'bg-amber-500/20 text-amber-400 border border-amber-500/30'
+                    ? 'bg-blue-500/20 text-blue-400 border border-blue-500/40 shadow-[0_0_15px_rgba(59,130,246,0.2)]'
+                    : 'bg-amber-500/20 text-amber-400 border border-amber-500/40'
               }`}>
-                {results.roas >= 4.0 ? '● Sangat Menguntungkan' : results.roas >= results.breakEvenRoas ? '● Untung Sehat' : '● Perlu Optimasi'}
+                {results.roas >= 4.0 ? '🚀 Sangat Menguntungkan' : results.roas >= results.breakEvenRoas ? '✨ Untung Sehat' : '⚠️ Perlu Optimasi'}
               </span>
             </div>
 
             {/* Projected Revenue Big Metric */}
             <div className="p-4 rounded-xl bg-slate-950/80 border border-slate-800">
               <span className="text-xs text-slate-400">Proyeksi Omzet Kotor (Gross Revenue)</span>
-              <div className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight mt-1 font-mono-numbers">
+              <div className="text-2xl sm:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-100 to-cyan-300 tracking-tight mt-1 font-mono-numbers">
                 {formatIDR(results.projectedRevenue)}
               </div>
               <div className="text-xs text-slate-400 mt-1 flex items-center gap-1.5">
                 <span>Dari estimasi</span>
-                <span className="text-blue-400 font-bold font-mono">{results.estimatedTransactions} transaksi / lead</span>
+                <span className="text-cyan-400 font-bold font-mono">{results.estimatedTransactions} transaksi / lead</span>
+              </div>
+            </div>
+
+            {/* Visual Dynamic ROAS Meter Bar */}
+            <div className="p-3.5 rounded-xl bg-slate-950/80 border border-slate-800 space-y-2">
+              <div className="flex justify-between items-center text-xs">
+                <span className="font-mono text-slate-400 text-[11px]">Skala Performa ROAS</span>
+                <span className="font-mono font-bold text-cyan-400">{results.roas.toFixed(2)}x Target</span>
+              </div>
+              
+              {/* Progress track */}
+              <div className="w-full bg-slate-800 h-2.5 rounded-full overflow-hidden p-0.5">
+                <div 
+                  className="h-full rounded-full transition-all duration-700 ease-out bg-gradient-to-r from-blue-500 via-cyan-400 to-emerald-400 shadow-[0_0_12px_rgba(6,182,212,0.6)]"
+                  style={{ width: `${Math.min(100, Math.max(8, (results.roas / 7) * 100))}%` }}
+                />
+              </div>
+
+              <div className="flex justify-between text-[10px] font-mono text-slate-500 pt-0.5">
+                <span>0x</span>
+                <span className="text-amber-400">BEP ({results.breakEvenRoas.toFixed(1)}x)</span>
+                <span className="text-cyan-400">Target (4.0x)</span>
+                <span className="text-emerald-400">Scale (7.0x+)</span>
               </div>
             </div>
 
@@ -329,12 +379,13 @@ export const RoasCalculator: React.FC<RoasCalculatorProps> = ({ onBookConsultati
           </div>
 
           {/* Action CTAs */}
-          <div className="space-y-2 pt-2">
+          <div className="space-y-2 pt-2 relative z-10">
             <a
               href={getWhatsAppShareLink()}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full py-3 px-4 rounded-xl font-bold text-xs text-white bg-gradient-to-r from-emerald-600 to-teal-500 hover:from-emerald-500 hover:to-teal-400 transition-all flex items-center justify-center gap-2 shadow-lg shadow-emerald-600/20"
+              onClick={() => triggerConfetti(0.5)}
+              className="w-full py-3.5 px-4 rounded-xl font-bold text-xs text-white bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-500 hover:from-emerald-500 hover:to-cyan-400 transition-all flex items-center justify-center gap-2 shadow-lg shadow-emerald-600/30 hover:scale-[1.02] active:scale-[0.98]"
             >
               <MessageSquare className="w-4 h-4" />
               <span>Kirim Hasil Simulasi ke WhatsApp</span>
@@ -342,8 +393,11 @@ export const RoasCalculator: React.FC<RoasCalculatorProps> = ({ onBookConsultati
 
             {onBookConsultation && (
               <button
-                onClick={onBookConsultation}
-                className="w-full py-2.5 px-4 rounded-xl font-semibold text-xs text-slate-300 bg-slate-800 hover:bg-slate-700 hover:text-white transition-all flex items-center justify-center gap-1.5 border border-slate-700"
+                onClick={() => {
+                  triggerSubtleConfetti();
+                  onBookConsultation();
+                }}
+                className="w-full py-2.5 px-4 rounded-xl font-semibold text-xs text-slate-300 bg-slate-800 hover:bg-slate-700 hover:text-white transition-all flex items-center justify-center gap-1.5 border border-slate-700 hover:border-blue-500/40"
               >
                 <span>Validasi Angka Ini Bersama Strategist</span>
                 <ArrowRight className="w-3.5 h-3.5" />

@@ -12,6 +12,7 @@ import {
   ShieldCheck
 } from 'lucide-react';
 import { LeadItem } from '../types';
+import { triggerConfetti } from '../utils/confetti';
 
 interface ContactPageProps {
   onLeadSubmitted?: (lead: LeadItem) => void;
@@ -56,6 +57,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onLeadSubmitted }) => 
       onLeadSubmitted(newLead);
     }
 
+    triggerConfetti(0.45);
     setSubmitted(true);
   };
 

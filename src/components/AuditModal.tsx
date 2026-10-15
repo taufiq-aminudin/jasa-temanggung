@@ -13,6 +13,7 @@ import {
   Layers
 } from 'lucide-react';
 import { LeadItem } from '../types';
+import { triggerConfetti } from '../utils/confetti';
 
 interface AuditModalProps {
   isOpen: boolean;
@@ -95,6 +96,7 @@ export const AuditModal: React.FC<AuditModalProps> = ({
       onLeadSubmitted(newLead);
     }
 
+    triggerConfetti(0.45);
     setIsCalculated(true);
   };
 
@@ -391,24 +393,27 @@ export const AuditModal: React.FC<AuditModalProps> = ({
               </h3>
             </div>
 
-            {/* Score Big Meter */}
-            <div className="p-6 rounded-2xl bg-slate-900/90 border border-blue-500/30 flex flex-col sm:flex-row items-center justify-around gap-4 text-center sm:text-left">
+            {/* Score Big Meter with Glowing Neon Circle */}
+            <div className="p-6 rounded-2xl bg-slate-900/90 border border-blue-500/40 shadow-xl shadow-blue-500/10 flex flex-col sm:flex-row items-center justify-around gap-5 text-center sm:text-left">
               <div className="relative flex items-center justify-center">
-                <div className="w-24 h-24 rounded-full border-4 border-slate-800 flex items-center justify-center bg-slate-950">
-                  <span className="text-3xl font-black font-mono text-blue-400">
+                {/* Glowing Outer Ring */}
+                <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 via-cyan-400 to-purple-500 blur-md opacity-60 animate-pulse"></div>
+                
+                <div className="relative w-28 h-28 rounded-full border-4 border-cyan-400/80 flex flex-col items-center justify-center bg-slate-950 shadow-[0_0_20px_rgba(6,182,212,0.5)]">
+                  <span className="text-3xl sm:text-4xl font-black font-mono-numbers text-gradient-rainbow">
                     {auditScore}
                   </span>
-                  <span className="text-xs text-slate-500 font-mono">/100</span>
+                  <span className="text-[11px] text-cyan-300 font-mono font-semibold">/100 SKOR</span>
                 </div>
               </div>
 
-              <div className="space-y-1 max-w-sm">
+              <div className="space-y-1.5 max-w-sm">
                 <div className="text-sm font-bold text-white flex items-center justify-center sm:justify-start gap-1.5">
-                  <Activity className="w-4 h-4 text-amber-400" />
-                  <span>Potensi Pertumbuhan Sangat Terbuka</span>
+                  <Activity className="w-4 h-4 text-emerald-400 animate-pulse" />
+                  <span className="text-emerald-400 font-semibold">Potensi Peningkatan ROAS +180%</span>
                 </div>
-                <p className="text-xs text-slate-400">
-                  Funnel bisnis Anda memiliki dasar yang baik di sektor <strong className="text-slate-200">{industry}</strong>, tetapi terdapat setidaknya 2 kebocoran konversi yang menaikkan biaya akuisisi Anda.
+                <p className="text-xs text-slate-300 leading-relaxed">
+                  Funnel bisnis Anda memiliki dasar yang baik di sektor <strong className="text-cyan-300">{industry}</strong>, namun terdapat setidaknya 2 kebocoran konversi yang menaikkan biaya akuisisi Anda.
                 </p>
               </div>
             </div>

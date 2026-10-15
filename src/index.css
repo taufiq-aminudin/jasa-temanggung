@@ -145,6 +145,7 @@ html.light .mesh-grid {
 }
 
 /* Typography Helpers */
+/* Typography Helpers & Color Gradients */
 .font-mono-numbers {
   font-family: var(--font-mono);
   font-feature-settings: 'tnum' on, 'lnum' on;
@@ -174,20 +175,272 @@ html.light .text-gradient-cyan {
   -webkit-text-fill-color: transparent;
 }
 
-/* Custom Animation Utilities */
+.text-gradient-purple {
+  background: linear-gradient(135deg, #c084fc 0%, #f472b6 50%, #818cf8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+html.light .text-gradient-purple {
+  background: linear-gradient(135deg, #7e22ce 0%, #be185d 50%, #4338ca 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-emerald {
+  background: linear-gradient(135deg, #34d399 0%, #10b981 50%, #06b6d4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+html.light .text-gradient-emerald {
+  background: linear-gradient(135deg, #059669 0%, #047857 50%, #0891b2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-sunset {
+  background: linear-gradient(135deg, #fb923c 0%, #f43f5e 50%, #a855f7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+html.light .text-gradient-sunset {
+  background: linear-gradient(135deg, #ea580c 0%, #e11d48 50%, #9333ea 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-rainbow {
+  background: linear-gradient(90deg, #38bdf8, #818cf8, #c084fc, #f472b6, #fb923c, #34d399, #38bdf8);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientFlow 8s linear infinite;
+}
+
+html.light .text-gradient-rainbow {
+  background: linear-gradient(90deg, #0284c7, #4f46e5, #9333ea, #db2777, #ea580c, #059669, #0284c7);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientFlow 8s linear infinite;
+}
+
+/* Custom Animation Utilities & Keyframes */
+@keyframes floatSlow {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-12px) rotate(1.5deg);
+  }
+}
+
+@keyframes floatMedium {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes floatReverse {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(10px) rotate(-1.5deg);
+  }
+}
+
 @keyframes pulseGlow {
   0%, 100% {
-    opacity: 0.6;
+    opacity: 0.55;
     transform: scale(1);
   }
   50% {
-    opacity: 1;
-    transform: scale(1.05);
+    opacity: 0.95;
+    transform: scale(1.06);
   }
+}
+
+@keyframes gradientFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes auroraOrb1 {
+  0%, 100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  33% {
+    transform: translate(40px, -60px) scale(1.15);
+  }
+  66% {
+    transform: translate(-30px, 30px) scale(0.9);
+  }
+}
+
+@keyframes auroraOrb2 {
+  0%, 100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  33% {
+    transform: translate(-50px, 40px) scale(1.2);
+  }
+  66% {
+    transform: translate(35px, -45px) scale(0.85);
+  }
+}
+
+@keyframes auroraOrb3 {
+  0%, 100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  50% {
+    transform: translate(45px, 35px) scale(1.18);
+  }
+}
+
+@keyframes marqueeInfinite {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes shimmerEffect {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(200%);
+  }
+}
+
+@keyframes borderRotate {
+  0% {
+    --gradient-angle: 0deg;
+  }
+  100% {
+    --gradient-angle: 360deg;
+  }
+}
+
+.animate-float-slow {
+  animation: floatSlow 6s ease-in-out infinite;
+}
+
+.animate-float-medium {
+  animation: floatMedium 4s ease-in-out infinite;
+}
+
+.animate-float-reverse {
+  animation: floatReverse 7s ease-in-out infinite;
+}
+
+.animate-aurora-1 {
+  animation: auroraOrb1 18s ease-in-out infinite;
+}
+
+.animate-aurora-2 {
+  animation: auroraOrb2 22s ease-in-out infinite;
+}
+
+.animate-aurora-3 {
+  animation: auroraOrb3 15s ease-in-out infinite;
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marqueeInfinite 28s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
 }
 
 .pulse-glow {
   animation: pulseGlow 3s ease-in-out infinite;
+}
+
+/* Colorful Glow Glass Panels */
+.glass-glow-blue:hover {
+  border-color: rgba(59, 130, 246, 0.7) !important;
+  box-shadow: 0 12px 36px -10px rgba(59, 130, 246, 0.35), 0 0 20px -2px rgba(59, 130, 246, 0.2) !important;
+}
+
+.glass-glow-purple:hover {
+  border-color: rgba(168, 85, 247, 0.7) !important;
+  box-shadow: 0 12px 36px -10px rgba(168, 85, 247, 0.35), 0 0 20px -2px rgba(168, 85, 247, 0.2) !important;
+}
+
+.glass-glow-emerald:hover {
+  border-color: rgba(16, 185, 129, 0.7) !important;
+  box-shadow: 0 12px 36px -10px rgba(16, 185, 129, 0.35), 0 0 20px -2px rgba(16, 185, 129, 0.2) !important;
+}
+
+.glass-glow-amber:hover {
+  border-color: rgba(245, 158, 11, 0.7) !important;
+  box-shadow: 0 12px 36px -10px rgba(245, 158, 11, 0.35), 0 0 20px -2px rgba(245, 158, 11, 0.2) !important;
+}
+
+.glass-glow-pink:hover {
+  border-color: rgba(236, 72, 153, 0.7) !important;
+  box-shadow: 0 12px 36px -10px rgba(236, 72, 153, 0.35), 0 0 20px -2px rgba(236, 72, 153, 0.2) !important;
+}
+
+.glass-glow-cyan:hover {
+  border-color: rgba(6, 182, 212, 0.7) !important;
+  box-shadow: 0 12px 36px -10px rgba(6, 182, 212, 0.35), 0 0 20px -2px rgba(6, 182, 212, 0.2) !important;
+}
+
+/* Shimmer card highlight */
+.shimmer-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.08) 50%,
+    transparent 100%
+  );
+  transform: skewX(-20deg);
+  pointer-events: none;
+}
+
+html.light .shimmer-card::after {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(37, 99, 235, 0.08) 50%,
+    transparent 100%
+  );
+}
+
+.shimmer-card:hover::after {
+  animation: shimmerEffect 1.2s ease;
 }
 
 /* Range Input Styling */

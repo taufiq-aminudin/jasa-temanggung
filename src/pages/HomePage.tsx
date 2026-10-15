@@ -9,6 +9,7 @@ import {
   SITE_CONFIG 
 } from '../data/siteData';
 import { RoasCalculator } from '../components/RoasCalculator';
+import { PartnerMarquee } from '../components/PartnerMarquee';
 import { 
   ArrowRight, 
   CheckCircle2, 
@@ -48,24 +49,67 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate, openAuditModal }) 
       {/* Hero Section */}
       <section className="relative pt-12 sm:pt-20 lg:pt-24 overflow-hidden radial-glow">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          
+          {/* Floating Live KPI Badges on Desktop */}
+          <div className="hidden xl:block absolute left-4 top-24 z-20 animate-float-slow">
+            <div className="glass-panel px-4 py-2.5 rounded-2xl border border-cyan-500/40 shadow-[0_0_25px_rgba(6,182,212,0.25)] flex items-center gap-3">
+              <div className="w-8 h-8 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center font-bold">
+                <Zap className="w-4 h-4 animate-pulse" />
+              </div>
+              <div>
+                <div className="text-[10px] uppercase font-mono tracking-wider text-cyan-400 font-bold">Scale E-Commerce</div>
+                <div className="text-xs font-black text-slate-100">ROAS Rekor: 6.8x 🚀</div>
+              </div>
+            </div>
+          </div>
+
+          <div className="hidden xl:block absolute right-4 top-20 z-20 animate-float-reverse">
+            <div className="glass-panel px-4 py-2.5 rounded-2xl border border-purple-500/40 shadow-[0_0_25px_rgba(168,85,247,0.25)] flex items-center gap-3">
+              <div className="w-8 h-8 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center font-bold">
+                <Sparkles className="w-4 h-4" />
+              </div>
+              <div>
+                <div className="text-[10px] uppercase font-mono tracking-wider text-purple-400 font-bold">Infrastruktur Data</div>
+                <div className="text-xs font-black text-slate-100">Akurasi CAPI 99.4% ✨</div>
+              </div>
+            </div>
+          </div>
+
+          <div className="hidden xl:block absolute right-12 bottom-44 z-20 animate-float-medium">
+            <div className="glass-panel px-4 py-2.5 rounded-2xl border border-emerald-500/40 shadow-[0_0_25px_rgba(16,185,129,0.25)] flex items-center gap-3">
+              <div className="w-8 h-8 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold">
+                <TrendingUp className="w-4 h-4" />
+              </div>
+              <div>
+                <div className="text-[10px] uppercase font-mono tracking-wider text-emerald-400 font-bold">Efisiensi Budget</div>
+                <div className="text-xs font-black text-slate-100">CPA Turun -38.5% 🎯</div>
+              </div>
+            </div>
+          </div>
+
           <div className="text-center max-w-4xl mx-auto space-y-6">
             
-            {/* Top Eyebrow Badge */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-xs sm:text-sm font-mono font-medium shadow-[0_0_15px_rgba(59,130,246,0.2)]">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-              <span>Performance Marketing & Pertumbuhan Digital Indonesia #1</span>
+            {/* Top Eyebrow Badge with Pulse Ring */}
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-cyan-500/10 border border-blue-500/30 text-blue-400 text-xs sm:text-sm font-mono font-medium shadow-[0_0_20px_rgba(59,130,246,0.25)] hover:border-blue-400/60 transition-all">
+              <span className="relative flex h-2.5 w-2.5">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-400"></span>
+              </span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-300 to-cyan-300 font-semibold">
+                Performance Marketing & Pertumbuhan Digital Indonesia #1
+              </span>
             </div>
 
-            {/* Main Headline */}
-            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black text-white tracking-tight leading-[1.08]">
-              Pemasaran Lebih Cerdas.{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-300 to-indigo-400">
+            {/* Main Headline with Animated Rainbow Gradient */}
+            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-[1.08]">
+              <span className="text-slate-900 dark:text-white">Pemasaran Lebih Cerdas.</span>{' '}
+              <span className="text-gradient-rainbow block sm:inline">
                 Pertumbuhan Nyata Terukur.
               </span>
             </h1>
 
             {/* Subtitle */}
-            <p className="text-base sm:text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-base sm:text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed">
               Kami merancang sistem <strong>Google Ads</strong>, <strong>Meta Ads (FB & IG)</strong>, <strong>TikTok Ads</strong>, <strong>SEO Otoritas Topik</strong>, dan <strong>Optimasi Konversi (CRO)</strong> berkinerja tinggi untuk mengakuisisi pelanggan berkualitas dan melipatgandakan omzet bisnis & UMKM Indonesia.
             </p>
 
@@ -73,10 +117,10 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate, openAuditModal }) 
             <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
               <button
                 onClick={openAuditModal}
-                className="w-full sm:w-auto px-7 py-4 rounded-xl text-sm sm:text-base font-bold text-white bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-500 hover:from-blue-500 hover:to-cyan-400 transition-all shadow-xl shadow-blue-600/30 flex items-center justify-center gap-2 group"
+                className="w-full sm:w-auto px-8 py-4 rounded-xl text-sm sm:text-base font-bold text-white bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-500 hover:from-blue-500 hover:via-indigo-500 hover:to-cyan-400 transition-all duration-300 shadow-xl shadow-blue-600/30 hover:shadow-cyan-500/25 flex items-center justify-center gap-2 group hover:scale-[1.02] active:scale-[0.98]"
               >
                 <span>Mulai Audit Iklan Gratis</span>
-                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1.5" />
               </button>
 
               <button
@@ -84,25 +128,26 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate, openAuditModal }) 
                   const elem = document.getElementById('kalkulator-section');
                   elem?.scrollIntoView({ behavior: 'smooth' });
                 }}
-                className="w-full sm:w-auto px-6 py-4 rounded-xl text-sm sm:text-base font-semibold text-slate-200 bg-slate-900/90 border border-slate-700/80 hover:bg-slate-800 hover:text-white transition-all flex items-center justify-center gap-2"
+                className="w-full sm:w-auto px-7 py-4 rounded-xl text-sm sm:text-base font-semibold text-slate-700 dark:text-slate-200 bg-white/70 dark:bg-slate-900/90 border border-slate-300 dark:border-slate-700/80 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-blue-600 dark:hover:text-white transition-all flex items-center justify-center gap-2 hover:border-blue-400/50"
               >
+                <Zap className="w-4 h-4 text-amber-400" />
                 <span>Hitung Potensi ROAS (Kalkulator)</span>
               </button>
             </div>
 
             {/* Trust Bullet Strip */}
-            <div className="pt-4 flex flex-wrap items-center justify-center gap-y-2 gap-x-6 text-xs text-slate-400">
-              <span className="flex items-center gap-1.5">
-                <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                <span>Tanpa Markup Biaya Media</span>
+            <div className="pt-4 flex flex-wrap items-center justify-center gap-y-2.5 gap-x-6 text-xs text-slate-500 dark:text-slate-400">
+              <span className="flex items-center gap-1.5 bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20 text-emerald-600 dark:text-emerald-400">
+                <CheckCircle2 className="w-3.5 h-3.5" />
+                <span className="font-medium">Tanpa Markup Biaya Media</span>
               </span>
-              <span className="flex items-center gap-1.5">
-                <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                <span>Akses 100% Milik Anda</span>
+              <span className="flex items-center gap-1.5 bg-blue-500/10 px-3 py-1 rounded-full border border-blue-500/20 text-blue-600 dark:text-blue-400">
+                <CheckCircle2 className="w-3.5 h-3.5" />
+                <span className="font-medium">Akses 100% Milik Anda</span>
               </span>
-              <span className="flex items-center gap-1.5">
-                <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                <span>Infrastruktur Server-Side CAPI</span>
+              <span className="flex items-center gap-1.5 bg-purple-500/10 px-3 py-1 rounded-full border border-purple-500/20 text-purple-600 dark:text-purple-400">
+                <CheckCircle2 className="w-3.5 h-3.5" />
+                <span className="font-medium">Infrastruktur Server-Side CAPI</span>
               </span>
             </div>
 
@@ -110,33 +155,38 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate, openAuditModal }) 
 
           {/* Key Metric Tickers Card Strip */}
           <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div className="glass-panel p-5 rounded-2xl text-center space-y-1">
-              <div className="text-2xl sm:text-3xl font-black text-white font-mono-numbers text-gradient-blue">
+            <div className="glass-panel glass-glow-blue shimmer-card p-5 rounded-2xl text-center space-y-1 hover:-translate-y-1 transition-transform group cursor-default">
+              <div className="text-2xl sm:text-3xl font-black font-mono-numbers text-gradient-blue group-hover:scale-105 transition-transform">
                 {SITE_CONFIG.stats.totalAdSpendManaged}
               </div>
-              <div className="text-xs text-slate-400">Total Belanja Iklan Dikelola</div>
+              <div className="text-xs text-slate-500 dark:text-slate-400 font-medium">Total Belanja Iklan Dikelola</div>
             </div>
 
-            <div className="glass-panel p-5 rounded-2xl text-center space-y-1">
-              <div className="text-2xl sm:text-3xl font-black text-cyan-400 font-mono-numbers">
+            <div className="glass-panel glass-glow-cyan shimmer-card p-5 rounded-2xl text-center space-y-1 hover:-translate-y-1 transition-transform group cursor-default">
+              <div className="text-2xl sm:text-3xl font-black font-mono-numbers text-gradient-cyan group-hover:scale-105 transition-transform">
                 {SITE_CONFIG.stats.averageRoas}
               </div>
-              <div className="text-xs text-slate-400">Rata-rata ROAS Portofolio Klien</div>
+              <div className="text-xs text-slate-500 dark:text-slate-400 font-medium">Rata-rata ROAS Portofolio Klien</div>
             </div>
 
-            <div className="glass-panel p-5 rounded-2xl text-center space-y-1">
-              <div className="text-2xl sm:text-3xl font-black text-emerald-400 font-mono-numbers">
+            <div className="glass-panel glass-glow-emerald shimmer-card p-5 rounded-2xl text-center space-y-1 hover:-translate-y-1 transition-transform group cursor-default">
+              <div className="text-2xl sm:text-3xl font-black font-mono-numbers text-gradient-emerald group-hover:scale-105 transition-transform">
                 {SITE_CONFIG.stats.leadsGenerated}
               </div>
-              <div className="text-xs text-slate-400">Transaksi & Lead Terverifikasi</div>
+              <div className="text-xs text-slate-500 dark:text-slate-400 font-medium">Transaksi & Lead Terverifikasi</div>
             </div>
 
-            <div className="glass-panel p-5 rounded-2xl text-center space-y-1">
-              <div className="text-2xl sm:text-3xl font-black text-indigo-400 font-mono-numbers">
+            <div className="glass-panel glass-glow-purple shimmer-card p-5 rounded-2xl text-center space-y-1 hover:-translate-y-1 transition-transform group cursor-default">
+              <div className="text-2xl sm:text-3xl font-black font-mono-numbers text-gradient-purple group-hover:scale-105 transition-transform">
                 {SITE_CONFIG.stats.retentionRate}
               </div>
-              <div className="text-xs text-slate-400">Tingkat Kepuasan & Retensi</div>
+              <div className="text-xs text-slate-500 dark:text-slate-400 font-medium">Tingkat Kepuasan & Retensi</div>
             </div>
+          </div>
+
+          {/* Animated Infinite Partner & Platform Marquee */}
+          <div className="mt-12">
+            <PartnerMarquee />
           </div>
 
         </div>
@@ -164,43 +214,53 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate, openAuditModal }) 
           </div>
 
           {/* Category Tabs */}
-          <div className="flex flex-wrap gap-1.5 bg-slate-900 p-1.5 rounded-xl border border-slate-800 text-xs">
+          <div className="flex flex-wrap gap-1.5 p-1.5 rounded-xl glass-panel border border-slate-700/80 text-xs">
             <button
               onClick={() => setActiveCategory('all')}
-              className={`px-3 py-1.5 rounded-lg transition-colors font-medium ${
-                activeCategory === 'all' ? 'bg-blue-600 text-white' : 'text-slate-400 hover:text-white'
+              className={`px-3.5 py-1.5 rounded-lg transition-all font-semibold ${
+                activeCategory === 'all' 
+                  ? 'bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-500 text-white shadow-lg shadow-blue-500/25 scale-105' 
+                  : 'text-slate-400 hover:text-white hover:bg-slate-800/50'
               }`}
             >
               Semua (12)
             </button>
             <button
               onClick={() => setActiveCategory('paid-ads')}
-              className={`px-3 py-1.5 rounded-lg transition-colors font-medium ${
-                activeCategory === 'paid-ads' ? 'bg-blue-600 text-white' : 'text-slate-400 hover:text-white'
+              className={`px-3.5 py-1.5 rounded-lg transition-all font-semibold ${
+                activeCategory === 'paid-ads' 
+                  ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-lg shadow-blue-500/25 scale-105' 
+                  : 'text-slate-400 hover:text-white hover:bg-slate-800/50'
               }`}
             >
               Paid Media
             </button>
             <button
               onClick={() => setActiveCategory('organic-seo')}
-              className={`px-3 py-1.5 rounded-lg transition-colors font-medium ${
-                activeCategory === 'organic-seo' ? 'bg-blue-600 text-white' : 'text-slate-400 hover:text-white'
+              className={`px-3.5 py-1.5 rounded-lg transition-all font-semibold ${
+                activeCategory === 'organic-seo' 
+                  ? 'bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-lg shadow-emerald-500/25 scale-105' 
+                  : 'text-slate-400 hover:text-white hover:bg-slate-800/50'
               }`}
             >
               SEO & Konten
             </button>
             <button
               onClick={() => setActiveCategory('conversion-cro')}
-              className={`px-3 py-1.5 rounded-lg transition-colors font-medium ${
-                activeCategory === 'conversion-cro' ? 'bg-blue-600 text-white' : 'text-slate-400 hover:text-white'
+              className={`px-3.5 py-1.5 rounded-lg transition-all font-semibold ${
+                activeCategory === 'conversion-cro' 
+                  ? 'bg-gradient-to-r from-amber-600 to-orange-600 text-white shadow-lg shadow-amber-500/25 scale-105' 
+                  : 'text-slate-400 hover:text-white hover:bg-slate-800/50'
               }`}
             >
               Landing Page & CRO
             </button>
             <button
               onClick={() => setActiveCategory('analytics-tech')}
-              className={`px-3 py-1.5 rounded-lg transition-colors font-medium ${
-                activeCategory === 'analytics-tech' ? 'bg-blue-600 text-white' : 'text-slate-400 hover:text-white'
+              className={`px-3.5 py-1.5 rounded-lg transition-all font-semibold ${
+                activeCategory === 'analytics-tech' 
+                  ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg shadow-purple-500/25 scale-105' 
+                  : 'text-slate-400 hover:text-white hover:bg-slate-800/50'
               }`}
             >
               Data & Tracking
@@ -210,30 +270,57 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate, openAuditModal }) 
 
         {/* Services Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredServices.map((service) => (
-            <div
-              key={service.id}
-              onClick={() => navigate(`/layanan/${service.slug}`)}
-              className="glass-panel rounded-2xl p-6 sm:p-7 flex flex-col justify-between cursor-pointer group hover:-translate-y-1"
-            >
-              <div className="space-y-4">
-                <div className="flex items-center justify-between">
-                  <span className="text-[11px] font-mono px-2.5 py-0.5 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/30">
-                    {service.badge}
-                  </span>
-                  <span className="text-xs font-mono text-slate-500">
-                    {service.startingPrice}
-                  </span>
-                </div>
+          {filteredServices.map((service) => {
+            // Determine category-specific glowing and coloring accents
+            const isAds = service.category === 'paid-ads';
+            const isSeo = service.category === 'organic-seo';
+            const isCro = service.category === 'conversion-cro';
+            const isTech = service.category === 'analytics-tech';
 
-                <div>
-                  <h3 className="text-xl font-bold text-white group-hover:text-blue-300 transition-colors">
-                    {service.title}
-                  </h3>
-                  <p className="text-slate-400 text-xs sm:text-sm mt-2 line-clamp-3">
-                    {service.shortDesc}
-                  </p>
-                </div>
+            const glowClass = isAds ? 'glass-glow-blue' : isSeo ? 'glass-glow-emerald' : isCro ? 'glass-glow-amber' : 'glass-glow-purple';
+            const badgeClass = isAds 
+              ? 'bg-blue-500/15 text-blue-400 border-blue-500/30' 
+              : isSeo 
+              ? 'bg-emerald-500/15 text-emerald-400 border-emerald-500/30' 
+              : isCro 
+              ? 'bg-amber-500/15 text-amber-400 border-amber-500/30' 
+              : 'bg-purple-500/15 text-purple-400 border-purple-500/30';
+
+            const accentLine = isAds
+              ? 'from-blue-500 to-cyan-400'
+              : isSeo
+              ? 'from-emerald-500 to-teal-400'
+              : isCro
+              ? 'from-amber-500 to-rose-400'
+              : 'from-purple-500 to-pink-400';
+
+            return (
+              <div
+                key={service.id}
+                onClick={() => navigate(`/layanan/${service.slug}`)}
+                className={`glass-panel ${glowClass} shimmer-card rounded-2xl p-6 sm:p-7 flex flex-col justify-between cursor-pointer group hover:-translate-y-1.5 transition-all duration-300 relative overflow-hidden`}
+              >
+                {/* Top Subtle Colorful Gradient Line */}
+                <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${accentLine} opacity-80 group-hover:opacity-100 transition-opacity`} />
+
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <span className={`text-[11px] font-mono px-2.5 py-0.5 rounded-full border ${badgeClass} font-semibold transition-transform group-hover:scale-105`}>
+                      {service.badge}
+                    </span>
+                    <span className="text-xs font-mono text-slate-500 dark:text-slate-400">
+                      {service.startingPrice}
+                    </span>
+                  </div>
+
+                  <div>
+                    <h3 className="text-xl font-bold text-slate-900 dark:text-white group-hover:text-blue-400 dark:group-hover:text-cyan-300 transition-colors">
+                      {service.title}
+                    </h3>
+                    <p className="text-slate-600 dark:text-slate-400 text-xs sm:text-sm mt-2 line-clamp-3">
+                      {service.shortDesc}
+                    </p>
+                  </div>
 
                 {/* Key Deliverables bullets */}
                 <div className="space-y-1.5 pt-2 border-t border-slate-800/80">
@@ -248,10 +335,10 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate, openAuditModal }) 
 
               <div className="pt-6 mt-4 border-t border-slate-800 flex items-center justify-between text-xs font-semibold text-blue-400 group-hover:text-cyan-300">
                 <span>Rincian Ruang Lingkup & Metrik</span>
-                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
               </div>
             </div>
-          ))}
+          );
+        })}
         </div>
       </section>
 
