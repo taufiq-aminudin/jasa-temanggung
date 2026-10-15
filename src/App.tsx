@@ -4,6 +4,7 @@ import { Footer } from './components/Footer';
 import { FloatingWhatsApp } from './components/FloatingWhatsApp';
 import { SearchModal } from './components/SearchModal';
 import { AuditModal } from './components/AuditModal';
+import { BrandKitModal } from './components/BrandKitModal';
 
 // Pages
 import { HomePage } from './pages/HomePage';
@@ -25,6 +26,7 @@ export const App: React.FC = () => {
 
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isAuditModalOpen, setIsAuditModalOpen] = useState(false);
+  const [isBrandKitOpen, setIsBrandKitOpen] = useState(false);
 
   // Sync browser back/forward buttons
   useEffect(() => {
@@ -190,6 +192,7 @@ export const App: React.FC = () => {
         navigate={navigate}
         openSearch={() => setIsSearchOpen(true)}
         openAuditModal={() => setIsAuditModalOpen(true)}
+        openBrandKit={() => setIsBrandKitOpen(true)}
       />
 
       {/* Main View Area */}
@@ -201,6 +204,7 @@ export const App: React.FC = () => {
       <Footer 
         navigate={navigate} 
         openAuditModal={() => setIsAuditModalOpen(true)} 
+        openBrandKit={() => setIsBrandKitOpen(true)}
       />
 
       {/* Floating WhatsApp Action */}
@@ -217,6 +221,12 @@ export const App: React.FC = () => {
       <AuditModal 
         isOpen={isAuditModalOpen}
         onClose={() => setIsAuditModalOpen(false)}
+      />
+
+      {/* Official Brand Identity & Logo Kit Modal */}
+      <BrandKitModal
+        isOpen={isBrandKitOpen}
+        onClose={() => setIsBrandKitOpen(false)}
       />
     </div>
   );

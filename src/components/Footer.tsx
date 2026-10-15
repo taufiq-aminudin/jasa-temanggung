@@ -12,12 +12,15 @@ import {
   Sparkles 
 } from 'lucide-react';
 
+import { Logo } from './Logo';
+
 interface FooterProps {
   navigate: (path: string) => void;
   openAuditModal: () => void;
+  openBrandKit?: () => void;
 }
 
-export const Footer: React.FC<FooterProps> = ({ navigate, openAuditModal }) => {
+export const Footer: React.FC<FooterProps> = ({ navigate, openAuditModal, openBrandKit }) => {
   return (
     <footer className="bg-[#070b14] border-t border-slate-800/80 text-slate-400 text-sm">
       {/* Top Pre-Footer Callout */}
@@ -70,19 +73,9 @@ export const Footer: React.FC<FooterProps> = ({ navigate, openAuditModal }) => {
           <div className="lg:col-span-2 space-y-4">
             <div 
               onClick={() => navigate('/')}
-              className="flex items-center gap-3 cursor-pointer group"
+              className="cursor-pointer group inline-block"
             >
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-700 to-cyan-400 p-[1.5px]">
-                <div className="w-full h-full bg-[#0b1120] rounded-[10px] flex items-center justify-center">
-                  <span className="font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300 text-lg">
-                    FU
-                  </span>
-                </div>
-              </div>
-              <div>
-                <span className="text-xl font-extrabold text-white tracking-tight">FUTech Digital</span>
-                <span className="block text-xs text-blue-400 font-mono">Indonesia Performance Agency</span>
-              </div>
+              <Logo size="lg" />
             </div>
 
             <p className="text-slate-400 text-sm leading-relaxed max-w-sm">
@@ -226,6 +219,14 @@ export const Footer: React.FC<FooterProps> = ({ navigate, openAuditModal }) => {
                   <span>Lead Pipeline Demo</span>
                 </button>
               </li>
+              {openBrandKit && (
+                <li>
+                  <button onClick={openBrandKit} className="hover:text-cyan-300 transition-colors text-left flex items-center gap-1 text-cyan-400 font-mono">
+                    <Sparkles className="w-3 h-3" />
+                    <span>Logo &amp; Brand Kit (SVG/Favicon)</span>
+                  </button>
+                </li>
+              )}
             </ul>
           </div>
 

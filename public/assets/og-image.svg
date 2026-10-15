@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" fill="none">
+  <defs>
+    <radialGradient id="og-grad" cx="50%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#1e293b"/>
+      <stop offset="60%" stop-color="#0b1120"/>
+      <stop offset="100%" stop-color="#030712"/>
+    </radialGradient>
+    <linearGradient id="og-blue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="50%" stop-color="#2563eb"/>
+      <stop offset="100%" stop-color="#1d4ed8"/>
+    </linearGradient>
+    <linearGradient id="og-cyan" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#06b6d4"/>
+      <stop offset="100%" stop-color="#10b981"/>
+    </linearGradient>
+    <filter id="og-glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="30" result="blur"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#og-grad)"/>
+
+  <!-- Tech Grid Background -->
+  <g opacity="0.12" stroke="#38bdf8" stroke-width="1">
+    <path d="M0 70h1200 M0 140h1200 M0 210h1200 M0 280h1200 M0 350h1200 M0 420h1200 M0 490h1200 M0 560h1200"/>
+    <path d="M100 0v630 M200 0v630 M300 0v630 M400 0v630 M500 0v630 M600 0v630 M700 0v630 M800 0v630 M900 0v630 M1000 0v630 M1100 0v630"/>
+  </g>
+
+  <!-- Ambient Glow Orbs -->
+  <circle cx="200" cy="180" r="160" fill="#2563eb" opacity="0.25" filter="url(#og-glow)"/>
+  <circle cx="950" cy="400" r="180" fill="#06b6d4" opacity="0.2" filter="url(#og-glow)"/>
+
+  <!-- Logo Mark Big -->
+  <g transform="translate(100, 100)">
+    <rect width="110" height="110" rx="30" fill="#0b1120" stroke="#1e293b" stroke-width="3"/>
+    <rect width="110" height="110" rx="30" fill="none" stroke="url(#og-blue)" stroke-width="3" stroke-opacity="0.8"/>
+    
+    <!-- F Mark -->
+    <rect x="28" y="26" width="15" height="58" rx="4" fill="url(#og-blue)"/>
+    <path d="M43 26h32c2 0 4 2 4 4v7c0 2-2 4-4 4H43V26z" fill="url(#og-blue)"/>
+    <path d="M43 49h23c2 0 4 2 4 4v6c0 2-2 4-4 4H43V49z" fill="url(#og-cyan)"/>
+    <polygon points="78,26 89,26 81,41 70,41" fill="#38bdf8"/>
+    <circle cx="85" cy="20" r="4" fill="#10b981"/>
+  </g>
+
+  <!-- Title & Tagline -->
+  <text x="235" y="155" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-weight="900" font-size="52" fill="#ffffff" letter-spacing="-1">
+    FUTech <tspan fill="#38bdf8">Digital</tspan>
+  </text>
+  <rect x="580" y="118" width="160" height="38" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="1.5"/>
+  <rect x="592" y="129" width="14" height="8" rx="1.5" fill="#ef4444"/>
+  <rect x="592" y="137" width="14" height="8" rx="1.5" fill="#ffffff"/>
+  <text x="614" y="143" font-family="'JetBrains Mono', monospace" font-size="14" font-weight="700" fill="#60a5fa" letter-spacing="1.5">
+    INDONESIA
+  </text>
+  <text x="238" y="195" font-family="'JetBrains Mono', monospace" font-size="17" font-weight="600" fill="#94a3b8" letter-spacing="2">
+    PERFORMANCE ADVERTISING &amp; GROWTH AGENCY
+  </text>
+
+  <!-- Big Hero Value Prop -->
+  <text x="100" y="320" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-weight="800" font-size="56" fill="#f8fafc" letter-spacing="-1.5">
+    Pemasaran Lebih Cerdas.
+  </text>
+  <text x="100" y="385" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-weight="800" font-size="56" fill="#38bdf8" letter-spacing="-1.5">
+    Pertumbuhan Nyata Terukur.
+  </text>
+
+  <!-- Subtitle -->
+  <text x="100" y="445" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="24" fill="#94a3b8" font-weight="400">
+    Google Ads • Meta Ads • TikTok Ads • SEO Topical Authority • Server-Side Tracking • CRO
+  </text>
+
+  <!-- Metric Badges Row -->
+  <g transform="translate(100, 490)">
+    <!-- Badge 1 -->
+    <rect width="210" height="64" rx="14" fill="#0f172a" stroke="#1e293b" stroke-width="1.5"/>
+    <text x="20" y="32" font-family="'JetBrains Mono', monospace" font-size="13" fill="#94a3b8">TOTAL AD SPEND</text>
+    <text x="20" y="52" font-family="'Plus Jakarta Sans', sans-serif" font-size="20" font-weight="800" fill="#38bdf8">Rp 48 Milyar+</text>
+
+    <!-- Badge 2 -->
+    <g transform="translate(230, 0)">
+      <rect width="210" height="64" rx="14" fill="#0f172a" stroke="#1e293b" stroke-width="1.5"/>
+      <text x="20" y="32" font-family="'JetBrains Mono', monospace" font-size="13" fill="#94a3b8">RATA-RATA ROAS</text>
+      <text x="20" y="52" font-family="'Plus Jakarta Sans', sans-serif" font-size="20" font-weight="800" fill="#10b981">4.8x – 12.4x</text>
+    </g>
+
+    <!-- Badge 3 -->
+    <g transform="translate(460, 0)">
+      <rect width="230" height="64" rx="14" fill="#0f172a" stroke="#1e293b" stroke-width="1.5"/>
+      <text x="20" y="32" font-family="'JetBrains Mono', monospace" font-size="13" fill="#94a3b8">KUALIFIKASI AUDIT</text>
+      <text x="20" y="52" font-family="'Plus Jakarta Sans', sans-serif" font-size="20" font-weight="800" fill="#a855f7">100% Data-Driven</text>
+    </g>
+
+    <!-- Badge 4 -->
+    <g transform="translate(710, 0)">
+      <rect width="280" height="64" rx="14" fill="#0f172a" stroke="#1e293b" stroke-width="1.5"/>
+      <text x="20" y="32" font-family="'JetBrains Mono', monospace" font-size="13" fill="#94a3b8">OFFICE LOKASI</text>
+      <text x="20" y="52" font-family="'Plus Jakarta Sans', sans-serif" font-size="18" font-weight="800" fill="#ffffff">Jakarta &amp; Temanggung, ID</text>
+    </g>
+  </g>
+</svg>

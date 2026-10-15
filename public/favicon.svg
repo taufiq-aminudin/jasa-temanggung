@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" fill="none">
+  <defs>
+    <linearGradient id="fav-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b1120"/>
+      <stop offset="100%" stop-color="#030712"/>
+    </linearGradient>
+    <linearGradient id="fav-primary" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="50%" stop-color="#2563eb"/>
+      <stop offset="100%" stop-color="#1d4ed8"/>
+    </linearGradient>
+    <linearGradient id="fav-accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#06b6d4"/>
+      <stop offset="100%" stop-color="#10b981"/>
+    </linearGradient>
+    <linearGradient id="fav-glow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#60a5fa" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#06b6d4" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="glow-effect" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <rect x="2" y="2" width="60" height="60" rx="16" fill="url(#fav-bg)" stroke="#1e293b" stroke-width="1.5"/>
+  <rect x="2" y="2" width="60" height="60" rx="16" fill="none" stroke="url(#fav-primary)" stroke-width="1.5" stroke-opacity="0.5"/>
+  <circle cx="32" cy="30" r="18" fill="url(#fav-glow)" opacity="0.35" filter="url(#glow-effect)"/>
+
+  <!-- Left Pillar / Stem -->
+  <path d="M18 16c0-1.1.9-2 2-2h8c1.1 0 2 .9 2 2v32c0 1.1-.9 2-2 2h-8c-1.1 0-2-.9-2-2V16z" fill="url(#fav-primary)"/>
+
+  <!-- Top Wing with Growth Notch -->
+  <path d="M26 14h18.5c1.4 0 2.5 1.1 2.5 2.5v4c0 1.4-1.1 2.5-2.5 2.5H26V14z" fill="url(#fav-primary)"/>
+
+  <!-- Middle Wing -->
+  <path d="M26 27h13c1.1 0 2 .9 2 2v3.5c0 1.1-.9 2-2 2H26V27z" fill="url(#fav-accent)"/>
+
+  <!-- Upward Dynamic Growth Vector -->
+  <polygon points="46,14 52,14 48,22 42,22" fill="#38bdf8"/>
+  <circle cx="50" cy="12" r="2.5" fill="#10b981"/>
+</svg>

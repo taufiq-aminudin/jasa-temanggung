@@ -13,21 +13,25 @@ import {
   Layers, 
   TrendingUp, 
   ShieldCheck, 
-  MessageSquare
+  MessageSquare,
+  Sparkles
 } from 'lucide-react';
+import { Logo } from './Logo';
 
 interface HeaderProps {
   currentPath: string;
   navigate: (path: string) => void;
   openSearch: () => void;
   openAuditModal: () => void;
+  openBrandKit?: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({ 
   currentPath, 
   navigate, 
   openSearch, 
-  openAuditModal 
+  openAuditModal,
+  openBrandKit
 }) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -64,26 +68,9 @@ export const Header: React.FC<HeaderProps> = ({
             {/* Brand Logo */}
             <div 
               onClick={() => handleNavClick('/')}
-              className="flex items-center gap-3 cursor-pointer group select-none"
+              className="cursor-pointer group select-none py-1"
             >
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-700 via-blue-500 to-cyan-400 p-[1.5px] shadow-[0_0_20px_rgba(59,130,246,0.35)] transition-transform duration-300 group-hover:scale-105">
-                <div className="w-full h-full bg-[#0b1120] rounded-[10px] flex items-center justify-center">
-                  <span className="font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300 text-lg tracking-tighter">
-                    FU
-                  </span>
-                </div>
-              </div>
-              <div className="flex flex-col">
-                <div className="flex items-center gap-1.5">
-                  <span className="text-lg font-extrabold text-white tracking-tight">FUTech</span>
-                  <span className="text-xs font-semibold px-1.5 py-0.5 rounded bg-blue-500/20 text-blue-400 border border-blue-500/30">
-                    INDONESIA
-                  </span>
-                </div>
-                <span className="text-[10px] text-slate-400 tracking-wide font-mono uppercase">
-                  Performance & Growth
-                </span>
-              </div>
+              <Logo size="md" />
             </div>
 
             {/* Desktop Navigation */}
@@ -153,6 +140,17 @@ export const Header: React.FC<HeaderProps> = ({
                 <Layers className="w-3 h-3 text-emerald-400" />
                 <span>Portal Leads</span>
               </button>
+
+              {openBrandKit && (
+                <button 
+                  onClick={openBrandKit}
+                  className="px-2.5 py-1.5 rounded-lg text-xs font-mono transition-colors flex items-center gap-1 text-slate-400 hover:text-cyan-300 hover:bg-slate-800/50"
+                  title="Lihat Logo & Favicon Resmi"
+                >
+                  <Sparkles className="w-3 h-3 text-cyan-400" />
+                  <span>Logo &amp; Brand Kit</span>
+                </button>
+              )}
             </nav>
 
             {/* Right Action Buttons */}
@@ -284,6 +282,22 @@ export const Header: React.FC<HeaderProps> = ({
               </div>
               <span className="text-[11px] font-mono px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400">Pipeline Demo</span>
             </button>
+
+            {openBrandKit && (
+              <button 
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  openBrandKit();
+                }}
+                className="w-full flex items-center justify-between px-4 py-3 rounded-xl text-base font-medium text-slate-200 hover:bg-slate-900 border border-slate-800"
+              >
+                <div className="flex items-center gap-2">
+                  <Sparkles className="w-4 h-4 text-cyan-400" />
+                  <span>Logo Resmi &amp; Brand Kit</span>
+                </div>
+                <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-blue-500/20 text-blue-300">SVG &amp; Favicon</span>
+              </button>
+            )}
           </div>
 
           <div className="pt-4 border-t border-slate-800 space-y-3">
