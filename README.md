@@ -1,52 +1,37 @@
-# Jasa Temanggung
+# Jasa Temanggung (React Application)
 
-Website static multi-page untuk konsep **one-stop service / lead generation lokal Temanggung**.
+A modern, high-performance **React SPA** rewrite on **Vite and TypeScript** for **Jasa Temanggung** — the one-stop service directory and lead generation platform for Kabupaten Temanggung, Central Java.
 
-## Riset & validasi
-- Masalah utama yang disasar: pencarian jasa tersebar, istilah teknis membingungkan, ketidakjelasan dokumen/proses, dan sulit membandingkan scope.
-- Model produk: katalog layanan + halaman detail SEO + satu form konsultasi + routing ke WhatsApp.
-- Untuk layanan teregulasi (notaris/PPAT, perizinan resmi, pertanahan, SIM/STNK), copy menggunakan posisi **pendamping/koordinator**, bukan klaim sebagai instansi atau pemegang kewenangan.
-- Prioritas MVP: jasa perizinan, property, STNK/SIM, notaris/PPAT, Meta Ads, website; kategori lain menjadi demand expansion.
+## Features
 
-## UX / user flow
-1. Landing dari Google/social/referral.
-2. Cari kategori atau langsung klik layanan populer.
-3. Baca problem → scope → alur → catatan penting.
-4. Klik **Konsultasi**.
-5. Isi nama, lokasi, jasa, kebutuhan.
-6. Form membuat draft WhatsApp.
-7. Lead dikualifikasi: kebutuhan → data → scope → estimasi → order.
+- **One-Stop Service Directory**: 16 dedicated service modules covering business licensing (OSS NIB, PT Perorangan, P-IRT, Halal SEHATI), Notary & PPAT, vehicle taxes (Samsat STNK/SIM), digital marketing (Meta Ads, Google Ads), web development, business data analysis, and workforce staffing (`Agen Tenaga Kerja Temanggung`).
+- **Interactive Consultation Cost Estimator**: Real-time calculation of estimated fee ranges and turnaround durations based on selected service, Temanggung subdistrict (kecamatan), and urgency level, with one-click pre-filled WhatsApp quotes.
+- **Service Comparison Table**: Sortable by fee (Biaya) and processing duration (Waktu Kerja), filterable by industry sector, with dynamic statistical summaries and full client-side CSV file download.
+- **Dynamic Real-Time Search & Category Filters**: Instant client-side search across all 16 services and 15 educational guides with zero-result fallback states and filter reset.
+- **Testimonial Carousel & Review Submission**: Dynamic multi-card carousel with filterable categories, interactive 5-star rating widget, and instant local persistence via `localStorage`.
+- **Exit-Intent & Inactivity Lead Generation**: Automatically triggers the "Checklist Legalitas Usaha Temanggung 2026" modal with client-side PDF document generation.
+- **Direct WhatsApp Lead Routing**: Seamless pre-filled consultation message generation across services and contact forms.
+- **Client-Side Routing & Clean URLs**: HTML5 History API client-side router supporting `/jasa`, `/jasa/:slug`, `/artikel`, `/artikel/:slug`, `/blog`, `/bagaimana-caranya`, `/tentang`, `/faq`, `/kontak`, `/syarat-ketentuan`, and `/privasi`.
 
-## Design system
-- Primary: #1457D9
-- Ink: #0B1220
-- Background: #F7F9FC
-- Font: Manrope (heading), DM Sans (body)
-- Radius: 14–30px
-- Mobile sticky CTA
-- No stock image dependency; hero menggunakan CSS visual sehingga cepat.
+## Technology Stack
 
-## Launch checklist
-- [ ] Isi nomor WhatsApp di `assets/js/site-config.js`.
-- [ ] Ganti `YOUR-DOMAIN.example` pada `robots.txt` dan `sitemap.xml`.
-- [ ] Pasang domain + HTTPS.
-- [ ] Tambahkan GA4/Search Console sesuai kebutuhan.
-- [ ] Uji form WhatsApp, semua internal link, 404, favicon, metadata, dan OG image.
-- [ ] Tambahkan foto asli, logo final, alamat bisnis, dan legal copy aktual.
-- [ ] Uji mobile/tablet/desktop dan PageSpeed.
+- **Framework**: React 19 + TypeScript
+- **Bundler & Dev Server**: Vite
+- **Design System**: Vanilla CSS tokens matching the original design
+- **State Management**: React hooks (`useState`, `useMemo`, `useRef`, `useEffect`) and browser `localStorage`
 
-## Struktur
-- `index.html` home
-- `jasa/index.html` semua layanan
-- `jasa/*.html` 12 halaman layanan
-- `bagaimana-caranya.html` cara kerja
-- `tentang.html` tentang
-- `faq.html` FAQ
-- `kontak.html` form konsultasi
-- `privasi.html`, `syarat-ketentuan.html`, `404.html`
-- `assets/css/style.css`
-- `assets/js/site-config.js`
-- `assets/js/app.js`
-- `robots.txt`, `sitemap.xml`
+## Development
 
-Built as a lightweight static site, suitable for GitHub Pages, Netlify, Cloudflare Pages, or cPanel static hosting.
+```bash
+# Start development server on port 3000
+npm run dev
+
+# Build production bundle
+npm run build
+
+# Typecheck and lint
+npm run lint
+
+# Preview production build
+npm run preview
+```
