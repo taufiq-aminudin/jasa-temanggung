@@ -1,1297 +1,1047 @@
-import { ServiceItem, ArticleItem, ReviewItem } from '../types';
+import { ServiceItem, IndustryItem, CaseStudyItem, ArticleItem, LeadItem, TestimonialItem } from '../types';
 
 export const SITE_CONFIG = {
-  brand: 'Jasa Temanggung',
+  brand: 'FUTech Digital Indonesia',
+  shortBrand: 'FUTech',
+  tagline: 'Pemasaran Lebih Cerdas. Pertumbuhan Nyata Terukur.',
+  subtagline: 'Agensi Performance Advertising, Google & Meta Ads, SEO, dan Konversi Digital Berkinerja Tinggi untuk Bisnis & UMKM Indonesia.',
   whatsappNumber: '6281382000412',
-  whatsappDisplay: '0813-8200-0412',
-  whatsappMessage: 'Halo Jasa Temanggung, saya ingin konsultasi mengenai ',
-  city: 'Temanggung, Jawa Tengah',
-  operatingHours: 'Senin – Sabtu, 08.00 – 17.00 WIB',
-  officeAddress: 'Kabupaten Temanggung, Jawa Tengah (Melayani Seluruh Kecamatan)',
-  kecamatanList: [
-    'Temanggung Kota',
-    'Parakan',
-    'Kedu',
-    'Pringsurat',
-    'Ngadirejo',
-    'Kranggan',
-    'Kaloran',
-    'Bulu',
-    'Candiroto',
-    'Bansari',
-    'Tembarak',
-    'Kledung',
-    'Jumo',
-    'Tretep',
-    'Kandangan',
-    'Selopampang',
-    'Tlogomulyo',
-    'Gemawang',
-    'Bejen',
-    'Wonoboyo'
-  ]
+  whatsappDisplay: '+62 813-8200-0412',
+  email: 'growth@futech.my.id',
+  altEmail: 'halo@jasatemanggung.my.id',
+  location: 'Jakarta & Jawa Tengah, Indonesia',
+  operatingHours: 'Senin - Sabtu: 08.30 - 20.00 WIB',
+  stats: {
+    totalAdSpendManaged: 'Rp 24,8 Miliar+',
+    averageRoas: '4.8x',
+    activeCampaigns: '180+',
+    retentionRate: '98.2%',
+    leadsGenerated: '380.000+',
+  }
 };
 
 export const SERVICES: ServiceItem[] = [
   {
-    id: 'perizinan',
-    slug: 'perizinan',
-    title: 'Jasa Perizinan & Legalitas Usaha',
-    category: 'dokumen',
-    badge: 'Usaha & Legalitas',
-    desc: 'Pendampingan menyiapkan data dan alur pengurusan NIB OSS RBA, PT Perorangan, sertifikasi halal, dan izin edar resmi di Temanggung.',
-    icon: '✓',
-    iconBg: '#eff6ff',
-    iconColor: '#1d4ed8',
-    search: 'jasa perizinan legalitas usaha nib oss pt perorangan cv pirt bpom sertifikat halal pbg slf spku umkm temanggung',
-    tagline: 'Legalkan bisnis, buka peluang pasar lebih luas tanpa birokrasi rumit',
-    scopeTitle: 'Ruang Lingkup Perizinan',
-    scopeDesc: 'Usaha dengan izin lengkap lebih mudah mengajukan pinjaman bank KUR di BRI/Bank Jateng Temanggung, mengikuti tender pengadaan, menjual produk ke toko retail modern, dan membangun kredibilitas konsumen.',
-    scopes: [
-      { title: 'NIB OSS RBA', desc: 'Nomor Induk Berusaha berbasis risiko untuk perorangan maupun badan usaha mikro, kecil, dan menengah.' },
-      { title: 'Pendirian PT Perorangan', desc: 'Badan hukum resmi khusus UMKM dengan modal terjangkau dan pemisahan aset pribadi dari Kemenkumham.' },
-      { title: 'P-IRT & Sertifikasi Halal', desc: 'Pendampingan izin edar pangan industri rumah tangga Dinkes Temanggung & sertifikasi halal SEHATI.' },
-      { title: 'Izin Lingkungan SPPL & PBG', desc: 'Konsultasi awal SPPL, UKL-UPL penanganan limbah, serta alur PBG/SLF tempat usaha di dinas terkait.' }
+    id: 'google-ads',
+    slug: 'google-ads-management',
+    title: 'Google Ads Management',
+    category: 'paid-ads',
+    categoryLabel: 'Paid Media',
+    badge: 'High Intent Traffic',
+    shortDesc: 'Jangkau calon pembeli berintensitas tinggi tepat saat mereka mencari produk atau jasa Anda di Google Search, Performance Max, dan Maps.',
+    fullDesc: 'Google Ads adalah instrumen akuisisi pelanggan dengan niat beli (intent) tertinggi. Tim bersertifikasi kami mengelola riset kata kunci negatif ketat, struktur kampanye single-theme, bidding berbasis nilai konversi (tROAS/tCPA), serta integrasi feed Google Merchant Center.',
+    iconName: 'Search',
+    deliverables: [
+      { title: 'Historical & Search Term Audit', desc: 'Pembersihan search terms boros biaya dan eliminasi kebocoran budget pada kata kunci tidak relevan.' },
+      { title: 'Tracking & Value Signal Calibration', desc: 'Setup Google Tag Manager, GA4 enhanced conversion, dan offline conversion import via CRM.' },
+      { title: 'Re-Architecting Campaigns', desc: 'Segmentasi ketat Search, Performance Max dengan asset group terisolasi, dan remarketing dinamis.' },
+      { title: 'Systematic Bid & Budget Optimization', desc: 'Penerapan Smart Bidding dengan first-party data signals untuk memaksimalkan ROAS.' }
     ],
-    steps: [
-      { no: 1, title: 'Identifikasi Jenis Usaha & Kode KBLI', desc: 'Menentukan kode KBLI 5 digit yang paling presisi sesuai aktivitas riil Anda di Kabupaten Temanggung.' },
-      { no: 2, title: 'Penyusunan Data & Input Sistem OSS', desc: 'Validasi data pemohon di Disdukcapil/DJP, alamat kegiatan usaha, dan pengunggahan berkas persyaratan.' },
-      { no: 3, title: 'Penerbitan Dokumen Legalitas Resmi', desc: 'NIB, sertifikat standar, dan lampiran komitmen resmi diserahkan dalam format siap pakai dan ber-QR code.' }
+    process: [
+      { step: '01', title: 'Audit Akun & Setup Tracking', desc: 'Validasi histori iklan 90 hari terakhir dan perbaikan conversion tracking.', duration: 'Hari 1 - 3' },
+      { step: '02', title: 'Riset Keyword & Competitor', desc: 'Pemetaan intent komersial, kata kunci negatif, dan analisis penawaran pesaing.', duration: 'Hari 4 - 6' },
+      { step: '03', title: 'Struktur & Peluncuran Kampanye', desc: 'Pembuatan ad copy persuasif, aset ekstensi lengkap, dan penyesuaian target geolokasi.', duration: 'Hari 7 - 9' },
+      { step: '04', title: 'Scaling & Daily Optimization', desc: 'Penyesuaian bid tROAS bertahap, optimasi landing page, dan pelaporan berkala.', duration: 'Berkelanjutan' }
     ],
-    pricingTable: [
-      { service: 'NIB OSS Usaha Mikro', time: '1–2 Hari Kerja', note: 'Jasa pendampingan terjangkau, sistem OSS gratis pemerintah' },
-      { service: 'Pendirian PT Perorangan', time: '2–4 Hari Kerja', note: 'Termasuk SK Kemenkumham, NIB & NPWP Badan' },
-      { service: 'Sertifikasi Halal (SEHATI)', time: '14–30 Hari', note: 'Program kuota subsidi SEHATI BPJPH + jasa pendampingan berkas' },
-      { service: 'Izin Edar P-IRT Dinkes', time: '7–14 Hari Kerja', note: 'Pendampingan PKP, desain label standar BPOM, & SPP-IRT' }
+    metrics: [
+      { label: 'Rata-rata Penurunan CPA', value: '-38%', benchmark: 'Industri Indonesia' },
+      { label: 'Peningkatan Conversion Rate', value: '+45%', benchmark: 'Landing Page Optimized' },
+      { label: 'Quality Score Rata-rata', value: '8.6/10', benchmark: 'Google Search Ads' }
     ],
     faqs: [
-      { q: 'Apakah usaha rumahan di Temanggung wajib memiliki NIB?', a: 'Sangat dianjurkan. NIB diperlukan saat Anda ingin mengajukan pinjaman KUR perbankan, mendaftar sertifikat Halal, mengurus izin edar P-IRT Dinkes, maupun mengikuti program pelatihan UMKM Disperindagkop UKM Temanggung.' },
-      { q: 'Apa saja syarat mendirikan PT Perorangan?', a: 'Hanya membutuhkan 1 orang pendiri (WNI usia min. 21 tahun), KTP, NPWP pribadi aktif, nama PT yang belum digunakan, serta alamat usaha di Temanggung. Tidak memerlukan akta notaris, cukup pernyataan pendirian elektronik terdaftar Kemenkumham.' },
-      { q: 'Berapa lama proses pembuatan NIB?', a: 'Untuk tingkat risiko rendah, proses penyiapan dan penerbitan NIB dapat selesai dalam 1 hingga 2 hari kerja setelah dokumen lengkap.' }
+      { q: 'Berapa minimal anggaran iklan bulanan yang direkomendasikan?', a: 'Untuk hasil optimal pada Google Search dan PMax, kami menyarankan modal iklan minimal Rp 5.000.000 s/d Rp 15.000.000 per bulan agar algoritma Google memiliki data konversi yang cukup.' },
+      { q: 'Siapa pemilik akun Google Ads dan data kampanye?', a: 'Anda adalah pemilik 100% dari akun iklan, data tracking, dan seluruh aset kampanye. Kami hanya mengakses via Google Ads Manager (MCC).' },
+      { q: 'Apakah melayani kampanye lokal per kota / kabupaten?', a: 'Sangat bisa. Kami memiliki keahlian geo-targeting radius spesifik per kota, kabupaten (seperti wilayah Jabodetabek, Temanggung, Semarang, Jogja, Surabaya), hingga per kecamatan.' }
     ],
-    docsRequired: [
-      'KTP & NPWP Pemilik/Pengurus Aktif',
-      'Nomor WhatsApp aktif & alamat email usaha',
-      'Alamat lengkap tempat kegiatan usaha di Temanggung',
-      'Foto produk dan foto sarana/tempat produksi'
-    ],
-    relatedArticleSlugs: [
-      'panduan-izin-usaha-nib-oss-temanggung',
-      'syarat-bikin-pt-perorangan-di-temanggung',
-      'cara-mengurus-izin-edar-pirt-dinkes-temanggung',
-      'panduan-sertifikasi-halal-gratis-sehati-temanggung'
-    ]
-  },
-  {
-    id: 'iklan-online',
-    slug: 'iklan-online',
-    title: 'Jasa Iklan Online & Ads',
-    category: 'marketing',
-    badge: 'Trending & Leads',
-    desc: 'Kelola kampanye iklan Google Search, Meta Ads (IG & FB), dan TikTok Ads tertarget untuk memperbanyak chat WhatsApp dan penjualan bisnis lokal.',
-    icon: '⚡',
-    iconBg: '#e0f2fe',
-    iconColor: '#0284c7',
-    search: 'jasa iklan online ads google ads meta ads facebook instagram tiktok leads traffic penjualan temanggung',
-    tagline: 'Tingkatkan omset dengan iklan terukur langsung ke target pembeli di Temanggung & sekitarnya',
-    scopeTitle: 'Cakupan Layanan Iklan Digital',
-    scopeDesc: 'Kami membantu bisnis kuliner, bengkel, toko retail, jasa, hingga properti di Temanggung menjangkau calon konsumen siap beli melalui kanal digital terpopuler.',
-    scopes: [
-      { title: 'Meta Ads (Instagram & Facebook)', desc: 'Penargetan radius kecamatan Temanggung, Magelang, Wonosobo dengan visual menarik dan CTA langsung chat WhatsApp.' },
-      { title: 'Google Search Ads', desc: 'Menampilkan bisnis Anda di baris teratas Google ketika calon pelanggan mengetik kata kunci jasa atau produk Anda.' },
-      { title: 'TikTok Ads', desc: 'Format video vertikal kreatif untuk menjangkau audiens muda dengan biaya per tayang ekonomis.' },
-      { title: 'Copywriting & Setup Pixel', desc: 'Pembuatan teks penawaran memikat dan pelacakan konversi chat untuk optimalisasi budget.' }
-    ],
-    steps: [
-      { no: 1, title: 'Riset Audiens & Penawaran', desc: 'Menganalisis produk, margin keuntungan, dan target demografi di Temanggung atau nasional.' },
-      { no: 2, title: 'Penyusunan Konten & Kampanye', desc: 'Pembuatan materi iklan, copywriting penawaran, dan pengaturan target demografi geografis.' },
-      { no: 3, title: 'Monitoring & Optimasi Harian', desc: 'Pemantauan biaya per klik, evaluasi pesan masuk WhatsApp, dan scaling kampanye berkinerja terbaik.' }
-    ],
-    pricingTable: [
-      { service: 'Setup & Riset Iklan Awal', time: '1–2 Hari', note: 'Mulai Rp 350.000 (Konfigurasi akun, pixel, & materi penawaran)' },
-      { service: 'Manajemen Meta Ads Bulanan', time: '30 Hari', note: 'Mulai Rp 500.000/bulan + saldo iklan harian sesuai budget' },
-      { service: 'Google Search Ads Kampanye', time: 'Fleksibel', note: 'Penargetan kata kunci spesifik pencarian niat beli' }
-    ],
-    faqs: [
-      { q: 'Berapa minimal saldo anggaran iklan yang diperlukan?', a: 'Untuk Meta Ads, Anda bisa mulai dengan anggaran harian Rp 25.000 – Rp 50.000 per hari, sehingga sangat ramah bagi UMKM yang baru memulai pemasaran digital.' },
-      { q: 'Apakah hasil iklan langsung menghasilkan penjualan?', a: 'Iklan bertugas mendatangkan audiens tertarget ke WhatsApp Anda. Kecepatan respon dan keramahan tim admin Anda dalam menyapa calon pembeli sangat menentukan tingkat closing.' }
-    ],
-    docsRequired: [
-      'Foto produk/jasa beresolusi jelas',
-      'Nomor WhatsApp admin penjualan yang aktif dan responsif',
-      'Akses akun Facebook Page atau Instagram Bisnis (bisa dibantu pembuatannya)'
-    ],
-    relatedArticleSlugs: [
-      'strategi-iklan-meta-ads-umkm-temanggung',
-      'cara-bikin-website-bisnis-temanggung-masuk-google'
-    ]
-  },
-  {
-    id: 'analis-data',
-    slug: 'analis-data',
-    title: 'Jasa Analis Data Bisnis',
-    category: 'bisnis',
-    badge: 'Data & Intelligence',
-    desc: 'Visualisasi dashboard penjualan interaktif, audit margin laba HPP, dan analisis perputaran stok gudang untuk keputusan bisnis akurat.',
-    icon: '📊',
-    iconBg: '#e0f2fe',
-    iconColor: '#0284c7',
-    search: 'jasa analis data bisnis analitik dashboard looker studio power bi excel omset audit stok gudang profit hpp temanggung',
-    tagline: 'Ubah tumpukan nota dan data kasir menjadi dashboard visual pengambil keputusan profit',
-    scopes: [
-      { title: 'Dashboard Looker Studio / Power BI', desc: 'Visualisasi grafik tren penjualan harian, mingguan, dan bulanan yang bisa dipantau langsung dari smartphone.' },
-      { title: 'Analisis Pareto 80/20 & Margin HPP', desc: 'Menemukan menu atau produk terlaris yang memberikan 80% keuntungan riil bagi usaha Anda.' },
-      { title: 'Manajemen Perputaran Stok Gudang', desc: 'Identifikasi produk dead stock, slow-moving, dan rekomendasi kuantitas restok optimal.' }
-    ],
-    steps: [
-      { no: 1, title: 'Pengumpulan & Pembersihan Data', desc: 'Menggabungkan data dari sistem POS kasir, file Excel, atau nota transaksi manual.' },
-      { no: 2, title: 'Pemodelan Data & Rumus Metrik', desc: 'Menghitung rasio profitabilitas, nilai rata-rata transaksi (AOV), dan frekuensi repeat order.' },
-      { no: 3, title: 'Penyerahan Dashboard & Presentasi', desc: 'Akses dashboard real-time beserta ringkasan rekomendasi aksi bisnis konkret.' }
-    ],
-    pricingTable: [
-      { service: 'Audit Data Excel & Pembersihan', time: '1–2 Hari', note: 'Mulai Rp 250.000 (Strukturisasi sheet & formula otomatis)' },
-      { service: 'Dashboard Looker Studio Interaktif', time: '3–5 Hari', note: 'Mulai Rp 500.000 (Terhubung ke Google Sheets / POS)' },
-      { service: 'Analisis Mendalam HPP & Profit margin', time: '3–4 Hari', note: 'Laporan komprehensif efisiensi biaya dan penetapan harga' }
-    ],
-    faqs: [
-      { q: 'Apakah data bisnis saya dijamin kerahasiaannya?', a: 'Tentu. Kami menerapkan perjanjian kerahasiaan data (NDA) ketat. Seluruh data keuangan, pemasok, dan omset Anda 100% aman dan hanya digunakan untuk analisis internal usaha Anda.' }
-    ],
-    docsRequired: [
-      'Rekap transaksi kasir / file Excel penjualan terdahulu',
-      'Daftar harga modal (HPP) dan harga jual produk',
-      'Catatan biaya operasional dasar (sewa, gaji, utilitas)'
-    ],
-    relatedArticleSlugs: [
-      'panduan-analisis-data-bisnis-umkm-temanggung'
-    ]
-  },
-  {
-    id: 'konsultasi-bisnis',
-    slug: 'konsultasi-bisnis',
-    title: 'Konsultasi Bisnis & Legalitas',
-    category: 'bisnis',
-    badge: 'Scale-Up & Strategi',
-    desc: 'Pendampingan mendalam untuk diagnosis operasional, perhitungan HPP & margin laba, restrukturisasi bisnis, serta perizinan scale-up UMKM.',
-    icon: '💡',
-    iconBg: '#fef3c7',
-    iconColor: '#d97706',
-    search: 'jasa konsultasi bisnis konsultan usaha pendampingan umkm strategi manajemen audit operasional hpp margin laba temanggung',
-    tagline: 'Temukan bottleneck usaha Anda dan susun strategi ekspansi terukur di Temanggung',
-    scopes: [
-      { title: 'Diagnosis Operasional', desc: 'Membedah alur produksi, pelayanan pelanggan, dan efisiensi waktu kerja staf.' },
-      { title: 'Perhitungan HPP Presisi', desc: 'Menghitung biaya pokok riil termasuk penyusutan alat dan biaya tersembunyi.' },
-      { title: 'Kesiapan Legalitas & Kemitraan', desc: 'Persiapan pembentukan badan hukum PT/CV, perjanjian bagi hasil, dan MoU kerja sama.' }
-    ],
-    steps: [
-      { no: 1, title: 'Sesi Diskusi & Pemetaan Masalah', desc: 'Konsultasi tatap muka di Temanggung atau daring untuk mendalami tantangan utama bisnis.' },
-      { no: 2, title: 'Penyusunan Rencana Solusi (Action Plan)', desc: 'Menyusun langkah prioritas 30–90 hari ke depan dengan target capaian terukur.' },
-      { no: 3, title: 'Pendampingan Implementasi', desc: 'Evaluasi berkala terhadap eksekusi rencana dan penyesuaian strategi di lapangan.' }
-    ],
-    pricingTable: [
-      { service: 'Sesi Konsultasi Intensif 90 Menit', time: '1 Hari', note: 'Mulai Rp 250.000 / sesi tatap muka atau video call' },
-      { service: 'Paket Pendampingan Bulanan', time: '30 Hari', note: 'Mulai Rp 1.500.000 (Evaluasi mingguan & review KPI)' }
-    ],
-    faqs: [
-      { q: 'Di mana sesi konsultasi dilakukan?', a: 'Bisa dilakukan secara langsung di Temanggung (di kafe atau kantor Anda) atau daring via Google Meet / WhatsApp Call sesuai preferensi Anda.' }
-    ],
-    docsRequired: [
-      'Profil ringkas usaha dan produk utama',
-      'Catatan kendala atau target yang ingin dicapai'
-    ]
-  },
-  {
-    id: 'notaris-ppat',
-    slug: 'notaris-ppat',
-    title: 'Jasa Notaris & PPAT',
-    category: 'dokumen',
-    badge: 'Dokumen & Pertanahan',
-    desc: 'Pendampingan administrasi dan koordinasi dokumen untuk notaris, PPAT, pendirian PT/CV, serta transaksi properti & akta tanah.',
-    icon: '▣',
-    iconBg: '#f8fafc',
-    iconColor: '#1e293b',
-    search: 'jasa notaris ppat pendampingan administrasi koordinasi dokumen pendirian badan usaha transaksi properti legalitas waris akta hibah tanah',
-    tagline: 'Pastikan dokumen hukum dan transaksi pertanahan sah, aman, dan bebas sengketa',
-    scopes: [
-      { title: 'Akta Pendirian PT / CV / Yayasan', desc: 'Koordinasi perumusan anggaran dasar, pengecekan nama di Kemenkumham, hingga SK pengesahan.' },
-      { title: 'Akta Jual Beli (AJB) & Hibah PPAT', desc: 'Pengecekan keaslian sertifikat di BPN Temanggung, validasi pajak BPHTB & PPh Final.' },
-      { title: 'Peralihan Hak Waris & Pemisahan Sertifikat', desc: 'Pendampingan berkas surat keterangan waris, pembagian hak waris, dan pemecahan sertifikat tanah.' }
-    ],
-    steps: [
-      { no: 1, title: 'Verifikasi Berkas Awal', desc: 'Memeriksa kelengkapan KTP, KK, sertifikat asli, dan bukti pelunasan PBB terakhir.' },
-      { no: 2, title: 'Validasi & Pengecekan di BPN/Bapenda', desc: 'Memastikan sertifikat bebas sengketa, tidak dalam sita jaminan, dan koordinasi validasi BPHTB.' },
-      { no: 3, title: 'Penandatanganan Akta Resmi', desc: 'Penjadwalan penandatanganan akta di hadapan Notaris / PPAT yang berwenang di Temanggung.' }
-    ],
-    pricingTable: [
-      { service: 'Pendirian CV Lengkap', time: '3–5 Hari Kerja', note: 'Akta Notaris, SK Kemenkumham, NPWP, & NIB' },
-      { service: 'Pendirian PT Biasa', time: '4–7 Hari Kerja', note: 'Modal setor, SK Kemenkumham lengkap berizin usaha' },
-      { service: 'Pendampingan AJB Tanah', time: 'Sesuai Antrean BPN', note: 'Termasuk cek sertifikat, validasi pajak, & drafting akta' }
-    ],
-    faqs: [
-      { q: 'Mengapa pengecekan sertifikat di BPN wajib dilakukan sebelum AJB?', a: 'Untuk memastikan sertifikat tidak dalam status blokir, tidak menjadi agunan kredit yang belum lunas (roya), dan nama pemegang hak sesuai dengan data di buku tanah BPN Temanggung.' }
-    ],
-    docsRequired: [
-      'KTP & Kartu Keluarga para pihak',
-      'Sertifikat Asli Tanah (SHM / SHGB)',
-      'Bukti SPPT PBB tahun berjalan dan bukti lunas bayar',
-      'NPWP para pihak'
-    ],
-    relatedArticleSlugs: [
-      'tips-membeli-tanah-kebun-sertifikat-shm-temanggung'
-    ]
-  },
-  {
-    id: 'properti',
-    slug: 'properti',
-    title: 'Jasa Jual Beli Property',
-    category: 'properti',
-    badge: 'Jual Beli & Investasi',
-    desc: 'Bantu pemilik dan pencari properti menemukan, menilai kesiapan data sertifikat, dan mengawal komunikasi transaksi tanah/bangunan di Temanggung.',
-    icon: '⌂',
-    iconBg: '#f8fafc',
-    iconColor: '#1e293b',
-    search: 'jasa jual beli properti tanah rumah ruko gudang sawah cek sertifikat appraisal pendampingan negosiasi transaksi temanggung parakan',
-    tagline: 'Temukan aset properti potensial atau jual tanah/rumah Anda dengan pendampingan transparan',
-    scopes: [
-      { title: 'Pemasaran Properti Tanah & Rumah', desc: 'Dokumentasi foto/video lokasi, publikasi ke jaringan calon pembeli potensial di Temanggung dan luar daerah.' },
-      { title: 'Survei Lapangan & Pengecekan Batas', desc: 'Pengecekan akses jalan, kontur lahan, patok batas fisik, dan kesesuaian dengan gambar sertifikat.' },
-      { title: 'Pendampingan Negosiasi & Administrasi', desc: 'Menjembatani kesepakatan harga, uang muka (DP), dan jadwal notaris tanpa mark-up tidak wajar.' }
-    ],
-    steps: [
-      { no: 1, title: 'Pendaftaran Properti & Cek Legalitas', desc: 'Memastikan sertifikat sudah SHM/Letter C jelas dan status kepemilikan tidak sengketa.' },
-      { no: 2, title: 'Survei dan Penetapan Estimasi Nilai Pasar', desc: 'Menilai kesesuaian harga berdasarkan NJOP dan harga pasar riil di kecamatan terkait.' },
-      { no: 3, title: 'Pertemuan Pihak & Transaksi Notariil', desc: 'Mendampingi proses pembayaran bertahap atau pelunasan di hadapan PPAT berwenang.' }
-    ],
-    pricingTable: [
-      { service: 'Survei & Penilaian Awal Lahan', time: '1–2 Hari', note: 'Mulai Rp 200.000 (wilayah Temanggung)' },
-      { service: 'Pendampingan Transaksi Jual Beli', time: 'Hingga selesai', note: 'Komisi standar persentase transparan atau fee pendampingan tetap' }
-    ],
-    faqs: [
-      { q: 'Apakah bisa membantu mencari tanah kebun kopi atau tembakau?', a: 'Bisa. Kami memiliki jaringan relasi pemilik lahan di sentra perkebunan seperti Kledung, Bansari, Candiroto, dan Ngadirejo.' }
-    ],
-    docsRequired: [
-      'Fotokopi Sertifikat Tanah (SHM) atau bukti kepemilikan sah',
-      'KTP Pemilik',
-      'SPPT PBB tahun terakhir'
-    ],
-    relatedArticleSlugs: [
-      'tips-membeli-tanah-kebun-sertifikat-shm-temanggung',
-      'panduan-mengurus-pbg-dan-slf-temanggung'
-    ]
-  },
-  {
-    id: 'stnk-sim',
-    slug: 'stnk-sim',
-    title: 'Jasa STNK & SIM',
-    category: 'kendaraan',
-    badge: 'Administrasi Kendaraan',
-    desc: 'Bantuan persiapan berkas dan pendampingan administrasi pembayaran pajak tahunan, ganti plat 5 tahunan, balik nama, dan mutasi Samsat Temanggung.',
-    icon: '▤',
-    iconBg: '#f8fafc',
-    iconColor: '#1e293b',
-    search: 'jasa stnk sim samsat perpanjangan tahunan 5 tahunan balik nama mutasi bpkb cek fisik kendaraan motor mobil temanggung',
-    tagline: 'Urus pajak kendaraan dan balik nama tanpa antre seharian di Samsat Temanggung',
-    scopes: [
-      { title: 'Pajak Tahunan Motor & Mobil', desc: 'Layanan titip bayar pajak tahunan cepat tanpa perlu izin cuti kerja.' },
-      { title: 'Pajak 5 Tahunan & Ganti Plat Nomor', desc: 'Pendampingan cek fisik nomor rangka/mesin di Samsat Temanggung dan pencetakan plat baru.' },
-      { title: 'Balik Nama (BBNKB) & Mutasi Masuk/Keluar', desc: 'Proses pengalihan kepemilikan BPKB dan STNK dari dalam atau luar wilayah plat AA Temanggung.' }
-    ],
-    steps: [
-      { no: 1, title: 'Penyerahan & Pengecekan Berkas', desc: 'STNK asli, KTP asli/fotokopi pemilik, dan BPKB (untuk 5 tahunan/balik nama).' },
-      { no: 2, title: 'Proses Loket Samsat & Pembayaran Pajak', desc: 'Petugas kami mengurus antrean loket, penetapan SKPD, dan penyetoran pajak resmi.' },
-      { no: 3, title: 'Penyerahan STNK & Plat Resmi', desc: 'Dokumen STNK yang telah disahkan dan bukti pembayaran diserahkan kembali dengan aman.' }
-    ],
-    pricingTable: [
-      { service: 'Jasa Pajak Tahunan Motor', time: '1 Hari Kerja', note: 'Jasa admin Rp 50.000 – Rp 75.000 + Pokok Pajak Resmi SKPD' },
-      { service: 'Jasa Pajak Tahunan Mobil', time: '1 Hari Kerja', note: 'Jasa admin Rp 100.000 – Rp 150.000 + Pokok Pajak Resmi' },
-      { service: 'Ganti Plat 5 Tahunan', time: '1–2 Hari Kerja', note: 'Termasuk cek fisik kendaraan & cetak plat nomor' },
-      { service: 'Balik Nama & Mutasi Kendaraan', time: '2–4 Minggu', note: 'Cabut berkas dari daerah asal hingga terbit BPKB baru' }
-    ],
-    faqs: [
-      { q: 'Apakah kendaraan harus dibawa saat bayar pajak 5 tahunan?', a: 'Ya, kendaraan wajib dilakukan cek fisik gesek nomor rangka dan nomor mesin di Samsat Temanggung.' }
-    ],
-    docsRequired: [
-      'STNK Asli',
-      'KTP Asli sesuai nama di STNK (atau bukti kuitansi pembelian)',
-      'BPKB Asli (wajib untuk 5 tahunan & balik nama)'
-    ],
-    relatedArticleSlugs: [
-      'biaya-balik-nama-dan-pajak-stnk-samsat-temanggung'
-    ]
+    startingPrice: 'Mulai Rp 3.500.000 / bln',
+    durationEst: 'Setup 7 hari kerja + Manajemen bulanan'
   },
   {
     id: 'meta-ads',
-    slug: 'meta-ads',
-    title: 'Jasa Meta Ads Khusus',
-    category: 'marketing',
-    badge: 'Marketing & Leads',
-    desc: 'Manajemen kampanye Facebook & Instagram Ads spesifik untuk toko dan jasa lokal yang menginginkan chat WhatsApp melimpah.',
-    icon: '◉',
-    iconBg: '#f8fafc',
-    iconColor: '#1e293b',
-    search: 'jasa meta ads iklan facebook instagram ads lead generation whatsapp traffic penjualan bisnis lokal umkm temanggung',
-    tagline: 'Fokus iklan Meta khusus lead generation WhatsApp dan penjualan lokal',
-    scopes: [
-      { title: 'Audience Targeting Geografis Presisi', desc: 'Membidik pelanggan di Temanggung Kota, Parakan, Kranggan, hingga kota tetangga.' },
-      { title: 'Optimasi Pesan WhatsApp (Click to WA)', desc: 'Pengaturan kampanye langsung membuka chat customer service Anda dengan template pesan otomatis.' },
-      { title: 'A/B Testing Gambar & Video', desc: 'Mencari konten visual dengan Cost Per Lead (CPL) paling efisien.' }
+    slug: 'meta-ads-management',
+    title: 'Meta Ads (Facebook & Instagram)',
+    category: 'paid-ads',
+    categoryLabel: 'Paid Media',
+    badge: 'Scalable Demand Generation',
+    shortDesc: 'Ciptakan permintaan masif dan skala omzet melalui funnel iklan visual kreatif di Facebook Feed, Instagram Reels, dan Stories.',
+    fullDesc: 'Kami menerapkan metode testing kreatif sistematis (Creative Sandbox), arsitektur kampanye terkonsolidasi Advantage+, serta sinkronisasi server-side Meta Conversions API (CAPI) untuk mengatasi penurunan sinyal akibat privasi iOS.',
+    iconName: 'TrendingUp',
+    deliverables: [
+      { title: 'Infrastructure & Signal Audit', desc: 'Konfigurasi Meta Pixel + Conversions API (CAPI) dengan deduplikasi data 100% akurat.' },
+      { title: 'Creative Testing Sandbox', desc: 'Pengujian terisolasi untuk hook 3 detik awal, format sudut pandang (UGC, edukasi, direct offer).' },
+      { title: 'Consolidated Scaling Engine', desc: 'Skalasi bertahap pada aset dengan ROAS stabil tanpa merusak stabilitas pembelajaran machine learning.' },
+      { title: 'Retention & Remarketing Funnel', desc: 'Segmentasi penonton video 75%, cart abandoners, dan re-engagement pembeli lama.' }
     ],
-    steps: [
-      { no: 1, title: 'Audit Akun & Setup Meta Business', desc: 'Menghubungkan Fanpage, akun Instagram, dan WhatsApp Bisnis secara resmi.' },
-      { no: 2, title: 'Peluncuran Kampanye Iklan', desc: 'Menyiapkan 3–5 variasi visual dan penawaran promo menarik.' },
-      { no: 3, title: 'Laporan Performa Berkala', desc: 'Evaluasi mingguan jumlah chat masuk, rasio konversi, dan biaya per pesan.' }
+    process: [
+      { step: '01', title: 'Audit Domain & CAPI Setup', desc: 'Verifikasi domain bisnis, setup Aggregated Event Measurement dan server-side CAPI.', duration: 'Hari 1 - 2' },
+      { step: '02', title: 'Creative Direction & Angle Brief', desc: 'Penyusunan panduan visual, headline, dan angle copywriting yang memicu klik.', duration: 'Hari 3 - 5' },
+      { step: '03', title: 'Deploy Sandbox Testing', desc: 'Peluncuran batch variasi kreatif untuk menemukan winning angle dengan CPA terendah.', duration: 'Hari 6 - 8' },
+      { step: '04', title: 'Horizontal & Vertical Scaling', desc: 'Peningkatan budget pada winning adset sebesar 15-20% per 48 jam secara stabil.', duration: 'Berkelanjutan' }
     ],
-    pricingTable: [
-      { service: 'Setup Akun & Peluncuran Awal', time: '2 Hari', note: 'Mulai Rp 350.000 (sekali bayar)' },
-      { service: 'Retainer Manajemen Bulanan', time: '30 Hari', note: 'Mulai Rp 500.000 / bulan' }
+    metrics: [
+      { label: 'Rata-rata ROAS Dihasilkan', value: '4.6x', benchmark: 'E-commerce & Retail' },
+      { label: 'Hook Rate (3s View)', value: '38.4%', benchmark: 'Video Ads Reels/Feed' },
+      { label: 'Event Match Quality Meta CAPI', value: '8.8/10', benchmark: 'Server-Side Validated' }
     ],
     faqs: [
-      { q: 'Apakah butuh kartu kredit untuk bayar saldo iklan?', a: 'Tidak wajib. Meta saat ini mendukung pembayaran lokal via Transfer Bank Virtual Account, GoPay, dan DANA.' }
+      { q: 'Bagaimana mengatasi tracking pixel yang tidak akurat setelah update iOS?', a: 'Kami mengimplementasikan Meta Conversions API (CAPI) berbasis server gateway sehingga konversi web dan WhatsApp tetap terbaca 90%+ akurat tanpa terblokir ad-blocker atau browser cookie policy.' },
+      { q: 'Apakah FUTech juga memproduksi konten foto dan videonya?', a: 'Ya, paket kami mencakup pengarahan konsep kreatif (creative briefing), copywriting persuasif, dan editing template/video UGC iklan.' }
     ],
-    docsRequired: [
-      'Akun Facebook & Instagram aktif',
-      'Nomor WhatsApp Bisnis',
-      'Foto atau video produk yang ingin diiklankan'
-    ],
-    relatedArticleSlugs: [
-      'strategi-iklan-meta-ads-umkm-temanggung'
-    ]
+    startingPrice: 'Mulai Rp 3.500.000 / bln',
+    durationEst: 'Setup 5 hari kerja + Manajemen bulanan'
   },
   {
-    id: 'website',
-    slug: 'website',
-    title: 'Pembuatan Website & SEO',
-    category: 'digital',
-    badge: 'Website & SEO',
-    desc: 'Website company profile, landing page promosi, katalog produk, dan optimasi SEO agar bisnis Anda muncul di halaman 1 Google Temanggung.',
-    icon: '⌘',
-    iconBg: '#f8fafc',
-    iconColor: '#1e293b',
-    search: 'pembuatan website seo company profile landing page katalog toko online domain hosting ranking google temanggung',
-    tagline: 'Bangun kredibilitas bisnis modern dengan website berkecepatan tinggi & ramah mesin pencari',
-    scopes: [
-      { title: 'Landing Page Responsif Cepat', desc: 'Tampilan rapi di HP dan komputer dengan tombol pesan langsung WhatsApp.' },
-      { title: 'SEO Lokal Temanggung & Google Profil Bisnis', desc: 'Optimasi kata kunci lokal agar mudah ditemukan saat orang mencari jasa Anda di Google.' },
-      { title: 'Domain .COM / .ID & Hosting Cloud', desc: 'Pemberian nama domain profesional dan hosting handal dengan sertifikat keamanan SSL gratis.' }
+    id: 'tiktok-ads',
+    slug: 'tiktok-ads-management',
+    title: 'TikTok Ads Management',
+    category: 'paid-ads',
+    categoryLabel: 'Paid Media',
+    badge: 'Viral Hook & Velocity',
+    shortDesc: 'Manfaatkan laju konsumsi konten video vertikal tercepat di Indonesia dengan Spark Ads, TikTok Shop Shopping Ads, dan UGC berdaya konversi tinggi.',
+    fullDesc: 'TikTok bukan hanya media hiburan, melainkan pendorong keputusan belanja impulsif nomor satu bagi konsumen modern Indonesia. Kami memadukan riset tren sound lokal, hook visual 2 detik awal, dan strategi penawaran GMV/ROAS.',
+    iconName: 'Video',
+    deliverables: [
+      { title: 'TikTok Events API Server Sync', desc: 'Koneksi server-side event tracking untuk melacak event AddToCart, InitiateCheckout, dan Purchase.' },
+      { title: 'Native Spark Ads Amplification', desc: 'Amplifikasi postingan organik kreator/influencer lokal dengan authorization code resmi.' },
+      { title: 'Weekly Creative Sprint', desc: 'Pembaruan 3-5 variasi kreatif baru setiap minggu untuk mencegah kelelahan iklan (creative fatigue).' },
+      { title: 'TikTok Shop ROAS Optimization', desc: 'Optimasi kampanye LIVE shopping dan Product Shopping Ads di aplikasi TikTok.' }
     ],
-    steps: [
-      { no: 1, title: 'Pengumpulan Materi & Riset Struktur', desc: 'Menyusun logo, profil usaha, foto layanan, dan kontak admin.' },
-      { no: 2, title: 'Pengerjaan Desain & Integrasi', desc: 'Pengembangan website, penataan copywriting, dan optimasi mobile.' },
-      { no: 3, title: 'Peluncuran & Daftarkan ke Google Search Console', desc: 'Website online resmi dan didaftarkan ke mesin pencari Google agar cepat terindeks.' }
+    process: [
+      { step: '01', title: 'Analisis Tren & Pesaing', desc: 'Bedah winning creatives di TikTok Creative Center dan analisa angle kompetitor.', duration: 'Hari 1 - 3' },
+      { step: '02', title: 'Produksi Script & Hook', desc: 'Pembuatan naskah video gaya native TikTok yang tidak terasa seperti iklan kaku.', duration: 'Hari 4 - 6' },
+      { step: '03', title: 'Uji Coba & Launching', desc: 'Pengetesan penargetan broad vs interest kelompok minat lokal.', duration: 'Hari 7 - 9' },
+      { step: '04', title: 'Skalasi Budget GMV', desc: 'Fokuskan alokasi anggaran pada format dengan Cost Per Checkout terendah.', duration: 'Berkelanjutan' }
     ],
-    pricingTable: [
-      { service: 'Landing Page Promosi Cepat', time: '2–3 Hari', note: 'Mulai Rp 750.000 (1 Halaman, Domain & Hosting 1 Thn)' },
-      { service: 'Website Company Profile Lengkap', time: '4–7 Hari', note: 'Mulai Rp 1.500.000 (Multi-halaman, Galeri, Form Kontak)' },
-      { service: 'Optimasi SEO Lokal & Google Maps', time: '1–2 Minggu', note: 'Verifikasi Google Bisnisku & audit struktur kata kunci' }
+    metrics: [
+      { label: 'First 2s Hook Rate', value: '42.1%', benchmark: 'Top 10% TikTok Ads' },
+      { label: 'Rata-rata CPC TikTok', value: 'Rp 650', benchmark: 'Traffic Indonesia' },
+      { label: 'Hold Rate (ThruPlay)', value: '29.3%', benchmark: 'Format Video Vertikal' }
     ],
     faqs: [
-      { q: 'Apakah saya bisa mengubah konten di kemudian hari?', a: 'Bisa. Kami menyediakan panduan mudah atau Anda dapat meminta bantuan pembaruan informasi berkala kepada tim kami.' }
+      { q: 'Apakah TikTok hanya cocok untuk produk remaja / Gen Z?', a: 'Mitos. Data pengguna aktif TikTok di Indonesia saat ini didominasi usia 22-45 tahun dengan daya beli tinggi untuk produk rumah tangga, fashion, klinik, properti, hingga kuliner.' },
+      { q: 'Berapa lama sebuah materi video iklan TikTok bisa bertahan?', a: 'Umur efektif video di TikTok adalah 10-18 hari sebelum frekuensi saturasi tercapai. Itulah sebabnya sprint kreatif mingguan sangat vital.' }
     ],
-    docsRequired: [
-      'Logo atau nama usaha',
-      'Daftar layanan atau katalog produk',
-      'Nomor kontak dan alamat yang ingin dicantumkan'
-    ],
-    relatedArticleSlugs: [
-      'cara-bikin-website-bisnis-temanggung-masuk-google'
-    ]
+    startingPrice: 'Mulai Rp 3.000.000 / bln',
+    durationEst: 'Setup 5 hari kerja'
   },
   {
-    id: 'desain-branding',
-    slug: 'desain-branding',
-    title: 'Desain Grafis & Branding',
-    category: 'marketing',
-    badge: 'Desain Grafis & Identitas',
-    desc: 'Pembuatan identitas visual merek, logo usaha, kemasan produk pangan UMKM, dan materi promosi siap cetak bernilai jual tinggi.',
-    icon: '✦',
-    iconBg: '#f8fafc',
-    iconColor: '#1e293b',
-    search: 'desain grafis branding logo kemasan feed instagram banner kartu nama identitas visual kemasan produk umkm temanggung',
-    tagline: 'Ciptakan kesan profesional dan tingkatkan daya pikat produk Anda di mata konsumen',
-    scopes: [
-      { title: 'Desain Logo & Brand Guidelines', desc: 'Logo unik dalam format vektor resolusi tinggi dengan panduan warna dan font resmi.' },
-      { title: 'Label Kemasan Pangan P-IRT & BPOM', desc: 'Desain stiker dan pouch kemasan sesuai regulasi label wajib pemerintah.' },
-      { title: 'Spanduk, Brosur & Banner Toko', desc: 'Materi cetak promosi luar ruangan siap cetak tanpa pecah.' }
+    id: 'seo-topical',
+    slug: 'search-engine-optimization',
+    title: 'SEO & Topical Authority',
+    category: 'organic-seo',
+    categoryLabel: 'Organic Search',
+    badge: 'Long-Term Inbound Asset',
+    shortDesc: 'Bangun dominasi halaman 1 Google secara permanen tanpa risiko penalti dengan arsitektur Topical Authority, Content Hub, dan Technical SEO.',
+    fullDesc: 'Lupakan trik backlink spam PBN yang rentan musnah saat algoritma Google update. Kami mengimplementasikan kerangka kerja Semantic Search & Topical Authority: memetakan entitas bisnis Anda, membangun siloing konten menyeluruh, dan mengoptimasi Core Web Vitals.',
+    iconName: 'Globe',
+    deliverables: [
+      { title: 'Topical Map & Keyword Cluster', desc: 'Peta semantik menyeluruh mencakup 100+ intent pencarian calon pembeli lokal dan nasional.' },
+      { title: 'Content Silo & Internal Linking', desc: 'Arsitektur website hierarkis untuk transfer PageRank internal yang efisien ke halaman layanan komersial.' },
+      { title: 'On-Page Entity Optimization', desc: 'Penyesuaian semantic tag, Schema.org JSON-LD terstruktur, dan penulisan standar E-E-A-T.' },
+      { title: 'Authority Building & Digital PR', desc: 'Penempatan ulasan dan brand mention di media berita lokal dan portal terpercaya Indonesia.' }
     ],
-    steps: [
-      { no: 1, title: 'Brief Konsep & Karakter Merek', desc: 'Memahami visi usaha, warna favorit, dan target konsumen produk Anda.' },
-      { no: 2, title: 'Eksplorasi Sketsa & Alternatif Desain', desc: 'Mengajukan alternatif konsep logo/kemasan untuk dipilih dan direvisi.' },
-      { no: 3, title: 'Penyerahan Master File Siap Cetak', desc: 'Format file lengkap (.AI, .PDF, .PNG transparan, dan font yang digunakan).' }
+    process: [
+      { step: '01', title: 'Full Technical & Content Audit', desc: 'Crawl 100% halaman website, eliminasi duplicate content, dan perbaikan error index.', duration: 'Minggu 1' },
+      { step: '02', title: 'Penyusunan Topical Map', desc: 'Pengelompokan klaster topik utama (Pillar) dan topik turunan (Cluster Articles).', duration: 'Minggu 2' },
+      { step: '03', title: 'Eksekusi On-Page & Schema', desc: 'Implementasi JSON-LD Organization, LocalBusiness, Service, dan FAQ schema.', duration: 'Minggu 3' },
+      { step: '04', title: 'Siklus Publikasi & Authority Boost', desc: 'Penerbitan artikel edukasi mendalam berkala dan optimasi ranking di Google Search Console.', duration: 'Bulan 2 - 6' }
     ],
-    pricingTable: [
-      { service: 'Desain Logo Profesional', time: '2–4 Hari', note: 'Mulai Rp 250.000 – Rp 600.000 (3 Alternatif konsep)' },
-      { service: 'Desain Label / Kemasan Produk', time: '2–3 Hari', note: 'Mulai Rp 200.000 – Rp 450.000 (Sesuai regulasi P-IRT)' },
-      { service: 'Paket Identitas Bisnis Lengkap', time: '5–7 Hari', note: 'Logo, kartu nama, nota, stempel, & template sosial media' }
+    metrics: [
+      { label: 'Kenaikan Trafik Organik', value: '+340%', benchmark: 'Periode 6 Bulan' },
+      { label: 'Keywords Halaman 1', value: '85+', benchmark: 'Commercial Intent' },
+      { label: 'Domain Authority Score', value: '42+', benchmark: 'White-Hat SEO' }
     ],
     faqs: [
-      { q: 'Apakah file desain bisa diedit lagi nanti?', a: 'Ya, kami selalu menyertakan file master format vektor sehingga mudah diubah ukuran atau dicetak ulang kapan saja.' }
+      { q: 'Berapa lama SEO mulai menunjukkan hasil nyata?', a: 'Untuk website baru, hasil mulai terlihat di bulan ke-2 hingga ke-4. Untuk website yang sudah memiliki histori domain, optimasi on-page dan topical clustering dapat mendongkrak ranking dalam 3-6 minggu.' },
+      { q: 'Apakah ranking di Google dijamin ranking #1?', a: 'Tidak ada agensi etis yang bisa membeli ranking dari Google, tetapi metodologi Semantic SEO kami terbukti konsisten mendudukkan puluhan kata kunci komersial di 3 posisi teratas.' }
     ],
-    docsRequired: [
-      'Nama merek dan tagline',
-      'Ukuran kemasan (jika desain stiker/kemasan)',
-      'Contoh referensi gaya visual yang disukai'
-    ]
+    startingPrice: 'Mulai Rp 4.500.000 / bln',
+    durationEst: 'Retainer 3 - 6 bulan'
   },
   {
-    id: 'foto-video',
-    slug: 'foto-video',
-    title: 'Foto, Video & Konten',
-    category: 'marketing',
-    badge: 'Multimedia & Konten',
-    desc: 'Produksi video promosi vertikal TikTok/Reels dan fotografi produk komersial untuk menaikkan nilai jual barang dan kuliner Anda.',
-    icon: '▲',
-    iconBg: '#f8fafc',
-    iconColor: '#1e293b',
-    search: 'foto video konten produk reels tiktok shooting company profile liputan dokumentasi acara kuliner temanggung',
-    tagline: 'Tampilkan produk Anda dengan visual memikat yang membangkitkan selera dan minat beli',
-    scopes: [
-      { title: 'Foto Produk Katalog & Marketplace', desc: 'Foto studio berlatar bersih dengan tata cahaya profesional untuk Shopee, Tokopedia, dan website.' },
-      { title: 'Short Video Reels & TikTok Ads', desc: 'Pengambilan gambar video pendek dinamis beserta editing musik tren dan voiceover.' },
-      { title: 'Dokumentasi Tempat Usaha / Kafe', desc: 'Menonjolkan suasana kafe, restoran, penginapan, atau pabrik olahan Anda di Temanggung.' }
+    id: 'technical-seo',
+    slug: 'technical-seo-website-audits',
+    title: 'Audit Teknis Website & SEO',
+    category: 'organic-seo',
+    categoryLabel: 'Technical & Speed',
+    badge: 'Zero-Friction Crawling',
+    shortDesc: 'Diagnosa mendalam kode, Core Web Vitals, indeksasi, JavaScript rendering, dan struktur data untuk melipatgandakan kecepatan dan performa bot Google.',
+    fullDesc: 'Website yang lambat atau memiliki kesalahan rendering JavaScript kehilangan 40% calon pelanggan sebelum halaman selesai dimuat. Kami memberikan solusi kode konkret bagi tim developer Anda.',
+    iconName: 'Terminal',
+    deliverables: [
+      { title: 'Full Site Crawl Simulation', desc: 'Audit bot Googlebot mobile & desktop mengungkap crawl depth, orphan pages, dan status code 4xx/5xx.' },
+      { title: 'Core Web Vitals Optimization', desc: 'Peningkatan skor LCP (Largest Contentful Paint), INP (Interaction to Next Paint), dan CLS ke zona hijau.' },
+      { title: 'Robots.txt & Sitemap Re-engineering', desc: 'Efisiensi crawl budget bot pencari agar halaman penting terindeks dalam hitungan jam.' },
+      { title: 'Mobile Responsiveness & Viewport Fixes', desc: 'Penghapusan elemen layout shift dan script pemblokir rendering (render-blocking assets).' }
     ],
-    steps: [
-      { no: 1, title: 'Penyusunan Moodboard & Jadwal Sesi', desc: 'Menentukan daftar produk, sudut pengambilan gambar, dan lokasi pemotretan.' },
-      { no: 2, title: 'Sesi Pemotretan & Shooting', desc: 'Eksekusi pengambilan foto/video dengan peralatan kamera dan pencahayaan profesional.' },
-      { no: 3, title: 'Color Grading & Finishing', desc: 'Penyuntingan warna, pemotongan video, dan penyerahan file Google Drive resolusi asli.' }
+    process: [
+      { step: '01', title: 'Bot Crawl & Log Analysis', desc: 'Simulasi bot Googlebot dengan Screaming Frog & Chrome DevTools.', duration: 'Hari 1 - 2' },
+      { step: '02', title: 'Laporan Masalah Prioritas', desc: 'Pemetaan isu teknis dari tingkat kritis (Blocking) hingga minor.', duration: 'Hari 3 - 4' },
+      { step: '03', title: 'Implementasi Kode / Panduan Dev', desc: 'Optimasi script, kompresi aset gambar WebP, dan caching policy.', duration: 'Hari 5 - 7' },
+      { step: '04', title: 'Validasi Google Search Console', desc: 'Pengajuan validasi perbaikan error pada Google Search Console.', duration: 'Hari 8 - 10' }
     ],
-    pricingTable: [
-      { service: 'Paket Foto Produk (10–15 Item)', time: '1–2 Hari', note: 'Mulai Rp 350.000 (Termasuk editing & retouching)' },
-      { service: 'Paket Video Reels Promosi (3 Video)', time: '2–3 Hari', note: 'Mulai Rp 500.000 (Format 9:16 vertikal siap tayang)' }
+    metrics: [
+      { label: 'Mobile PageSpeed Score', value: '96/100', benchmark: 'Google Lighthouse' },
+      { label: 'Penurunan Waktu Muat (LCP)', value: '1.2 detik', benchmark: 'Dari semula 4.8s' },
+      { label: 'Indexation Efficiency', value: '99.4%', benchmark: 'Crawl Budget Max' }
     ],
     faqs: [
-      { q: 'Apakah fotografer bisa datang ke lokasi saya di Temanggung?', a: 'Bisa. Kami melayani sesi foto on-location di seluruh kecamatan Kabupaten Temanggung.' }
+      { q: 'Apakah tim FUTech langsung memperbaiki kodenya?', a: 'Ya, tim kami dapat langsung melakukan perubahan kode pada CMS (WordPress, Shopify) maupun framework modern (React, Next.js, HTML/Node), atau menyediakan panduan teknis siap pakai untuk tim in-house Anda.' }
     ],
-    docsRequired: [
-      'Sampel fisik produk dalam kondisi terbaik',
-      'Informasi keunggulan produk yang ingin ditonjolkan'
-    ]
+    startingPrice: 'Mulai Rp 2.500.000 / audit',
+    durationEst: 'Selesai dalam 5 hari kerja'
   },
   {
-    id: 'akuntansi-pajak',
-    slug: 'akuntansi-pajak',
-    title: 'Akuntansi, Pajak & Laporan',
-    category: 'bisnis',
-    badge: 'Keuangan & Pajak',
-    desc: 'Penyusunan pembukuan rutin, penyusunan laporan keuangan bulanan, serta asistensi pelaporan pajak tahunan tertib aturan di Temanggung.',
-    icon: '▧',
-    iconBg: '#f8fafc',
-    iconColor: '#1e293b',
-    search: 'akuntansi pajak administrasi pembukuan laporan keuangan spt tahunan npwp faktur perpajakan rekonsiliasi kas umkm bisnis temanggung',
-    tagline: 'Rapikan catatan keuangan dan penuhi kewajiban pajak Anda tanpa was-was sanksi denda',
-    scopes: [
-      { title: 'Pembukuan Bulanan & Laba Rugi', desc: 'Pencatatan arus kas masuk/keluar, rekonsiliasi rekening koran, dan neraca keuangan.' },
-      { title: 'Pelaporan SPT Tahunan Orang Pribadi & Badan', desc: 'Penghitungan PPh Final 0,5% PP 55/2022 dan pelaporan online di DJP Online / Coretax.' },
-      { title: 'Aktivasi EFIN & Pengurusan NPWP Badan', desc: 'Pendampingan pendaftaran NPWP di KPP Pratama Temanggung dan administrasi perpajakan.' }
+    id: 'landing-page-cro',
+    slug: 'landing-page-design-cro',
+    title: 'Desain Landing Page & CRO',
+    category: 'conversion-cro',
+    categoryLabel: 'Conversion Rate',
+    badge: 'Conversion Engine',
+    shortDesc: 'Ubah klik berbayar menjadi pembeli loyal dengan landing page berkecepatan tinggi, tata letak berbasis psikologi persuasi, dan tombol WhatsApp instan.',
+    fullDesc: 'Trafik mahal sia-sia jika dialirkan ke halaman yang membingungkan. Kami mendesain landing page dengan standar industri tertinggi: zero-pill distraction, hierarki visual tegas, social proof di atas lipatan layar (above the fold), serta formulir order instan via WhatsApp CRM.',
+    iconName: 'Layout',
+    deliverables: [
+      { title: 'Persuasive Copywriting & Storyline', desc: 'Struktur naskah PAS (Problem - Agitate - Solution) dengan penegasan penawaran irresistable.' },
+      { title: 'High-Converting UI/UX Design', desc: 'Desain clean, modern, mobile-first yang dioptimasi untuk jempol pengguna smartphone Indonesia.' },
+      { title: 'Sub-second Loading Speed', desc: 'Optimasi aset, lazy load gambar, dan code splitting sehingga halaman terbuka di bawah 1.5 detik.' },
+      { title: 'Direct WhatsApp & Payment Integration', desc: 'Tombol CTA dinamis dengan autofill template pesan WhatsApp sesuai nama produk.' }
     ],
-    steps: [
-      { no: 1, title: 'Pengumpulan Dokumen Transaksi', desc: 'Mengumpulkan nota penjualan, bukti transfer pengeluaran, dan mutasi rekening bank.' },
-      { no: 2, title: 'Klasifikasi Akun & Jurnal', desc: 'Penyusunan laporan laba rugi bulanan dan rekonsiliasi persediaan.' },
-      { no: 3, title: 'Perhitungan Pajak & Pelaporan Resmi', desc: 'Pembuatan kode billing pajak dan pelaporan SPT hingga terbit Bukti Penerimaan Elektronik (BPE).' }
+    process: [
+      { step: '01', title: 'Riset Pembeli & Hambatan Mental', desc: 'Identifikasi 3 ketakutan utama pelanggan saat hendak membeli.', duration: 'Hari 1 - 2' },
+      { step: '02', title: 'Penyusunan Wireframe & Copy', desc: 'Penyusunan naskah penjualan dan tata letak struktur penawaran.', duration: 'Hari 3 - 4' },
+      { step: '03', title: 'Coding & Desain Visual', desc: 'Pengembangan halaman interaktif responsif mobile dan tablet.', duration: 'Hari 5 - 7' },
+      { step: '04', title: 'Tracking Setup & A/B Test Launch', desc: 'Pemasangan heatmap Clarity/Hotjar dan uji coba headline berbeda.', duration: 'Hari 8 - 10' }
     ],
-    pricingTable: [
-      { service: 'Pelaporan SPT Tahunan UMKM (PPh Final)', time: '1–2 Hari', note: 'Mulai Rp 200.000 – Rp 400.000' },
-      { service: 'Pelaporan SPT Tahunan Badan PT/CV', time: '3–5 Hari', note: 'Mulai Rp 500.000 – Rp 1.500.000 (termasuk lampiran keuangan)' },
-      { service: 'Retainer Pembukuan Bulanan', time: 'Rutin Bulanan', note: 'Mulai Rp 400.000/bulan sesuai volume transaksi' }
+    metrics: [
+      { label: 'Peningkatan Conversion Rate', value: '2.8x - 4.1x', benchmark: 'Rata-rata Klien' },
+      { label: 'Mobile Bounce Rate', value: '< 24%', benchmark: 'Traffic Iklan Paid' },
+      { label: 'Waktu Load Pertama', value: '0.9 detik', benchmark: 'Koneksi 4G Indonesia' }
     ],
     faqs: [
-      { q: 'Apakah UMKM dengan omset di bawah Rp 500 juta per tahun bebas pajak?', a: 'Ya, untuk Wajib Pajak Orang Pribadi UMKM, omset bruto hingga Rp 500 juta dalam 1 tahun pajak tidak dikenakan PPh Final 0,5%, namun tetap wajib lapor SPT Tahunan.' }
+      { q: 'Apakah landing page ini bisa dihubungkan ke domain saya sendiri?', a: 'Tentu saja. Kami dapat menghubungkan landing page ke domain Anda (misal: promo.namabisnis.com) atau diintegrasikan langsung ke platform yang Anda gunakan.' }
     ],
-    docsRequired: [
-      'NPWP dan EFIN aktif',
-      'Rekap omset bruto bulanan',
-      'Mutasi rekening koran'
-    ],
-    relatedArticleSlugs: [
-      'cara-mengurus-npwp-badan-dan-lapor-spt-pajak-temanggung'
-    ]
+    startingPrice: 'Mulai Rp 2.500.000 / halaman',
+    durationEst: '5 - 7 hari kerja'
   },
   {
-    id: 'hr-rekrutmen',
-    slug: 'hr-rekrutmen',
-    title: 'Recruitment & HR',
-    category: 'bisnis',
-    badge: 'SDM & Ketenagakerjaan',
-    desc: 'Bantuan publikasi info loker di Temanggung, penyaringan CV kandidat, interview awal, dan penyiapan kontrak kerja karyawan.',
-    icon: '👥',
-    iconBg: '#f8fafc',
-    iconColor: '#1e293b',
-    search: 'hr rekrutmen recruitment loker lowongan kerja seleksi kandidat interview sdm tenaga kerja staf karyawan temanggung',
-    tagline: 'Temukan staf dan karyawan terpercaya untuk mempercepat pertumbuhan operasional bisnis Anda',
-    scopes: [
-      { title: 'Penyusunan Job Description & Iklan Loker', desc: 'Menulis kualifikasi jelas dan mempublikasikan di jaringan pencari kerja Temanggung.' },
-      { title: 'Screening CV & Wawancara Awal', desc: 'Menyeleksi puluhan lamaran yang masuk dan memilih kandidat terbaik sesuai karakter kerja.' },
-      { title: 'Draft Surat Perjanjian Kerja (PKWT/PKWTT)', desc: 'Menyiapkan kontrak kerja standar ketenagakerjaan yang melindungi hak kedua pihak.' }
+    id: 'lead-generation',
+    slug: 'lead-generation-services',
+    title: 'Lead Generation B2B & High-Ticket',
+    category: 'conversion-cro',
+    categoryLabel: 'Inbound Leads',
+    badge: 'Qualified Pipeline',
+    shortDesc: 'Sistem akuisisi prospek berdaya beli tinggi untuk bisnis B2B, properti, legalitas, konsultan, dan layanan bernilai jutaan rupiah.',
+    fullDesc: 'Prospek B2B membutuhkan pendekatan berbeda dibanding e-commerce retail. Kami merancang funnel edukasi, kuis kualifikasi otomatis (lead qualification form), dan notifikasi seketika ke tim sales via WhatsApp Business API.',
+    iconName: 'UserCheck',
+    deliverables: [
+      { title: 'Multi-Step Qualification Form', desc: 'Formulir pintar yang memfilter lead spam dan memprioritaskan calon klien dengan budget valid.' },
+      { title: 'Lead Magnet & Case Study Gated Asset', desc: 'Penyusunan panduan / proposal pengantar yang meningkatkan reputasi profesional Anda.' },
+      { title: 'Instant WhatsApp Routing to Sales', desc: 'Begitu lead mengisi data, pesan notifikasi instan langsung masuk ke nomor tim sales terkait.' },
+      { title: 'Cost Per Qualified Lead (CPQL) Tracking', desc: 'Optimasi kampanye berfokus pada prospek yang benar-benar siap closing, bukan sekadar klik murah.' }
     ],
-    steps: [
-      { no: 1, title: 'Konsultasi Profil Posisi', desc: 'Menetapkan tanggung jawab pekerjaan, gaji yang ditawarkan, dan kualifikasi minimum.' },
-      { no: 2, title: 'Pencarian & Seleksi Kandidat', desc: 'Penyaringan berkas lamaran dan wawancara tahap pertama oleh tim kami.' },
-      { no: 3, title: 'Wawancara Akhir Bersama Anda', desc: 'Menyerahkan shortlist 3–5 kandidat terbaik untuk diputuskan langsung oleh Anda.' }
+    process: [
+      { step: '01', title: 'Pemetaan Ideal Customer Profile (ICP)', desc: 'Penetapan profil jabatan pengambil keputusan (Owner, Direktur, Manajer).', duration: 'Hari 1 - 3' },
+      { step: '02', title: 'Pembangunan Funnel & Lead Magnet', desc: 'Pembuatan landing page kualifikasi dan aset penarik minat profesional.', duration: 'Hari 4 - 7' },
+      { step: '03', title: 'Aktivasi Iklan Google Search & LinkedIn', desc: 'Menargetkan kata kunci solusi spesifik dengan filter wilayah ketat.', duration: 'Hari 8 - 10' },
+      { step: '04', title: 'Review Pipeline & Sales Feedback Loop', desc: 'Sinkronisasi mingguan kualitas lead dengan tim sales Anda.', duration: 'Berkelanjutan' }
     ],
-    pricingTable: [
-      { service: 'Paket Rekrutmen Staf Toko / Admin', time: '5–10 Hari', note: 'Mulai Rp 350.000 / posisi' },
-      { service: 'Paket Rekrutmen Supervisor / Tenaga Ahli', time: '1–2 Minggu', note: 'Fee berdasarkan kesepakatan' }
+    metrics: [
+      { label: 'Lead Qualification Rate', value: '74%', benchmark: 'Prospek B2B Valid' },
+      { label: 'Penurunan Cost Per Lead', value: '-52%', benchmark: 'Google Search Ads' },
+      { label: 'Sales Closing Speed', value: '2x Lebih Cepat', benchmark: 'Warm Inbound Funnel' }
     ],
     faqs: [
-      { q: 'Apakah ada garansi jika kandidat tidak cocok?', a: 'Ya, kami menyediakan garansi penggantian kandidat 1 kali dalam 30 hari pertama masa kerja jika terjadi ketidaksesuaian mendasar.' }
+      { q: 'Apakah cocok untuk jasa lokal seperti notaris, perizinan usaha, atau kontraktor?', a: 'Sangat cocok. Model lead generation terarah inilah yang paling efektif mendatangkan klien bernilai puluhan juta untuk jasa lokal berkelas.' }
     ],
-    docsRequired: [
-      'Detail posisi lowongan dan tugas harian',
-      'Rentang gaji dan fasilitas yang disediakan'
-    ],
-    relatedArticleSlugs: [
-      'agen-tenaga-kerja-temanggung'
-    ]
+    startingPrice: 'Mulai Rp 4.000.000 / bln',
+    durationEst: 'Setup 7 hari kerja'
   },
   {
-    id: 'agen-tenaga-kerja-temanggung',
-    slug: 'agen-tenaga-kerja-temanggung',
-    title: 'Agen Tenaga Kerja Temanggung',
-    category: 'bisnis',
-    badge: 'Penyedia SDM & Pekerja',
-    desc: 'Penyedia tenaga kerja terpercaya untuk operator pabrik, driver, telesales, admin, helper, cleaning service, hingga asisten rumah tangga (ART) di Temanggung.',
-    icon: '🏢',
-    iconBg: '#f0fdf4',
-    iconColor: '#15803d',
-    search: 'agen tenaga kerja temanggung penyedia tenaga kerja operator driver telesales helper gudang cleaning service art pembantu sdm',
-    tagline: 'Solusi cepat pemenuhan tenaga kerja andal untuk pabrik, toko, gudang, kantor, dan rumah tangga',
-    scopes: [
-      { title: 'Tenaga Operator & Pabrik', desc: 'Tenaga operator produksi, sortir hasil bumi (kopi/tembakau), perkayuan, dan penanganan mesin.' },
-      { title: 'Sopir & Driver Operasional', desc: 'Driver pengiriman barang, logistik antar kota, kendaraan dinas, serta sopir pribadi dengan SIM A/B aktif.' },
-      { title: 'Telesales, Sales & Admin Toko', desc: 'Staf penjualan telepon, admin follow-up chat, pencatatan kasir, dan pelayanan pelanggan toko.' },
-      { title: 'Helper, Warehouse & ART', desc: 'Tenaga bongkar muat gudang, cleaning service kantor, dan asisten rumah tangga (ART) terverifikasi identitas.' }
+    id: 'analytics-tracking',
+    slug: 'marketing-analytics-conversion-tracking',
+    title: 'Marketing Analytics & Server-Side Tracking',
+    category: 'analytics-tech',
+    categoryLabel: 'Data & Tracking',
+    badge: '100% Attribution Truth',
+    shortDesc: 'Setup Google Analytics 4 (GA4), Server-Side Google Tag Manager, Meta CAPI, dan dashboard Looker Studio untuk pelacakan omzet tanpa tebak-tebakan.',
+    fullDesc: 'Tanpa data atribusi yang presisi, Anda sedang membakar uang iklan di dalam kegelapan. Kami membangun arsitektur tracking enterprise yang kebal terhadap ad-blocker dan pembatasan cookie pihak ketiga.',
+    iconName: 'BarChart2',
+    deliverables: [
+      { title: 'Server-Side GTM Deployment', desc: 'Hosting container GTM di server Cloud (Cloudflare/GCP) untuk kecepatan web dan akurasi data.' },
+      { title: 'Unified DataLayer Schema', desc: 'Standarisasi variabel e-commerce: view_item, add_to_cart, purchase beserta margin laba.' },
+      { title: 'Cross-Domain & WhatsApp Event Tracking', desc: 'Pelacakan klik WhatsApp per nomor CS dan konversi pembayaran payment gateway lokal.' },
+      { title: 'Automated Looker Studio Dashboard', desc: 'Laporan visual real-time yang memadukan data Google Ads, Meta Ads, TikTok, dan penjualan riil.' }
     ],
-    steps: [
-      { no: 1, title: 'Konsultasi Kebutuhan Posisi & Kuota', desc: 'Sampaikan kriteria usia, keahlian khusus, domisili kecamatan di Temanggung, dan jumlah orang.' },
-      { no: 2, title: 'Verifikasi Berkas & Background Check', desc: 'Pengecekan KTP, SKCK, riwayat pengalaman kerja, dan kesiapan jam kerja/shift.' },
-      { no: 3, title: 'Penempatan Kerja & Masa Percobaan', desc: 'Kandidat siap bekerja di lokasi Anda dengan pendampingan masa adaptasi.' }
+    process: [
+      { step: '01', title: 'Audit DataLayer & Tag Lama', desc: 'Pembersihan script ganda yang membuat data terhitung dua kali (double counting).', duration: 'Hari 1 - 2' },
+      { step: '02', title: 'Setup Server Container', desc: 'Konfigurasi subdomain tracking first-party dan koneksi API.', duration: 'Hari 3 - 4' },
+      { step: '03', title: 'Pengujian QA & Debug Mode', desc: 'Simulasi transaksi riil dan verifikasi sinyal event match quality 8.0+.', duration: 'Hari 5 - 6' },
+      { step: '04', title: 'Serah Terima Dashboard', desc: 'Pemberian akses dashboard bisnis dengan panduan membaca matriks penting.', duration: 'Hari 7' }
     ],
-    pricingTable: [
-      { service: 'Penyediaan Operator Pabrik / Gudang', time: '3–7 Hari', note: 'Melayani kuota individu maupun tim massal' },
-      { service: 'Penyediaan Driver / Sopir SIM A/B', time: '3–5 Hari', note: 'Uji keterampilan berkendara dan rekam jejak tertib' },
-      { service: 'Penyediaan Admin & Telesales', time: '3–7 Hari', note: 'Kandidat siap kerja dengan uji komputer dasar' },
-      { service: 'Penyediaan Helper & ART', time: '2–5 Hari', note: 'Verifikasi identitas keluarga dan rekam jejak aman' }
+    metrics: [
+      { label: 'Data Recovery Rate', value: '+35%', benchmark: 'Pasca Server-Side CAPI' },
+      { label: 'Event Match Quality', value: '9.1 / 10', benchmark: 'Meta Event Manager' },
+      { label: 'Waktu Muat Tag', value: '0 ms di Browser', benchmark: 'Offloaded to Server' }
     ],
     faqs: [
-      { q: 'Apakah bisa meminta tenaga kerja dalam jumlah banyak?', a: 'Bisa. Kami memfasilitasi kebutuhan rekrutmen massal untuk ekspansi gudang, musim panen tembakau/kopi, maupun industri manufaktur di Temanggung.' },
-      { q: 'Apakah layanan mencakup seluruh kecamatan di Temanggung?', a: 'Ya, kami melayani penempatan untuk Temanggung Kota, Parakan, Kranggan, Pringsurat, Kedu, dan seluruh wilayah Kabupaten Temanggung.' }
+      { q: 'Apakah setup server-side membutuhkan biaya hosting server mahal?', a: 'Tidak. Kami menggunakan arsitektur serverless (seperti Cloudflare Workers atau Google Cloud Free Tier) yang gratis atau biayanya di bawah Rp 50.000/bulan untuk sebagian besar bisnis.' }
     ],
-    docsRequired: [
-      'Kriteria posisi dan deskripsi tugas',
-      'Lokasi penempatan kerja di Kabupaten Temanggung',
-      'Standar upah dan jam kerja yang ditawarkan'
-    ]
+    startingPrice: 'Mulai Rp 2.500.000 / one-time',
+    durationEst: 'Selesai dalam 5 hari kerja'
   },
   {
-    id: 'it-komputer',
-    slug: 'it-komputer',
-    title: 'IT, Komputer & Digital',
-    category: 'digital',
-    badge: 'Teknologi & Hardware',
-    desc: 'Teknisi instalasi jaringan kantor Wi-Fi, kamera CCTV online, sistem komputer kasir toko (POS), dan servis berkala di Temanggung.',
-    icon: '⚙',
-    iconBg: '#f8fafc',
-    iconColor: '#1e293b',
-    search: 'it komputer jaringan wifi cctv setup printer instalasi software maintenance kasir pos email bisnis temanggung',
-    tagline: 'Pastikan infrastruktur digital dan keamanan tempat usaha Anda bekerja tanpa hambatan',
-    scopes: [
-      { title: 'Instalasi Jaringan Wi-Fi & Mikrotik', desc: 'Setting router kantor/kafe dengan manajemen bandwidth rapi dan minim gangguan.' },
-      { title: 'Pemasangan & Setup CCTV Online', desc: 'Instalasi kamera pengawas yang bisa dipantau langsung 24 jam dari HP Anda di mana saja.' },
-      { title: 'Setup Mesin Kasir & Printer Thermal', desc: 'Konfigurasi tablet kasir POS, scanner barcode, laci uang, dan pencetakan nota otomatis.' }
+    id: 'performance-marketing',
+    slug: 'performance-marketing',
+    title: 'Performance Marketing Full-Funnel',
+    category: 'paid-ads',
+    categoryLabel: 'Omnichannel Scale',
+    badge: 'End-to-End Growth',
+    shortDesc: 'Pengelolaan holistik lintas Google, Meta, TikTok, dan retensi CRM untuk bisnis yang siap melipatgandakan omzet secara agresif.',
+    fullDesc: 'Layanan terlengkap bagi pemilik bisnis yang ingin menyerahkan pertumbuhan akuisisi pelanggan kepada tim ahli berdedikasi. Kami memadukan strategi paid media, pengujian kreatif tanpa henti, dan optimalisasi margin keuntungan.',
+    iconName: 'Zap',
+    deliverables: [
+      { title: 'Omnichannel Budget Allocation', desc: 'Distribusi dinamis anggaran ke saluran yang sedang menghasilkan ROAS tertinggi di minggu tersebut.' },
+      { title: 'Full Funnel Architecture', desc: 'Sinkronisasi Top-of-Funnel (awareness), Middle-of-Funnel (consideration), dan Bottom-of-Funnel (closing).' },
+      { title: 'Dedicated Media Buyer & Copywriter', desc: 'Tim spesialis yang memantau performa kampanye Anda setiap hari kerja.' },
+      { title: 'Weekly Strategy & Growth Sync', desc: 'Meeting evaluasi mingguan membahas performa, stok produk, dan strategi promosi berikutnya.' }
     ],
-    steps: [
-      { no: 1, title: 'Survei Lokasi & Kebutuhan Titik', desc: 'Menghitung panjang kabel, posisi kamera CCTV, atau jangkauan sinyal Wi-Fi.' },
-      { no: 2, title: 'Instalasi Kabel & Perangkat Keras', desc: 'Pemasangan rapi dengan pipa pelindung dan pengujian tegangan listrik stabil.' },
-      { no: 3, title: 'Konfigurasi Aplikasi & Pelatihan', desc: 'Uji coba sistem dan pelatihan singkat kepada Anda dan karyawan.' }
+    process: [
+      { step: '01', title: 'Diagnostic & Economics Audit', desc: 'Hitung Break-Even ROAS, margin kotor, dan target blended CPA bisnis Anda.', duration: 'Minggu 1' },
+      { step: '02', title: 'Infrastruktur & Creative Engine', desc: 'Deploy landing page, tracking server-side, dan bank materi iklan batch pertama.', duration: 'Minggu 2' },
+      { step: '03', title: 'Peluncuran Multi-Channel', desc: 'Aktivasi serentak kampanye Google Search, Meta Prospecting, dan TikTok Spark.', duration: 'Minggu 3' },
+      { step: '04', title: 'Skalasi Agresif Berbasis Profit', desc: 'Tingkatkan omzet secara terprediksi dengan tetap menjaga laba bersih bisnis.', duration: 'Bulan 2+' }
     ],
-    pricingTable: [
-      { service: 'Jasa Setting Kasir POS & Printer', time: '1 Hari', note: 'Mulai Rp 150.000 – Rp 300.000' },
-      { service: 'Jasa Pemasangan CCTV per Titik', time: '1–2 Hari', note: 'Mulai Rp 100.000 – Rp 175.000 / kamera (jasa pasang)' },
-      { service: 'Setting Router & Manajemen Wi-Fi', time: '1 Hari', note: 'Mulai Rp 200.000 – Rp 400.000' }
+    metrics: [
+      { label: 'Peningkatan Omzet Bersih', value: '3.2x', benchmark: 'Rata-rata 90 Hari' },
+      { label: 'Blended MER (Marketing Efficiency)', value: '5.8x', benchmark: 'Total Revenue / Spend' },
+      { label: 'Waktu Respon Tim Agensi', value: '< 15 Menit', benchmark: 'Grup WhatsApp Eksklusif' }
     ],
     faqs: [
-      { q: 'Apakah melayani panggilan ke luar kota Temanggung?', a: 'Fokus utama kami adalah seluruh kecamatan Kabupaten Temanggung dan area perbatasan terdekat.' }
+      { q: 'Apakah ada kontrak minimal durasi kerja sama?', a: 'Kami menyarankan komitmen awal 3 bulan agar siklus pengujian, penyesuaian algoritma, dan skalasi dapat bekerja maksimal mencapai hasil terbaik.' }
     ],
-    docsRequired: [
-      'Alamat lokasi pemasangan',
-      'Daftar perangkat yang sudah dimiliki atau butuh pengadaan'
-    ]
+    startingPrice: 'Mulai Rp 7.500.000 / bln',
+    durationEst: 'Program pertumbuhan berkelanjutan'
   },
   {
-    id: 'lainnya',
-    slug: 'lainnya',
-    title: 'Jasa Lainnya',
-    category: 'bisnis',
-    badge: 'Kebutuhan Khusus',
-    desc: 'Punya kebutuhan spesifik yang belum tercantum? Diskusikan dengan tim kami untuk mendapatkan jalan keluar dan vendor terbaik di Temanggung.',
-    icon: '★',
-    iconBg: '#f8fafc',
-    iconColor: '#1e293b',
-    search: 'jasa lainnya custom order sourcing vendor surveyor riset lapangan permintaan khusus temanggung',
-    tagline: 'Sampaikan kendala atau kebutuhan Anda, kami bantu carikan solusi terpercaya',
-    scopes: [
-      { title: 'Riset Lapangan & Verifikasi Mitra', desc: 'Pengecekan fisik keaslian keberadaan toko, gudang, atau rekan bisnis di Temanggung.' },
-      { title: 'Pengurusan Administrasi Khusus', desc: 'Bantuan koordinasi berkas antar instansi pemerintahan di Kabupaten Temanggung.' },
-      { title: 'Sourcing Produk & Komoditas Lokal', desc: 'Menghubungkan Anda dengan sentra kopi robusta/arabika, tembakau, dan kerajinan lokal.' }
+    id: 'ad-creative-copy',
+    slug: 'advertising-creative-ad-copywriting',
+    title: 'Ad Creative & Direct-Response Copywriting',
+    category: 'creative-copy',
+    categoryLabel: 'Creative Lab',
+    badge: 'High CTR & Engagement',
+    shortDesc: 'Materi visual dan naskah iklan berbasis psikologi keputusan yang menghentikan scroll, memicu rasa ingin tahu, dan mendorong tindakan beli.',
+    fullDesc: 'Kreatif iklan adalah faktor 70% keberhasilan kampanye modern. Kami menyusun headline dengan teknik open-loop, penawaran hook kontroversial yang aman dari kebijakan iklan, dan visual yang beresonansi kuat dengan karakter pasar lokal Indonesia.',
+    iconName: 'PenTool',
+    deliverables: [
+      { title: 'Direct-Response Headline Bank', desc: 'Kumpulan 20+ variasi judul dan teks iklan pendek/panjang teruji untuk testing.' },
+      { title: 'Storyboarding & Video Hook Direction', desc: 'Panduan adegan 0-3 detik untuk pembuat konten agar penonton tidak skip.' },
+      { title: 'Static Feed & Carousel Assets', desc: 'Desain visual high-converting dengan perbandingan fitur, bukti nyata, dan penawaran berbatas waktu.' },
+      { title: 'Compliance & Policy Assurance', desc: 'Penulisan yang patuh terhadap Pedoman Iklan Meta dan Google agar akun terhindar dari suspend.' }
     ],
-    steps: [
-      { no: 1, title: 'Ceritakan Kebutuhan Spesifik', desc: 'Jelaskan apa yang ingin Anda selesaikan di Kabupaten Temanggung.' },
-      { no: 2, title: 'Kajian Kelayakan & Estimasi Biaya', desc: 'Kami memeriksa ketersediaan sumber daya dan memberikan estimasi transparan.' },
-      { no: 3, title: 'Pelaksanaan Tugas Bergaransi', desc: 'Tugas dijalankan dengan laporan perkembangan berkala via WhatsApp.' }
+    process: [
+      { step: '01', title: 'Customer Sentiment Mining', desc: 'Riset komentar media sosial dan ulasan kompetitor untuk menemukan kata-kata asli calon pembeli.', duration: 'Hari 1 - 2' },
+      { step: '02', title: 'Penyusunan Angle Persuasi', desc: 'Perumusan 4 sudut penawaran: Logika Finansial, Status Sosial, Solusi Cepat, dan Hindari Kerugian.', duration: 'Hari 3 - 4' },
+      { step: '03', title: 'Desain & Produksi Aset', desc: 'Pembuatan variasi format 1:1, 9:16 vertikal, dan 16:9.', duration: 'Hari 5 - 7' },
+      { step: '04', title: 'Pengujian di Akun Iklan', desc: 'Evaluasi metrik Outbound CTR dan Cost Per Add to Cart.', duration: 'Berkelanjutan' }
     ],
-    pricingTable: [
-      { service: 'Konsultasi & Sourcing Khusus', time: 'Fleksibel', note: 'Disesuaikan dengan tingkat kompleksitas dan jarak tempuh' }
+    metrics: [
+      { label: 'Outbound CTR', value: '3.4% - 5.8%', benchmark: 'Di atas rata-rata industri' },
+      { label: 'Penurunan Cost Per Click (CPC)', value: '-35%', benchmark: 'Kreatif Relevansi Tinggi' },
+      { label: 'Kepuasan Naskah & Aset', value: '99%', benchmark: 'Revisi Cepat' }
     ],
     faqs: [
-      { q: 'Bagaimana cara berkonsultasi untuk kebutuhan khusus?', a: 'Cukup klik tombol Konsultasi via WhatsApp dan ceritakan secara rinci apa yang Anda perlukan. Tim kami akan segera merespons.' }
+      { q: 'Apakah FUTech menyediakan talent model untuk video iklan?', a: 'Kami bekerja sama dengan jaringan kreator UGC lokal di berbagai kota besar dan daerah yang siap memproduksi video autentik sesuai naskah kami.' }
     ],
-    docsRequired: [
-      'Penjelasan detail kebutuhan',
-      'Batas waktu pengerjaan (deadline)'
-    ]
+    startingPrice: 'Mulai Rp 2.000.000 / paket',
+    durationEst: 'Selesai dalam 5 hari kerja'
+  },
+  {
+    id: 'social-media-growth',
+    slug: 'social-media-marketing',
+    title: 'Social Media & Brand Organic Growth',
+    category: 'organic-seo',
+    categoryLabel: 'Content & Brand',
+    badge: 'Trust & Community',
+    shortDesc: 'Bangun kepercayaan mendalam dan interaksi organik melalui konten Reels, Carousel edukasi, dan manajemen akun profesional.',
+    fullDesc: 'Sebelum calon pelanggan mengklik checkout atau mentransfer pembayaran bernilai besar, mereka akan memeriksa akun media sosial Anda. Kami memastikan profil bisnis Anda memancarkan otoritas, profesionalisme, dan ulasan positif yang meyakinkan.',
+    iconName: 'Share2',
+    deliverables: [
+      { title: 'Strategic Content Pillars', desc: 'Perencanaan proporsi konten: 40% Edukasi Masalah, 30% Studi Kasus & Bukti, 20% Hiburan/Tren, 10% Penjualan Langsung.' },
+      { title: 'Monthly Editorial Calendar', desc: 'Jadwal publikasi rapi lengkap dengan caption persuasif, hashtag relevan, dan call-to-action.' },
+      { title: 'Professional Graphic & Video Editing', desc: 'Desain visual elegan sesuai panduan warna brand dan video Reels format vertikal.' },
+      { title: 'Community & DM Protocol', desc: 'Panduan membalas pesan masuk dan komentar agar cepat terkonversi menjadi prospek di WhatsApp.' }
+    ],
+    process: [
+      { step: '01', title: 'Brand Tone & Visual Identity', desc: 'Penetapan warna, tipografi, dan gaya bahasa komunikasi.', duration: 'Hari 1 - 3' },
+      { step: '02', title: 'Penyusunan Konten 30 Hari', desc: 'Pembuatan naskah dan desain konten 1 bulan ke depan untuk approval.', duration: 'Hari 4 - 8' },
+      { step: '03', title: 'Publikasi Terjadwal', desc: 'Posting otomatis pada jam tayang dengan tingkat interaksi tertinggi.', duration: 'Hari 9 - 30' },
+      { step: '04', title: 'Laporan Interaksi Bulanan', desc: 'Analisis pertumbuhan followers riil, reach, dan engagement rate.', duration: 'Bulanan' }
+    ],
+    metrics: [
+      { label: 'Rata-rata Pertumbuhan Reach', value: '+210%', benchmark: 'Organik Instagram & TikTok' },
+      { label: 'Engagement Rate', value: '6.4%', benchmark: 'Akun Bisnis Terverifikasi' },
+      { label: 'Inbound DM Inquiries', value: '3x Lipat', benchmark: 'Pesan Calon Pembeli' }
+    ],
+    faqs: [
+      { q: 'Apakah followers yang didapatkan adalah akun asli atau bot?', a: '100% orang asli Indonesia yang tertarik dengan konten Anda. Kami pantang menggunakan bot atau suntik followers yang merusak reputasi akun.' }
+    ],
+    startingPrice: 'Mulai Rp 2.800.000 / bln',
+    durationEst: 'Retainer bulanan'
+  },
+  {
+    id: 'crm-automation',
+    slug: 'marketing-automation-crm-integration',
+    title: 'Marketing Automation & WhatsApp CRM',
+    category: 'analytics-tech',
+    categoryLabel: 'Retention & Sales',
+    badge: 'Automated Follow-up',
+    shortDesc: 'Otomatisasi alur follow-up prospek, pengingat keranjang belanja, dan broadcast penawaran tertarget via WhatsApp Business API.',
+    fullDesc: '90% keputusan beli di Indonesia terjadi di ruang obrolan WhatsApp. Jangan biarkan lead dingin karena respons lambat. Kami membangun sistem perpesanan otomatis yang menyapa calon pelanggan dalam 5 detik, mengirim pengingat follow-up berkala, dan mencatat status deal secara rapi.',
+    iconName: 'MessageSquare',
+    deliverables: [
+      { title: 'WhatsApp Business API Integration', desc: 'Setup centang hijau resmi (Verified Badge) dan integrasi webhook ke website.' },
+      { title: 'Automated Drip Follow-Up Sequence', desc: 'Rangkaian 3-5 pesan pengingat persuasif terjadwal untuk prospek yang belum sempat transfer.' },
+      { title: 'Lead Pipeline Kanban Board', desc: 'Papan status prospek: Kontak Masuk -> Follow Up 1 -> Negosiasi -> Closing -> Repeat Order.' },
+      { title: 'Cart Recovery via WhatsApp', desc: 'Pengingat otomatis bagi pengunjung web yang meninggalkan data di formulir pemesanan.' }
+    ],
+    process: [
+      { step: '01', title: 'Audit Flow Chat & Masalah CS', desc: 'Analisis alasan utama calon pembeli batal bayar (abandoned checkout).', duration: 'Hari 1 - 2' },
+      { step: '02', title: 'Setup Template Pesan Terverifikasi', desc: 'Penyusunan naskah broadcast dan template pesan notifikasi resmi.', duration: 'Hari 3 - 4' },
+      { step: '03', title: 'Integrasi Webhook & CRM', desc: 'Koneksi data formulir landing page langsung ke nomor CS yang aktif.', duration: 'Hari 5 - 6' },
+      { step: '04', title: 'Training Tim Sales / CS', desc: 'Pelatihan singkat tim CS Anda agar mampu menutup closing 2x lebih banyak.', duration: 'Hari 7' }
+    ],
+    metrics: [
+      { label: 'Response Time Prospek', value: '< 10 Detik', benchmark: 'Automated Greeting' },
+      { label: 'Tingkat Recovery Transaksi', value: '+28%', benchmark: 'Keranjang Terbengkalai' },
+      { label: 'Open Rate Pesan', value: '94.2%', benchmark: 'WhatsApp vs 18% Email' }
+    ],
+    faqs: [
+      { q: 'Apakah aman dari risiko blokir WhatsApp?', a: 'Sangat aman karena kami mengutamakan WhatsApp Business Platform API resmi yang telah disetujui Meta dengan nomor bisnis terverifikasi.' }
+    ],
+    startingPrice: 'Mulai Rp 2.500.000 / setup',
+    durationEst: 'Selesai dalam 7 hari kerja'
+  }
+];
+
+export const INDUSTRIES: IndustryItem[] = [
+  {
+    id: 'ecommerce',
+    slug: 'ecommerce-retail',
+    title: 'E-Commerce & Retail D2C Indonesia',
+    badge: 'Scale to 8-Figure Monthly',
+    desc: 'Solusi akuisisi pelanggan agresif untuk brand fashion, kecantikan, herbal, elektronik, dan produk konsumen yang ingin mendominasi pasar online nasional.',
+    painPoints: [
+      'ROAS iklan Meta dan TikTok fluktuatif dan sering drop di akhir bulan',
+      'Tingkat retur (COD) tinggi dan margin tergerus biaya diskon marketplace',
+      'Kelelahan materi kreatif video iklan dalam waktu kurang dari 2 minggu'
+    ],
+    growthPlaybook: [
+      'Pembangunan funnel website mandiri dengan penawaran bundle eksklusif',
+      'Testing kreatif sandbox 5 video UGC baru per minggu',
+      'Integrasi Meta CAPI + Google Shopping PMax untuk akuisisi pembeli berulang'
+    ],
+    averageRoas: '4.8x - 6.2x',
+    caseStudyRef: 'b2b-fashion-scale'
+  },
+  {
+    id: 'b2b',
+    slug: 'b2b-professional-services',
+    title: 'B2B & Layanan Profesional',
+    badge: 'High-Ticket Client Acquisition',
+    desc: 'Akuisisi klien bernilai tinggi untuk konsultan manajemen, kantor hukum/notaris, vendor pabrik, logistik ekspor-impor, dan penyedia jasa korporat.',
+    painPoints: [
+      'Siklus negosiasi lama dan sulit menyaring lead kaleng-kaleng yang tidak punya anggaran',
+      'Bergantung hanya pada referensi mulut ke mulut (word of mouth) yang tidak pasti',
+      'Iklan media sosial biasa tidak menjangkau pengambil keputusan level direktur'
+    ],
+    growthPlaybook: [
+      'Kampanye Google Search berbasis niat spesifik (commercial intent keywords)',
+      'Landing page kualifikasi multi-step dengan filter anggaran dan NPWP',
+      'Lead nurturing via studi kasus B2B dan booking jadwal konsultasi terintegrasi'
+    ],
+    averageRoas: '9.4x (LTV to CAC)',
+    caseStudyRef: 'b2b-distribution-legal'
+  },
+  {
+    id: 'saas-tech',
+    slug: 'saas-technology',
+    title: 'SaaS, Startup & Teknologi Digital',
+    badge: 'Product-Led & Demand Gen',
+    desc: 'Percepat laju pendaftaran demo software, free trial, dan adopsi produk digital dengan funnel akuisisi berbasis data analitik presisi.',
+    painPoints: [
+      'Biaya per registrasi (CAC) terus membengkak sementara churn rate tinggi',
+      'Kesulitan mengukur atribusi konversi dari klik pertama hingga upgrade berbayar',
+      'Edukasi produk yang rumit membuat calon user enggan mencoba'
+    ],
+    growthPlaybook: [
+      'Optimasi kampanye Search & YouTube Ads fokus pada use-case solusi masalah',
+      'Setup tracking Cohort dan atribusi multi-touch terintegrasi GA4 & BigQuery',
+      'CRO landing page memangkas form isian menjadi email sekali klik'
+    ],
+    averageRoas: '3.6x Payback',
+    caseStudyRef: 'saas-inbound-scale'
+  },
+  {
+    id: 'local-services',
+    slug: 'local-service-businesses',
+    title: 'Bisnis Jasa & Layanan Lokal',
+    badge: 'Dominate Your Region',
+    desc: 'Dominasi pencarian kota Anda untuk klinik estetika, dokter gigi, kantor notaris & perizinan, kontraktor bangunan, agen properti, bengkel, hingga kuliner kafe/restoran.',
+    painPoints: [
+      'Kalah bersaing dengan kompetitor baru yang agresif beriklan di Google Maps dan Instagram',
+      'Banyak calon pasien / pelanggan bertanya di WhatsApp tapi tidak pernah datang ke lokasi',
+      'Budget iklan terbuang ke pengguna di luar wilayah jangkauan layanan'
+    ],
+    growthPlaybook: [
+      'Radius geotargeting ketat 5-15 km sekitar lokasi fisik Anda',
+      'Optimasi Google Profil Bisnis (Google Maps) dengan puluhan ulasan bintang 5 lokal',
+      'Tombol reservasi langsung terhubung ke nomor customer service klinik/kantor'
+    ],
+    averageRoas: '5.2x ROI Lokal',
+    caseStudyRef: 'klinik-lokal-boost'
+  },
+  {
+    id: 'startups',
+    slug: 'startups-growing-businesses',
+    title: 'UMKM & Bisnis Bertumbuh',
+    badge: 'Lean Growth Framework',
+    desc: 'Pendampingan pemasaran digital bagi bisnis bertumbuh yang membutuhkan efisiensi modal maksimal tanpa biaya eksperimen yang sia-sia.',
+    painPoints: [
+      'Modal iklan terbatas dan takut rugi karena pernah coba pasang iklan sendiri tapi boncos',
+      'Tidak punya tim desainer, copywriter, dan media buyer profesional sendiri',
+      'Belum memiliki sistem pencatatan omzet dan analisis performa yang rapi'
+    ],
+    growthPlaybook: [
+      'Mulai dari 1 saluran berkinerja tertinggi (misal Google Search atau Meta Ads)',
+      'Paket lengkap didukung tim agensi: landing page, naskah, desain, dan manajemen',
+      'Fokus pada Break-Even ROAS dan pertumbuhan laba bersih riil sejak bulan pertama'
+    ],
+    averageRoas: '4.1x Rata-rata',
+    caseStudyRef: 'b2b-fashion-scale'
+  },
+  {
+    id: 'market-expansion',
+    slug: 'international-market-entry',
+    title: 'Ekspansi Pasar Nasional & Ekspor',
+    badge: 'Cross-Regional Scaling',
+    desc: 'Bawa produk unggulan daerah Anda (seperti kopi, tembakau, kerajinan, fashion lokal) menembus pasar nasional di seluruh Indonesia hingga pasar ekspor Asia Tenggara.',
+    painPoints: [
+      'Pasar lokal daerah sudah jenuh dan pertumbuhan penjualan melandai',
+      'Kurang memahami preferensi konsumen dan tren belanja di kota-kota metropolitan',
+      'Tantangan kepercayaan pembeli jarak jauh terhadap brand luar kota'
+    ],
+    growthPlaybook: [
+      'Kampanye branding digital nasional mengangkat keaslian dan mutu produk lokal',
+      'Social proof masif dari testimoni pelanggan dan sertifikasi resmi (Halal, BPOM, NIB)',
+      'Kerja sama ekspedisi dan sistem pembayaran aman terverifikasi'
+    ],
+    averageRoas: '4.5x Skala Nasional',
+    caseStudyRef: 'b2b-distribution-legal'
+  }
+];
+
+export const CASE_STUDIES: CaseStudyItem[] = [
+  {
+    id: 'fashion-scale',
+    slug: 'brand-fashion-d2c-scale',
+    title: 'Skalasi Omzet Brand Fashion D2C Nasional dari 1.8x Menjadi 5.4x ROAS',
+    client: 'Nusa Apparel Co.',
+    clientType: 'Brand Fashion & Streetwear Lokal',
+    location: 'Bandung & Pasar Seluruh Indonesia',
+    industry: 'E-Commerce & Retail Fashion',
+    badge: '+420% Penjualan',
+    challenge: 'Klien mengalami stagnasi penjualan di marketplace karena perang harga ekstrem. Iklan Meta yang dijalankan sendiri hanya menghasilkan ROAS 1.8x dengan frekuensi kelelahan materi iklan setiap 10 hari.',
+    strategy: 'Membangun ekosistem website mandiri dengan promo bundling eksklusif, migrasi ke Meta Conversions API (CAPI), dan menjalankan Creative Testing Sandbox dengan 4 format video UGC vertikal setiap minggu.',
+    executionSteps: [
+      'Implementasi CAPI server-side untuk memulihkan 38% data pembelian yang hilang dari browser iOS.',
+      'Restrukturisasi kampanye Meta menjadi Advantage+ Shopping Campaign dengan target ROAS 4.0x.',
+      'Peluncuran 12 variasi video hook unboxing dan styling outfit oleh kreator mikro.',
+      'Setup automasi WhatsApp Cart Recovery yang memulihkan 31% calon pembeli yang meninggalkan keranjang.'
+    ],
+    metrics: {
+      roas: '5.4x (Sebelumnya 1.8x)',
+      revenueGrowth: '+420% dalam 90 Hari',
+      cpaReduction: '-46% Biaya Per Akuisisi',
+      leadsOrSales: '8.450+ Transaksi Berhasil'
+    },
+    testimonial: {
+      quote: 'FUTech merevolusi cara kami berjualan. Kami tidak lagi bergantung pada diskon marketplace, omzet toko online kami melonjak 4 kali lipat dengan laba bersih yang jauh lebih tebal.',
+      author: 'Aditya Pratama',
+      role: 'Founder & CEO Nusa Apparel'
+    }
+  },
+  {
+    id: 'b2b-legal',
+    slug: 'perusahaan-b2b-distribusi-legalitas',
+    title: 'Penurunan 72% Biaya Per Prospek untuk Jasa B2B & Legalitas Bisnis',
+    client: 'Mitra Perizinan & Konsultan Bisnis Mandiri',
+    clientType: 'Penyedia Jasa Legalitas, OSS, Pajak & Notaris',
+    location: 'Semarang, Temanggung, & Jawa Tengah',
+    industry: 'B2B & Professional Services',
+    badge: '310+ Leads B2B / Bln',
+    challenge: 'Klien kesulitan mendapatkan klien baru bernilai besar (PT, CV, Sertifikasi Halal, PBG) secara online. Iklan sebelumnya mendapatkan banyak klik tapi 80% adalah pencari informasi gratis tanpa daya bayar.',
+    strategy: 'Membangun landing page berkecepatan tinggi dengan Multi-Step Qualification Form yang menanyakan modal usaha, jenis badan hukum, dan kelengkapan dokumen. Menjalankan Google Search Ads dengan kata kunci komersial presisi tinggi.',
+    executionSteps: [
+      'Penyusunan 120 kata kunci negatif ketat untuk menyaring pencari jasa gratisan / info skripsi.',
+      'Pemasangan landing page zero-distraction dengan skor Google Lighthouse 98/100.',
+      'Integrasi notifikasi seketika ke WhatsApp Business tim konsultan senior.',
+      'Remarketing Google Display berfokus pada ulasan testimoni klien ternama.'
+    ],
+    metrics: {
+      roas: '8.6x LTV to CAC Ratio',
+      revenueGrowth: '+290% Nilai Kontrak Baru',
+      cpaReduction: '-72% Biaya Per Lead Valid',
+      leadsOrSales: '310+ Prospek B2B Kualifikasi / Bln'
+    },
+    testimonial: {
+      quote: 'Kualitas prospek yang masuk benar-benar berbeda. Mereka adalah direktur dan pemilik usaha yang siap tanda tangan kontrak, bukan penanya harga yang hilang setelah dikabari.',
+      author: 'Bambang Sudiro, S.H.',
+      role: 'Managing Partner'
+    }
+  },
+  {
+    id: 'klinik-lokal',
+    slug: 'klinik-kesehatan-estetika-multicabang',
+    title: 'Lonjakan 280% Reservasi Pasien Baru untuk Jaringan Klinik Lokal',
+    client: 'Dermacare Aesthetic & Dental Clinic',
+    clientType: 'Jaringan Klinik Estetika & Gigi',
+    location: 'Yogyakarta & Magelang',
+    industry: 'Layanan Kesehatan & Klinik Lokal',
+    badge: '+280% Pasien Baru',
+    challenge: 'Cabang baru klinik di wilayah suburban sepi kunjungan karena masyarakat belum mengenal dokter dan fasilitasnya. Iklan spanduk jalanan tidak efektif dan memakan biaya besar.',
+    strategy: 'Menjalankan kampanye lokal radius 10 km di Instagram Reels dan TikTok Ads mengangkat video edukasi dokter, dipadukan dengan Google Search Ads untuk kata kunci "klinik gigi terdekat" dan "perawatan jerawat terbaik".',
+    executionSteps: [
+      'Penerbitan 10 video tanya-jawab langsung bersama dokter spesialis klinik.',
+      'Penawaran voucher konsultasi pertama via tombol interaktif WhatsApp.',
+      'Pengelolaan profil Google Maps hingga meraih 450+ ulasan bintang 5.',
+      'Sistem booking terintegrasi pengingat H-1 jadwal konsultasi otomatis.'
+    ],
+    metrics: {
+      roas: '6.1x Return on Spend',
+      revenueGrowth: '+280% Reservasi Pasien Baru',
+      cpaReduction: '-39% Biaya Akuisisi Pasien',
+      leadsOrSales: '640+ Reservasi Per Bulan'
+    },
+    testimonial: {
+      quote: 'Jadwal dokter kami sekarang selalu penuh setiap akhir pekan. Strategi radius lokal dari tim FUTech sangat jitu menyasar pasien berkualitas di sekitar klinik.',
+      author: 'drg. Maya Anggraini',
+      role: 'Operational Director'
+    }
+  },
+  {
+    id: 'saas-software',
+    slug: 'software-saas-manajemen-bisnis',
+    title: 'Akselerasi 340 Demo Software B2B Per Bulan dengan Biaya Akuisisi Terendah',
+    client: 'KasirKu Cloud System',
+    clientType: 'Software POS & Manajemen Toko Multicabang',
+    location: 'Jakarta & Seluruh Indonesia',
+    industry: 'SaaS & Teknologi',
+    badge: '340+ Demo Booking / Bln',
+    challenge: 'Tingkat konversi pengunjung website menjadi pendaftar demo software sangat rendah (hanya 0.8%). Kampanye Google Ads PMax banyak menghabiskan anggaran pada penempatan game anak yang tidak relevan.',
+    strategy: 'Membersihkan penempatan iklan PMax dengan brand safety exclusions, merancang ulang landing page perbandingan fitur vs pesaing, dan menyusun kampanye Search kata kunci kompetitor.',
+    executionSteps: [
+      'Audit log penempatan Google Ads dan memblokir 4.000+ domain aplikasi/game sampah.',
+      'Penyusunan landing page interaktif dengan kalkulator penghematan biaya operasional.',
+      'Pemasangan tracking lifecycle event di GA4 (Signup -> Demo Attended -> Paid License).',
+      'Email & WhatsApp follow-up otomatis bagi user yang belum menyelesaikan registrasi.'
+    ],
+    metrics: {
+      roas: '4.2x Customer LTV Ratio',
+      revenueGrowth: '+310% Recurring Revenue (MRR)',
+      cpaReduction: '-54% Biaya Per Demo Valid',
+      leadsOrSales: '340+ Demo Terverifikasi / Bln'
+    },
+    testimonial: {
+      quote: 'FUTech memahami seluk-beluk metrik SaaS. Mereka tidak cuma peduli lead form, tapi sampai demo dihadiri dan user beralih ke langganan berbayar.',
+      author: 'Reza Fahlevi',
+      role: 'Head of Growth KasirKu'
+    }
   }
 ];
 
 export const ARTICLES: ArticleItem[] = [
   {
-    slug: 'panduan-izin-usaha-nib-oss-temanggung',
-    title: 'Panduan Lengkap Cara Mengurus NIB OSS-RBA dan Izin Usaha UMKM di Temanggung (2026)',
-    category: 'legalitas',
-    categoryLabel: 'Perizinan & Legalitas',
-    badgeBg: '#eff6ff',
-    badgeColor: '#1d4ed8',
-    date: '28 September 2026',
-    readTime: '6 Menit',
-    author: 'Tim Legalitas Jasa Temanggung',
-    description: 'Ulasan tuntas proses registrasi izin usaha mikro dan kecil di DPMPTSP Temanggung tanpa calo, penentuan kode KBLI 5 digit, hingga syarat pencairan pinjaman KUR bank.',
-    search: 'panduan cara mengurus nib oss rba izin usaha umkm dpmptsp temanggung kbli risiko legalitas',
-    content: [
+    id: 'art-pmax',
+    slug: 'demystifying-google-performance-max',
+    title: 'Panduan Lengkap Menguasai Google Performance Max (PMax) untuk Bisnis Indonesia 2026',
+    category: 'Google Ads & Search',
+    categorySlug: 'google-ads',
+    excerpt: 'Kupas tuntas arsitektur PMax: cara mengisolasi asset groups, menolak placement game anak yang boros biaya, dan memberi sinyal first-party data yang tepat kepada machine learning Google.',
+    readTime: '7 menit baca',
+    publishedDate: '12 Oktober 2026',
+    author: {
+      name: 'Taufiq Aminudin',
+      role: 'Principal Performance Strategist',
+      avatar: 'TA'
+    },
+    tags: ['Google Ads', 'Performance Max', 'PMax', 'Smart Bidding', 'ROAS'],
+    tableOfContents: [
+      'Mengapa PMax Sering Menghabiskan Anggaran Tanpa Hasil?',
+      'Langkah 1: Mengisolasi Asset Groups Berdasarkan Karakter Produk',
+      'Langkah 2: Menolak Penempatan Aplikasi Mobile & Game Sampah',
+      'Langkah 3: Memberikan Sinyal Audiens First-Party yang Kuat',
+      'Langkah 4: Kalibrasi Target tROAS Bertahap',
+      'Kesimpulan & Checklist Eksekusi'
+    ],
+    sections: [
       {
-        heading: 'Mengapa NIB Sangat Penting untuk Usaha di Temanggung?',
+        heading: 'Mengapa PMax Sering Menghabiskan Anggaran Tanpa Hasil?',
         paragraphs: [
-          'Bagi pelaku Usaha Mikro, Kecil, dan Menengah (UMKM) di Kabupaten Temanggung—mulai dari produsen kopi di Kledung, perajin tembakau di Parakan, sentra keripik jamur di Kandangan, hingga toko retail di Temanggung Kota—memiliki legalitas usaha bukan lagi sekadar formalitas, melainkan kebutuhan mendasar.',
-          'Dengan berlakunya sistem Online Single Submission Risk-Based Approach (OSS-RBA), Nomor Induk Berusaha (NIB) kini berfungsi tunggal sebagai identitas usaha, Tanda Daftar Perusahaan (TDP), Angka Pengenal Importir (API), hingga hak akses kepabeanan.'
+          'Google Performance Max (PMax) adalah senjata paling ampuh sekaligus paling berbahaya bagi pemilik bisnis yang belum memahaminya. Ketika Anda mengaktifkan PMax dengan pengaturan default, algoritma Google akan mencari jalan termudah menghabiskan budget harian Anda, yang sering kali berarti menampilkan iklan di dalam game mobile gratisan atau video YouTube anak-anak.',
+          'Di pasar Indonesia, kebocoran budget ini mencapai 40% dari total belanja iklan jika penempatan tidak diaudit dan dibatasi secara ketat sejak hari pertama.'
         ],
-        bullets: [
-          'Syarat Utama Pengajuan KUR Bank: Bank BRI, BNI, Mandiri, dan Bank Jateng di wilayah Temanggung mewajibkan NIB sebagai dokumen legalitas pencairan modal usaha bunga rendah.',
-          'Akses Bantuan Pemerintah & Kuota SEHATI: Pendaftaran sertifikasi halal gratis dan program pembinaan Disperindagkop Temanggung mensyaratkan NIB aktif.',
-          'Perlindungan dan Kepastian Hukum: Bisnis terdata resmi sehingga aman saat ada pemeriksaan legalitas atau perluasan skala tempat usaha.'
-        ]
-      },
-      {
-        heading: 'Dokumen Syarat Pengurusan NIB Perseorangan & Badan',
-        paragraphs: [
-          'Persyaratan pembuatan NIB di OSS-RBA saat ini sangat ringkas dan dapat diselesaikan tanpa perlu surat pengantar RT/RW atau kelurahan:',
-          'Pastikan Nomor Induk Kependudukan (NIK) Anda telah padan dan terverifikasi di database Disdukcapil Kabupaten Temanggung, serta NPWP pribadi dalam status aktif di DJP Online.'
+        bulletPoints: [
+          'Ketiadaan kata kunci negatif level akun menyebabkan PMax merebut traffic brand pencarian Anda sendiri.',
+          'Aset teks dan gambar yang dicampur sembarangan membuat pesan promosi tidak konsisten.',
+          'Pencatatan konversi yang belum terfilter melacak klik tombol biasa sebagai transaksi riil.'
         ],
-        bullets: [
-          'KTP Elektronik (e-KTP) Pemilik Usaha yang masih berlaku.',
-          'NPWP Pribadi Pemilik (untuk perorangan) atau NPWP Badan (untuk PT/CV).',
-          'Nomor WhatsApp dan alamat email aktif untuk verifikasi OTP sistem.',
-          'Data Alamat Lokasi Usaha (RT/RW, Desa/Kelurahan, Kecamatan di Temanggung).',
-          'Prakiraan modal usaha awal (tidak termasuk tanah dan bangunan tempat usaha).'
+        callout: 'Prinsip Emas: Jangan biarkan algoritma menebak target audiens Anda. Berikan sinyal data pembeli terbaik Anda sebagai pedoman awal.'
+      },
+      {
+        heading: 'Langkah 1: Mengisolasi Asset Groups Berdasarkan Karakter Produk',
+        paragraphs: [
+          'Banyak pengiklan membuat satu Asset Group tunggal berisi semua produk mereka. Ini adalah kesalahan fatal. Buatlah Asset Group terpisah untuk kategori produk terlaris (Hero Products), kategori dengan margin tinggi, dan kategori clearance.',
+          'Dengan memisahkan asset group, Google dapat memadukan headline, gambar, dan video yang 100% relevan dengan niat pencari.'
         ]
       },
       {
-        heading: 'Langkah Pembuatan Akun & Input KBLI di OSS-RBA',
+        heading: 'Langkah 2: Menolak Penempatan Aplikasi Mobile & Game Sampah',
         paragraphs: [
-          'Buka situs resmi oss.go.id, klik tombol Daftar di pojok kanan atas, pilih kategori Usaha Mikro dan Kecil (UMK) bagi permodalan di bawah Rp 5 miliar.',
-          'Isi data identitas diri dan lakukan verifikasi melalui kode OTP yang dikirimkan ke email Anda. Setelah akun aktif, login dan klik menu Perizinan Berusaha -> Permohonan Baru.',
-          'Pilihlah kode KBLI (Klasifikasi Baku Lapangan Usaha Indonesia) 5 digit yang paling mencerminkan bisnis Anda. Sebagai contoh, KBLI 47111 untuk perdagangan eceran sembako kelontong, atau KBLI 56303 untuk kedai kopi modern.'
+          'Salah satu penyebab CPA melonjak di Indonesia adalah klik tidak sengaja (accidental clicks) dari anak-anak yang sedang bermain game mobile. Anda wajib menambahkan Account-Level Placement Exclusion list untuk memblokir penempatan di kategori aplikasi game.',
+          'Langkah sederhana ini terbukti memangkas biaya per konversi sebesar 25% hingga 40% dalam waktu kurang dari 14 hari.'
         ]
       },
       {
-        heading: 'Pendampingan Pengurusan Cepat via Jasa Temanggung',
+        heading: 'Langkah 3: Memberikan Sinyal Audiens First-Party yang Kuat',
         paragraphs: [
-          'Bagi pelaku usaha yang tidak memiliki banyak waktu luang atau mengalami kendala teknis validasi NIK di sistem OSS, tim Jasa Temanggung siap memberikan pendampingan penyiapan berkas dari awal hingga NIB ber-QR code resmi diterbitkan dalam 1–2 hari kerja.'
+          'Unggah daftar pelanggan lama (Customer Match List) yang telah di-hash dengan aman ke Google Ads. Berikan Google data siapa saja yang pernah bertransaksi di bisnis Anda dalam 180 hari terakhir.',
+          'Algoritma Google kemudian akan mencari jutaan pengguna lain di Indonesia yang memiliki profil perilaku dan minat serupa (Lookalike/Optimized Audience).'
         ]
       }
-    ],
-    relatedServiceId: 'perizinan'
+    ]
   },
   {
-    slug: 'cara-mengurus-npwp-badan-dan-lapor-spt-pajak-temanggung',
-    title: 'Cara Mengurus NPWP Badan & Pelaporan SPT Pajak UMKM di KPP Pratama Temanggung (2026)',
-    category: 'legalitas',
-    categoryLabel: 'Perpajakan & Legalitas',
-    badgeBg: '#fef3c7',
-    badgeColor: '#92400e',
-    date: '30 September 2026',
-    readTime: '7 Menit',
-    author: 'Tim Konsultan Pajak Jasa Temanggung',
-    description: 'Panduan pendaftaran NPWP PT/CV, aktivasi EFIN badan, tarif PPh Final 0,5% PP 55/2022, dan pelaporan SPT Tahunan online bebas sanksi denda di KPP Pratama Temanggung.',
-    search: 'cara mengurus npwp badan pelaporan spt pajak umkm kpp pratama temanggung efin tarif pph final 0.5 djp online coretax',
-    content: [
+    id: 'art-capi',
+    slug: 'meta-ads-server-side-conversions-api',
+    title: 'Solusi Akun Iklan Kena Batasan & Implementasi Meta Conversions API (CAPI) Server-Side',
+    category: 'Meta & Social Ads',
+    categorySlug: 'meta-ads',
+    excerpt: 'Jangan biarkan 35% data penjualan Anda hilang akibat browser cookie blocks. Pelajari cara mengimplementasikan Meta CAPI server-side gateway untuk menstabilkan performa iklan Facebook & IG.',
+    readTime: '9 menit baca',
+    publishedDate: '08 Oktober 2026',
+    author: {
+      name: 'Rian Hidayat',
+      role: 'Lead Tracking Engineer',
+      avatar: 'RH'
+    },
+    tags: ['Meta Ads', 'Conversions API', 'CAPI', 'Facebook Ads', 'Server-Side GTM'],
+    tableOfContents: [
+      'Masalah Nyata di Balik Penurunan ROAS Meta Ads',
+      'Apa Perbedaan Browser Pixel vs Server-Side CAPI?',
+      'Arsitektur Gateway CAPI Tanpa Biaya Server Mahal',
+      'Pentingnya Parameter Deduplikasi (Event ID)',
+      'Meningkatkan Event Match Quality ke Skor 8.5+',
+      'Panduan Verifikasi Domain & Aggregated Event'
+    ],
+    sections: [
       {
-        heading: 'Kewajiban Perpajakan Badan Usaha di Kabupaten Temanggung',
+        heading: 'Masalah Nyata di Balik Penurunan ROAS Meta Ads',
         paragraphs: [
-          'Setelah mendirikan PT Perorangan, PT Biasa, atau CV di Kabupaten Temanggung, langkah wajib selanjutnya adalah mendaftarkan Nomor Pokok Wajib Pajak (NPWP) Badan ke Kantor Pelayanan Pajak (KPP) Pratama Temanggung.',
-          'NPWP Badan diperlukan untuk membuka rekening giro bank atas nama perusahaan, menerbitkan invoice resmi B2B, dan memenuhi kepatuhan regulasi perpajakan nasional.'
+          'Banyak pebisnis di Indonesia mengeluhkan: "Dulu iklan Facebook saya untung besar, kenapa 2 tahun terakhir boncos terus?" Jawabannya bukan karena peminat produk Anda hilang, melainkan karena browser modern (Safari iOS, Chrome Privacy Sandbox, aplikasi Ad-Blocker) memblokir pengiriman cookie pixel dari browser.',
+          'Akibatnya, sistem machine learning Meta menjadi "buta". Meta tidak tahu bahwa seseorang telah membeli produk Anda, sehingga algoritma terus menampilkan iklan ke audiens yang salah.'
+        ]
+      },
+      {
+        heading: 'Apa Perbedaan Browser Pixel vs Server-Side CAPI?',
+        paragraphs: [
+          'Browser Pixel bekerja di sisi pengguna. Jika pengguna menggunakan ad-blocker atau koneksi internet tidak stabil, sinyal konversi tidak akan pernah sampai ke Meta.',
+          'Sebaliknya, Meta Conversions API (CAPI) mengirimkan data transaksi langsung dari server website Anda ke server Meta melalui koneksi API aman. Data tidak bisa diblokir oleh browser atau ekstensi ad-blocker.'
         ],
-        bullets: [
-          'Mencegah sanksi denda administrasi keterlambatan pendaftaran.',
-          'Memisahkan kewajiban pajak pribadi pemilik dengan operasional badan hukum.',
-          'Mendapatkan fasilitas insentif tarif PPh Final 0,5% sesuai PP 55/2022 untuk UMKM.'
-        ]
-      },
-      {
-        heading: 'Syarat & Dokumen Pembuatan NPWP Badan',
-        paragraphs: [
-          'Dokumen yang harus disiapkan sebelum mengajukan pendaftaran secara daring di ereg.pajak.go.id:'
-        ],
-        bullets: [
-          'Salinan SK Kemenkumham (untuk PT Perorangan/PT Biasa) atau Surat Keterangan Terdaftar Pengadilan/AHU (untuk CV).',
-          'KTP & NPWP Direktur / Penanggung Jawab Perusahaan yang aktif dan tertib SPT pribadi.',
-          'Surat Keterangan Domisili Usaha atau NIB OSS-RBA.',
-          'Nomor telepon dan email resmi perusahaan yang belum pernah didaftarkan ke DJP.'
-        ]
-      },
-      {
-        heading: 'Aturan Tarif PPh Final 0,5% UMKM & Pelaporan SPT Tahunan',
-        paragraphs: [
-          'Badan usaha yang memiliki peredaran bruto (omset) di bawah Rp 4,8 miliar dalam 1 tahun pajak dapat memanfaatkan tarif PPh Final 0,5% dari omset bulanan.',
-          'Batas waktu pelaporan SPT Tahunan Badan adalah tanggal 30 April setiap tahunnya. Pastikan Anda telah mengaktifkan EFIN Badan di KPP Pratama Temanggung.'
-        ]
+        callout: 'Kombinasi Terbaik: Jalankan Browser Pixel dan CAPI secara bersamaan (Hybrid Mode) dengan Event ID deduplikasi agar tidak ada data yang terhitung dobel.'
       }
-    ],
-    relatedServiceId: 'akuntansi-pajak'
+    ]
   },
   {
-    slug: 'panduan-izin-lingkungan-sppl-amdal-dlh-temanggung',
-    title: 'Panduan Pengurusan SPPL & Izin Lingkungan DLH Temanggung untuk Usaha & Gudang (2026)',
-    category: 'legalitas',
-    categoryLabel: 'Lingkungan & Perizinan',
-    badgeBg: '#ecfdf5',
-    badgeColor: '#047857',
-    date: '30 September 2026',
-    readTime: '6 Menit',
-    author: 'Tim Regulasi Lingkungan Jasa Temanggung',
-    description: 'Standar persetujuan lingkungan hidup, komitmen SPPL otomatis di OSS, UKL-UPL penanganan limbah kopi & tembakau, dan alur verifikasi teknis DLH Temanggung.',
-    search: 'panduan izin lingkungan sppl amdal ukl upl dlh dinas lingkungan hidup temanggung pengolahan limbah kopi tembakau pabrik kayu oss rba',
-    content: [
+    id: 'art-tech-seo',
+    slug: 'modern-technical-seo-architecture',
+    title: 'Modern Technical SEO Architecture: Kuasai Halaman 1 Google Tanpa Backlink Spam',
+    category: 'SEO & Otoritas Organik',
+    categorySlug: 'seo',
+    excerpt: 'Strategi membangun website dengan skor Core Web Vitals 95+, schema markup semantik JSON-LD, dan topical authority siloing yang aman dari penalti Google.',
+    readTime: '8 menit baca',
+    publishedDate: '01 Oktober 2026',
+    author: {
+      name: 'Taufiq Aminudin',
+      role: 'Principal Performance Strategist',
+      avatar: 'TA'
+    },
+    tags: ['Technical SEO', 'Core Web Vitals', 'Schema Markup', 'Semantic Search', 'Google Search'],
+    tableOfContents: [
+      'Era Baru Google: Dari Kata Kunci Menuju Entitas Semantik',
+      'Pilar 1: Arsitektur Silo Konten & Internal Linking',
+      'Pilar 2: Optimasi Core Web Vitals (LCP, INP, CLS)',
+      'Pilar 3: Implementasi Schema.org JSON-LD Terstruktur',
+      'Pilar 4: Efisiensi Crawl Budget untuk Bot Mesin Pencari'
+    ],
+    sections: [
       {
-        heading: 'Klasifikasi Dokumen Lingkungan Hidup di Temanggung',
+        heading: 'Era Baru Google: Dari Kata Kunci Menuju Entitas Semantik',
         paragraphs: [
-          'Setiap kegiatan usaha di Kabupaten Temanggung wajib memiliki persetujuan lingkungan sesuai amanat PP No. 22 Tahun 2021. Dinas Lingkungan Hidup (DLH) Kabupaten Temanggung membagi dokumen lingkungan menjadi tiga tingkatan:',
-          '1. SPPL (Surat Pernyataan Kesanggupan Pengelolaan dan Pemantauan Lingkungan Hidup) untuk usaha mikro-kecil dengan dampak minimal.',
-          '2. UKL-UPL untuk kegiatan usaha berdampak sedang seperti gudang komoditas, pabrik kayu, dan pengolahan basah kopi.',
-          '3. AMDAL untuk industri berskala besar yang berbatasan dengan kawasan lindung.'
-        ]
-      },
-      {
-        heading: 'Komitmen Pengelolaan Limbah Usaha Khas Temanggung',
-        paragraphs: [
-          'Di Temanggung, perhatian khusus diberikan kepada pengolahan limbah kulit tanduk kopi, air limbah fermentasi kopi, dan debu pengolahan tembakau agar tidak mencemari saluran irigasi pertanian lokal.'
-        ],
-        bullets: [
-          'Penyediaan bak pengendapan air limbah sederhana sebelum dialirkan ke saluran umum.',
-          'Pemisahan tempat penampungan limbah B3 (oli bekas, kemasan bahan kimia).',
-          'Pernyataan tertulis komitmen menjaga kebersihan dan ketertiban lingkungan sekitar.'
+          'Google tidak lagi memandang halaman web sebagai kumpulan kata kunci yang diulang-ulang. Algoritma modern Google menggunakan Knowledge Graph dan Semantic Search untuk memahami topik bisnis Anda secara utuh.',
+          'Jika Anda ingin halaman layanan Anda menduduki peringkat teratas di kota target Anda, Anda harus membuktikan bahwa situs Anda adalah otoritas terlengkap atas topik tersebut.'
         ]
       }
-    ],
-    relatedServiceId: 'perizinan'
+    ]
   },
   {
-    slug: 'panduan-izin-tanda-daftar-gudang-tdg-temanggung',
-    title: 'Syarat & Cara Mengurus Tanda Daftar Gudang (TDG) di Temanggung (2026)',
-    category: 'legalitas',
-    categoryLabel: 'Perdagangan & Gudang',
-    badgeBg: '#ede9fe',
-    badgeColor: '#5b21b6',
-    date: '30 September 2026',
-    readTime: '6 Menit',
-    author: 'Tim Legalitas Jasa Temanggung',
-    description: 'Kewajiban legalitas tempat penyimpanan komoditas di Temanggung sesuai Permendag, syarat luas gudang, audit tata ruang K3, dan sanksi penutupan.',
-    search: 'syarat cara mengurus tanda daftar gudang tdg temanggung disperindagkop ukm dpmptsp gudang tembakau kopi pupuk sembako kbli 52101 logistik',
-    content: [
+    id: 'art-b2b-economics',
+    slug: 'b2b-lead-generation-economics',
+    title: 'Economics of B2B Lead Generation: Menghitung CAC, LTV, dan Payback Period di Indonesia',
+    category: 'B2B & Strategi Pertumbuhan',
+    categorySlug: 'b2b',
+    excerpt: 'Cara menghitung biaya akuisisi pelanggan bisnis (CAC) vs nilai seumur hidup (LTV) agar kampanye lead generation Anda menghasilkan keuntungan terukur bagi perusahaan.',
+    readTime: '6 menit baca',
+    publishedDate: '24 September 2026',
+    author: {
+      name: 'Aditya Pratama',
+      role: 'B2B Growth Advisor',
+      avatar: 'AP'
+    },
+    tags: ['B2B Marketing', 'Lead Gen', 'CAC', 'LTV', 'Unit Economics'],
+    tableOfContents: [
+      'Mengapa Banyak Kampanye B2B Terlihat Boncos Padahal Untung?',
+      'Rumus Menghitung Rasio LTV to CAC yang Sehat',
+      'Membedakan MQL (Marketing Qualified Lead) vs SQL (Sales Qualified Lead)',
+      'Mempercepat Siklus Closing dengan WhatsApp Sales Funnel'
+    ],
+    sections: [
       {
-        heading: 'Siapa Saja yang Wajib Memiliki TDG di Temanggung?',
+        heading: 'Mengapa Banyak Kampanye B2B Terlihat Boncos Padahal Untung?',
         paragraphs: [
-          'Berdasarkan Peraturan Menteri Perdagangan, setiap pemilik atau penyewa gudang tertutup dengan luas minimal 36 m² atau kapasitas simpan minimal 144 m³ yang digunakan untuk menyimpan komoditas pangan, tembakau, kopi, pupuk, atau barang industri wajib memiliki Tanda Daftar Gudang (TDG).',
-          'Di Temanggung, pengawasan dilakukan secara berkala oleh Disperindagkop UKM bersama DPMPTSP Temanggung untuk memastikan data rantai pasok dan kelaikan tempat penyimpanan.'
-        ]
-      },
-      {
-        heading: 'Persyaratan Dokumen Pengajuan TDG',
-        paragraphs: [
-          'Berkas yang wajib dipersiapkan meliputi NIB dengan KBLI pergudangan (52101/52102), bukti kepemilikan atau sewa bangunan gudang, tata letak denah penyimpanan (layout), serta izin PBG/SLF bangunan gudang.'
+          'Dalam bisnis B2B atau layanan jasa bernilai tinggi (seperti pembuatan PT, notaris perizinan, atau software), Anda tidak bisa menilai efektivitas iklan dari transaksi hari itu juga.',
+          'Jika Anda mengeluarkan Rp 1.500.000 untuk mendapatkan satu klien B2B yang membayar kontrak senilai Rp 25.000.000, ROI Anda adalah 1.500%+. Memahami ekonomi unit ini adalah kunci keberanian menaikkan anggaran iklan.'
         ]
       }
-    ],
-    relatedServiceId: 'perizinan'
+    ]
   },
   {
-    slug: 'panduan-analisis-data-bisnis-umkm-temanggung',
-    title: 'Panduan Analisis Data Bisnis UMKM Temanggung: Optimalkan Omset & Efisiensi Stok (2026)',
-    category: 'digital',
-    categoryLabel: 'Bisnis & Analisis Data',
-    badgeBg: '#e0f2fe',
-    badgeColor: '#0369a1',
-    date: '30 September 2026',
-    readTime: '7 Menit',
-    author: 'Tim Data Analyst Jasa Temanggung',
-    description: 'Strategi membaca data transaksi kasir POS, audit Pareto 80/20 margin produk, dan dashboard interaktif HP untuk pertumbuhan bisnis lokal Temanggung.',
-    search: 'panduan analisis data bisnis umkm temanggung optimalkan omset efisiensi stok hpp dashboard looker studio excel kasir pos profit',
-    content: [
+    id: 'art-cro-friction',
+    slug: 'conversion-rate-optimization-friction-points',
+    title: '7 Kebocoran Konversi (Friction Points) pada Landing Page Bisnis & Cara Memperbaikinya',
+    category: 'Konversi & CRO',
+    categorySlug: 'cro',
+    excerpt: 'Bedah 7 faktor psikologis yang membuat calon pembeli menutup tab website Anda dalam 4 detik pertama dan cara memperbaikinya untuk melipatgandakan omzet.',
+    readTime: '7 menit baca',
+    publishedDate: '15 September 2026',
+    author: {
+      name: 'Siti Rahmawati',
+      role: 'Lead UX & CRO Specialist',
+      avatar: 'SR'
+    },
+    tags: ['CRO', 'Landing Page', 'Copywriting', 'Conversion Rate', 'A/B Testing'],
+    tableOfContents: [
+      '4 Detik Penentu: Apa yang Terjadi di Pikiran Pengunjung?',
+      'Kebocoran 1: Judul Hero yang Mengambang Tanpa Manfaat Spesifik',
+      'Kebocoran 2: Tidak Ada Penjelasan Apa yang Terjadi Setelah Klik Tombol',
+      'Kebocoran 3: Form Isian yang Terlalu Panjang di Layar HP',
+      'Kebocoran 4: Menu Navigasi Berlebihan yang Mengalihkan Perhatian',
+      'Kebocoran 5: Waktu Muat Halaman Lebih dari 2.5 Detik',
+      'Kebocoran 6: Tidak Ada Jawaban atas Keraguan Calon Pembeli',
+      'Kebocoran 7: Alur Kerja yang Tidak Transparan'
+    ],
+    sections: [
       {
-        heading: 'Mengapa Bisnis UMKM di Temanggung Perlu Analisis Data?',
+        heading: '4 Detik Penentu: Apa yang Terjadi di Pikiran Pengunjung?',
         paragraphs: [
-          'Banyak pengusaha di Temanggung merasa omset penjualan ramai setiap hari, tetapi saat akhir bulan saldo kas tidak bertambah. Fenomena ini biasanya disebabkan oleh ketidaktahuan atas margin laba bersih riil dan dead stock yang mengendap di gudang.',
-          'Dengan memanfaatkan analisis data sederhana, Anda dapat mengetahui produk mana yang menghasilkan 80% keuntungan (hukum Pareto) dan jam-jam sibuk kunjungan konsumen.'
-        ]
-      },
-      {
-        heading: 'Langkah Praktis Mengolah Data Kasir',
-        paragraphs: [
-          '1. Ekspor data penjualan dari aplikasi kasir Anda ke dalam format Excel/CSV.',
-          '2. Hitung kontribusi margin laba kotor per item setelah dikurangi bahan baku riil.',
-          '3. Hubungkan Google Sheets ke Google Looker Studio untuk mendapatkan dashboard visual grafik harian yang otomatis diperbarui.'
+          'Ketika calon pelanggan datang dari iklan ke landing page Anda, otak bawah sadar mereka secara instan menanyakan 3 hal dalam 4 detik: "Apa ini?", "Apakah ini cocok untuk orang seperti saya?", dan "Apa untungnya jika saya klik tombol ini?"',
+          'Jika halaman Anda gagal menjawab ketiganya dalam 4 detik pertama, mereka akan menekan tombol kembali dan Anda kehilangan uang iklan.'
         ]
       }
-    ],
-    relatedServiceId: 'analis-data'
+    ]
   },
   {
-    slug: 'cara-mengurus-izin-edar-pirt-dinkes-temanggung',
-    title: 'Cara & Syarat Mengurus Izin Edar P-IRT di Dinas Kesehatan Temanggung (2026)',
-    category: 'sertifikasi',
-    categoryLabel: 'Pangan & Sertifikasi',
-    badgeBg: '#ecfdf5',
-    badgeColor: '#047857',
-    date: '30 September 2026',
-    readTime: '6 Menit',
-    author: 'Tim Konsultan Pangan Jasa Temanggung',
-    description: 'Panduan pengajuan SPP-IRT OSS, pelatihan PKP, standar label kemasan BPOM, dan uji kelayakan sarana produksi olahan kopi & makanan ringan khas Temanggung.',
-    search: 'cara syarat mengurus izin edar pirt dinkes temanggung makanan umkm olahan kopi pkp sppirt pangan',
-    content: [
+    id: 'art-attribution',
+    slug: 'multi-touch-attribution-in-privacy-era',
+    title: 'Multi-Touch Attribution & Setup GA4 Akurat Pasca Regulasi Privasi iOS',
+    category: 'Analitik & Data',
+    categorySlug: 'analytics',
+    excerpt: 'Pelajari mengapa laporan iklan Meta dan Google selalu berbeda jauh dan bagaimana memadukannya ke dalam model atribusi blended yang realistis.',
+    readTime: '8 menit baca',
+    publishedDate: '02 September 2026',
+    author: {
+      name: 'Rian Hidayat',
+      role: 'Lead Tracking Engineer',
+      avatar: 'RH'
+    },
+    tags: ['GA4', 'Attribution Modeling', 'Analytics', 'Data Driven', 'Tracking'],
+    tableOfContents: [
+      'Perang Klaim Atribusi: Mengapa Meta Mengaku 50 Penjualan Tapi Google Klaim 40?',
+      'Kelemahan Model Last-Click Attribution Tradisional',
+      'Menerapkan Model Data-Driven Attribution di GA4',
+      'Mengukur Blended MER (Marketing Efficiency Ratio) sebagai Kompas Utama'
+    ],
+    sections: [
       {
-        heading: 'Pentingnya Nomor P-IRT untuk Produk Pangan Olahan',
+        heading: 'Perang Klaim Atribusi: Mengapa Meta Mengaku 50 Penjualan Tapi Google Klaim 40?',
         paragraphs: [
-          'Nomor Sertifikat Produksi Pangan Industri Rumah Tangga (SPP-IRT) adalah bukti resmi kelayakan higienitas produk makanan dan minuman olahan. Tanpa P-IRT, produk Anda tidak dapat masuk ke minimarket, toko oleh-oleh, atau pameran resmi Pemkab Temanggung.'
-        ],
-        bullets: [
-          'Memberikan rasa aman dan kepercayaan kepada konsumen.',
-          'Memenuhi syarat wajib sebelum mendaftar Sertifikasi Halal.',
-          'Melindungi produsen dari ancaman razia barang pangan tanpa izin edar.'
-        ]
-      },
-      {
-        heading: 'Alur Pengurusan SPP-IRT di Dinas Kesehatan Temanggung',
-        paragraphs: [
-          '1. Memiliki NIB OSS-RBA dengan KBLI industri pangan mikro/kecil.',
-          '2. Mengikuti Penyuluhan Keamanan Pangan (PKP) yang diselenggarakan Dinkes Temanggung.',
-          '3. Memenuhi standar rancangan label kemasan (mencakup komposisi, berat bersih, nama produsen, kode produksi, dan tanggal kedaluwarsa).',
-          '4. Verifikasi lapangan pemeriksaan sarana produksi pangan oleh petugas sanitarian puskesmas/dinkes.'
+          'Pernahkah Anda melihat dashboard Meta melaporkan 50 penjualan, Google Ads mengklaim 40 penjualan, tapi uang yang masuk ke rekening toko Anda hanya setara 60 penjualan? Ini terjadi karena kedua platform sama-sama mengklaim kredit atas pembeli yang sama.',
+          'Dengan memahami multi-touch attribution dan memantau Blended MER, Anda bisa mengetahui kombinasi saluran mana yang paling efektif mendorong pertumbuhan laba riil.'
         ]
       }
-    ],
-    relatedServiceId: 'perizinan'
-  },
-  {
-    slug: 'panduan-sertifikasi-halal-gratis-sehati-temanggung',
-    title: 'Panduan Sertifikasi Halal Gratis (SEHATI) Self-Declare Temanggung (2026)',
-    category: 'sertifikasi',
-    categoryLabel: 'Sertifikasi Halal',
-    badgeBg: '#ecfdf5',
-    badgeColor: '#047857',
-    date: '28 September 2026',
-    readTime: '5 Menit',
-    author: 'Tim Halal Center Jasa Temanggung',
-    description: 'Syarat pengajuan sertifikat halal skema self-declare BPJPH bagi UMKM kuliner dan olahan kopi di Temanggung tanpa biaya pendaftaran.',
-    search: 'panduan sertifikasi halal gratis sehati self declare temanggung bpjph kementerian agama kopi makanan minuman',
-    content: [
-      {
-        heading: 'Kewajiban Sertifikasi Halal untuk Pelaku Usaha',
-        paragraphs: [
-          'Kewajiban sertifikasi halal tahap pertama berlaku bagi produk makanan dan minuman. Pelaku usaha mikro dan kecil di Temanggung beruntung karena dapat memanfaatkan program kuota SEHATI (Sertifikasi Halal Gratis) skema pernyataan mandiri (Self-Declare).'
-        ]
-      },
-      {
-        heading: 'Kriteria Produk yang Berhak Ikut Skema Gratis',
-        paragraphs: [
-          'Produk tidak berisiko atau menggunakan bahan yang sudah dipastikan kehalalannya, proses produksi sederhana, dan belum pernah menggunakan bahan hewani yang disembelih tanpa sertifikat halal RPH.'
-        ]
-      }
-    ],
-    relatedServiceId: 'perizinan'
-  },
-  {
-    slug: 'syarat-bikin-pt-perorangan-di-temanggung',
-    title: 'Syarat & Prosedur Bikin PT Perorangan di Temanggung Modal Ringan (2026)',
-    category: 'legalitas',
-    categoryLabel: 'Badan Hukum UMKM',
-    badgeBg: '#eff6ff',
-    badgeColor: '#1d4ed8',
-    date: '28 September 2026',
-    readTime: '6 Menit',
-    author: 'Tim Notariat & Legal Jasa Temanggung',
-    description: 'Solusi badan hukum resmi khusus UMKM Temanggung: 1 orang pendiri, tanpa akta notaris, pemisahan harta kekayaan pribadi, dan SK Kemenkumham elektronik.',
-    search: 'syarat prosedur bikin pt perorangan temanggung modal ringan kemenkumham ahu online umkm legalitas',
-    content: [
-      {
-        heading: 'Keunggulan PT Perorangan Dibandingkan CV atau Toko Biasa',
-        paragraphs: [
-          'PT Perorangan lahir melalui UU Cipta Kerja untuk memberikan perlindungan hukum bagi usaha mikro dan kecil. Cukup didirikan oleh 1 orang warga negara Indonesia, Anda sudah memiliki status badan hukum resmi dengan pemisahan aset pribadi dan aset usaha.'
-        ]
-      },
-      {
-        heading: 'Langkah Pendirian di Kemenkumham',
-        paragraphs: [
-          'Pengajuan nama PT melalui portal AHU Kemenkumham, pengisian formulir pernyataan pendirian elektronik, pembayaran PNBP resmi, dan pengunduhan SK Pengesahan yang langsung terintegrasi dengan penerbitan NPWP Badan.'
-        ]
-      }
-    ],
-    relatedServiceId: 'perizinan'
-  },
-  {
-    slug: 'izin-usaha-kafe-kedai-kopi-restoran-temanggung',
-    title: 'Panduan Izin Usaha Kafe, Kedai Kopi & Restoran di Temanggung (2026)',
-    category: 'legalitas',
-    categoryLabel: 'Kuliner & Kafe',
-    badgeBg: '#fef3c7',
-    badgeColor: '#92400e',
-    date: '26 September 2026',
-    readTime: '6 Menit',
-    author: 'Tim Perizinan Jasa Temanggung',
-    description: 'Panduan pemilihan kode KBLI 56303 (kedai kopi), sertifikat standar laik higiene sanitasi, izin tata ruang PBG, dan retribusi daerah Temanggung.',
-    search: 'izin usaha kafe kedai kopi restoran temanggung kbli 56303 pbg higiene sanitasi dpmptsp kuliner',
-    content: [
-      {
-        heading: 'Menjamurnya Kedai Kopi di Kabupaten Temanggung',
-        paragraphs: [
-          'Sebagai salah satu penghasil kopi arabika dan robusta terbaik di Indonesia, pertumbuhan kedai kopi di Temanggung sangat pesat. Memiliki izin usaha lengkap menjamin kenyamanan operasional dan memudahkan kerja sama dengan sponsor rokok atau perbankan.'
-        ]
-      }
-    ],
-    relatedServiceId: 'perizinan'
-  },
-  {
-    slug: 'panduan-mengurus-pbg-dan-slf-temanggung',
-    title: 'Panduan Mengurus PBG dan SLF Bangunan Tempat Usaha di Temanggung (2026)',
-    category: 'properti',
-    categoryLabel: 'Bangunan & Properti',
-    badgeBg: '#ede9fe',
-    badgeColor: '#5b21b6',
-    date: '26 September 2026',
-    readTime: '7 Menit',
-    author: 'Tim Arsitektur & Perizinan Jasa Temanggung',
-    description: 'Pengganti IMB: Persetujuan Bangunan Gedung (PBG) dan Sertifikat Laik Fungsi (SLF) melalui portal SIMBG di Dinas PUPR Temanggung.',
-    search: 'panduan mengurus pbg slf temanggung persetujuan bangunan gedung izin mendirikan bangunan simbg pupr tata ruang',
-    content: [
-      {
-        heading: 'Perubahan IMB Menjadi PBG dan Urgensi SLF',
-        paragraphs: [
-          'Sejak berlakunya PP No. 16 Tahun 2021, izin IMB resmi digantikan oleh Persetujuan Bangunan Gedung (PBG). Bagi bangunan usaha seperti ruko, kafe, gudang, dan klinik di Temanggung, kepemilikan SLF membuktikan bahwa bangunan aman digunakan secara struktural.'
-        ]
-      }
-    ],
-    relatedServiceId: 'properti'
-  },
-  {
-    slug: 'biaya-balik-nama-dan-pajak-stnk-samsat-temanggung',
-    title: 'Biaya Balik Nama (BBNKB) & Pajak STNK di Samsat Temanggung (2026)',
-    category: 'otomotif',
-    categoryLabel: 'Samsat & Kendaraan',
-    badgeBg: '#fef3c7',
-    badgeColor: '#b45309',
-    date: '25 September 2026',
-    readTime: '6 Menit',
-    author: 'Tim Samsat Jasa Temanggung',
-    description: 'Rincian biaya ganti plat 5 tahunan, penghapusan denda pajak kendaraan bermotor, alur cek fisik, dan syarat balik nama di Kantor Samsat Temanggung.',
-    search: 'biaya balik nama bbnkb pajak stnk samsat temanggung plat aa ganti plat 5 tahunan cek fisik motor mobil',
-    content: [
-      {
-        heading: 'Kenapa Harus Balik Nama Kendaraan Plat AA Temanggung?',
-        paragraphs: [
-          'Membeli kendaraan bekas tanpa balik nama sering merepotkan di kemudian hari karena harus meminjam KTP pemilik lama setiap kali membayar pajak tahunan. Balik nama memberikan kepemilikan mutlak dan perlindungan hukum penuh.'
-        ]
-      }
-    ],
-    relatedServiceId: 'stnk-sim'
-  },
-  {
-    slug: 'tips-membeli-tanah-kebun-sertifikat-shm-temanggung',
-    title: 'Tips Membeli Tanah Kebun Sertifikat SHM di Temanggung Bebas Sengketa (2026)',
-    category: 'properti',
-    categoryLabel: 'Investasi & Pertanahan',
-    badgeBg: '#ecfdf5',
-    badgeColor: '#047857',
-    date: '24 September 2026',
-    readTime: '7 Menit',
-    author: 'Tim Pertanahan & PPAT Jasa Temanggung',
-    description: 'Langkah aman survei tanah kebun kopi/tembakau di Kledung & Parakan, cek keaslian SHM di BPN Temanggung, dan simulasi pajak BPHTB.',
-    search: 'tips membeli tanah kebun sertifikat shm temanggung bebas sengketa bpn ppat akta jual beli ajb bphtb',
-    content: [
-      {
-        heading: 'Potensi Investasi Tanah Perkebunan di Temanggung',
-        paragraphs: [
-          'Tanah kebun kopi di lereng Gunung Sumbing dan Sindoro semakin diminati investor luar kota. Namun, pengecekan keabsahan batas fisik lahan dan kesesuaian dengan buku tanah di Kantor Pertanahan (BPN) Temanggung wajib dilakukan sebelum menyerahkan uang muka.'
-        ]
-      }
-    ],
-    relatedServiceId: 'properti'
-  },
-  {
-    slug: 'cara-bikin-website-bisnis-temanggung-masuk-google',
-    title: 'Cara Bikin Website Bisnis Temanggung Masuk Halaman 1 Google (2026)',
-    category: 'digital',
-    categoryLabel: 'Website & SEO',
-    badgeBg: '#e0f2fe',
-    badgeColor: '#0369a1',
-    date: '22 September 2026',
-    readTime: '6 Menit',
-    author: 'Tim Digital Web Jasa Temanggung',
-    description: 'Panduan pembuatan website bisnis lokal dengan optimasi SEO on-page, integrasi Google Maps, dan struktur mobile-friendly cepat.',
-    search: 'cara bikin website bisnis temanggung masuk google seo lokal google search console profil bisnisku',
-    content: [
-      {
-        heading: 'Peluang Besar SEO Pencarian Lokal di Temanggung',
-        paragraphs: [
-          'Saat wisatawan atau investor membutuhkan layanan di Temanggung, Google adalah tempat pertama yang mereka tuju. Memiliki website berkecepatan tinggi yang dioptimasi untuk kata kunci lokal memberikan keunggulan kompetitif dibandingkan kompetitor yang hanya bergantung pada media sosial.'
-        ]
-      }
-    ],
-    relatedServiceId: 'website'
-  },
-  {
-    slug: 'strategi-iklan-meta-ads-umkm-temanggung',
-    title: 'Strategi Iklan Meta Ads (Instagram & FB) untuk UMKM Temanggung (2026)',
-    category: 'digital',
-    categoryLabel: 'Pemasaran Digital',
-    badgeBg: '#e0f2fe',
-    badgeColor: '#0369a1',
-    date: '20 September 2026',
-    readTime: '6 Menit',
-    author: 'Tim Ads Specialist Jasa Temanggung',
-    description: 'Kiat mendapatkan chat pesanan WhatsApp melimpah dengan target radius kecamatan Temanggung, budget minim hasil maksimal.',
-    search: 'strategi iklan meta ads umkm temanggung facebook instagram ads klik whatsapp cpl hemat',
-    content: [
-      {
-        heading: 'Iklan Berbayar vs Postingan Organik',
-        paragraphs: [
-          'Jangkauan organik akun media sosial semakin menurun. Melalui Meta Ads dengan penargetan geografis presisi, toko Anda bisa langsung tampil di beranda ribuan warga Temanggung yang sedang memegang ponsel.'
-        ]
-      }
-    ],
-    relatedServiceId: 'iklan-online'
-  },
-  {
-    slug: 'panduan-mpp-mall-pelayanan-publik-temanggung',
-    title: 'Panduan Layanan di MPP (Mall Pelayanan Publik) Kabupaten Temanggung (2026)',
-    category: 'legalitas',
-    categoryLabel: 'Pelayanan Publik',
-    badgeBg: '#eff6ff',
-    badgeColor: '#1d4ed8',
-    date: '18 September 2026',
-    readTime: '5 Menit',
-    author: 'Tim Edukasi Jasa Temanggung',
-    description: 'Daftar loket instansi di Gedung Pemuda Temanggung: DPMPTSP, Disdukcapil, Samsat, KPP Pratama, BPJS, dan tips antrean cepat.',
-    search: 'panduan mpp mall pelayanan publik temanggung eks gedung pemuda loket dpmptsp disdukcapil samsat',
-    content: [
-      {
-        heading: 'One Stop Service di Eks Gedung Pemuda Temanggung',
-        paragraphs: [
-          'Mall Pelayanan Publik (MPP) Temanggung memadukan puluhan loket pelayanan instansi pusat dan daerah dalam satu atap untuk mempermudah warga mengurus dokumen perizinan, kependudukan, pajak, dan jaminan sosial.'
-        ]
-      }
-    ],
-    relatedServiceId: 'perizinan'
+    ]
   }
 ];
 
-export const INITIAL_REVIEWS: ReviewItem[] = [
+export const INITIAL_LEADS: LeadItem[] = [
   {
-    id: 'rev_1',
+    id: 'LEAD-101',
+    createdAt: '14 Okt 2026, 14:20 WIB',
     name: 'Budi Santoso',
-    role: 'Pemilik Kedai Kopi Sindoro, Kledung',
-    category: 'dokumen',
-    serviceTag: 'Jasa Perizinan OSS NIB',
-    rating: 5,
-    text: 'Sangat terbantu mengurus NIB OSS dan sertifikasi Halal kedai kopi kami. Sebelumnya bingung menentukan KBLI yang pas, tim Jasa Temanggung langsung dampingi sampai terbit dan beres dalam 2 hari.',
-    verified: true
+    company: 'PT Sentra Abadi Logistik',
+    city: 'Semarang',
+    phone: '081234567890',
+    email: 'budi@sentraabadi.co.id',
+    monthlyBudget: 'Rp 15 - 30 Juta / bln',
+    targetService: 'Google Ads & B2B Lead Generation',
+    status: 'Baru Masuk',
+    notes: 'Klien ingin ekspansi layanan pergudangan dan butuh lead valid dari pengusaha pabrik Jawa Tengah.'
   },
   {
-    id: 'rev_2',
-    name: 'Siti Nurjanah',
-    role: 'Produser Camilan Keripik, Parakan',
-    category: 'dokumen',
-    serviceTag: 'Izin Edar P-IRT Dinkes',
-    rating: 5,
-    text: 'Alhamdulillah proses pengajuan P-IRT ke Dinas Kesehatan Temanggung dipandu detail dari label kemasan sampai pengujian higiene. Sekarang produk keripik sudah bisa masuk swalayan lokal.',
-    verified: true
+    id: 'LEAD-102',
+    createdAt: '14 Okt 2026, 10:15 WIB',
+    name: 'Citra Permata',
+    company: 'Glow Botanic Skincare',
+    city: 'Jakarta Selatan',
+    phone: '081987654321',
+    email: 'citra@glowbotanic.id',
+    monthlyBudget: 'Rp 30 - 50 Juta / bln',
+    targetService: 'Meta Ads & TikTok Ads Scale',
+    status: 'Sedang Dianalisis',
+    notes: 'Brand skincare lokal ingin menaikkan ROAS dari 2.1x menjadi 4.5x jelang promo akhir tahun.'
   },
   {
-    id: 'rev_3',
-    name: 'Hendra Gunawan',
-    role: 'Toko Perlengkapan Rumah, Kranggan',
-    category: 'digital',
-    serviceTag: 'Jasa Meta Ads & Iklan Online',
-    rating: 5,
-    text: 'Budget harian 40 ribuan tapi chat masuk WhatsApp toko kami meningkat drastis. Penargetan radius kecamatan Temanggung sangat efektif untuk toko retail fisik seperti kami.',
-    verified: true
+    id: 'LEAD-103',
+    createdAt: '13 Okt 2026, 16:45 WIB',
+    name: 'dr. Hendra Wicaksono',
+    company: 'Klinik Gigi Sehat Temanggung',
+    city: 'Temanggung',
+    phone: '085712349988',
+    email: 'klinik.hendra@gmail.com',
+    monthlyBudget: 'Rp 5 - 10 Juta / bln',
+    targetService: 'Bisnis Jasa & Layanan Lokal (Google Maps + IG Ads)',
+    status: 'Proposal Terkirim',
+    notes: 'Butuh akuisisi pasien ortodonti & estetika gigi di wilayah Temanggung, Parakan, dan sekitarnya.'
   },
   {
-    id: 'rev_4',
-    name: 'Rudi Hartono',
-    role: 'Wirausaha, Temanggung Kota',
-    category: 'kendaraan',
-    serviceTag: 'Pajak 5 Tahunan & Mutasi STNK',
-    rating: 5,
-    text: 'Cepat dan transparan. Tidak perlu izin cuti kerja antre di Samsat Temanggung. Gesek nomor rangka mobil dan plat nomor baru langsung diantar ke rumah dengan aman.',
-    verified: true
-  },
-  {
-    id: 'rev_5',
-    name: 'Agus Wibowo',
-    role: 'Pengusaha Properti & Kebun, Bansari',
-    category: 'dokumen',
-    serviceTag: 'Notaris & Transaksi Tanah',
-    rating: 5,
-    text: 'Pengecekan sertifikat di BPN Temanggung sangat cermat sebelum kami tanda tangan AJB. Bebas dari risiko sengketa batas tanah kebun. Komunikasi ramah dan transparan.',
-    verified: true
+    id: 'LEAD-104',
+    createdAt: '12 Okt 2026, 09:30 WIB',
+    name: 'Arya Nugraha',
+    company: 'Nusantara Heritage Coffee',
+    city: 'Yogyakarta',
+    phone: '081399887766',
+    email: 'arya@nusantaracoffee.com',
+    monthlyBudget: 'Rp 10 - 20 Juta / bln',
+    targetService: 'Desain Landing Page & CRO + SEO Topical',
+    status: 'Deal / Aktif',
+    notes: 'Landing page ekspor biji kopi dan wholesale sudah live, sedang tahap setup Google Search B2B.'
   }
 ];
 
-export const COMPARISON_DATA = [
+export const TESTIMONIALS: TestimonialItem[] = [
   {
-    id: 'comp_1',
-    name: 'NIB OSS Usaha Mikro',
-    category: 'dokumen',
-    categoryName: 'Legalitas & Dokumen',
-    cost: 'Mulai Rp 150rb',
-    costNum: 150000,
-    duration: '1–2 Hari',
-    durationNum: 1,
-    output: 'Dokumen NIB Resmi QR-Code OSS',
-    serviceId: 'perizinan'
+    id: 'testi-1',
+    name: 'Aditya Pratama',
+    role: 'Founder & CEO',
+    company: 'Nusa Apparel Co.',
+    city: 'Bandung',
+    avatar: 'AP',
+    rating: 5,
+    text: 'Sebelum bekerja sama dengan tim FUTech, kami menghabiskan jutaan per hari di Facebook Ads tapi ROAS cuma pas-pasan 1.8x. Setelah mereka merapikan CAPI dan melatih tim kami dengan strategi sandbox, omzet kami tembus 5.4x ROAS secara konsisten.',
+    serviceTag: 'Meta Ads & CAPI Scale',
+    metricBadge: '+420% Omzet Penjualan'
   },
   {
-    id: 'comp_2',
-    name: 'Pendirian PT Perorangan',
-    category: 'dokumen',
-    categoryName: 'Legalitas & Dokumen',
-    cost: 'Mulai Rp 750rb',
-    costNum: 750000,
-    duration: '2–4 Hari',
-    durationNum: 2,
-    output: 'SK Kemenkumham, NIB & NPWP Badan',
-    serviceId: 'perizinan'
+    id: 'testi-2',
+    name: 'Bambang Sudiro, S.H.',
+    role: 'Managing Partner',
+    company: 'Mitra Perizinan Mandiri',
+    city: 'Semarang & Temanggung',
+    avatar: 'BS',
+    rating: 5,
+    text: 'Sistem kualifikasi formulir Google Ads dari FUTech menghemat waktu tim sales kami secara drastis. Prospek yang masuk sudah terverifikasi punya PT dan anggaran siap closing. Biaya akuisisi per lead kami turun lebih dari 70%.',
+    serviceTag: 'B2B Lead Generation',
+    metricBadge: '-72% Biaya Per Lead'
   },
   {
-    id: 'comp_3',
-    name: 'Sertifikasi Halal (SEHATI)',
-    category: 'dokumen',
-    categoryName: 'Legalitas & Dokumen',
-    cost: 'Mulai Rp 250rb (Pendampingan)',
-    costNum: 250000,
-    duration: '14–30 Hari',
-    durationNum: 14,
-    output: 'Sertifikat Halal Resmi BPJPH RI',
-    serviceId: 'perizinan'
+    id: 'testi-3',
+    name: 'drg. Maya Anggraini',
+    role: 'Direktur Operasional',
+    company: 'Dermacare Aesthetic & Dental',
+    city: 'Yogyakarta',
+    avatar: 'MA',
+    rating: 5,
+    text: 'Strategi penargetan radius lokal per kecamatan sangat luar biasa. Pasien baru yang datang ke klinik selalu menyebut melihat video Reels dokter kami. Pasien reservasi naik hampir 3 kali lipat dalam 3 bulan.',
+    serviceTag: 'Layanan Jasa Lokal & Maps',
+    metricBadge: '+280% Reservasi Pasien'
   },
   {
-    id: 'comp_4',
-    name: 'Pajak STNK Tahunan Motor',
-    category: 'kendaraan',
-    categoryName: 'Samsat Kendaraan',
-    cost: 'Mulai Rp 50rb + PKB Resmi',
-    costNum: 50000,
-    duration: '1 Hari',
-    durationNum: 1,
-    output: 'STNK Pengesahan & SKPD Lunas',
-    serviceId: 'stnk-sim'
+    id: 'testi-4',
+    name: 'Reza Fahlevi',
+    role: 'Head of Growth',
+    company: 'KasirKu Cloud System',
+    city: 'Jakarta',
+    avatar: 'RF',
+    rating: 5,
+    text: 'Keahlian teknis tim FUTech dalam membersihkan penempatan PMax dan tracking server-side GA4 berada di level enterprise. Pelacakan CAC dan LTV kami sekarang 100% transparan.',
+    serviceTag: 'Analytics & Tracking',
+    metricBadge: '340+ Demo B2B / Bln'
   },
   {
-    id: 'comp_5',
-    name: 'Ganti Plat 5 Tahunan Mobil',
-    category: 'kendaraan',
-    categoryName: 'Samsat Kendaraan',
-    cost: 'Mulai Rp 150rb + PKB',
-    costNum: 150000,
-    duration: '1–2 Hari',
-    durationNum: 1,
-    output: 'STNK Baru, Lembar Cek Fisik & Plat Baru',
-    serviceId: 'stnk-sim'
+    id: 'testi-5',
+    name: 'Linda Kusuma',
+    role: 'Owner',
+    company: 'Batik Pesona Kencana',
+    city: 'Solo',
+    avatar: 'LK',
+    rating: 5,
+    text: 'Landing page yang dibuatkan sangat cepat dan enak dilihat di HP. Ditambah tombol langsung ke WhatsApp CS yang sudah ada teks pesan otomatisnya, konversi penjualan kami meningkat 2.5 kali lipat.',
+    serviceTag: 'Landing Page & CRO',
+    metricBadge: '2.5x Conversion Rate'
   },
   {
-    id: 'comp_6',
-    name: 'Setup Iklan Meta Ads (WA Leads)',
-    category: 'digital',
-    categoryName: 'Digital & Pemasaran',
-    cost: 'Mulai Rp 350rb (Setup)',
-    costNum: 350000,
-    duration: '1–2 Hari',
-    durationNum: 1,
-    output: 'Kampanye Aktif, Pixel & Teks Penawaran',
-    serviceId: 'iklan-online'
-  },
-  {
-    id: 'comp_7',
-    name: 'Dashboard Analisis Bisnis POS',
-    category: 'digital',
-    categoryName: 'Digital & Pemasaran',
-    cost: 'Mulai Rp 500rb',
-    costNum: 500000,
-    duration: '3–5 Hari',
-    durationNum: 3,
-    output: 'Dashboard Looker Studio Interaktif di HP',
-    serviceId: 'analis-data'
-  },
-  {
-    id: 'comp_8',
-    name: 'Website Company Profile & SEO',
-    category: 'digital',
-    categoryName: 'Digital & Pemasaran',
-    cost: 'Mulai Rp 1.5 Jt',
-    costNum: 1500000,
-    duration: '4–7 Hari',
-    durationNum: 4,
-    output: 'Website Domain .COM, SSL, & Index Google',
-    serviceId: 'website'
+    id: 'testi-6',
+    name: 'Irfan Hakim',
+    role: 'Managing Director',
+    company: 'Kopi Sindoro Sumbing',
+    city: 'Temanggung',
+    avatar: 'IH',
+    rating: 5,
+    text: 'Sebagai brand kopi asli lereng Gunung Sindoro Temanggung, berkat strategi digital FUTech kami sekarang menyuplai biji kopi ke ratusan coffeeshop di Jakarta, Surabaya, bahkan diekspor ke Singapura.',
+    serviceTag: 'Ekspansi Nasional & SEO',
+    metricBadge: 'Penetrasi Pasar Nasional'
   }
 ];
 
 export const GENERAL_FAQS = [
   {
-    category: 'Umum & Layanan',
-    items: [
-      {
-        q: 'Apakah Jasa Temanggung adalah biro jasa resmi?',
-        a: 'Jasa Temanggung adalah platform layanan profesional independen berbasis di Temanggung yang menghubungkan pelaku usaha dan masyarakat dengan konsultan, praktisi legalitas, mitra notaris/PPAT, dan tenaga ahli digital yang terpercaya.'
-      },
-      {
-        q: 'Wilayah mana saja di Temanggung yang dapat dilayani?',
-        a: 'Kami melayani seluruh 20 kecamatan di Kabupaten Temanggung: Temanggung Kota, Parakan, Kedu, Pringsurat, Ngadirejo, Kranggan, Kaloran, Bulu, Candiroto, Bansari, Tembarak, Kledung, Jumo, Tretep, Kandangan, Selopampang, Tlogomulyo, Gemawang, Bejen, dan Wonoboyo.'
-      },
-      {
-        q: 'Bagaimana alur konsultasi dan pembayarannya?',
-        a: 'Konsultasi awal untuk pemetaan masalah dan estimasi biaya dilakukan secara transparan tanpa pungutan liar. Pembayaran jasa dilakukan melalui rekening resmi bertahap atau setelah dokumen/tahapan diverifikasi.'
-      }
-    ]
+    q: 'Apa perbedaan mendasar FUTech Digital Indonesia dibanding agensi digital lainnya?',
+    a: 'Kami adalah agensi performance-first yang berfokus pada hasil finansial nyata (ROAS, omzet bersih, penurunan CPA, dan jumlah kontrak closing), bukan sekadar metrik semu seperti tayangan (impressions) atau like. Kami juga membangun infrastruktur tracking server-side first-party agar data bisnis Anda 100% akurat.'
   },
   {
-    category: 'Perizinan & Usaha',
-    items: [
-      {
-        q: 'Berapa lama proses pendirian PT Perorangan?',
-        a: 'Proses penyiapan data, pengecekan nama di Kemenkumham, pendaftaran AHU online, hingga terbit SK Kemenkumham dan NPWP Badan memakan waktu rata-rata 2 hingga 4 hari kerja.'
-      },
-      {
-        q: 'Apakah usaha rumahan makanan wajib sertifikat Halal?',
-        a: 'Ya, seluruh produk makanan dan minuman wajib bersertifikat Halal. Pelaku usaha mikro dan kecil di Temanggung dapat memanfaatkan program gratis BPJPH (SEHATI) dengan pendampingan tim kami.'
-      }
-    ]
+    q: 'Apakah FUTech melayani bisnis lokal dan UMKM di daerah?',
+    a: 'Tentu saja. Kami memiliki pengalaman mendalam menangani bisnis lokal (klinik, notaris, perizinan, properti, kuliner, UMKM) di berbagai wilayah Indonesia termasuk Jawa Tengah (Temanggung, Semarang, Solo, Magelang, Jogja) hingga kota metropolitan Jabodetabek dan Surabaya.'
   },
   {
-    category: 'Pemasaran Digital & IT',
-    items: [
-      {
-        q: 'Berapa budget minimal untuk mulai beriklan di Meta Ads?',
-        a: 'Anda bisa mulai dengan anggaran iklan Rp 25.000 – Rp 50.000 per hari yang disetorkan langsung ke saldo iklan Anda.'
-      },
-      {
-        q: 'Berapa lama pembuatan website bisnis?',
-        a: 'Untuk landing page promosi selesai dalam 2–3 hari kerja, sedangkan website company profile multi-halaman sekitar 4–7 hari kerja.'
-      }
-    ]
+    q: 'Bagaimana cara memulai kerja sama dan konsultasi?',
+    a: 'Cukup gunakan alat Audit Gratis di website ini atau hubungi tim kami via WhatsApp di 0813-8200-0412. Kami akan menganalisis histori kampanye Anda, mengidentifikasi kebocoran anggaran, dan menyajikan roadmap aksi dalam 24-48 jam kerja.'
+  },
+  {
+    q: 'Siapa yang memegang kendali atas akun iklan dan kartu kredit?',
+    a: 'Anda memegang kendali 100%. Akun iklan Google, Meta, dan TikTok tetap atas nama Anda sendiri. Tagihan iklan langsung dibayarkan ke platform terkait melalui kartu kredit/debit bisnis Anda, sehingga tidak ada markup biaya media yang tersembunyi.'
+  },
+  {
+    q: 'Apakah ada jaminan hasil atau garansi?',
+    a: 'Kami menjamin standar eksekusi tertinggi: setup tracking bebas error, pengujian kreatif sistematis mingguan, dan optimasi harian. Jika metrik kunci tidak mencapai benchmark awal dalam 30 hari pertama, tim senior kami memberikan audit mendalam dan perbaikan strategi tanpa biaya tambahan.'
   }
 ];

@@ -1,53 +1,122 @@
+export interface ServiceDeliverable {
+  title: string;
+  desc: string;
+}
+
+export interface ServiceProcessStep {
+  step: string;
+  title: string;
+  desc: string;
+  duration: string;
+}
+
+export interface ServiceFaq {
+  q: string;
+  a: string;
+}
+
 export interface ServiceItem {
   id: string;
   slug: string;
   title: string;
-  category: 'marketing' | 'bisnis' | 'dokumen' | 'properti' | 'kendaraan' | 'digital';
+  category: 'paid-ads' | 'organic-seo' | 'conversion-cro' | 'analytics-tech' | 'creative-copy';
+  categoryLabel: string;
+  badge: string;
+  shortDesc: string;
+  fullDesc: string;
+  iconName: string;
+  deliverables: ServiceDeliverable[];
+  process: ServiceProcessStep[];
+  metrics: { label: string; value: string; benchmark: string }[];
+  faqs: ServiceFaq[];
+  startingPrice: string;
+  durationEst: string;
+}
+
+export interface IndustryItem {
+  id: string;
+  slug: string;
+  title: string;
   badge: string;
   desc: string;
-  icon: string;
-  iconBg: string;
-  iconColor: string;
-  search: string;
-  tagline?: string;
-  scopeTitle?: string;
-  scopeDesc?: string;
-  scopes?: Array<{ title: string; desc: string }>;
-  steps?: Array<{ no: number; title: string; desc: string }>;
-  pricingTable?: Array<{ service: string; time: string; note: string }>;
-  faqs?: Array<{ q: string; a: string }>;
-  docsRequired?: string[];
-  relatedArticleSlugs?: string[];
+  painPoints: string[];
+  growthPlaybook: string[];
+  averageRoas: string;
+  caseStudyRef?: string;
+}
+
+export interface CaseStudyItem {
+  id: string;
+  slug: string;
+  title: string;
+  client: string;
+  clientType: string;
+  location: string;
+  industry: string;
+  badge: string;
+  challenge: string;
+  strategy: string;
+  executionSteps: string[];
+  metrics: {
+    roas: string;
+    revenueGrowth: string;
+    cpaReduction: string;
+    leadsOrSales: string;
+  };
+  testimonial: {
+    quote: string;
+    author: string;
+    role: string;
+  };
 }
 
 export interface ArticleItem {
+  id: string;
   slug: string;
   title: string;
-  category: 'legalitas' | 'sertifikasi' | 'properti' | 'otomotif' | 'digital';
-  categoryLabel: string;
-  badgeBg: string;
-  badgeColor: string;
-  date: string;
+  category: string;
+  categorySlug: string;
+  excerpt: string;
   readTime: string;
-  author: string;
-  description: string;
-  search: string;
-  content: Array<{
+  publishedDate: string;
+  author: {
+    name: string;
+    role: string;
+    avatar: string;
+  };
+  tags: string[];
+  tableOfContents: string[];
+  sections: {
     heading: string;
     paragraphs: string[];
-    bullets?: string[];
-  }>;
-  relatedServiceId?: string;
+    bulletPoints?: string[];
+    callout?: string;
+  }[];
 }
 
-export interface ReviewItem {
+export interface LeadItem {
+  id: string;
+  createdAt: string;
+  name: string;
+  company: string;
+  city: string;
+  phone: string;
+  email: string;
+  monthlyBudget: string;
+  targetService: string;
+  status: 'Baru Masuk' | 'Sedang Dianalisis' | 'Proposal Terkirim' | 'Deal / Aktif' | 'Arsip';
+  notes: string;
+}
+
+export interface TestimonialItem {
   id: string;
   name: string;
   role: string;
-  category: string;
-  serviceTag: string;
+  company: string;
+  city: string;
+  avatar: string;
   rating: number;
   text: string;
-  verified: boolean;
-  createdAt?: string;
+  serviceTag: string;
+  metricBadge: string;
 }

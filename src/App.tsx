@@ -1,17 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
-import { FloatingActionBtn } from './components/FloatingActionBtn';
-import { ChecklistModal } from './components/ChecklistModal';
+import { FloatingWhatsApp } from './components/FloatingWhatsApp';
+import { SearchModal } from './components/SearchModal';
+import { AuditModal } from './components/AuditModal';
+
+// Pages
 import { HomePage } from './pages/HomePage';
 import { ServicesPage } from './pages/ServicesPage';
 import { ServiceDetailPage } from './pages/ServiceDetailPage';
-import { ArticlesPage } from './pages/ArticlesPage';
+import { IndustriesPage } from './pages/IndustriesPage';
+import { CaseStudiesPage } from './pages/CaseStudiesPage';
+import { RoasCalculatorPage } from './pages/RoasCalculatorPage';
+import { InsightsPage } from './pages/InsightsPage';
 import { ArticleDetailPage } from './pages/ArticleDetailPage';
-import { BlogPage } from './pages/BlogPage';
-import { WorkflowPage } from './pages/WorkflowPage';
-import { AboutPage } from './pages/AboutPage';
-import { FaqPage } from './pages/FaqPage';
+import { AdminLeadPortalPage } from './pages/AdminLeadPortalPage';
 import { ContactPage } from './pages/ContactPage';
 import { LegalPage } from './pages/LegalPage';
 
@@ -19,9 +22,11 @@ export const App: React.FC = () => {
   const [currentPath, setCurrentPath] = useState<string>(() => {
     return window.location.pathname || '/';
   });
-  const [checklistModalOpen, setChecklistModalOpen] = useState(false);
 
-  // Synchronize browser URL & navigation
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isAuditModalOpen, setIsAuditModalOpen] = useState(false);
+
+  // Sync browser back/forward buttons
   useEffect(() => {
     const handlePopState = () => {
       setCurrentPath(window.location.pathname || '/');
@@ -30,8 +35,24 @@ export const App: React.FC = () => {
     return () => window.removeEventListener('popstate', handlePopState);
   }, []);
 
+  // Exit-Intent or Inactivity Trigger for the Audit Diagnostic
+  useEffect(() => {
+    const DISMISSED_KEY = 'futech_audit_modal_shown';
+    if (sessionStorage.getItem(DISMISSED_KEY) === 'true') {
+      return;
+    }
+
+    // Auto prompt after 35 seconds of exploring
+    const timer = setTimeout(() => {
+      setIsAuditModalOpen(true);
+      sessionStorage.setItem(DISMISSED_KEY, 'true');
+    }, 35000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   const navigate = (path: string) => {
-    // Normalization
+    // Clean and normalize path
     let normalized = path.replace(/\/$/, '') || '/';
     if (normalized.endsWith('.html')) {
       normalized = normalized.replace(/\.html$/, '');
@@ -44,172 +65,164 @@ export const App: React.FC = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // Exit intent & Inactivity triggers for the Checklist Modal
-  useEffect(() => {
-    const DISMISSED_KEY = 'temanggung_checklist_modal_dismissed';
-    const DOWNLOADED_KEY = 'temanggung_checklist_downloaded';
+  // Router Dispatcher
+  const renderPage = () => {
+    const path = currentPath;
 
-    if (sessionStorage.getItem(DISMISSED_KEY) === 'true' || localStorage.getItem(DOWNLOADED_KEY) === 'true') {
-      return;
+    // Homepage
+    if (path === '/' || path === '') {
+      return (
+        <HomePage 
+          navigate={navigate} 
+          openAuditModal={() => setIsAuditModalOpen(true)} 
+        />
+      );
     }
 
-    // Inactivity timer: 30 seconds
-    const timer = setTimeout(() => {
-      setChecklistModalOpen(true);
-    }, 30000);
-
-    // Mouse exit intent trigger
-    const handleMouseLeave = (e: MouseEvent) => {
-      if (e.clientY <= 10) {
-        setChecklistModalOpen(true);
-      }
-    };
-    document.addEventListener('mouseleave', handleMouseLeave);
-
-    return () => {
-      clearTimeout(timer);
-      document.removeEventListener('mouseleave', handleMouseLeave);
-    };
-  }, []);
-
-  const handleCloseModal = () => {
-    setChecklistModalOpen(false);
-    try {
-      sessionStorage.setItem('temanggung_checklist_modal_dismissed', 'true');
-    } catch (_) {}
-  };
-
-  // Route Dispatcher
-  const renderRoute = () => {
-    let clean = currentPath.replace(/\/$/, '') || '/';
-    if (clean.endsWith('.html')) clean = clean.replace(/\.html$/, '');
-
-    // Root / Home
-    if (clean === '/' || clean === '/index') {
-      return <HomePage navigate={navigate} openChecklistModal={() => setChecklistModalOpen(true)} />;
+    // Layanan / Services
+    if (path === '/layanan' || path === '/jasa') {
+      return (
+        <ServicesPage 
+          navigate={navigate} 
+          openAuditModal={() => setIsAuditModalOpen(true)} 
+        />
+      );
     }
 
-    // Services Hub
-    if (clean === '/jasa') {
-      return <ServicesPage navigate={navigate} />;
+    if (path.startsWith('/layanan/') || path.startsWith('/jasa/')) {
+      const slug = path.replace(/^\/(layanan|jasa)\//, '');
+      return (
+        <ServiceDetailPage 
+          slug={slug} 
+          navigate={navigate} 
+          openAuditModal={() => setIsAuditModalOpen(true)} 
+        />
+      );
     }
 
-    // Service Detail
-    if (clean.startsWith('/jasa/')) {
-      const slug = clean.replace('/jasa/', '');
-      return <ServiceDetailPage slug={slug} navigate={navigate} />;
+    // Industri
+    if (path === '/industri') {
+      return (
+        <IndustriPageWrapper 
+          navigate={navigate} 
+          openAuditModal={() => setIsAuditModalOpen(true)} 
+        />
+      );
     }
 
-    // Legacy direct service slug aliases (e.g. /perizinan, /iklan-online, etc.)
-    const directServices = [
-      'iklan-online', 'analis-data', 'konsultasi-bisnis', 'perizinan', 'notaris-ppat',
-      'properti', 'stnk-sim', 'meta-ads', 'website', 'desain-branding', 'foto-video',
-      'akuntansi-pajak', 'hr-rekrutmen', 'it-komputer', 'lainnya', 'agen-tenaga-kerja-temanggung'
-    ];
-    const strippedSlug = clean.replace(/^\//, '');
-    if (directServices.includes(strippedSlug)) {
-      return <ServiceDetailPage slug={strippedSlug} navigate={navigate} />;
+    // Studi Kasus
+    if (path === '/studi-kasus') {
+      return (
+        <CaseStudiesPage 
+          navigate={navigate} 
+          openAuditModal={() => setIsAuditModalOpen(true)} 
+        />
+      );
     }
 
-    // Articles Hub
-    if (clean === '/artikel') {
-      return <ArticlesPage navigate={navigate} />;
+    // Kalkulator ROAS
+    if (path === '/kalkulator-roas' || path === '/kalkulator') {
+      return (
+        <RoasCalculatorPage 
+          openAuditModal={() => setIsAuditModalOpen(true)} 
+        />
+      );
     }
 
-    // Article Detail
-    if (clean.startsWith('/artikel/')) {
-      const slug = clean.replace('/artikel/', '');
-      return <ArticleDetailPage slug={slug} navigate={navigate} />;
+    // Wawasan & Knowledge Hub
+    if (path === '/wawasan' || path === '/artikel' || path === '/blog') {
+      return <InsightsPage navigate={navigate} />;
     }
 
-    // Direct article slug aliases
-    const directArticles = [
-      'cara-mengurus-npwp-badan-dan-lapor-spt-pajak-temanggung',
-      'panduan-izin-lingkungan-sppl-amdal-dlh-temanggung',
-      'panduan-izin-tanda-daftar-gudang-tdg-temanggung',
-      'panduan-analisis-data-bisnis-umkm-temanggung',
-      'panduan-izin-usaha-nib-oss-temanggung',
-      'biaya-balik-nama-dan-pajak-stnk-samsat-temanggung',
-      'strategi-iklan-meta-ads-umkm-temanggung',
-      'tips-membeli-tanah-kebun-sertifikat-shm-temanggung',
-      'cara-bikin-website-bisnis-temanggung-masuk-google',
-      'panduan-sertifikasi-halal-gratis-sehati-temanggung',
-      'cara-mengurus-izin-edar-pirt-dinkes-temanggung',
-      'syarat-bikin-pt-perorangan-di-temanggung',
-      'panduan-mengurus-pbg-dan-slf-temanggung',
-      'izin-usaha-kafe-kedai-kopi-restoran-temanggung',
-      'panduan-mpp-mall-pelayanan-publik-temanggung'
-    ];
-    if (directArticles.includes(strippedSlug)) {
-      return <ArticleDetailPage slug={strippedSlug} navigate={navigate} />;
+    if (path.startsWith('/wawasan/') || path.startsWith('/artikel/') || path.startsWith('/blog/')) {
+      const slug = path.replace(/^\/(wawasan|artikel|blog)\//, '');
+      return (
+        <ArticleDetailPage 
+          slug={slug} 
+          navigate={navigate} 
+          openAuditModal={() => setIsAuditModalOpen(true)} 
+        />
+      );
     }
 
-    // Blog Hub
-    if (clean === '/blog') {
-      return <BlogPage navigate={navigate} />;
+    // Admin Lead Portal Demo
+    if (path === '/admin-portal' || path === '/portal-lead' || path === '/pipeline') {
+      return <AdminLeadPortalPage navigate={navigate} />;
     }
 
-    // Workflow ("Bagaimana Caranya")
-    if (clean === '/bagaimana-caranya' || clean === '/cara-kerja') {
-      return <WorkflowPage navigate={navigate} />;
+    // Kontak & Konsultasi
+    if (path === '/kontak' || path === '/consultation') {
+      return <ContactPage />;
     }
 
-    // About ("Tentang")
-    if (clean === '/tentang' || clean === '/tentang-kami') {
-      return <AboutPage navigate={navigate} />;
-    }
-
-    // FAQ
-    if (clean === '/faq') {
-      return <FaqPage navigate={navigate} />;
-    }
-
-    // Contact ("Kontak")
-    if (clean === '/kontak') {
-      return <ContactPage navigate={navigate} />;
-    }
-
-    // Terms
-    if (clean === '/syarat-ketentuan' || clean === '/syarat') {
-      return <LegalPage type="terms" navigate={navigate} />;
-    }
-
-    // Privacy
-    if (clean === '/privasi' || clean === '/kebijakan-privasi') {
+    // Legal
+    if (path === '/kebijakan-privasi' || path === '/privasi') {
       return <LegalPage type="privacy" navigate={navigate} />;
+    }
+
+    if (path === '/syarat-ketentuan' || path === '/terms') {
+      return <LegalPage type="terms" navigate={navigate} />;
     }
 
     // Fallback 404
     return (
-      <main className="section not-found">
-        <div className="container">
-          <div style={{ fontSize: '48px', marginBottom: '12px' }}>🔍</div>
-          <h1 style={{ fontSize: '32px', marginBottom: '10px' }}>Halaman Tidak Ditemukan</h1>
-          <p style={{ color: 'var(--muted)', maxWidth: '480px', margin: '0 auto 24px' }}>
-            Halaman yang Anda cari tidak ditemukan atau telah dipindahkan. Anda dapat kembali ke halaman utama untuk menemukan layanan yang Anda butuhkan.
-          </p>
-          <button
-            type="button"
-            className="btn btn-primary"
-            onClick={() => navigate('/')}
-          >
-            ← Kembali ke Beranda
-          </button>
-        </div>
-      </main>
+      <div className="max-w-xl mx-auto px-4 py-24 text-center space-y-4">
+        <div className="text-5xl font-mono text-blue-500 font-black">404</div>
+        <h2 className="text-2xl font-bold text-white">Halaman Tidak Ditemukan</h2>
+        <p className="text-slate-400 text-sm">
+          Alamat yang Anda tuju mungkin telah dipindahkan atau belum tersedia.
+        </p>
+        <button
+          onClick={() => navigate('/')}
+          className="px-6 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs"
+        >
+          Kembali ke Beranda
+        </button>
+      </div>
     );
   };
 
   return (
-    <div className="app-layout">
-      <Header currentPath={currentPath} navigate={navigate} />
-      {renderRoute()}
-      <Footer navigate={navigate} />
-      <FloatingActionBtn />
-      <ChecklistModal
-        isOpen={checklistModalOpen}
-        onClose={handleCloseModal}
+    <div className="min-h-screen bg-[#0b1120] text-slate-100 flex flex-col font-sans selection:bg-blue-600 selection:text-white">
+      {/* Header Navigation */}
+      <Header 
+        currentPath={currentPath}
+        navigate={navigate}
+        openSearch={() => setIsSearchOpen(true)}
+        openAuditModal={() => setIsAuditModalOpen(true)}
+      />
+
+      {/* Main View Area */}
+      <main className="flex-grow">
+        {renderPage()}
+      </main>
+
+      {/* Footer Directory */}
+      <Footer 
+        navigate={navigate} 
+        openAuditModal={() => setIsAuditModalOpen(true)} 
+      />
+
+      {/* Floating WhatsApp Action */}
+      <FloatingWhatsApp />
+
+      {/* Search Modal (`Cmd+K`) */}
+      <SearchModal 
+        isOpen={isSearchOpen}
+        onClose={() => setIsSearchOpen(false)}
+        navigate={navigate}
+      />
+
+      {/* Interactive Audit Modal */}
+      <AuditModal 
+        isOpen={isAuditModalOpen}
+        onClose={() => setIsAuditModalOpen(false)}
       />
     </div>
   );
+};
+
+// Helper for Industri
+const IndustriPageWrapper: React.FC<{ navigate: (path: string) => void; openAuditModal: () => void }> = ({ navigate, openAuditModal }) => {
+  return <IndustriesPage navigate={navigate} openAuditModal={openAuditModal} />;
 };

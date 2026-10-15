@@ -1,130 +1,196 @@
 import React, { useState } from 'react';
-import { SERVICES } from '../data/siteData';
+import { SERVICES, SITE_CONFIG } from '../data/siteData';
+import { 
+  Search, 
+  ArrowRight, 
+  Zap, 
+  CheckCircle, 
+  Filter, 
+  Sparkles, 
+  MessageSquare,
+  ShieldCheck,
+  TrendingUp,
+  Clock
+} from 'lucide-react';
 
 interface ServicesPageProps {
   navigate: (path: string) => void;
+  openAuditModal: () => void;
 }
 
-export const ServicesPage: React.FC<ServicesPageProps> = ({ navigate }) => {
-  const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('all');
+export const ServicesPage: React.FC<ServicesPageProps> = ({ navigate, openAuditModal }) => {
+  const [search, setSearch] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState<string>('all');
 
-  const filteredServices = SERVICES.filter((service) => {
-    const matchesCat = selectedCategory === 'all' || service.category === selectedCategory;
-    const q = searchQuery.toLowerCase().trim();
-    if (!q) return matchesCat;
-    const terms = q.split(/\s+/).filter(Boolean);
-    const haystack = `${service.title} ${service.desc} ${service.search}`.toLowerCase();
-    const matchesSearch = terms.every(term => haystack.includes(term));
+  const filtered = SERVICES.filter(s => {
+    const matchesCat = selectedCategory === 'all' || s.category === selectedCategory;
+    const matchesSearch = !search || 
+      s.title.toLowerCase().includes(search.toLowerCase()) || 
+      s.shortDesc.toLowerCase().includes(search.toLowerCase()) ||
+      s.badge.toLowerCase().includes(search.toLowerCase());
     return matchesCat && matchesSearch;
   });
 
   return (
-    <main>
-      <section className="service-hero">
-        <div className="container">
-          <div className="breadcrumb">
-            <a href="/" onClick={(e) => { e.preventDefault(); navigate('/'); }}>Home</a> / Semua Jasa
-          </div>
-          <div className="service-head">
-            <span className="eyebrow">Direktori Layanan Lokal</span>
-            <h1>Semua Jasa di Temanggung</h1>
-            <p className="hero-sub">
-              Temukan bantuan untuk urusan iklan online, konsultasi bisnis, perizinan OSS, notaris, properti tanah, perpajakan, kendaraan, hingga penyediaan tenaga kerja di Temanggung.
-            </p>
-
-            <div className="finder">
-              <input
-                type="text"
-                placeholder="Cari layanan (contoh: iklan, konsultasi, NIB, STNK, PT, tanah, ads, website, tenaga kerja)..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-              />
-              <select
-                value={selectedCategory}
-                onChange={(e) => setSelectedCategory(e.target.value)}
-                aria-label="Filter kategori"
-              >
-                <option value="all">Semua Kategori ({SERVICES.length})</option>
-                <option value="marketing">Pemasaran, Iklan &amp; Kreatif</option>
-                <option value="bisnis">Bisnis &amp; Analisis Data</option>
-                <option value="dokumen">Dokumen &amp; Legalitas Usaha</option>
-                <option value="properti">Properti &amp; Pertanahan</option>
-                <option value="kendaraan">Administrasi Kendaraan</option>
-                <option value="digital">Website &amp; IT</option>
-              </select>
-            </div>
-
-            <div style={{ marginTop: '10px', color: 'var(--muted)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '8px', fontSize: '13px' }}>
-              <span>Menampilkan {filteredServices.length} dari {SERVICES.length} layanan yang cocok.</span>
-              {(searchQuery || selectedCategory !== 'all') && (
-                <button
-                  type="button"
-                  onClick={() => { setSearchQuery(''); setSelectedCategory('all'); }}
-                  style={{ background: 'none', border: 'none', color: 'var(--primary)', cursor: 'pointer', fontWeight: 700 }}
-                >
-                  ✕ Reset Pencarian
-                </button>
-              )}
-            </div>
-          </div>
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-12">
+      
+      {/* Hero Head */}
+      <div className="max-w-3xl space-y-4">
+        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-xs font-mono">
+          <Zap className="w-3.5 h-3.5" />
+          <span>Direktori Lengkap Layanan Pertumbuhan</span>
         </div>
-      </section>
+        <h1 className="text-3xl sm:text-5xl font-black text-white tracking-tight">
+          Layanan Performance Marketing & Rekayasa Konversi
+        </h1>
+        <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
+          Kami memadukan media berbayar dengan niat tinggi (Google & Meta Ads), optimasi mesin pencari semantik (SEO), desain konversi sub-detik (CRO), dan tracking server-side untuk memastikan setiap rupiah iklan menghasilkan nilai riil bagi bisnis Anda.
+        </p>
+      </div>
 
-      <section className="section" style={{ paddingTop: '35px' }}>
-        <div className="container">
-          {filteredServices.length === 0 && (
-            <div className="callout" style={{ textAlign: 'center', padding: '36px 20px', margin: '20px 0' }}>
-              <div style={{ fontSize: '36px', marginBottom: '8px' }}>🔍</div>
-              <h3 style={{ marginBottom: '6px', fontSize: '18px' }}>Layanan tidak ditemukan</h3>
-              <p style={{ margin: '0 auto 16px', color: 'var(--muted)', fontSize: '14px', maxWidth: '540px' }}>
-                Tidak ada layanan yang cocok dengan kata kunci atau filter tersebut. Anda bisa reset pencarian atau konsultasikan langsung kebutuhan Anda kepada kami.
-              </p>
-              <div style={{ display: 'flex', gap: '10px', justifyContent: 'center', flexWrap: 'wrap' }}>
-                <button
-                  type="button"
-                  className="btn btn-secondary"
-                  onClick={() => { setSearchQuery(''); setSelectedCategory('all'); }}
-                >
-                  Lihat Semua Layanan
-                </button>
-                <button
-                  type="button"
-                  className="btn btn-primary"
-                  onClick={() => navigate('/kontak')}
-                >
-                  Konsultasi Kebutuhan Khusus →
-                </button>
+      {/* Filter and Search Bar */}
+      <div className="glass-panel p-4 rounded-2xl flex flex-col md:flex-row items-center justify-between gap-4 border-slate-700">
+        {/* Search */}
+        <div className="relative w-full md:w-80">
+          <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+          <input
+            type="text"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="Cari layanan (Google, CAPI, SEO, CRO)..."
+            className="w-full bg-slate-900 border border-slate-700/80 rounded-xl pl-9 pr-4 py-2 text-xs sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-blue-500"
+          />
+        </div>
+
+        {/* Categories */}
+        <div className="flex flex-wrap gap-1.5 w-full md:w-auto text-xs">
+          {[
+            { id: 'all', label: 'Semua (12)' },
+            { id: 'paid-ads', label: 'Paid Media' },
+            { id: 'organic-seo', label: 'SEO & Otoritas' },
+            { id: 'conversion-cro', label: 'Landing Page & CRO' },
+            { id: 'analytics-tech', label: 'Data & Tracking' },
+            { id: 'creative-copy', label: 'Creative Lab' }
+          ].map(cat => (
+            <button
+              key={cat.id}
+              onClick={() => setSelectedCategory(cat.id)}
+              className={`px-3 py-1.5 rounded-lg font-medium transition-colors ${
+                selectedCategory === cat.id 
+                  ? 'bg-blue-600 text-white' 
+                  : 'bg-slate-900/80 text-slate-400 hover:text-white border border-slate-800'
+              }`}
+            >
+              {cat.label}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Services Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {filtered.map((service) => (
+          <div
+            key={service.id}
+            onClick={() => navigate(`/layanan/${service.slug}`)}
+            className="glass-panel rounded-2xl p-6 flex flex-col justify-between cursor-pointer group hover:-translate-y-1 hover:border-blue-500/50"
+          >
+            <div className="space-y-4">
+              <div className="flex items-center justify-between">
+                <span className="text-[11px] font-mono px-2.5 py-0.5 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/30">
+                  {service.badge}
+                </span>
+                <span className="text-[11px] text-slate-400 flex items-center gap-1 font-mono">
+                  <Clock className="w-3 h-3 text-slate-500" />
+                  <span>{service.durationEst.split('+')[0]}</span>
+                </span>
+              </div>
+
+              <div>
+                <h3 className="text-xl font-bold text-white group-hover:text-blue-300 transition-colors">
+                  {service.title}
+                </h3>
+                <p className="text-slate-400 text-xs sm:text-sm mt-2 line-clamp-3 leading-relaxed">
+                  {service.shortDesc}
+                </p>
+              </div>
+
+              {/* Scope Deliverables */}
+              <div className="space-y-2 pt-2 border-t border-slate-800/80">
+                <span className="text-[11px] font-mono text-slate-400 uppercase font-bold tracking-wider">
+                  Ruang Lingkup Eksekusi:
+                </span>
+                {service.deliverables.slice(0, 3).map((del, i) => (
+                  <div key={i} className="flex items-start gap-2 text-xs text-slate-300">
+                    <CheckCircle className="w-3.5 h-3.5 text-blue-400 shrink-0 mt-0.5" />
+                    <span className="line-clamp-1">{del.title}</span>
+                  </div>
+                ))}
               </div>
             </div>
-          )}
 
-          <div className="grid-3">
-            {filteredServices.map((srv) => (
-              <article key={srv.id} className="service-card">
-                <div className="service-icon" style={{ background: srv.iconBg, color: srv.iconColor }}>
-                  {srv.icon}
-                </div>
-                <div>
-                  <span className="eyebrow small" style={{ background: srv.iconBg, color: srv.iconColor }}>
-                    {srv.badge}
-                  </span>
-                  <h3>{srv.title}</h3>
-                  <p>{srv.desc}</p>
-                  <button
-                    type="button"
-                    className="text-link"
-                    style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
-                    onClick={() => navigate(`/jasa/${srv.slug}`)}
-                  >
-                    Lihat detail layanan →
-                  </button>
-                </div>
-              </article>
-            ))}
+            <div className="pt-6 mt-4 border-t border-slate-800 flex items-center justify-between">
+              <div>
+                <span className="block text-[10px] text-slate-500 font-mono">Investasi Mulai</span>
+                <span className="text-xs font-bold font-mono text-cyan-400">{service.startingPrice}</span>
+              </div>
+
+              <div className="flex items-center gap-1 text-xs font-semibold text-blue-400 group-hover:text-cyan-300">
+                <span>Rincian</span>
+                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+              </div>
+            </div>
           </div>
+        ))}
+      </div>
+
+      {/* Empty State */}
+      {filtered.length === 0 && (
+        <div className="text-center py-16 space-y-3 glass-panel rounded-2xl">
+          <div className="text-4xl">🔎</div>
+          <h3 className="text-lg font-bold text-white">Tidak ada layanan yang sesuai</h3>
+          <p className="text-xs text-slate-400 max-w-sm mx-auto">
+            Coba bersihkan kata kunci pencarian atau pilih kategori lain untuk melihat daftar solusi lengkap.
+          </p>
+          <button
+            onClick={() => { setSearch(''); setSelectedCategory('all'); }}
+            className="px-4 py-2 rounded-xl bg-slate-800 text-xs text-white hover:bg-slate-700"
+          >
+            Reset Filter Pencarian
+          </button>
         </div>
-      </section>
-    </main>
+      )}
+
+      {/* Bottom Consultation Banner */}
+      <div className="glass-panel rounded-2xl p-8 border-blue-500/30 flex flex-col sm:flex-row items-center justify-between gap-6">
+        <div>
+          <h3 className="text-xl font-bold text-white">
+            Bingung Menentukan Saluran yang Tepat untuk Bisnis Anda?
+          </h3>
+          <p className="text-slate-400 text-xs sm:text-sm mt-1">
+            Senior media strategist kami siap menganalisis model bisnis dan margin Anda dalam sesi konsultasi gratis.
+          </p>
+        </div>
+
+        <div className="flex items-center gap-3 shrink-0">
+          <button
+            onClick={openAuditModal}
+            className="px-5 py-3 rounded-xl font-bold text-xs sm:text-sm text-white bg-blue-600 hover:bg-blue-500"
+          >
+            Audit Iklan Gratis
+          </button>
+          <a
+            href={`https://wa.me/${SITE_CONFIG.whatsappNumber}?text=Halo%20FUTech%20Digital,%20saya%20ingin%20konsultasi%20layanan%20iklan`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-5 py-3 rounded-xl font-bold text-xs sm:text-sm text-slate-200 bg-slate-900 border border-slate-700 hover:bg-slate-800 flex items-center gap-2"
+          >
+            <MessageSquare className="w-4 h-4 text-emerald-400" />
+            <span>WhatsApp</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
   );
 };
