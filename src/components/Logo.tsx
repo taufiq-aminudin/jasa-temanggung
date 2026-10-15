@@ -52,22 +52,22 @@ export const Logo: React.FC<LogoProps> = ({
       >
         <defs>
           <linearGradient id="logo-bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#0f172a" />
-            <stop offset="100%" stop-color="#020617" />
+            <stop offset="0%" stopColor="#0f172a" />
+            <stop offset="100%" stopColor="#020617" />
           </linearGradient>
           <linearGradient id="logo-blue-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#38bdf8" />
-            <stop offset="50%" stop-color="#2563eb" />
-            <stop offset="100%" stop-color="#1d4ed8" />
+            <stop offset="0%" stopColor="#38bdf8" />
+            <stop offset="50%" stopColor="#2563eb" />
+            <stop offset="100%" stopColor="#1d4ed8" />
           </linearGradient>
           <linearGradient id="logo-accent-grad" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stop-color="#06b6d4" />
-            <stop offset="100%" stop-color="#10b981" />
+            <stop offset="0%" stopColor="#06b6d4" />
+            <stop offset="100%" stopColor="#10b981" />
           </linearGradient>
           <linearGradient id="logo-border-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.8" />
-            <stop offset="50%" stop-color="#2563eb" stop-opacity="0.3" />
-            <stop offset="100%" stop-color="#1e293b" stop-opacity="0.8" />
+            <stop offset="0%" stopColor="#38bdf8" stopOpacity={0.8} />
+            <stop offset="50%" stopColor="#2563eb" stopOpacity={0.3} />
+            <stop offset="100%" stopColor="#1e293b" stopOpacity={0.8} />
           </linearGradient>
         </defs>
 
